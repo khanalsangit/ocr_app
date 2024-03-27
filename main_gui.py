@@ -174,9 +174,18 @@ if __name__ == '__main__':
             isOpen = False
 
         isGrabbing = False
-
         
     
+    def toogle_mode():
+        if ui.switchButton.isChecked():
+           ui.stackWidget.setCurrentWidget(ui.liveMode_Page)
+           ui.switchButton.setText('Live')
+        
+        else:
+            ui.switchButton.setText('Debug')
+            ui.stackWidget.setCurrentWidget(ui.debugMode_Page)
+
+    # Init app, bind ui 
     app = QApplication(sys.argv)
     mainWindow = QMainWindow()
     ui = Ui_MainWindow()
@@ -184,6 +193,7 @@ if __name__ == '__main__':
     loadJsonStyle(mainWindow,ui)
     
     ui.findCamera_Button.clicked.connect(enum_devices)
+    ui.switchButton.clicked.connect(toogle_mode)
     mainWindow.show()
     app.exec_()
     close_device()

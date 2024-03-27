@@ -5516,6 +5516,9 @@ QPushButton:pressed{
             <property name="text">
              <string>Debug</string>
             </property>
+            <property name="checkable">
+             <bool>true</bool>
+            </property>
             <property name="autoDefault">
              <bool>true</bool>
             </property>

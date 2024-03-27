@@ -2378,6 +2378,7 @@ class Ui_MainWindow(object):
 "    border-left:2px solid rgb(100,180,180);\n"
 "    border-top:2px solid rgb(100,180,180);\n"
 "}")
+        self.switchButton.setCheckable(True)
         self.switchButton.setAutoDefault(True)
         self.switchButton.setFlat(False)
         self.switchButton.setObjectName("switchButton")

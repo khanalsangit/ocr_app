@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1296</width>
+    <width>1331</width>
     <height>702</height>
    </rect>
   </property>
@@ -46,9 +46,7 @@
 #counterFrame{
 	border:1px solid black;
 }
-#editProject{
-	background-color: #23456;
-}
+
 </string>
    </property>
    <layout class="QGridLayout" name="gridLayout_5">
@@ -67,362 +65,6 @@
     <property name="spacing">
      <number>6</number>
     </property>
-    <item row="0" column="0">
-     <widget class="QWidget" name="topGrid" native="true">
-      <property name="minimumSize">
-       <size>
-        <width>0</width>
-        <height>0</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>16777215</width>
-        <height>90</height>
-       </size>
-      </property>
-      <property name="mouseTracking">
-       <bool>true</bool>
-      </property>
-      <property name="styleSheet">
-       <string notr="true"/>
-      </property>
-      <layout class="QHBoxLayout" name="horizontalLayout">
-       <property name="spacing">
-        <number>50</number>
-       </property>
-       <property name="leftMargin">
-        <number>66</number>
-       </property>
-       <item>
-        <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0">
-         <property name="spacing">
-          <number>0</number>
-         </property>
-         <property name="topMargin">
-          <number>0</number>
-         </property>
-         <property name="bottomMargin">
-          <number>15</number>
-         </property>
-         <item>
-          <widget class="QLabel" name="cameraStatus_Label">
-           <property name="font">
-            <font>
-             <family>Arial</family>
-             <pointsize>11</pointsize>
-             <weight>50</weight>
-             <bold>false</bold>
-             <underline>false</underline>
-             <strikeout>false</strikeout>
-             <stylestrategy>PreferDefault</stylestrategy>
-             <kerning>false</kerning>
-            </font>
-           </property>
-           <property name="layoutDirection">
-            <enum>Qt::LeftToRight</enum>
-           </property>
-           <property name="autoFillBackground">
-            <bool>false</bool>
-           </property>
-           <property name="text">
-            <string>Camera Status</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QFrame" name="on_offFrame">
-           <property name="maximumSize">
-            <size>
-             <width>195</width>
-             <height>170</height>
-            </size>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">border-color:#EF1B79;</string>
-           </property>
-           <property name="frameShape">
-            <enum>QFrame::Panel</enum>
-           </property>
-           <property name="frameShadow">
-            <enum>QFrame::Plain</enum>
-           </property>
-           <property name="lineWidth">
-            <number>2</number>
-           </property>
-           <layout class="QGridLayout" name="gridLayout">
-            <property name="sizeConstraint">
-             <enum>QLayout::SetNoConstraint</enum>
-            </property>
-            <property name="leftMargin">
-             <number>0</number>
-            </property>
-            <property name="topMargin">
-             <number>0</number>
-            </property>
-            <property name="rightMargin">
-             <number>0</number>
-            </property>
-            <property name="bottomMargin">
-             <number>0</number>
-            </property>
-            <property name="spacing">
-             <number>0</number>
-            </property>
-            <item row="0" column="0">
-             <layout class="QGridLayout" name="gridLayout_2">
-              <property name="spacing">
-               <number>0</number>
-              </property>
-              <item row="0" column="0">
-               <widget class="QPushButton" name="onButton">
-                <property name="minimumSize">
-                 <size>
-                  <width>0</width>
-                  <height>0</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>89</width>
-                  <height>57</height>
-                 </size>
-                </property>
-                <property name="font">
-                 <font>
-                  <family>Arial</family>
-                  <pointsize>14</pointsize>
-                  <weight>75</weight>
-                  <bold>true</bold>
-                 </font>
-                </property>
-                <property name="styleSheet">
-                 <string notr="true">QPushButton{
-	background-color: white;
-	border:none;
-}
-QPushButton:pressed{
-	border-top:2px solid black;
-	border-left: 2px solid black;
-}
-</string>
-                </property>
-                <property name="text">
-                 <string>ON</string>
-                </property>
-                <property name="autoDefault">
-                 <bool>false</bool>
-                </property>
-                <property name="flat">
-                 <bool>false</bool>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="1">
-               <widget class="QPushButton" name="offButton">
-                <property name="maximumSize">
-                 <size>
-                  <width>140</width>
-                  <height>47</height>
-                 </size>
-                </property>
-                <property name="font">
-                 <font>
-                  <family>Arial</family>
-                  <pointsize>14</pointsize>
-                  <weight>75</weight>
-                  <bold>true</bold>
-                 </font>
-                </property>
-                <property name="styleSheet">
-                 <string notr="true">QPushButton{
-	background: #EF1B79;
-	color:white;
-	border:none;
-}
-QPushButton:pressed{
-	border-left:2px solid black;
-	border-top:2px solid black;
-}
-	
-</string>
-                </property>
-                <property name="text">
-                 <string>OFF</string>
-                </property>
-                <property name="autoDefault">
-                 <bool>false</bool>
-                </property>
-                <property name="default">
-                 <bool>false</bool>
-                </property>
-                <property name="flat">
-                 <bool>false</bool>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </item>
-           </layout>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QVBoxLayout" name="verticalLayout_2">
-         <property name="spacing">
-          <number>0</number>
-         </property>
-         <property name="topMargin">
-          <number>0</number>
-         </property>
-         <item>
-          <widget class="QLabel" name="switchMode">
-           <property name="maximumSize">
-            <size>
-             <width>16777215</width>
-             <height>12</height>
-            </size>
-           </property>
-           <property name="font">
-            <font>
-             <family>Arial</family>
-             <pointsize>11</pointsize>
-            </font>
-           </property>
-           <property name="text">
-            <string>Switch Mode</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="switchButton">
-           <property name="maximumSize">
-            <size>
-             <width>16777215</width>
-             <height>40</height>
-            </size>
-           </property>
-           <property name="font">
-            <font>
-             <family>Arial</family>
-             <pointsize>10</pointsize>
-             <weight>50</weight>
-             <bold>false</bold>
-            </font>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">QPushButton{
-	background-color: rgb(238, 237, 237);
-	border:none;
-}
-QPushButton:pressed{
-	background-color: rgb(238, 237, 237);
-	border-left:2px solid rgb(100,180,180);
-	border-top:2px solid rgb(100,180,180);
-}</string>
-           </property>
-           <property name="text">
-            <string>Debug</string>
-           </property>
-           <property name="autoDefault">
-            <bool>true</bool>
-           </property>
-           <property name="flat">
-            <bool>false</bool>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QVBoxLayout" name="verticalLayout_3">
-         <property name="spacing">
-          <number>0</number>
-         </property>
-         <property name="topMargin">
-          <number>0</number>
-         </property>
-         <property name="bottomMargin">
-          <number>21</number>
-         </property>
-         <item>
-          <widget class="QLabel" name="activeProject">
-           <property name="font">
-            <font>
-             <family>Arial</family>
-             <pointsize>11</pointsize>
-            </font>
-           </property>
-           <property name="text">
-            <string>Active Project</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="projectName">
-           <property name="font">
-            <font>
-             <family>Arial</family>
-             <pointsize>10</pointsize>
-             <weight>75</weight>
-             <bold>true</bold>
-            </font>
-           </property>
-           <property name="text">
-            <string>EXAMPLE</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <spacer name="horizontalSpacer">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>558</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item>
-        <widget class="QLabel" name="crimsonLogo">
-         <property name="maximumSize">
-          <size>
-           <width>176</width>
-           <height>52</height>
-          </size>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="pixmap">
-          <pixmap>LOGO/main logo.png</pixmap>
-         </property>
-         <property name="scaledContents">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-    </item>
     <item row="1" column="0">
      <widget class="QStackedWidget" name="stackWidget">
       <property name="maximumSize">
@@ -432,7 +74,7 @@ QPushButton:pressed{
        </size>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="liveMode_Page">
        <layout class="QGridLayout" name="gridLayout_7">
@@ -1146,7 +788,7 @@ QRadioButton:unchecked {
                       <property name="font">
                        <font>
                         <family>Arial</family>
-                        <pointsize>8</pointsize>
+                        <pointsize>10</pointsize>
                        </font>
                       </property>
                       <property name="text">
@@ -1165,7 +807,7 @@ QRadioButton:unchecked {
                       <property name="font">
                        <font>
                         <family>Arial</family>
-                        <pointsize>8</pointsize>
+                        <pointsize>10</pointsize>
                        </font>
                       </property>
                       <property name="text">
@@ -1184,7 +826,7 @@ QRadioButton:unchecked {
                       <property name="font">
                        <font>
                         <family>Arial</family>
-                        <pointsize>8</pointsize>
+                        <pointsize>10</pointsize>
                        </font>
                       </property>
                       <property name="text">
@@ -1197,7 +839,7 @@ QRadioButton:unchecked {
                       <property name="font">
                        <font>
                         <family>Arial</family>
-                        <pointsize>8</pointsize>
+                        <pointsize>10</pointsize>
                        </font>
                       </property>
                       <property name="text">
@@ -1594,6 +1236,12 @@ QPushButton:pressed{
                  </item>
                  <item row="2" column="1" alignment="Qt::AlignRight">
                   <widget class="QLineEdit" name="rejectCount_Entry">
+                   <property name="minimumSize">
+                    <size>
+                     <width>70</width>
+                     <height>0</height>
+                    </size>
+                   </property>
                    <property name="maximumSize">
                     <size>
                      <width>70</width>
@@ -2143,10 +1791,32 @@ QPushButton:pressed{
                   <property name="bottomMargin">
                    <number>0</number>
                   </property>
-                  <property name="spacing">
+                  <property name="horizontalSpacing">
                    <number>0</number>
                   </property>
-                  <item row="4" column="0" alignment="Qt::AlignLeft">
+                  <property name="verticalSpacing">
+                   <number>1</number>
+                  </property>
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="chooseDirectory_Label">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>Arial</family>
+                      <pointsize>10</pointsize>
+                     </font>
+                    </property>
+                    <property name="text">
+                     <string>Choose Directory</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="4" column="0">
                    <widget class="QLabel" name="saveNG_Image_Label">
                     <property name="font">
                      <font>
@@ -2159,65 +1829,7 @@ QPushButton:pressed{
                     </property>
                    </widget>
                   </item>
-                  <item row="0" column="0" alignment="Qt::AlignLeft">
-                   <widget class="QLabel" name="chooseDirectory_Label">
-                    <property name="font">
-                     <font>
-                      <family>Arial</family>
-                      <pointsize>10</pointsize>
-                     </font>
-                    </property>
-                    <property name="text">
-                     <string>Choose Directory</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="1">
-                   <widget class="QPushButton" name="click_Button">
-                    <property name="sizePolicy">
-                     <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                      <horstretch>0</horstretch>
-                      <verstretch>0</verstretch>
-                     </sizepolicy>
-                    </property>
-                    <property name="maximumSize">
-                     <size>
-                      <width>77</width>
-                      <height>16777215</height>
-                     </size>
-                    </property>
-                    <property name="font">
-                     <font>
-                      <family>Arial</family>
-                      <pointsize>10</pointsize>
-                     </font>
-                    </property>
-                    <property name="styleSheet">
-                     <string notr="true">QPushButton{
-	color: white;
-	background-color:#263B90;
-	border-radius:2px;
-}</string>
-                    </property>
-                    <property name="text">
-                     <string>Click</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="2" column="0" alignment="Qt::AlignLeft">
-                   <widget class="QLabel" name="saveImage_Label">
-                    <property name="font">
-                     <font>
-                      <family>Arial</family>
-                      <pointsize>10</pointsize>
-                     </font>
-                    </property>
-                    <property name="text">
-                     <string>Save Image</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="0" alignment="Qt::AlignLeft">
+                  <item row="1" column="0">
                    <widget class="QLabel" name="directoryName_Label">
                     <property name="font">
                      <font>
@@ -2234,7 +1846,20 @@ QPushButton:pressed{
                     </property>
                    </widget>
                   </item>
-                  <item row="3" column="0" alignment="Qt::AlignLeft">
+                  <item row="2" column="0">
+                   <widget class="QLabel" name="saveImage_Label">
+                    <property name="font">
+                     <font>
+                      <family>Arial</family>
+                      <pointsize>10</pointsize>
+                     </font>
+                    </property>
+                    <property name="text">
+                     <string>Save Image</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="0">
                    <widget class="QLabel" name="saveResult_Label">
                     <property name="font">
                      <font>
@@ -2301,6 +1926,48 @@ QPushButton:pressed{
                     </property>
                     <property name="text">
                      <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="1" alignment="Qt::AlignRight">
+                   <widget class="QLineEdit" name="lineEdit">
+                    <property name="maximumSize">
+                     <size>
+                      <width>77</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="QPushButton" name="click_Button">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>77</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>Arial</family>
+                      <pointsize>10</pointsize>
+                     </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">QPushButton{
+	color: white;
+	background-color:#263B90;
+	border-radius:2px;
+}</string>
+                    </property>
+                    <property name="text">
+                     <string>Click</string>
                     </property>
                    </widget>
                   </item>
@@ -2389,6 +2056,9 @@ QPushButton:pressed{
         <property name="spacing">
          <number>20</number>
         </property>
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
         <property name="topMargin">
          <number>0</number>
         </property>
@@ -2396,7 +2066,7 @@ QPushButton:pressed{
          <number>0</number>
         </property>
         <item>
-         <widget class="QWidget" name="createProject_Frame" native="true">
+         <widget class="QWidget" name="createProject_Grid" native="true">
           <property name="maximumSize">
            <size>
             <width>197</width>
@@ -2429,7 +2099,7 @@ QPushButton:pressed{
              </property>
              <property name="maximumSize">
               <size>
-               <width>16777215</width>
+               <width>181</width>
                <height>406</height>
               </size>
              </property>
@@ -2640,7 +2310,7 @@ QPushButton:pressed{
              <property name="sizeHint" stdset="0">
               <size>
                <width>20</width>
-               <height>207</height>
+               <height>188</height>
               </size>
              </property>
             </spacer>
@@ -3211,7 +2881,7 @@ border:1px solid;</string>
                 </widget>
                </item>
                <item>
-                <widget class="QPushButton" name="pushButton_4">
+                <widget class="QPushButton" name="captureButton">
                  <property name="text">
                   <string/>
                  </property>
@@ -3263,7 +2933,7 @@ border:1px solid;</string>
              <number>0</number>
             </property>
             <item>
-             <widget class="QLabel" name="step2_Label_2">
+             <widget class="QLabel" name="step3_Label">
               <property name="maximumSize">
                <size>
                 <width>16777215</width>
@@ -3333,7 +3003,7 @@ border:1px solid;</string>
                 <number>0</number>
                </property>
                <item>
-                <widget class="QLabel" name="label">
+                <widget class="QLabel" name="dataLabelingLabel">
                  <property name="font">
                   <font>
                    <family>Arial</family>
@@ -3346,7 +3016,7 @@ border:1px solid;</string>
                 </widget>
                </item>
                <item alignment="Qt::AlignRight">
-                <widget class="QPushButton" name="pushButton">
+                <widget class="QPushButton" name="detection_labelingButton">
                  <property name="text">
                   <string/>
                  </property>
@@ -3396,7 +3066,7 @@ border:1px solid;</string>
                 <number>4</number>
                </property>
                <item>
-                <widget class="QLabel" name="cameraSettings_Label_3">
+                <widget class="QLabel" name="fabricationParameterLabel">
                  <property name="maximumSize">
                   <size>
                    <width>16777215</width>
@@ -3445,7 +3115,7 @@ border:1px solid;</string>
                    <number>0</number>
                   </property>
                   <item>
-                   <widget class="QLabel" name="label_10">
+                   <widget class="QLabel" name="fabrication_no_ofImageLabel">
                     <property name="font">
                      <font>
                       <family>Arial</family>
@@ -3458,7 +3128,7 @@ border:1px solid;</string>
                    </widget>
                   </item>
                   <item>
-                   <widget class="QLineEdit" name="lineEdit_9">
+                   <widget class="QLineEdit" name="fabricationEntry">
                     <property name="maximumSize">
                      <size>
                       <width>40</width>
@@ -3511,7 +3181,7 @@ border:1px solid;</string>
                    </spacer>
                   </item>
                   <item>
-                   <widget class="QPushButton" name="pushButton_3">
+                   <widget class="QPushButton" name="fabricationButton">
                     <property name="sizePolicy">
                      <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
                       <horstretch>0</horstretch>
@@ -3595,7 +3265,7 @@ border:1px solid;</string>
                 <number>4</number>
                </property>
                <item>
-                <widget class="QLabel" name="cameraSettings_Label_2">
+                <widget class="QLabel" name="augmenationSettings_Label">
                  <property name="maximumSize">
                   <size>
                    <width>16777215</width>
@@ -3676,7 +3346,7 @@ border:1px solid;</string>
                       <number>4</number>
                      </property>
                      <item row="1" column="0">
-                      <widget class="QLabel" name="label_2">
+                      <widget class="QLabel" name="nTimes_Label">
                        <property name="font">
                         <font>
                          <family>Arial</family>
@@ -3689,7 +3359,7 @@ border:1px solid;</string>
                       </widget>
                      </item>
                      <item row="2" column="0">
-                      <widget class="QLabel" name="label_3">
+                      <widget class="QLabel" name="rotateLabel">
                        <property name="font">
                         <font>
                          <family>Arial</family>
@@ -3702,7 +3372,7 @@ border:1px solid;</string>
                       </widget>
                      </item>
                      <item row="3" column="0">
-                      <widget class="QLabel" name="label_4">
+                      <widget class="QLabel" name="blurLabel">
                        <property name="font">
                         <font>
                          <family>Arial</family>
@@ -3715,7 +3385,7 @@ border:1px solid;</string>
                       </widget>
                      </item>
                      <item row="4" column="0">
-                      <widget class="QLabel" name="label_5">
+                      <widget class="QLabel" name="contrastLabel">
                        <property name="font">
                         <font>
                          <family>Arial</family>
@@ -3728,7 +3398,7 @@ border:1px solid;</string>
                       </widget>
                      </item>
                      <item row="3" column="1" alignment="Qt::AlignRight">
-                      <widget class="QLineEdit" name="lineEdit_3">
+                      <widget class="QLineEdit" name="blurEntry">
                        <property name="maximumSize">
                         <size>
                          <width>40</width>
@@ -3738,7 +3408,7 @@ border:1px solid;</string>
                       </widget>
                      </item>
                      <item row="4" column="1" alignment="Qt::AlignRight">
-                      <widget class="QLineEdit" name="lineEdit_4">
+                      <widget class="QLineEdit" name="contrastEntry">
                        <property name="maximumSize">
                         <size>
                          <width>40</width>
@@ -3748,7 +3418,7 @@ border:1px solid;</string>
                       </widget>
                      </item>
                      <item row="2" column="1" alignment="Qt::AlignRight">
-                      <widget class="QLineEdit" name="lineEdit_2">
+                      <widget class="QLineEdit" name="rotateEntry">
                        <property name="maximumSize">
                         <size>
                          <width>40</width>
@@ -3758,7 +3428,7 @@ border:1px solid;</string>
                       </widget>
                      </item>
                      <item row="1" column="1" alignment="Qt::AlignRight">
-                      <widget class="QLineEdit" name="lineEdit">
+                      <widget class="QLineEdit" name="nTimesEntry">
                        <property name="maximumSize">
                         <size>
                          <width>40</width>
@@ -3798,7 +3468,7 @@ border:1px solid;</string>
                       <number>4</number>
                      </property>
                      <item row="3" column="1" alignment="Qt::AlignRight">
-                      <widget class="QLineEdit" name="lineEdit_8">
+                      <widget class="QLineEdit" name="elasticEntry">
                        <property name="maximumSize">
                         <size>
                          <width>40</width>
@@ -3808,7 +3478,7 @@ border:1px solid;</string>
                       </widget>
                      </item>
                      <item row="3" column="0">
-                      <widget class="QLabel" name="label_9">
+                      <widget class="QLabel" name="elasticLabel">
                        <property name="font">
                         <font>
                          <family>Arial</family>
@@ -3821,7 +3491,7 @@ border:1px solid;</string>
                       </widget>
                      </item>
                      <item row="0" column="0">
-                      <widget class="QLabel" name="label_7">
+                      <widget class="QLabel" name="recursionRateLabel">
                        <property name="font">
                         <font>
                          <family>Arial</family>
@@ -3834,7 +3504,7 @@ border:1px solid;</string>
                       </widget>
                      </item>
                      <item row="0" column="1" alignment="Qt::AlignRight">
-                      <widget class="QLineEdit" name="lineEdit_5">
+                      <widget class="QLineEdit" name="recursionRateEntry">
                        <property name="maximumSize">
                         <size>
                          <width>40</width>
@@ -3844,7 +3514,7 @@ border:1px solid;</string>
                       </widget>
                      </item>
                      <item row="2" column="0">
-                      <widget class="QLabel" name="label_8">
+                      <widget class="QLabel" name="rigidLabel">
                        <property name="font">
                         <font>
                          <family>Arial</family>
@@ -3857,7 +3527,7 @@ border:1px solid;</string>
                       </widget>
                      </item>
                      <item row="2" column="1" alignment="Qt::AlignRight">
-                      <widget class="QLineEdit" name="lineEdit_7">
+                      <widget class="QLineEdit" name="rigidEntry">
                        <property name="maximumSize">
                         <size>
                          <width>40</width>
@@ -3867,7 +3537,7 @@ border:1px solid;</string>
                       </widget>
                      </item>
                      <item row="1" column="1" alignment="Qt::AlignRight">
-                      <widget class="QLineEdit" name="lineEdit_6">
+                      <widget class="QLineEdit" name="flipEntry">
                        <property name="maximumSize">
                         <size>
                          <width>40</width>
@@ -3877,7 +3547,7 @@ border:1px solid;</string>
                       </widget>
                      </item>
                      <item row="1" column="0">
-                      <widget class="QLabel" name="label_6">
+                      <widget class="QLabel" name="flipLabel">
                        <property name="font">
                         <font>
                          <family>Arial</family>
@@ -3942,7 +3612,7 @@ border:1px solid;</string>
                    </spacer>
                   </item>
                   <item>
-                   <widget class="QPushButton" name="pushButton_2">
+                   <widget class="QPushButton" name="augmentationButton">
                     <property name="sizePolicy">
                      <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
                       <horstretch>0</horstretch>
@@ -4019,7 +3689,7 @@ border:1px solid;</string>
                 <number>1</number>
                </property>
                <item>
-                <widget class="QPlainTextEdit" name="plainTextEdit">
+                <widget class="QPlainTextEdit" name="note">
                  <property name="font">
                   <font>
                    <family>Arial</family>
@@ -4072,7 +3742,7 @@ Contrast should be multile of 10.</string>
              <number>0</number>
             </property>
             <item>
-             <widget class="QLabel" name="step2_Label_3">
+             <widget class="QLabel" name="step4_Label">
               <property name="maximumSize">
                <size>
                 <width>16777215</width>
@@ -4136,7 +3806,7 @@ Contrast should be multile of 10.</string>
                 <number>4</number>
                </property>
                <item>
-                <widget class="QLabel" name="cameraSettings_Label_4">
+                <widget class="QLabel" name="trainingParameter_Label">
                  <property name="maximumSize">
                   <size>
                    <width>16777215</width>
@@ -4161,7 +3831,7 @@ Contrast should be multile of 10.</string>
                 </widget>
                </item>
                <item>
-                <widget class="QCheckBox" name="checkBox">
+                <widget class="QCheckBox" name="pretrainedWeight_Checkbutton">
                  <property name="font">
                   <font>
                    <family>Arial</family>
@@ -4201,7 +3871,7 @@ Contrast should be multile of 10.</string>
                    <number>0</number>
                   </property>
                   <item>
-                   <widget class="QLabel" name="label_11">
+                   <widget class="QLabel" name="detection_no_ofEpochs_Label">
                     <property name="font">
                      <font>
                       <family>Arial</family>
@@ -4214,7 +3884,7 @@ Contrast should be multile of 10.</string>
                    </widget>
                   </item>
                   <item>
-                   <widget class="QLineEdit" name="lineEdit_10">
+                   <widget class="QLineEdit" name="detectionEpoch_Entry">
                     <property name="maximumSize">
                      <size>
                       <width>40</width>
@@ -4267,7 +3937,7 @@ Contrast should be multile of 10.</string>
                    </spacer>
                   </item>
                   <item>
-                   <widget class="QPushButton" name="pushButton_5">
+                   <widget class="QPushButton" name="detectionTrainButton">
                     <property name="maximumSize">
                      <size>
                       <width>16777215</width>
@@ -4339,7 +4009,7 @@ Contrast should be multile of 10.</string>
                 <number>4</number>
                </property>
                <item>
-                <widget class="QLabel" name="cameraSettings_Label_5">
+                <widget class="QLabel" name="testingParameterLabel">
                  <property name="maximumSize">
                   <size>
                    <width>16777215</width>
@@ -4364,7 +4034,7 @@ Contrast should be multile of 10.</string>
                 </widget>
                </item>
                <item>
-                <widget class="QCheckBox" name="checkBox_2">
+                <widget class="QCheckBox" name="saveDetectionCheckbutton_debug">
                  <property name="font">
                   <font>
                    <family>Arial</family>
@@ -4378,7 +4048,7 @@ Contrast should be multile of 10.</string>
                 </widget>
                </item>
                <item>
-                <widget class="QPushButton" name="pushButton_6">
+                <widget class="QPushButton" name="detection_testButton">
                  <property name="maximumSize">
                   <size>
                    <width>16777215</width>
@@ -4430,7 +4100,7 @@ Contrast should be multile of 10.</string>
              <number>25</number>
             </property>
             <item>
-             <widget class="QLabel" name="step2_Label_4">
+             <widget class="QLabel" name="step5_Label">
               <property name="maximumSize">
                <size>
                 <width>16777215</width>
@@ -4494,7 +4164,7 @@ Contrast should be multile of 10.</string>
                 <number>0</number>
                </property>
                <item>
-                <widget class="QLabel" name="label_12">
+                <widget class="QLabel" name="recognitionLabeling_Label">
                  <property name="font">
                   <font>
                    <family>Arial</family>
@@ -4507,7 +4177,7 @@ Contrast should be multile of 10.</string>
                 </widget>
                </item>
                <item alignment="Qt::AlignRight">
-                <widget class="QPushButton" name="pushButton_7">
+                <widget class="QPushButton" name="recognitionLabeling_Button">
                  <property name="maximumSize">
                   <size>
                    <width>31</width>
@@ -4557,7 +4227,7 @@ Contrast should be multile of 10.</string>
                 <number>4</number>
                </property>
                <item>
-                <widget class="QLabel" name="cameraSettings_Label_6">
+                <widget class="QLabel" name="recognitionTrainingParameter_Label">
                  <property name="maximumSize">
                   <size>
                    <width>16777215</width>
@@ -4582,7 +4252,7 @@ Contrast should be multile of 10.</string>
                 </widget>
                </item>
                <item>
-                <widget class="QCheckBox" name="checkBox_3">
+                <widget class="QCheckBox" name="recognitionPretrainedWeight_Checkbox">
                  <property name="font">
                   <font>
                    <family>Arial</family>
@@ -4622,7 +4292,7 @@ Contrast should be multile of 10.</string>
                    <number>0</number>
                   </property>
                   <item>
-                   <widget class="QLabel" name="label_13">
+                   <widget class="QLabel" name="recognition_no_ofEpochs_Label">
                     <property name="font">
                      <font>
                       <family>Arial</family>
@@ -4635,7 +4305,7 @@ Contrast should be multile of 10.</string>
                    </widget>
                   </item>
                   <item>
-                   <widget class="QLineEdit" name="lineEdit_11">
+                   <widget class="QLineEdit" name="recognitionEpochs_Entry">
                     <property name="maximumSize">
                      <size>
                       <width>40</width>
@@ -4688,7 +4358,7 @@ Contrast should be multile of 10.</string>
                    </spacer>
                   </item>
                   <item>
-                   <widget class="QPushButton" name="pushButton_9">
+                   <widget class="QPushButton" name="recognitionTraining_Button">
                     <property name="maximumSize">
                      <size>
                       <width>16777215</width>
@@ -4754,7 +4424,7 @@ Contrast should be multile of 10.</string>
                 <number>0</number>
                </property>
                <item>
-                <widget class="QLabel" name="cameraSettings_Label_7">
+                <widget class="QLabel" name="recognitionTestingParameter_Label">
                  <property name="maximumSize">
                   <size>
                    <width>16777215</width>
@@ -4779,7 +4449,7 @@ Contrast should be multile of 10.</string>
                 </widget>
                </item>
                <item>
-                <widget class="QCheckBox" name="checkBox_4">
+                <widget class="QCheckBox" name="saveRecognitionResults_Checkbox">
                  <property name="font">
                   <font>
                    <family>Arial</family>
@@ -4793,7 +4463,7 @@ Contrast should be multile of 10.</string>
                 </widget>
                </item>
                <item>
-                <widget class="QPushButton" name="pushButton_10">
+                <widget class="QPushButton" name="recognitionTesting_Button">
                  <property name="maximumSize">
                   <size>
                    <width>16777215</width>
@@ -4849,7 +4519,7 @@ Contrast should be multile of 10.</string>
              <number>0</number>
             </property>
             <item>
-             <widget class="QLabel" name="step2_Label_5">
+             <widget class="QLabel" name="step6_Label">
               <property name="maximumSize">
                <size>
                 <width>16777215</width>
@@ -4907,7 +4577,7 @@ Contrast should be multile of 10.</string>
                 <number>4</number>
                </property>
                <item>
-                <widget class="QLabel" name="cameraSettings_Label_8">
+                <widget class="QLabel" name="systemSettings_Label_debug">
                  <property name="maximumSize">
                   <size>
                    <width>16777215</width>
@@ -4980,7 +4650,7 @@ Contrast should be multile of 10.</string>
                       <number>0</number>
                      </property>
                      <item>
-                      <widget class="QLabel" name="no_ofLine_Label_2">
+                      <widget class="QLabel" name="no_ofLine_Label_debug">
                        <property name="maximumSize">
                         <size>
                          <width>51</width>
@@ -4999,7 +4669,7 @@ Contrast should be multile of 10.</string>
                       </widget>
                      </item>
                      <item>
-                      <widget class="QLabel" name="line1_2">
+                      <widget class="QLabel" name="line1_debug">
                        <property name="maximumSize">
                         <size>
                          <width>39</width>
@@ -5018,7 +4688,7 @@ Contrast should be multile of 10.</string>
                       </widget>
                      </item>
                      <item>
-                      <widget class="QLabel" name="line2_2">
+                      <widget class="QLabel" name="line2_debug">
                        <property name="maximumSize">
                         <size>
                          <width>39</width>
@@ -5037,7 +4707,7 @@ Contrast should be multile of 10.</string>
                       </widget>
                      </item>
                      <item>
-                      <widget class="QLabel" name="line3_2">
+                      <widget class="QLabel" name="line3_debug">
                        <property name="maximumSize">
                         <size>
                          <width>39</width>
@@ -5056,7 +4726,7 @@ Contrast should be multile of 10.</string>
                       </widget>
                      </item>
                      <item>
-                      <widget class="QLabel" name="line3_3">
+                      <widget class="QLabel" name="line4_debug">
                        <property name="maximumSize">
                         <size>
                          <width>39</width>
@@ -5108,7 +4778,7 @@ Contrast should be multile of 10.</string>
                       <number>0</number>
                      </property>
                      <item>
-                      <widget class="QComboBox" name="no_ofLine_comboBox_2">
+                      <widget class="QComboBox" name="no_ofLine_comboBox_debug">
                        <property name="font">
                         <font>
                          <family>Arial</family>
@@ -5149,16 +4819,16 @@ border-radius: 3px;</string>
                       </widget>
                      </item>
                      <item>
-                      <widget class="QLineEdit" name="line1Box_2"/>
+                      <widget class="QLineEdit" name="line1Box_debug"/>
                      </item>
                      <item>
-                      <widget class="QLineEdit" name="line2Box_2"/>
+                      <widget class="QLineEdit" name="line2Box_debug"/>
                      </item>
                      <item>
-                      <widget class="QLineEdit" name="line3Box_2"/>
+                      <widget class="QLineEdit" name="line3Box_debug"/>
                      </item>
                      <item>
-                      <widget class="QLineEdit" name="line3Box_3"/>
+                      <widget class="QLineEdit" name="line4Box_debug"/>
                      </item>
                     </layout>
                    </widget>
@@ -5167,7 +4837,7 @@ border-radius: 3px;</string>
                 </widget>
                </item>
                <item>
-                <widget class="QPushButton" name="systemSetting_update_Button_2">
+                <widget class="QPushButton" name="systemSetting_update_Button_debug">
                  <property name="minimumSize">
                   <size>
                    <width>0</width>
@@ -5226,7 +4896,7 @@ QPushButton:pressed{
              </spacer>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_11">
+             <widget class="QPushButton" name="analysisTest_Button">
               <property name="maximumSize">
                <size>
                 <width>16777215</width>
@@ -5411,6 +5081,577 @@ QPushButton:pressed{
         </item>
        </layout>
       </widget>
+     </widget>
+    </item>
+    <item row="0" column="0">
+     <widget class="QWidget" name="topGrid" native="true">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>90</height>
+       </size>
+      </property>
+      <property name="mouseTracking">
+       <bool>true</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_20">
+       <property name="leftMargin">
+        <number>10</number>
+       </property>
+       <item>
+        <widget class="QFrame" name="frame_33">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>167</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_2">
+          <property name="spacing">
+           <number>2</number>
+          </property>
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QComboBox" name="comboBox">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>100</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>164</width>
+              <height>27</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">border:1px solid black;
+border-radius:4px;
+</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="findCamera_Button">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>164</width>
+              <height>28</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">border:1px solid#125872;
+border-radius:4px;
+color:#125872;</string>
+            </property>
+            <property name="text">
+             <string>Find Camera</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_5">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>35</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QFrame" name="frame_30">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>115</width>
+           <height>60</height>
+          </size>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout">
+          <property name="spacing">
+           <number>6</number>
+          </property>
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QLabel" name="cameraStatus_Label">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>12</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>Arial</family>
+              <pointsize>11</pointsize>
+              <weight>50</weight>
+              <bold>false</bold>
+              <underline>false</underline>
+              <strikeout>false</strikeout>
+              <stylestrategy>PreferDefault</stylestrategy>
+              <kerning>false</kerning>
+             </font>
+            </property>
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+            <property name="autoFillBackground">
+             <bool>false</bool>
+            </property>
+            <property name="text">
+             <string>Camera Status</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QFrame" name="on_offFrame">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>195</width>
+              <height>40</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">border-color:#EF1B79;</string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::Panel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Plain</enum>
+            </property>
+            <property name="lineWidth">
+             <number>2</number>
+            </property>
+            <layout class="QHBoxLayout" name="horizontalLayout">
+             <property name="spacing">
+              <number>0</number>
+             </property>
+             <property name="leftMargin">
+              <number>0</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="QPushButton" name="onButton">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>89</width>
+                 <height>57</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <family>Arial</family>
+                 <pointsize>14</pointsize>
+                 <weight>75</weight>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton{
+	background-color: white;
+	border:none;
+}
+QPushButton:pressed{
+	border-top:2px solid black;
+	border-left: 2px solid black;
+}
+</string>
+               </property>
+               <property name="text">
+                <string>ON</string>
+               </property>
+               <property name="autoDefault">
+                <bool>false</bool>
+               </property>
+               <property name="flat">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="offButton">
+               <property name="maximumSize">
+                <size>
+                 <width>140</width>
+                 <height>47</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <family>Arial</family>
+                 <pointsize>14</pointsize>
+                 <weight>75</weight>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton{
+	background: #EF1B79;
+	color:white;
+	border:none;
+}
+QPushButton:pressed{
+	border-left:2px solid black;
+	border-top:2px solid black;
+}
+	
+</string>
+               </property>
+               <property name="text">
+                <string>OFF</string>
+               </property>
+               <property name="autoDefault">
+                <bool>false</bool>
+               </property>
+               <property name="default">
+                <bool>false</bool>
+               </property>
+               <property name="flat">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_7">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>35</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QFrame" name="frame_31">
+         <property name="maximumSize">
+          <size>
+           <width>115</width>
+           <height>60</height>
+          </size>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_35">
+          <property name="spacing">
+           <number>6</number>
+          </property>
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QLabel" name="switchMode">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>12</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>Arial</family>
+              <pointsize>11</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>Switch Mode</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="switchButton">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>40</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>Arial</family>
+              <pointsize>10</pointsize>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton{
+	background-color: rgb(238, 237, 237);
+	border:none;
+}
+QPushButton:pressed{
+	background-color: rgb(238, 237, 237);
+	border-left:2px solid rgb(100,180,180);
+	border-top:2px solid rgb(100,180,180);
+}</string>
+            </property>
+            <property name="text">
+             <string>Debug</string>
+            </property>
+            <property name="autoDefault">
+             <bool>true</bool>
+            </property>
+            <property name="flat">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_8">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>35</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QFrame" name="frame_32">
+         <property name="maximumSize">
+          <size>
+           <width>115</width>
+           <height>60</height>
+          </size>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_3">
+          <property name="spacing">
+           <number>0</number>
+          </property>
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QLabel" name="activeProject">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>12</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>Arial</family>
+              <pointsize>11</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>Active Project</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="projectName">
+            <property name="font">
+             <font>
+              <family>Arial</family>
+              <pointsize>10</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>EXAMPLE</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>398</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QLabel" name="crimsonLogo">
+         <property name="maximumSize">
+          <size>
+           <width>176</width>
+           <height>59</height>
+          </size>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="pixmap">
+          <pixmap>LOGO/crimson_logo.png</pixmap>
+         </property>
+         <property name="scaledContents">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </item>
    </layout>

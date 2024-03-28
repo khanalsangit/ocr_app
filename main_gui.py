@@ -12,7 +12,7 @@ from MvImport.CameraParams_header import *
 import ctypes
 
 # class MainWindow(QMainWindow):
-#     def __init__(self, parent=None):
+#     def __init__(self, parent=None): 
 #         # QMainWindow.__init__(self)
 #         super(MainWindow,self).__init__()
 #         self.ui = Ui_MainWindow()

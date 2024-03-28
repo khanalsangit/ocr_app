@@ -1,5 +1,5 @@
 from PyQt5 import QtWidgets, QtCore, QtGui
-from main_gui import Ui_MainWindow
+from pyUIdesign import Ui_MainWindow
 import os
 from PyQt5.QtWidgets import *
 import cv2
@@ -32,7 +32,12 @@ class MainWin(QtWidgets.QMainWindow):
                     brand_values = pickle.load(file)
 
         ###### Setting the initial values in GUI Parameters
-        # self.ui.no_ofLine_comboBox.NoInsert(brand_values['no_of_lines'])
+        if brand_values['ocr_method_enable'] == 1:  ######## Set the ocr method radiobutton 
+            self.ui.detection_recognition.setChecked(True)
+        else:
+            self.ui.detectionOnly.setChecked(True)
+        
+        self.ui.no_ofLine_comboBox.setCurrentText(str(brand_values['no_of_lines']))
         self.ui.line1Box.insert(brand_values['line1'])
         self.ui.line2Box.insert(brand_values['line2'])
         self.ui.line3Box.insert(brand_values['line3'])
@@ -45,13 +50,12 @@ class MainWin(QtWidgets.QMainWindow):
         self.ui.triggerDelay_Entry.insert(str(brand_values['trigger_delay']))
         self.ui.roiEntry.insert(str(brand_values['roi']))
 
-        # if self.ui.line2_Yes.isChecked():
-        #     self.ui.line2_Yes.setChecked(str(brand_values['line2_enable']))
-        # else:
-        #     self.ui.line2_No.setChecked(str(brand_values['line2_enable']))
-       
-
-    
+        ################ For Rejection Enable #############
+        if brand_values['reject_enable'] == 0:
+            self.ui.rejectEnable_No.setChecked(True)
+        else:
+            self.ui.rejectEnable_Yes.setChecked(True)
+ 
 
         print("Pickle Details",brand_values)
     def debug_switch_mode(self)-> None:
@@ -198,9 +202,10 @@ class MainWin(QtWidgets.QMainWindow):
         '''
         file_path = QFileDialog.getExistingDirectory(self,"Select Directory")
         if file_path:
-            print(file_path)
+            self.ui.lineEdit.insert(file_path)
         else:
             QMessageBox.warning(self,'Warning',"Please Select the Path")
+
 
 if __name__=="__main__":
     import sys

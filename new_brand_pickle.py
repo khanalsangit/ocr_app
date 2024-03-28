@@ -4,7 +4,8 @@ import numpy as np
 import tkinter
 from tkinter import messagebox
 ########## Pickle file for brand name parameters
-def new_brand_fun(brandname : str, 
+def new_brand_fun(brandname : str,
+                ocr_method: int, 
                 nooflines: int,
                 line1: str,
                 line2: str,
@@ -27,6 +28,7 @@ def new_brand_fun(brandname : str,
                 img_dir: str
                 ) -> None:
     brand_param = {'brand_name':brandname,
+                   'ocr_method_enable':ocr_method,
                    'no_of_lines':nooflines,
                    'line1':line1,
                    'line2':line2,
@@ -64,4 +66,4 @@ def new_brand_fun(brandname : str,
     pickle.dump(brand_param,open(new_system_pkl_path,'wb'))
 
     tkinter.messagebox.showinfo("Info","Default Parameter Set Successfully")
-new_brand_fun('Vaseline 200ML',3,'[^^^^^^^^^^^^^^]','[^^^^^^^^^^^^^^^]','[^^^^^^^^^^^^^^^]','None',30,30,10,0,1,1,300.0,0,21.0,'736:956,1332:1904',0,0,0,1,'C:/Users/Pc/Desktop/OCR_train/Vaseline 200 ML/Brands/Vaseline 200ML/images')
+new_brand_fun('Vaseline 200ML',1,3,'[^^^^^^^^^^^^^^]','[^^^^^^^^^^^^^^^]','[^^^^^^^^^^^^^^^]','None',30,30,10,1,0,0,300.0,0,21.0,'736:956,1332:1904',0,0,0,1,'C:/Users/Pc/Desktop/OCR_train/Vaseline 200 ML/Brands/Vaseline 200ML/images')

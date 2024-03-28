@@ -1,8 +1,7 @@
 import sys
 from PyQt5.QtWidgets import *
 from pyUIdesign import  Ui_MainWindow
-from gui_operations import MainWin
-
+from gui_operations import *
 from Custom_Widgets import*
 from CamOperation_class import CameraOperation
 sys.path.append("./MvImport")
@@ -12,12 +11,14 @@ from MvImport.MvErrorDefine_const import *
 from MvImport.CameraParams_header import *
 import ctypes
 
-class MainFile():
-    def __init__(self) -> None:
-        super(MainFile,self).__init__()
-        self.ups = MainWin()
-        
-
+# class MainWindow(QMainWindow):
+#     def __init__(self, parent=None): 
+#         # QMainWindow.__init__(self)
+#         super(MainWindow,self).__init__()
+#         self.ui = Ui_MainWindow()
+#         self.ui.setupUi(self)
+#         loadJsonStyle(self, self.ui)
+#         self.show()
 
 # 将返回的错误码转换为十六进制显示
 def ToHexStr(num):
@@ -224,24 +225,17 @@ if __name__ == '__main__':
                                             "}")
         
     # Init app, bind ui 
-    if hasattr(QtCore.Qt, 'AA_EnableHighDpiScaling'):
-        QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling, True)
-
-    if hasattr(QtCore.Qt, 'AA_UseHighDpiPixmaps'):
-        QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_UseHighDpiPixmaps, True)
     app = QApplication(sys.argv)
     mainWindow = QMainWindow()
     ui = Ui_MainWindow()
     ui.setupUi(mainWindow)
     loadJsonStyle(mainWindow,ui)
     ui.stackWidget.setCurrentWidget(ui.liveMode_Page)
-    main = MainWin()
-
+    
     ui.findCamera_Button.clicked.connect(enum_devices)
     ui.switchButton.clicked.connect(toogle_mode)
     ui.cameraSetting_Button.clicked.connect(cameraSetting_mode)
     ui.saveData_Button.clicked.connect(saveData_mode)
-    ui.click_Button.clicked.connect(main.fundc)
     mainWindow.show()
     app.exec_()
     close_device()

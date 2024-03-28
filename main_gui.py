@@ -1,6 +1,7 @@
 import sys
 from PyQt5.QtWidgets import *
 from pyUIdesign import  Ui_MainWindow
+from gui_operations import *
 from Custom_Widgets import*
 from CamOperation_class import CameraOperation
 sys.path.append("./MvImport")
@@ -175,25 +176,66 @@ if __name__ == '__main__':
 
         isGrabbing = False
         
-    
     def toogle_mode():
         if ui.switchButton.isChecked():
-           ui.stackWidget.setCurrentWidget(ui.liveMode_Page)
-           ui.switchButton.setText('Live')
-        
-        else:
-            ui.switchButton.setText('Debug')
             ui.stackWidget.setCurrentWidget(ui.debugMode_Page)
-
+            ui.switchButton.setText('Debug')
+        else:
+            ui.switchButton.setText('Live')
+            ui.stackWidget.setCurrentWidget(ui.liveMode_Page)
+            
+    def cameraSetting_mode():
+        '''
+        Function that change the camera setting page.
+        '''
+        ui.stackWidget_cameraSetting.setCurrentWidget(ui.cameraSetting_Page)
+        ui.saveData_Button.setStyleSheet("QPushButton{\n"
+                                        "background-color: #eaeaea;\n"
+                                        "border:none;\n"
+                                        "border-top-left-radius:4px;\n"
+                                        "border-top-right-radius:4px;\n"
+                                        "border-bottom-right-radius:4px;\n"
+                                        "}")
+        ui.cameraSetting_Button.setStyleSheet("QPushButton{\n"
+                                            "color:#D9305C;\n"
+                                            "border-top:1px solid#D9305C;\n"
+                                            "border-right:1px solid#D9305C;\n"
+                                            "border-top-left-radius:4px;\n"
+                                            "border-top-right-radius:4px;\n"
+                                            "}")   
+        
+    def saveData_mode():         
+        '''
+        Function that change into save data page.
+        '''
+        ui.stackWidget_cameraSetting.setCurrentWidget(ui.saveData_Page)
+        ui.saveData_Button.setStyleSheet("QPushButton{\n"
+                                            "color:#D9305C;\n"
+                                            "border-top:1px solid#D9305C;\n"
+                                            "border-right:1px solid#D9305C;\n"
+                                            "border-top-left-radius:4px;\n"
+                                            "border-top-right-radius:4px;\n"
+                                            "}") 
+        ui.cameraSetting_Button.setStyleSheet("QPushButton{\n"
+                                            "background-color: #eaeaea;\n"
+                                            "border:none;\n"
+                                            "border-top-left-radius:4px;\n"
+                                            "border-top-right-radius:4px;\n"
+                                            "border-bottom-right-radius:4px;\n"
+                                            "}")
+        
     # Init app, bind ui 
     app = QApplication(sys.argv)
     mainWindow = QMainWindow()
     ui = Ui_MainWindow()
     ui.setupUi(mainWindow)
     loadJsonStyle(mainWindow,ui)
+    ui.stackWidget.setCurrentWidget(ui.liveMode_Page)
     
     ui.findCamera_Button.clicked.connect(enum_devices)
     ui.switchButton.clicked.connect(toogle_mode)
+    ui.cameraSetting_Button.clicked.connect(cameraSetting_mode)
+    ui.saveData_Button.clicked.connect(saveData_mode)
     mainWindow.show()
     app.exec_()
     close_device()

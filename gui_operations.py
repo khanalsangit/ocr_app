@@ -5,11 +5,14 @@ from PyQt5.QtWidgets import *
 import cv2
 import pickle
 import glob
+import sys
+
 class MainWin(QtWidgets.QMainWindow):
     def __init__(self):
         super(MainWin,self).__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+        
         self.ui.stackWidget.setCurrentWidget(self.ui.liveMode_Page) ####### default switch mode 
         self.switch_mode_flag = False  ##### switch mode flag
         self.ui.switchButton.clicked.connect(self.switch_mode)
@@ -17,7 +20,8 @@ class MainWin(QtWidgets.QMainWindow):
         self.ui.cameraSetting_Button.pressed.connect(self.camera_setting)
         self.ui.openImage_Button.pressed.connect(self.open_image)
         self.ui.saveData_Button.pressed.connect(self.save_data)
-        self.ui.click_Button.pressed.connect(self.choose_directory_path)
+        # self.ui.click_Button.pressed.connect(open_device)
+
         self.show()
 
         
@@ -60,31 +64,19 @@ class MainWin(QtWidgets.QMainWindow):
         # if brand_values['']
 
 
-    def debug_switch_mode(self)-> None:
-        '''
-        Function that switch the gui in Debug Mode
-        '''
-        self.ui.switchButton.setText("Live")
-        self.ui.stackWidget.setCurrentWidget(self.ui.debugMode_Page)
-
-
-    def live_switch_mode(self)->None:
-        '''
-        Function that switch the gui in Live Mode
-        '''
-        self.ui.switchButton.setText("Debug")
-        self.ui.stackWidget.setCurrentWidget(self.ui.liveMode_Page)
-
 
     def switch_mode(self):
         '''
         Function that checks the switch mode and change its when button is clicked.
         '''
-        if self.switch_mode_flag:
-            self.ui.switchButton.clicked.connect(self.live_switch_mode)
+            
+        if self.ui.switchButton.isChecked():
+            self.ui.stackWidget.setCurrentWidget(self.ui.debugMode_Page)
+            self.ui.switchButton.setText('Debug')
         else:
-            self.ui.switchButton.clicked.connect(self.debug_switch_mode)
-        self.switch_mode_flag = not self.switch_mode_flag
+            self.ui.switchButton.setText('Live')
+            self.ui.stackWidget.setCurrentWidget(self.ui.liveMode_Page)
+
 
     def camera_setting(self):
         '''

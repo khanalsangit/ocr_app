@@ -56,8 +56,10 @@ class MainWin(QtWidgets.QMainWindow):
         else:
             self.ui.rejectEnable_Yes.setChecked(True)
  
+        ################ For Save Image ##################
+        # if brand_values['']
 
-        print("Pickle Details",brand_values)
+
     def debug_switch_mode(self)-> None:
         '''
         Function that switch the gui in Debug Mode
@@ -206,6 +208,7 @@ class MainWin(QtWidgets.QMainWindow):
         else:
             QMessageBox.warning(self,'Warning',"Please Select the Path")
 
+    
 
 if __name__=="__main__":
     import sys

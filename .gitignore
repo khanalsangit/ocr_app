@@ -8,4 +8,6 @@ new_latest_gui_debug.ui
 ./system_pickles
 ./LOGO
 *.pkl 
-/__pycache__
+
+#ignore directory
+__pycache__

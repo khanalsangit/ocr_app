@@ -227,7 +227,7 @@ class CameraOperation:
         self.obj_cam.MV_CC_DestroyHandle()
         self.b_open_device = False
         self.b_start_grabbing = False
-        self.b_exit = True
+        self.b_exit = True 
         print("close device successfully!")
 
         return MV_OK

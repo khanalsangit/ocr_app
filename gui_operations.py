@@ -170,7 +170,7 @@ class MainWin(QtWidgets.QMainWindow):
         '''
         Function that change into save data page.
         '''
-        self.ui.stackWidget_cameraSetting.setCurrentWidget(self.ui.saveData_Entry)
+        self.ui.stackWidget_cameraSetting.setCurrentWidget(self.ui.saveData_Page)
 
         self.ui.saveData_Button.setStyleSheet("QPushButton{\n"
 "    color:#D9305C;\n"
@@ -202,7 +202,7 @@ class MainWin(QtWidgets.QMainWindow):
         '''
         file_path = QFileDialog.getExistingDirectory(self,"Select Directory")
         if file_path:
-            self.ui.lineEdit.insert(file_path)
+            self.ui.directoryName_Entry.insert(file_path)
         else:
             QMessageBox.warning(self,'Warning',"Please Select the Path")
 

@@ -1,0 +1,5 @@
+pipwin==0.5.2
+kids==1.0.4
+kids.cache==0.0.7
+QT-PyQt-PySide-Custom-Widgets==0.8.9
+PyQt5==5.15.9

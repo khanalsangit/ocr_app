@@ -1,10 +1,10 @@
 new_latest_debug.py
 new_latest_gui_debug.ui
-./backup
-./BasicDemo
-./Brands
-,/current_img
-./Pickle
+/backup
+/BasicDemo
+/Brands
+/current_img
+/Pickle
 ./system_pickles
 ./LOGO
-
+*.pkl 

@@ -571,7 +571,7 @@
              </property>
              <layout class="QVBoxLayout" name="verticalLayout_7">
               <property name="spacing">
-               <number>1</number>
+               <number>0</number>
               </property>
               <property name="topMargin">
                <number>2</number>
@@ -1053,6 +1053,18 @@ QPushButton:pressed{
               </property>
               <item alignment="Qt::AlignLeft">
                <widget class="QLabel" name="rejectSetting_Label">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>30</height>
+                 </size>
+                </property>
                 <property name="font">
                  <font>
                   <family>Arial</family>
@@ -1076,6 +1088,12 @@ QPushButton:pressed{
               </item>
               <item>
                <widget class="QFrame" name="frame_4">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
                 <property name="frameShape">
                  <enum>QFrame::StyledPanel</enum>
                 </property>
@@ -1099,47 +1117,16 @@ QPushButton:pressed{
                   <number>0</number>
                  </property>
                  <property name="verticalSpacing">
-                  <number>3</number>
+                  <number>4</number>
                  </property>
-                 <item row="0" column="1" alignment="Qt::AlignRight">
-                  <widget class="QLineEdit" name="minPercent_Entry">
-                   <property name="maximumSize">
-                    <size>
-                     <width>70</width>
-                     <height>16777215</height>
-                    </size>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="5" column="1">
-                  <widget class="QFrame" name="frame_10">
-                   <property name="frameShape">
-                    <enum>QFrame::StyledPanel</enum>
-                   </property>
-                   <property name="frameShadow">
-                    <enum>QFrame::Raised</enum>
-                   </property>
-                   <layout class="QHBoxLayout" name="horizontalLayout_5">
-                    <property name="spacing">
-                     <number>0</number>
-                    </property>
-                    <property name="leftMargin">
-                     <number>0</number>
-                    </property>
-                    <property name="topMargin">
-                     <number>0</number>
-                    </property>
-                    <property name="rightMargin">
-                     <number>0</number>
-                    </property>
-                    <property name="bottomMargin">
-                     <number>0</number>
-                    </property>
-                   </layout>
-                  </widget>
-                 </item>
                  <item row="3" column="1">
                   <widget class="QFrame" name="frame_8">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
                    <property name="frameShape">
                     <enum>QFrame::StyledPanel</enum>
                    </property>
@@ -1179,31 +1166,14 @@ QPushButton:pressed{
                    </layout>
                   </widget>
                  </item>
-                 <item row="4" column="1">
-                  <widget class="QFrame" name="frame_9">
-                   <property name="frameShape">
-                    <enum>QFrame::StyledPanel</enum>
+                 <item row="0" column="1" alignment="Qt::AlignRight">
+                  <widget class="QLineEdit" name="minPercent_Entry">
+                   <property name="maximumSize">
+                    <size>
+                     <width>70</width>
+                     <height>16777215</height>
+                    </size>
                    </property>
-                   <property name="frameShadow">
-                    <enum>QFrame::Raised</enum>
-                   </property>
-                   <layout class="QHBoxLayout" name="horizontalLayout_4">
-                    <property name="spacing">
-                     <number>0</number>
-                    </property>
-                    <property name="leftMargin">
-                     <number>0</number>
-                    </property>
-                    <property name="topMargin">
-                     <number>0</number>
-                    </property>
-                    <property name="rightMargin">
-                     <number>0</number>
-                    </property>
-                    <property name="bottomMargin">
-                     <number>0</number>
-                    </property>
-                   </layout>
                   </widget>
                  </item>
                  <item row="2" column="1" alignment="Qt::AlignRight">
@@ -1222,22 +1192,6 @@ QPushButton:pressed{
                    </property>
                   </widget>
                  </item>
-                 <item row="1" column="0">
-                  <widget class="QLabel" name="linearThresh">
-                   <property name="font">
-                    <font>
-                     <family>Arial</family>
-                     <pointsize>10</pointsize>
-                    </font>
-                   </property>
-                   <property name="text">
-                    <string>Line % Threshold</string>
-                   </property>
-                   <property name="alignment">
-                    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-                   </property>
-                  </widget>
-                 </item>
                  <item row="2" column="0">
                   <widget class="QLabel" name="rejectCount_Label">
                    <property name="font">
@@ -1248,6 +1202,22 @@ QPushButton:pressed{
                    </property>
                    <property name="text">
                     <string>Reject Count </string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="0">
+                  <widget class="QLabel" name="lineThresh">
+                   <property name="font">
+                    <font>
+                     <family>Arial</family>
+                     <pointsize>10</pointsize>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string>Line Threshold</string>
                    </property>
                    <property name="alignment">
                     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -1273,7 +1243,7 @@ QPushButton:pressed{
                     </font>
                    </property>
                    <property name="text">
-                    <string>Min % Threshold</string>
+                    <string>Min % time</string>
                    </property>
                   </widget>
                  </item>
@@ -1338,6 +1308,12 @@ QPushButton:pressed{
            </item>
            <item>
             <widget class="QFrame" name="cameraSetting_Frame">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="minimumSize">
               <size>
                <width>0</width>
@@ -1426,7 +1402,6 @@ QPushButton:pressed{
 	border-right:1px solid#D9305C;
 	border-top-left-radius:4px;
 	border-top-right-radius:4px;
-
 }
 
 
@@ -1471,8 +1446,6 @@ QPushButton:pressed{
 	border-top-left-radius:4px;
 	border-top-right-radius:4px;
 	border-bottom-right-radius:4px;
-
-
 }</string>
                    </property>
                    <property name="text">
@@ -1483,10 +1456,10 @@ QPushButton:pressed{
                 </layout>
                </widget>
               </item>
-              <item alignment="Qt::AlignVCenter">
+              <item>
                <widget class="QStackedWidget" name="stackWidget_cameraSetting">
                 <property name="sizePolicy">
-                 <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                   <horstretch>0</horstretch>
                   <verstretch>0</verstretch>
                  </sizepolicy>
@@ -1494,7 +1467,7 @@ QPushButton:pressed{
                 <property name="maximumSize">
                  <size>
                   <width>16777203</width>
-                  <height>136</height>
+                  <height>139</height>
                  </size>
                 </property>
                 <property name="styleSheet">
@@ -1504,7 +1477,7 @@ QPushButton:pressed{
                  <number>0</number>
                 </property>
                 <property name="currentIndex">
-                 <number>1</number>
+                 <number>0</number>
                 </property>
                 <widget class="QWidget" name="cameraSetting_Page">
                  <property name="sizePolicy">
@@ -1512,6 +1485,12 @@ QPushButton:pressed{
                    <horstretch>0</horstretch>
                    <verstretch>0</verstretch>
                   </sizepolicy>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>16777200</height>
+                  </size>
                  </property>
                  <property name="font">
                   <font>
@@ -1535,7 +1514,7 @@ QPushButton:pressed{
                    <number>0</number>
                   </property>
                   <property name="verticalSpacing">
-                   <number>3</number>
+                   <number>5</number>
                   </property>
                   <item row="3" column="0" alignment="Qt::AlignLeft">
                    <widget class="QFrame" name="roiFrame">
@@ -1593,6 +1572,39 @@ QPushButton:pressed{
                     </layout>
                    </widget>
                   </item>
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="exposureTime_Label">
+                    <property name="font">
+                     <font>
+                      <family>Arial</family>
+                      <pointsize>10</pointsize>
+                     </font>
+                    </property>
+                    <property name="text">
+                     <string>Exposure Time</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="1" alignment="Qt::AlignRight">
+                   <widget class="QLineEdit" name="cameraGain_Entry">
+                    <property name="maximumSize">
+                     <size>
+                      <width>75</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="1" alignment="Qt::AlignRight">
+                   <widget class="QLineEdit" name="triggerDelay_Entry">
+                    <property name="maximumSize">
+                     <size>
+                      <width>75</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                   </widget>
+                  </item>
                   <item row="1" column="0">
                    <widget class="QLabel" name="triggerDelay_Label">
                     <property name="font">
@@ -1616,29 +1628,6 @@ QPushButton:pressed{
                     </property>
                    </widget>
                   </item>
-                  <item row="2" column="1" alignment="Qt::AlignRight">
-                   <widget class="QLineEdit" name="cameraGain_Entry">
-                    <property name="maximumSize">
-                     <size>
-                      <width>75</width>
-                      <height>16777215</height>
-                     </size>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="0">
-                   <widget class="QLabel" name="exposureTime_Label">
-                    <property name="font">
-                     <font>
-                      <family>Arial</family>
-                      <pointsize>10</pointsize>
-                     </font>
-                    </property>
-                    <property name="text">
-                     <string>Exposure Time</string>
-                    </property>
-                   </widget>
-                  </item>
                   <item row="2" column="0">
                    <widget class="QLabel" name="cameraGain_Label">
                     <property name="font">
@@ -1649,16 +1638,6 @@ QPushButton:pressed{
                     </property>
                     <property name="text">
                      <string>Camera Gain</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="1" alignment="Qt::AlignRight">
-                   <widget class="QLineEdit" name="triggerDelay_Entry">
-                    <property name="maximumSize">
-                     <size>
-                      <width>75</width>
-                      <height>16777215</height>
-                     </size>
                     </property>
                    </widget>
                   </item>
@@ -1673,7 +1652,7 @@ QPushButton:pressed{
                     <property name="maximumSize">
                      <size>
                       <width>107</width>
-                      <height>23</height>
+                      <height>25</height>
                      </size>
                     </property>
                     <property name="styleSheet">
@@ -1689,10 +1668,10 @@ QPushButton:pressed{
                   </item>
                  </layout>
                 </widget>
-                <widget class="QWidget" name="saveData_Entry">
+                <widget class="QWidget" name="saveData_Page">
                  <property name="font">
                   <font>
-                   <pointsize>15</pointsize>
+                   <pointsize>8</pointsize>
                   </font>
                  </property>
                  <layout class="QGridLayout" name="gridLayout_8">
@@ -1700,7 +1679,7 @@ QPushButton:pressed{
                    <number>0</number>
                   </property>
                   <property name="topMargin">
-                   <number>0</number>
+                   <number>5</number>
                   </property>
                   <property name="rightMargin">
                    <number>0</number>
@@ -1712,7 +1691,7 @@ QPushButton:pressed{
                    <number>0</number>
                   </property>
                   <property name="verticalSpacing">
-                   <number>1</number>
+                   <number>4</number>
                   </property>
                   <item row="0" column="0">
                    <widget class="QLabel" name="chooseDirectory_Label">
@@ -1846,28 +1825,18 @@ QPushButton:pressed{
                     </property>
                    </widget>
                   </item>
-                  <item row="1" column="1" alignment="Qt::AlignRight">
-                   <widget class="QLineEdit" name="lineEdit">
-                    <property name="maximumSize">
-                     <size>
-                      <width>77</width>
-                      <height>16777215</height>
-                     </size>
-                    </property>
-                   </widget>
-                  </item>
                   <item row="0" column="1">
                    <widget class="QPushButton" name="click_Button">
                     <property name="sizePolicy">
-                     <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                     <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
                       <horstretch>0</horstretch>
                       <verstretch>0</verstretch>
                      </sizepolicy>
                     </property>
                     <property name="maximumSize">
                      <size>
-                      <width>110</width>
-                      <height>16777213</height>
+                      <width>122</width>
+                      <height>24</height>
                      </size>
                     </property>
                     <property name="font">
@@ -1885,6 +1854,16 @@ QPushButton:pressed{
                     </property>
                     <property name="text">
                      <string>Choose Directory</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="1">
+                   <widget class="QLineEdit" name="directoryName_Entry">
+                    <property name="maximumSize">
+                     <size>
+                      <width>122</width>
+                      <height>20</height>
+                     </size>
                     </property>
                    </widget>
                   </item>
@@ -5431,7 +5410,10 @@ QPushButton:pressed{
 }</string>
             </property>
             <property name="text">
-             <string>Debug</string>
+             <string>Live</string>
+            </property>
+            <property name="checkable">
+             <bool>true</bool>
             </property>
             <property name="autoDefault">
              <bool>true</bool>

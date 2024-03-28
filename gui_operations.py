@@ -20,10 +20,13 @@ class MainWin(QtWidgets.QMainWindow):
         self.ui.cameraSetting_Button.pressed.connect(self.camera_setting)
         self.ui.openImage_Button.pressed.connect(self.open_image)
         self.ui.saveData_Button.pressed.connect(self.save_data)
-        # self.ui.click_Button.pressed.connect(open_device)
-
+        self.ui.click_Button.pressed.connect(self.choose_directory_path)
         self.show()
 
+        ##################################################### LIVE METHOD ####################################################
+            ##############################################################################################################
+                ######################################################################################################
+                    ##########################################################################################
         
         ############### Loading existing pickle values for all the parameters of GUI ###############################
         pkl_file = glob.glob('Pickle/*')  
@@ -53,7 +56,7 @@ class MainWin(QtWidgets.QMainWindow):
         self.ui.exposureTime_Entry.insert(str(brand_values['exposure_time']))
         self.ui.triggerDelay_Entry.insert(str(brand_values['trigger_delay']))
         self.ui.roiEntry.insert(str(brand_values['roi']))
-
+        
         ################ For Rejection Enable #############
         if brand_values['reject_enable'] == 0:
             self.ui.rejectEnable_No.setChecked(True)
@@ -61,8 +64,22 @@ class MainWin(QtWidgets.QMainWindow):
             self.ui.rejectEnable_Yes.setChecked(True)
  
         ################ For Save Image ##################
-        # if brand_values['']
+        if brand_values['save_img'] == 1:
+            self.ui.saveImage_Checkbox.setChecked(True)
+        else:
+            self.ui.saveImage_Checkbox.setChecked(False)
 
+        ################ For Save Result #################
+        if brand_values['save_result'] == 1:
+            self.ui.saveResult_Checkbox.setChecked(True)
+        else:
+            self.ui.saveResult_Checkbox.setChecked(False)
+        
+        ################# For Save NG Image #############
+        if brand_values['save_ng'] == 1:
+            self.ui.saveNG_Checkbox.setChecked(True)
+        else:
+            self.ui.saveNG_Checkbox.setChecked(False)
 
 
     def switch_mode(self):
@@ -76,6 +93,68 @@ class MainWin(QtWidgets.QMainWindow):
         else:
             self.ui.switchButton.setText('Live')
             self.ui.stackWidget.setCurrentWidget(self.ui.liveMode_Page)
+
+    ######################### Function to save all the parameters ########################
+        ###########################################################################
+            ##################################################################
+        self.ui.line1Box
+    def save_gui_values()-> None:
+        '''
+        Function that takes all the user inputs values from GUI and saved in pickle file
+        '''
+        global param_values
+        global save_image_sel_val
+        global save_ocr_sel_val
+        global rej_enable_status
+        global line1_enable_status
+        global line2_enable_status
+        global save_img_status
+        global save_ng_status 
+        global save_det_status
+        global save_result_status
+        global crop_save
+        global brand_values
+
+        pkl_dir = glob.glob('Pickle/*.pkl')
+        for pkl in pkl_dir:
+            pass
+            
+        # with open(pkl, 'rb') as brand:
+        #     brand_values = pickle.load(brand)
+        self.ui.line1Box
+        brand_param_dict =
+        {'brand_name':
+                    ,'no_of_lines':
+                    ,'line1':self.ui.line1Box
+                    ,'line2':str(line2_entry.get())
+                    ,'line3':str(line3_entry.get())
+                    ,'line4':str(line4_entry.get())
+                    ,'min_per_thresh':min_per_thresh_entry.get()
+                    ,'line_per_thresh':line_per_thresh_entry.get()
+                    ,'reject_count':reject_count_entry.get()
+                    ,'reject_enable':rej_enable_status
+                    ,'line1_enable':line1_enable_status
+                    ,'line2_enable':line2_enable_status
+                    ,'exposure_time':float(exposure_time_entry.get())
+                    ,'trigger_delay':int(trigger_delay_entry.get())
+                    ,'camera_gain':float(camera_gain_entry.get())
+                    ,'roi':str(roi_entry.get())
+                    ,'save_img':save_img_status
+                    ,'save_ng':save_ng_status 
+                    ,'save_result':save_result_status
+                    ,'crop':crop_save
+                    ,'img_dir':str(choose_dir_entry.get())
+                }
+    
+            with open(pkl,'wb') as new_brand:
+                pickle.dump(brand_param_dict, new_brand) #writing pickle files for brand parameters
+            srcs = pkl
+            pik_lst = pkl.split('.')
+            pik_str = str(pik_lst[0])
+            pik_str = pik_str.split('\\')
+            dests = os.getcwd() + '/Brands/' + pik_str[1]
+            shutil.copy(srcs, dests)
+
 
 
     def camera_setting(self):

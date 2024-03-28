@@ -1,3 +1,4 @@
+__pycache__
 new_latest_debug.py
 new_latest_gui_debug.ui
 /backup
@@ -8,3 +9,4 @@ new_latest_gui_debug.ui
 ./system_pickles
 ./LOGO
 *.pkl 
+/test

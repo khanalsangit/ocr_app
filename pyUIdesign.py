@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'gui_design.ui'
+# Form implementation generated from reading ui file 'mainGUI.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.9
 #
@@ -849,7 +849,7 @@ class Ui_MainWindow(object):
         self.click_Button.setMaximumSize(QtCore.QSize(122, 24))
         font = QtGui.QFont()
         font.setFamily("Arial")
-        font.setPointSize(7)
+        font.setPointSize(11)
         self.click_Button.setFont(font)
         self.click_Button.setStyleSheet("QPushButton{\n"
 "    color: white;\n"
@@ -2432,7 +2432,7 @@ class Ui_MainWindow(object):
         self.rejectCount_Label.setText(_translate("MainWindow", "Reject Count "))
         self.lineThresh.setText(_translate("MainWindow", "Line Threshold"))
         self.minPercentTime_Label.setText(_translate("MainWindow", "Min % time"))
-        self.rejectEnable_Label.setText(_translate("MainWindow", "Reject Enable"))
+        self.rejectEnable_Label.setText(_translate("MainWindow", "Rejection Enable"))
         self.rejectSetting_updateButton.setText(_translate("MainWindow", "Update"))
         self.cameraSetting_Button.setText(_translate("MainWindow", "Camera Setting"))
         self.saveData_Button.setText(_translate("MainWindow", "Save Data"))
@@ -2534,11 +2534,6 @@ class Ui_MainWindow(object):
 
 if __name__ == "__main__":
     import sys
-    if hasattr(QtCore.Qt, 'AA_EnableHighDpiScaling'):
-        QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling, True)
-
-    if hasattr(QtCore.Qt, 'AA_UseHighDpiPixmaps'):
-        QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_UseHighDpiPixmaps, True)
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow()

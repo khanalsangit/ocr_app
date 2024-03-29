@@ -19,7 +19,7 @@ This is a repository that contains the latest OCR technique that detects and rec
 * [Run Locally](#run)
 * [Tech Stack](#tecchstack)
 * [License](#license)
-* [Contributors](#contributors)* 
+* [Contributors](#contributors)
 * [Questions](#questions)
 
 <a name="features"></a>

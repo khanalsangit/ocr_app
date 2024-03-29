@@ -17,10 +17,7 @@ This is a repository that contains the latest OCR technique that detects and rec
 * [Features](#features)
 * [Documentation](#documentation)
 * [Run Locally](#run)
-* [Tech Stack](#tecchstack)
-* [License](#license)
-* [Contributors](#contributors)
-* [Questions](#questions)
+* [Tech Stack](#techstack)
 
 <a name="features"></a>
 ## Features

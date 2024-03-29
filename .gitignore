@@ -10,5 +10,4 @@ new_latest_gui_debug.ui
 ./LOGO
 *.pkl 
 
-#ignore directory
-__pycache__
+

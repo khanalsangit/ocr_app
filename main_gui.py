@@ -11,14 +11,6 @@ from MvImport.MvErrorDefine_const import *
 from MvImport.CameraParams_header import *
 import ctypes
 
-# class MainWindow(QMainWindow):
-#     def __init__(self, parent=None): 
-#         # QMainWindow.__init__(self)
-#         super(MainWindow,self).__init__()
-#         self.ui = Ui_MainWindow()
-#         self.ui.setupUi(self)
-#         loadJsonStyle(self, self.ui)
-#         self.show()
 
 # 将返回的错误码转换为十六进制显示
 def ToHexStr(num):

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'mainGUI.ui'
+# Form implementation generated from reading ui file 'gui_design.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.9
 #
@@ -849,7 +849,7 @@ class Ui_MainWindow(object):
         self.click_Button.setMaximumSize(QtCore.QSize(122, 24))
         font = QtGui.QFont()
         font.setFamily("Arial")
-        font.setPointSize(10)
+        font.setPointSize(7)
         self.click_Button.setFont(font)
         self.click_Button.setStyleSheet("QPushButton{\n"
 "    color: white;\n"
@@ -903,21 +903,35 @@ class Ui_MainWindow(object):
         self.debugMode_Page.setStyleSheet("")
         self.debugMode_Page.setObjectName("debugMode_Page")
         self.horizontalLayout_6 = QtWidgets.QHBoxLayout(self.debugMode_Page)
-        self.horizontalLayout_6.setContentsMargins(0, 10, -1, 0)
+        self.horizontalLayout_6.setContentsMargins(0, 0, -1, 0)
         self.horizontalLayout_6.setSpacing(20)
         self.horizontalLayout_6.setObjectName("horizontalLayout_6")
         self.createProject_Grid = QtWidgets.QWidget(self.debugMode_Page)
         self.createProject_Grid.setMaximumSize(QtCore.QSize(197, 16777215))
-        self.createProject_Grid.setStyleSheet("QPushButton{\n"
+        self.createProject_Grid.setObjectName("createProject_Grid")
+        self.verticalLayout_16 = QtWidgets.QVBoxLayout(self.createProject_Grid)
+        self.verticalLayout_16.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_16.setSpacing(0)
+        self.verticalLayout_16.setObjectName("verticalLayout_16")
+        self.frame_12 = QtWidgets.QFrame(self.createProject_Grid)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.frame_12.sizePolicy().hasHeightForWidth())
+        self.frame_12.setSizePolicy(sizePolicy)
+        self.frame_12.setMaximumSize(QtCore.QSize(181, 406))
+        self.frame_12.setStyleSheet("QPushButton{\n"
 "    border-radius:4px;\n"
 "    background-color:#F2F1F1;\n"
 "}")
-        self.createProject_Grid.setObjectName("createProject_Grid")
-        self.verticalLayout_16 = QtWidgets.QVBoxLayout(self.createProject_Grid)
-        self.verticalLayout_16.setContentsMargins(30, 0, 30, 0)
-        self.verticalLayout_16.setSpacing(0)
-        self.verticalLayout_16.setObjectName("verticalLayout_16")
-        self.createProjectButton = QtWidgets.QPushButton(self.createProject_Grid)
+        self.frame_12.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame_12.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_12.setObjectName("frame_12")
+        self.verticalLayout_15 = QtWidgets.QVBoxLayout(self.frame_12)
+        self.verticalLayout_15.setContentsMargins(25, 0, 25, 0)
+        self.verticalLayout_15.setSpacing(0)
+        self.verticalLayout_15.setObjectName("verticalLayout_15")
+        self.createProjectButton = QtWidgets.QPushButton(self.frame_12)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -933,8 +947,8 @@ class Ui_MainWindow(object):
 "    border-radius:4px;\n"
 "}")
         self.createProjectButton.setObjectName("createProjectButton")
-        self.verticalLayout_16.addWidget(self.createProjectButton)
-        self.cameraButton = QtWidgets.QPushButton(self.createProject_Grid)
+        self.verticalLayout_15.addWidget(self.createProjectButton)
+        self.cameraButton = QtWidgets.QPushButton(self.frame_12)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -947,8 +961,8 @@ class Ui_MainWindow(object):
         self.cameraButton.setFont(font)
         self.cameraButton.setStyleSheet("")
         self.cameraButton.setObjectName("cameraButton")
-        self.verticalLayout_16.addWidget(self.cameraButton)
-        self.preprocessingButton = QtWidgets.QPushButton(self.createProject_Grid)
+        self.verticalLayout_15.addWidget(self.cameraButton)
+        self.preprocessingButton = QtWidgets.QPushButton(self.frame_12)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -960,8 +974,8 @@ class Ui_MainWindow(object):
         font.setPointSize(10)
         self.preprocessingButton.setFont(font)
         self.preprocessingButton.setObjectName("preprocessingButton")
-        self.verticalLayout_16.addWidget(self.preprocessingButton)
-        self.detectionButton = QtWidgets.QPushButton(self.createProject_Grid)
+        self.verticalLayout_15.addWidget(self.preprocessingButton)
+        self.detectionButton = QtWidgets.QPushButton(self.frame_12)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -974,8 +988,8 @@ class Ui_MainWindow(object):
         self.detectionButton.setFont(font)
         self.detectionButton.setStyleSheet("")
         self.detectionButton.setObjectName("detectionButton")
-        self.verticalLayout_16.addWidget(self.detectionButton)
-        self.recognitionButton = QtWidgets.QPushButton(self.createProject_Grid)
+        self.verticalLayout_15.addWidget(self.detectionButton)
+        self.recognitionButton = QtWidgets.QPushButton(self.frame_12)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -988,8 +1002,8 @@ class Ui_MainWindow(object):
         self.recognitionButton.setFont(font)
         self.recognitionButton.setStyleSheet("")
         self.recognitionButton.setObjectName("recognitionButton")
-        self.verticalLayout_16.addWidget(self.recognitionButton)
-        self.analysisButton = QtWidgets.QPushButton(self.createProject_Grid)
+        self.verticalLayout_15.addWidget(self.recognitionButton)
+        self.analysisButton = QtWidgets.QPushButton(self.frame_12)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -1001,8 +1015,9 @@ class Ui_MainWindow(object):
         font.setPointSize(10)
         self.analysisButton.setFont(font)
         self.analysisButton.setObjectName("analysisButton")
-        self.verticalLayout_16.addWidget(self.analysisButton)
-        spacerItem = QtWidgets.QSpacerItem(20, 185, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        self.verticalLayout_15.addWidget(self.analysisButton)
+        self.verticalLayout_16.addWidget(self.frame_12)
+        spacerItem = QtWidgets.QSpacerItem(20, 188, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
         self.verticalLayout_16.addItem(spacerItem)
         self.horizontalLayout_6.addWidget(self.createProject_Grid)
         self.editProject = QtWidgets.QStackedWidget(self.debugMode_Page)
@@ -2375,7 +2390,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
-        self.stackWidget.setCurrentIndex(1)
+        self.stackWidget.setCurrentIndex(0)
         self.stackWidget_cameraSetting.setCurrentIndex(0)
         self.editProject.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -2519,6 +2534,11 @@ class Ui_MainWindow(object):
 
 if __name__ == "__main__":
     import sys
+    if hasattr(QtCore.Qt, 'AA_EnableHighDpiScaling'):
+        QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling, True)
+
+    if hasattr(QtCore.Qt, 'AA_UseHighDpiPixmaps'):
+        QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_UseHighDpiPixmaps, True)
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow()

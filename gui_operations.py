@@ -3,9 +3,11 @@ from pyUIdesign import Ui_MainWindow
 import os
 from PyQt5.QtWidgets import *
 import cv2
+from main_gui import *
 import pickle
 import glob
 import sys
+import shutil
 
 class MainWin(QtWidgets.QMainWindow):
     def __init__(self):
@@ -21,6 +23,9 @@ class MainWin(QtWidgets.QMainWindow):
         self.ui.openImage_Button.pressed.connect(self.open_image)
         self.ui.saveData_Button.pressed.connect(self.save_data)
         self.ui.click_Button.pressed.connect(self.choose_directory_path)
+        self.ui.systemSetting_update_Button.pressed.connect(self.save_gui_values)
+        self.ui.rejectSetting_updateButton.pressed.connect(self.save_gui_values)
+        self.ui.cameraSetting_update_Button.pressed.connect(self.save_gui_values)
         self.show()
 
         ##################################################### LIVE METHOD ####################################################
@@ -38,8 +43,9 @@ class MainWin(QtWidgets.QMainWindow):
                 with open(p,"rb") as file:
                     brand_values = pickle.load(file)
 
+        print("Minimum Percent",self.ui.minPercent_Entry.text())
         ###### Setting the initial values in GUI Parameters
-        if brand_values['ocr_method_enable'] == 1:  ######## Set the ocr method radiobutton 
+        if brand_values['ocr_method_enable'] == True:  ######## Set the ocr method radiobutton 
             self.ui.detection_recognition.setChecked(True)
         else:
             self.ui.detectionOnly.setChecked(True)
@@ -58,25 +64,25 @@ class MainWin(QtWidgets.QMainWindow):
         self.ui.roiEntry.insert(str(brand_values['roi']))
         
         ################ For Rejection Enable #############
-        if brand_values['reject_enable'] == 0:
-            self.ui.rejectEnable_No.setChecked(True)
-        else:
+        if brand_values['reject_enable'] == True:
             self.ui.rejectEnable_Yes.setChecked(True)
+        else:
+            self.ui.rejectEnable_No.setChecked(True)
  
         ################ For Save Image ##################
-        if brand_values['save_img'] == 1:
+        if brand_values['save_img'] == True:
             self.ui.saveImage_Checkbox.setChecked(True)
         else:
             self.ui.saveImage_Checkbox.setChecked(False)
 
         ################ For Save Result #################
-        if brand_values['save_result'] == 1:
+        if brand_values['save_result'] == True:
             self.ui.saveResult_Checkbox.setChecked(True)
         else:
             self.ui.saveResult_Checkbox.setChecked(False)
         
         ################# For Save NG Image #############
-        if brand_values['save_ng'] == 1:
+        if brand_values['save_ng'] == True:
             self.ui.saveNG_Checkbox.setChecked(True)
         else:
             self.ui.saveNG_Checkbox.setChecked(False)
@@ -97,8 +103,8 @@ class MainWin(QtWidgets.QMainWindow):
     ######################### Function to save all the parameters ########################
         ###########################################################################
             ##################################################################
-        self.ui.line1Box
-    def save_gui_values()-> None:
+       
+    def save_gui_values(self)-> None:
         '''
         Function that takes all the user inputs values from GUI and saved in pickle file
         '''
@@ -117,43 +123,41 @@ class MainWin(QtWidgets.QMainWindow):
 
         pkl_dir = glob.glob('Pickle/*.pkl')
         for pkl in pkl_dir:
-            pass
+            print("Pickle",pkl)
             
-        # with open(pkl, 'rb') as brand:
-        #     brand_values = pickle.load(brand)
-        self.ui.line1Box
-        brand_param_dict =
-        {'brand_name':
-                    ,'no_of_lines':
-                    ,'line1':self.ui.line1Box
-                    ,'line2':str(line2_entry.get())
-                    ,'line3':str(line3_entry.get())
-                    ,'line4':str(line4_entry.get())
-                    ,'min_per_thresh':min_per_thresh_entry.get()
-                    ,'line_per_thresh':line_per_thresh_entry.get()
-                    ,'reject_count':reject_count_entry.get()
-                    ,'reject_enable':rej_enable_status
-                    ,'line1_enable':line1_enable_status
-                    ,'line2_enable':line2_enable_status
-                    ,'exposure_time':float(exposure_time_entry.get())
-                    ,'trigger_delay':int(trigger_delay_entry.get())
-                    ,'camera_gain':float(camera_gain_entry.get())
-                    ,'roi':str(roi_entry.get())
-                    ,'save_img':save_img_status
-                    ,'save_ng':save_ng_status 
-                    ,'save_result':save_result_status
-                    ,'crop':crop_save
-                    ,'img_dir':str(choose_dir_entry.get())
+        with open(pkl, 'rb') as brand:
+            brand_values = pickle.load(brand)
+        brand_param_dict = {'brand_name':self.ui.projectName.text()
+                    ,'ocr_method_enable': True if self.ui.detection_recognition.isChecked() else False
+                    ,'no_of_lines':self.ui.no_ofLine_comboBox.currentText()
+                    ,'line1':self.ui.line1Box.text()
+                    ,'line2':self.ui.line2Box.text()
+                    ,'line3':self.ui.line3Box.text()
+                    ,'line4':self.ui.line4Box.text()
+                    ,'min_per_thresh':self.ui.minPercent_Entry.text()
+                    ,'line_per_thresh':self.ui.linearThresh_Entry.text()
+                    ,'reject_count':self.ui.rejectCount_Entry.text()
+                    ,'reject_enable':True if self.ui.rejectEnable_Yes.isChecked() else False 
+                    ,'exposure_time':self.ui.exposureTime_Entry.text()
+                    ,'trigger_delay':self.ui.triggerDelay_Entry.text()
+                    ,'camera_gain':self.ui.cameraGain_Entry.text()
+                    ,'roi':self.ui.roiEntry.text()
+                    ,'save_img':True if self.ui.saveImage_Checkbox.isChecked() else False
+                    ,'save_ng':True if self.ui.saveNG_Checkbox.isChecked() else False
+                    ,'save_result':True if self.ui.saveResult_Checkbox.isChecked() else False
+                    ,'img_dir':self.ui.directoryName_Entry.text()
                 }
-    
-            with open(pkl,'wb') as new_brand:
-                pickle.dump(brand_param_dict, new_brand) #writing pickle files for brand parameters
-            srcs = pkl
-            pik_lst = pkl.split('.')
-            pik_str = str(pik_lst[0])
-            pik_str = pik_str.split('\\')
-            dests = os.getcwd() + '/Brands/' + pik_str[1]
-            shutil.copy(srcs, dests)
+
+        
+        with open(pkl,'wb') as new_brand:
+            pickle.dump(brand_param_dict, new_brand) #writing pickle files for brand parameters
+        srcs = pkl
+        pik_lst = pkl.split('.')
+        pik_str = str(pik_lst[0])
+        pik_str = pik_str.split('\\')
+        dests = os.getcwd() + '/Pickle/' + pik_str[1]
+        shutil.copy(srcs, dests)
+        QMessageBox.information(self,'Success',"Parameter Saved Successfully")
 
 
 

@@ -85,7 +85,7 @@ OR convert '.ui' file
 <a name="techstack"></a>
 ## Tech Stack
 
-**`FrontEnd:** python, PyQT
+**FrontEnd:** python, PyQT
 
 **BackEnd:** python, paddlepaddle
 

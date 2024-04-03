@@ -1,195 +1,211 @@
+from PyQt5 import QtWidgets, QtCore, QtGui
+from pyUIdesign import Ui_MainWindow
+import os
+from PyQt5.QtWidgets import *
+import cv2
 import pickle
 import glob
-class PyQTWidgetFunction():
-    '''
-    This class contains all the functions of GUI widgets
-    '''
-    pkl_dir = glob.glob('Pickle/*.pkl')
-    for pkl in pkl_dir:
-        print("Pickle",pkl)
-            
-    with open(pkl, 'rb') as brand:
-        brand_values = pickle.load(brand) 
-
-    def test_me(self):
-        print("I am from gui operation")
-        
-    def set_ui(self, ui_object):
-        self.ui = ui_object
-    
-    def switch_mode(self):
-        '''
-        Function that checks the switch mode and change its when button is clicked.
-        '''
-            
-        if self.ui.switchButton.isChecked():
-            self.ui.stackWidget.setCurrentWidget(self.ui.debugMode_Page)
-            self.ui.switchButton.setText('Debug')
-        else:
-            self.ui.switchButton.setText('Live')
-            self.ui.stackWidget.setCurrentWidget(self.ui.liveMode_Page)
-    from PyQt5 import QtWidgets, QtCore, QtGui
-from main_gui import Ui_MainWindow
-
-
 class MainWin(QtWidgets.QMainWindow):
     def __init__(self):
         super(MainWin,self).__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-        # self.ui.create_project_button.pressed.connect(self.create_project)
+        self.ui.stackWidget.setCurrentWidget(self.ui.liveMode_Page) ####### default switch mode 
+        self.switch_mode_flag = False  ##### switch mode flag
+        self.ui.switchButton.clicked.connect(self.switch_mode)
+        self.ui.stackWidget_cameraSetting.setCurrentWidget(self.ui.cameraSetting_Page) ######### default camera setting mode
+        self.ui.cameraSetting_Button.pressed.connect(self.camera_setting)
+        self.ui.openImage_Button.pressed.connect(self.open_image)
+        self.ui.saveData_Button.pressed.connect(self.save_data)
+        self.ui.click_Button.pressed.connect(self.choose_directory_path)
         self.show()
+
+        
+        ############### Loading existing pickle values for all the parameters of GUI ###############################
+        pkl_file = glob.glob('Pickle/*')  
+        if len(pkl_file)==0:
+            with open('system_pickles/initial_param.pkl','rb') as f:
+                brand_values = pickle.load(f) 
+        else:
+            for p in pkl_file:
+                with open(p,"rb") as file:
+                    brand_values = pickle.load(file)
+
+        ###### Setting the initial values in GUI Parameters
+        if brand_values['ocr_method_enable'] == 1:  ######## Set the ocr method radiobutton 
+            self.ui.detection_recognition.setChecked(True)
+        else:
+            self.ui.detectionOnly.setChecked(True)
+        
+        self.ui.no_ofLine_comboBox.setCurrentText(str(brand_values['no_of_lines']))
+        self.ui.line1Box.insert(brand_values['line1'])
+        self.ui.line2Box.insert(brand_values['line2'])
+        self.ui.line3Box.insert(brand_values['line3'])
+        self.ui.line4Box.insert(brand_values['line4'])
+        self.ui.minPercent_Entry.insert(str(brand_values['min_per_thresh']))
+        self.ui.linearThresh_Entry.insert(str(brand_values['line_per_thresh']))
+        self.ui.rejectCount_Entry.insert(str(brand_values['reject_count']))
+        self.ui.cameraGain_Entry.insert(str(brand_values['camera_gain']))
+        self.ui.exposureTime_Entry.insert(str(brand_values['exposure_time']))
+        self.ui.triggerDelay_Entry.insert(str(brand_values['trigger_delay']))
+        self.ui.roiEntry.insert(str(brand_values['roi']))
+
+        ################ For Rejection Enable #############
+        if brand_values['reject_enable'] == 0:
+            self.ui.rejectEnable_No.setChecked(True)
+        else:
+            self.ui.rejectEnable_Yes.setChecked(True)
+ 
+
+        print("Pickle Details",brand_values)
+    def debug_switch_mode(self)-> None:
+        '''
+        Function that switch the gui in Debug Mode
+        '''
+        self.ui.switchButton.setText("Live")
+        self.ui.stackWidget.setCurrentWidget(self.ui.debugMode_Page)
+
+
+    def live_switch_mode(self)->None:
+        '''
+        Function that switch the gui in Live Mode
+        '''
+        self.ui.switchButton.setText("Debug")
+        self.ui.stackWidget.setCurrentWidget(self.ui.liveMode_Page)
+
+
+    def switch_mode(self):
+        '''
+        Function that checks the switch mode and change its when button is clicked.
+        '''
+        if self.switch_mode_flag:
+            self.ui.switchButton.clicked.connect(self.live_switch_mode)
+        else:
+            self.ui.switchButton.clicked.connect(self.debug_switch_mode)
+        self.switch_mode_flag = not self.switch_mode_flag
+
+    def camera_setting(self):
+        '''
+        Function that change the camera setting page.
+        '''
+        self.ui.stackWidget_cameraSetting.setCurrentWidget(self.ui.cameraSetting_Page)
+        self.ui.saveData_Button.setStyleSheet("QPushButton{\n"
+"    background-color: #eaeaea;\n"
+"    border:none;\n"
+"    border-top-left-radius:4px;\n"
+"    border-top-right-radius:4px;\n"
+"    border-bottom-right-radius:4px;\n"
+"\n"
+"\n"
+"}")
+        self.ui.cameraSetting_Button.setStyleSheet("QPushButton{\n"
+"    color:#D9305C;\n"
+"    border-top:1px solid#D9305C;\n"
+"    border-right:1px solid#D9305C;\n"
+"    border-top-left-radius:4px;\n"
+"    border-top-right-radius:4px;\n"
+"\n"
+"}\n"
+"\n"
+"\n"
+"\n"
+"")
+   
+    def open_image(self)-> None:
+        '''
+        Function that opens the image to select the ROI to be used and display in the GUI
+        '''
+        file_path="current_img/1.jpg"
+        started = 0
+        if file_path:
+            image = cv2.imread(file_path)
+            r_image=cv2.resize(image,(int(0.75*image.shape[1]),int(0.75*image.shape[0])))
+            ###### mouse click event########
+            drawing = True
+            ix,iy = -1,-1
+            endy , endy = 0 ,0 
+            def draw_rectangle(event, x, y, flags, param):
+                try:
+                    global ix,iy,drawing,roi, started, r_image,drawing
+                    if event == cv2.EVENT_LBUTTONDOWN:
+                        drawing = True
+                        ix = x
+                        iy = y
+                        endx = x
+                        endy = y
+                    elif event == cv2.EVENT_MOUSEMOVE and drawing  == True:
+                        endx = x
+                        endy = y
+                        r_image=cv2.resize(image,(int(0.75*image.shape[1]),int(0.75*image.shape[0])))
+                        cv2.rectangle(r_image, (ix, iy),(endx, endy),(0, 255, 255),3)
+                        cv2.imshow("ROI Selection", r_image)
+                    elif event == cv2.EVENT_LBUTTONUP:
+                        drawing = False
+                        x1 = int(ix * image.shape[1] / r_image.shape[1])
+                        y1 = int(iy * image.shape[0] / r_image.shape[0])
+                        x2 = int((x) * image.shape[1] / r_image.shape[1])
+                        y2 = int((y) * image.shape[0] / r_image.shape[0])
+                        cv2.rectangle(r_image, (ix, iy),(x, y),(0, 255, 255),3)
+                        cv2.imshow("ROI Selection", r_image)
+                        cv2.waitKey(1500)
+                        roi=str(int(y1))+':'+str(int(y2))+','+str(int(x1))+':'+str(int(x2))
+                
+                        cv2.destroyAllWindows()
+                        started = 0
+                except NameError as ne:
+                    pass
+            cv2.namedWindow("ROI Selection",cv2.WINDOW_AUTOSIZE)
+            cv2.setMouseCallback("ROI Selection", draw_rectangle)
+                # display the window
+            while True:
+                cv2.imshow("ROI Selection", r_image)
+                cv2.waitKey(0) == ord('q')
+                break
+            cv2.destroyAllWindows()
+            self.ui.roiEntry.clear()  # clear any existing text in the entry box
+            self.ui.roiEntry.insert(roi)
+            cv2.destroyAllWindows()
+
+    def save_data(self):
+        '''
+        Function that change into save data page.
+        '''
+        self.ui.stackWidget_cameraSetting.setCurrentWidget(self.ui.saveData_Page)
+
+        self.ui.saveData_Button.setStyleSheet("QPushButton{\n"
+"    color:#D9305C;\n"
+"    border-top:1px solid#D9305C;\n"
+"    border-right:1px solid#D9305C;\n"
+"    border-top-left-radius:4px;\n"
+"    border-top-right-radius:4px;\n"
+"\n"
+"}\n"
+"\n"
+"\n"
+"\n"
+"")
+        self.ui.cameraSetting_Button.setStyleSheet(
+        "QPushButton{\n"
+    "    background-color: #eaeaea;\n"
+    "    border:none;\n"
+    "    border-top-left-radius:4px;\n"
+    "    border-top-right-radius:4px;\n"
+    "    border-bottom-right-radius:4px;\n"
+    "\n"
+    "\n"
+    "}")
     
-    def save_data():
-        pass
 
-     ######################## Function to Create Project ###########################
-         #####################################################################
-             ##########################################################
+    def choose_directory_path(self):
+        '''
+        Function that sets the path to save the image.
+        '''
+        file_path = QFileDialog.getExistingDirectory(self,"Select Directory")
+        if file_path:
+            self.ui.directoryName_Entry.insert(file_path)
+        else:
+            QMessageBox.warning(self,'Warning',"Please Select the Path")
 
-
-
-
-
-#     ######################## Function to Create Project ###########################
-#         #####################################################################
-#             ##########################################################
-#     def create_project(self):
-#         self.parameters_function_widget = QtWidgets.QWidget(self.ui.centralwidget)
-#         self.parameters_function_widget.setMinimumSize(QtCore.QSize(200, 400))
-#         self.parameters_function_widget.setMaximumSize(QtCore.QSize(400, 16777215))
-#         self.parameters_function_widget.setStyleSheet("background-color: rgb(255, 255, 255);")
-#         self.parameters_function_widget.setObjectName("parameters_function_widget")
-#         self.horizontalLayout_3 = QtWidgets.QHBoxLayout(self.parameters_function_widget)
-#         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
-#         self.new_brand_frame = QtWidgets.QFrame(self.parameters_function_widget)
-#         self.new_brand_frame.setMaximumSize(QtCore.QSize(16777215, 200))
-#         self.new_brand_frame.setStyleSheet("")
-#         self.new_brand_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
-#         self.new_brand_frame.setFrameShadow(QtWidgets.QFrame.Raised)
-#         self.new_brand_frame.setObjectName("new_brand_frame")
-#         self.verticalLayout_7 = QtWidgets.QVBoxLayout(self.new_brand_frame)
-#         self.verticalLayout_7.setObjectName("verticalLayout_7")
-#         self.create_project_label = QtWidgets.QLabel(self.new_brand_frame)
-#         self.create_project_label.setText("Step 1. Create New Project")
-#         self.create_project_label.setMinimumSize(QtCore.QSize(0, 50))
-#         font = QtGui.QFont()
-#         font.setFamily("Times New Roman")
-#         font.setPointSize(16)
-#         self.create_project_label.setFont(font)
-#         self.create_project_label.setObjectName("create_project_label")
-#         self.verticalLayout_7.addWidget(self.create_project_label, 0, QtCore.Qt.AlignHCenter)
-#         self.line = QtWidgets.QFrame(self.new_brand_frame)
-#         self.line.setFrameShape(QtWidgets.QFrame.HLine)
-#         self.line.setFrameShadow(QtWidgets.QFrame.Sunken)
-#         self.line.setObjectName("line")
-#         self.verticalLayout_7.addWidget(self.line)
-#         self.create_project_buttons_frame = QtWidgets.QFrame(self.new_brand_frame)
-#         self.create_project_buttons_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
-#         self.create_project_buttons_frame.setFrameShadow(QtWidgets.QFrame.Raised)
-#         self.create_project_buttons_frame.setObjectName("create_project_buttons_frame")
-#         self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.create_project_buttons_frame)
-#         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
-#         self.create_button = QtWidgets.QPushButton(self.create_project_buttons_frame)
-#         self.create_button.pressed.connect(self.new_brand)
-#         self.create_button.setText("Create")
-#         self.create_button.setMinimumSize(QtCore.QSize(5, 30))
-#         font = QtGui.QFont()
-#         font.setFamily("Times New Roman")
-#         font.setPointSize(12)
-#         self.create_button.setFont(font)
-#         self.create_button.setStyleSheet("QPushButton{\n"
-# "     background: rgb(255, 255, 255);\n"
-# "    border: 1px solid rgb(0, 0, 0);\n"
-# "    border-radius:10px;\n"
-# "\n"
-# "}\n"
-# "\n"
-# "QPushButton:hover\n"
-# "{\n"
-# "   background-color: rgb(201, 202, 230);\n"
-# "}\n"
-# "    \n"
-# " \n"
-# "\n"
-# "")
-#         self.create_button.setObjectName("create_button")
-#         self.horizontalLayout_2.addWidget(self.create_button)
-#         self.import_button = QtWidgets.QPushButton(self.create_project_buttons_frame)
-#         self.import_button.setText("Import")
-#         self.import_button.setMinimumSize(QtCore.QSize(5, 30))
-#         font = QtGui.QFont()
-#         font.setFamily("Times New Roman")
-#         font.setPointSize(12)
-#         self.import_button.setFont(font)
-#         self.import_button.setStyleSheet("QPushButton{\n"
-# "     background: rgb(255, 255, 255);\n"
-# "    border: 1px solid rgb(0, 0, 0);\n"
-# "    border-radius:10px;\n"
-# "\n"
-# "}\n"
-# "\n"
-# "QPushButton:hover\n"
-# "{\n"
-# "   background-color: rgb(201, 202, 230);\n"
-# "}\n"
-# "    \n"
-# " \n"
-# "\n"
-# "")
-#         self.import_button.setObjectName("import_button")
-#         self.horizontalLayout_2.addWidget(self.import_button)
-#         self.verticalLayout_7.addWidget(self.create_project_buttons_frame)
-#         self.horizontalLayout_3.addWidget(self.new_brand_frame)
-#         self.ui.mainWindowGrid.addWidget(self.parameters_function_widget, 1, 1, 1, 1)
-
-     
-
-#     ###################### New Brand Frame #######################
-#         ###################################################
-#             ########################################
-#     def new_brand(self):
-#         print("I am here")
-#         self.new_brand_grid = QtWidgets.QWidget(self.parameters_function_widget)
-#         self.new_brand_grid.setMinimumSize(QtCore.QSize(100, 300))
-#         self.new_brand_grid.setMaximumSize(QtCore.QSize(380, 16777215))
-#         self.new_brand_grid.setStyleSheet("background-color: rgb(210, 205, 228);")
-#         self.new_brand_grid.setObjectName("new_brand_grid")
-#         self.new_brand_label = QtWidgets.QLabel(self.new_brand_grid)
-#         self.new_brand_label.setMinimumSize(QtCore.QSize(0,0))
-#         self.new_brand_label.setMaximumSize(QtCore.QSize(100,200))
-#         self.new_brand_label.setText("New Brand Here")
-#         self.new_brand_label.setGeometry(QtCore.QRect(100, 20, 150, 20))
-#         font = QtGui.QFont()
-#         font.setFamily("Times New Roman")
-#         font.setPointSize(14)
-#         self.new_brand_label.setFont(font)
-#         self.new_brand_label.setObjectName("new_brand_label")
-#         self.new_brand_entry = QtWidgets.QLineEdit(self.new_brand_grid)
-#         self.new_brand_entry.setMinimumSize(QtCore.QSize(0,0))
-#         self.new_brand_entry.setMaximumSize(QtCore.QSize(100,200))
-#         self.new_brand_entry.setGeometry(QtCore.QRect(40, 50, 121, 31))
-#         font = QtGui.QFont()
-#         font.setFamily("Times New Roman")
-#         font.setPointSize(12)
-#         font.setBold(False)
-#         font.setItalic(False)
-#         font.setWeight(50)
-#         self.new_brand_entry.setFont(font)
-#         self.new_brand_entry.setStyleSheet("background-color: rgb(255, 255, 255);\n"
-#         "font: 12pt \"Times New Roman\";")
-#         self.new_brand_entry.setText("")
-#         self.new_brand_entry.setObjectName("new_brand_entry")
-#         self.new_brand_add_button = QtWidgets.QPushButton(self.new_brand_grid)
-#         self.new_brand_add_button.setMinimumSize(QtCore.QSize(0,0))
-#         self.new_brand_add_button.setMaximumSize(QtCore.QSize(100,200))
-#         self.new_brand_add_button.setText("Add")
-#         self.new_brand_add_button.setGeometry(QtCore.QRect(70, 90, 71, 31))
-#         self.new_brand_add_button.setStyleSheet("background-color: rgb(85, 170, 255);\n"
-#         "font: 14pt \"Times New Roman\";\n"
-#         "color: rgb(231, 255, 255);")
-#         self.new_brand_add_button.setObjectName("new_brand_add_button")        
-#         self.ui.mainWindowGrid.addWidget(self.new_brand_grid, 2, 1, 1, 1)
 
 if __name__=="__main__":
     import sys

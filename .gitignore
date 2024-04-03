@@ -9,6 +9,6 @@ new_latest_gui_debug.ui
 ./system_pickles
 ./LOGO
 *.pkl 
-CamOperation_class_rl.py.bak
 
-
+#ignore directory
+__pycache__

@@ -131,19 +131,24 @@ class createWindow(QtWidgets.QMainWindow):
         self.label.setText('Enter Brand Name')
         self.doneButton.setText('Done')
         self.setCentralWidget(self.widget)
-        
+    
+def do_action():
+    value = window.lineEdit.text()
+    print('v',value)      
         
 if __name__ == '__main__':
+
     app = QtWidgets.QApplication(sys.argv)
-    window = MainWindow()
-    # window = createWindow()
+    # window = MainWindow()
+    window = createWindow()
     # window.gridLayout = QtWidgets.QGridLayout(window.widget)
     # for row in range(4):
     #     for column in range(3):
     #         window.placeBrand(row, column)
-    for _ in range(12):
-        window.placeBrand()
+    # for _ in range(12):
+    #     window.placeBrand()
     
+    window.lineEdit.returnPressed.connect(do_action)
     window.show()
     app.exec_()
     sys.exit()

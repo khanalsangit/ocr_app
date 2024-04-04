@@ -9,16 +9,12 @@ import datetime
 import inspect
 import ctypes
 import random
-import tkinter
-import tkinter.messagebox
-import pickle
 from ctypes import *
 
 sys.path.append("./MvImport")
 
-from MvImport.CameraParams_header import *
-from MvImport.MvCameraControl_class import *
-import sys
+from .MvImport.CameraParams_header import *
+from .MvImport.MvCameraControl_class import *
 
 # 强制关闭线程
 def Async_raise(tid, exctype):
@@ -88,6 +84,7 @@ def Mono_numpy(data, nWidth, nHeight):
     numArray[:, :, 0] = data_mono_arr
     return numArray
 
+
 # 彩色图像转为python数组
 def Color_numpy(data, nWidth, nHeight):
     data_ = np.frombuffer(data, count=int(nWidth * nHeight * 3), dtype=np.uint8, offset=0)
@@ -104,6 +101,7 @@ def Color_numpy(data, nWidth, nHeight):
     numArray[:, :, 1] = data_g_arr
     numArray[:, :, 2] = data_b_arr
     return numArray
+
 
 # 相机操作类
 class CameraOperation:
@@ -147,13 +145,10 @@ class CameraOperation:
             ret = self.obj_cam.MV_CC_CreateHandle(stDeviceList)
             if ret != 0:
                 self.obj_cam.MV_CC_DestroyHandle()
-                tkinter.messagebox.showerror('show error','create handle fail! ret = '+ self.To_hex_str(ret))
-
                 return ret
 
-            ret = self.obj_cam.MV_CC_OpenDevice(MV_ACCESS_Exclusive, 0)
+            ret = self.obj_cam.MV_CC_OpenDevice()
             if ret != 0:
-                tkinter.messagebox.showerror('show error','open device fail! ret = '+ self.To_hex_str(ret))
                 return ret
             print("open device successfully!")
             self.b_open_device = True
@@ -186,7 +181,6 @@ class CameraOperation:
             self.b_exit = False
             ret = self.obj_cam.MV_CC_StartGrabbing()
             if ret != 0:
-                tkinter.messagebox.showerror('show error','start grabbing fail! ret = '+ self.To_hex_str(ret))
                 return ret
             self.b_start_grabbing = True
             print("start grabbing successfully!")
@@ -210,7 +204,6 @@ class CameraOperation:
                 self.b_thread_closed = False
             ret = self.obj_cam.MV_CC_StopGrabbing()
             if ret != 0:
-                tkinter.messagebox.showerror('show error','stop grabbing fail! ret = '+self.To_hex_str(ret))
                 return ret
             print("stop grabbing successfully!")
             self.b_start_grabbing = False
@@ -228,14 +221,13 @@ class CameraOperation:
                 self.b_thread_closed = False
             ret = self.obj_cam.MV_CC_CloseDevice()
             if ret != 0:
-                tkinter.messagebox.showerror('show error','close deivce fail! ret = '+self.To_hex_str(ret))
                 return ret
 
         # ch:销毁句柄 | Destroy handle
         self.obj_cam.MV_CC_DestroyHandle()
         self.b_open_device = False
         self.b_start_grabbing = False
-        self.b_exit = True 
+        self.b_exit = True
         print("close device successfully!")
 
         return MV_OK
@@ -329,7 +321,6 @@ class CameraOperation:
                 if self.buf_save_image is None:
                     self.buf_save_image = (c_ubyte * stOutFrame.stFrameInfo.nFrameLen)()
                 self.st_frame_info = stOutFrame.stFrameInfo
-                print("Image Frame",self.st_frame_info)
 
                 # 获取缓存锁
                 self.buf_lock.acquire()
@@ -346,43 +337,15 @@ class CameraOperation:
 
             # 使用Display接口显示图像
             stDisplayParam = MV_DISPLAY_FRAME_INFO()
-            print("Image Display",stDisplayParam)
             memset(byref(stDisplayParam), 0, sizeof(stDisplayParam))
             stDisplayParam.hWnd = int(winHandle)
             stDisplayParam.nWidth = self.st_frame_info.nWidth
             stDisplayParam.nHeight = self.st_frame_info.nHeight
             stDisplayParam.enPixelType = self.st_frame_info.enPixelType
-            print('pixel type', stDisplayParam.enPixelType)
             stDisplayParam.pData = self.buf_save_image
-          
             stDisplayParam.nDataLen = self.st_frame_info.nFrameLen
             self.obj_cam.MV_CC_DisplayOneFrame(stDisplayParam)
-            print('received ', type(stDisplayParam))
-            
-            # rl codes 
-            if None != stOutFrame.pBufAddr and 0 == ret :
-                print ("get one frame: Width[%d], Height[%d], nFrameNum[%d]"  % (stOutFrame.stFrameInfo.nWidth, stOutFrame.stFrameInfo.nHeight, stOutFrame.stFrameInfo.nFrameNum))
 
-                nRGBSize = stOutFrame.stFrameInfo.nWidth * stOutFrame.stFrameInfo.nHeight * 3
-                stConvertParam = MV_CC_PIXEL_CONVERT_PARAM_EX()
-                memset(byref(stConvertParam), 0, sizeof(stConvertParam))
-                stConvertParam.nWidth = stOutFrame.stFrameInfo.nWidth
-                stConvertParam.nHeight = stOutFrame.stFrameInfo.nHeight
-                stConvertParam.pSrcData = stOutFrame.pBufAddr
-                stConvertParam.nSrcDataLen = stOutFrame.stFrameInfo.nFrameLen
-                stConvertParam.enSrcPixelType = stOutFrame.stFrameInfo.enPixelType  
-                stConvertParam.enDstPixelType = PixelType_Gvsp_RGB8_Packed
-                stConvertParam.pDstBuffer = (c_ubyte * nRGBSize)()
-                stConvertParam.nDstBufferSize = nRGBSize
-
-                ret = self.obj_cam.MV_CC_ConvertPixelTypeEx(stConvertParam)
-                if ret != 0:
-                    print ("convert pixel fail! ret[0x%x]" % ret)
-                    # sys.exit()
-                img_buff = (c_ubyte * stConvertParam.nDstLen)()
-                cdll.msvcrt.memcpy(byref(img_buff), stConvertParam.pDstBuffer, stConvertParam.nDstLen)
-                numArray = Color_numpy(img_buff,self.st_frame_info.nWidth,self.st_frame_info.nHeight)
-                print("Num Array",numArray)
             # 是否退出
             if self.b_exit:
                 if self.buf_save_image is not None:

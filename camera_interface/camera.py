@@ -23,12 +23,15 @@ class MachineVisionCamera:
     
         self.mainWindow = QMainWindow
 
+    def set_ui(self, ui):
+        self.ui = ui 
+
     # Bind the drop-down list to the device information index
     def xFunc(self, event):
-        self.nSelCamIndex = TxtWrapBy("[", "]", ui.ComboDevices.get())
+        self.nSelCamIndex = TxtWrapBy("[", "]", self.ui.ComboDevices.get())
 
     def set_device_information_index(self, camera_name): # same as xFunc
-        # camera_name : ui.ComboDevices.get()
+        # camera_name : self.ui.ComboDevices.get()
         self.nSelCamIndex = TxtWrapBy("[", "]", camera_name)
 
     # decoding characters
@@ -88,9 +91,9 @@ class MachineVisionCamera:
                 devList.append("[" + str(i) + "]USB: " + user_defined_name + " " + model_name
                                + "(" + str(strSerialNumber) + ")")
 
-        ui.ComboDevices.clear()
-        ui.ComboDevices.addItems(devList)
-        ui.ComboDevices.setCurrentIndex(0)
+        self.ui.ComboDevices.clear()
+        self.ui.ComboDevices.addItems(devList)
+        self.ui.ComboDevices.setCurrentIndex(0)
 
     # ch:打开相机 | en:open device
     def open_device(self):
@@ -98,7 +101,7 @@ class MachineVisionCamera:
             QMessageBox.warning(self.mainWindow, "Error", 'Camera is Running!', QMessageBox.Ok)
             return MV_E_CALLORDER
 
-        self.nSelCamIndex = ui.ComboDevices.currentIndex()
+        self.nSelCamIndex = self.ui.ComboDevices.currentIndex()
         if self.nSelCamIndex < 0:
             QMessageBox.warning(self.mainWindow, "Error", 'Please select a camera!', QMessageBox.Ok)
             return MV_E_CALLORDER
@@ -110,22 +113,22 @@ class MachineVisionCamera:
             QMessageBox.warning(self.mainWindow, "Error", strError, QMessageBox.Ok)
             self.isOpen = False
         else:
-            set_continue_mode()
+            self.set_continue_mode()
 
-            get_param()
+            self.get_param()
 
             self.isOpen = True
-            enable_controls()
+            self.enable_controls()
     
     # ch:开始取流 | en:Start grab image
     def start_grabbing(self):
-        ret = self.obj_cam_operation.Start_grabbing(ui.widgetDisplay.winId())
+        ret = self.obj_cam_operation.Start_grabbing(self.ui.widgetDisplay.winId())
         if ret != 0:
             strError = "Start grabbing failed ret:" + ToHexStr(ret)
             QMessageBox.warning(self.mainWindow, "Error", strError, QMessageBox.Ok)
         else:
             self.isGrabbing = True
-            enable_controls()
+            self.enable_controls()
     
     # ch:停止取流 | en:Stop grab image
     def stop_grabbing(self):
@@ -135,7 +138,7 @@ class MachineVisionCamera:
             QMessageBox.warning(self.mainWindow, "Error", strError, QMessageBox.Ok)
         else:
             self.isGrabbing = False
-            enable_controls()
+            self.enable_controls()
     
     # ch:关闭设备 | Close device
     def close_device(self):
@@ -145,7 +148,7 @@ class MachineVisionCamera:
 
         self.isGrabbing = False
 
-        enable_controls()    
+        self.enable_controls()    
 
     # ch:设置触发模式 | en:set trigger mode
     def set_continue_mode(self):
@@ -156,9 +159,9 @@ class MachineVisionCamera:
             strError = "Set continue mode failed ret:" + ToHexStr(ret) + " mode is " + str(is_trigger_mode)
             QMessageBox.warning(self.mainWindow, "Error", strError, QMessageBox.Ok)
         else:
-            ui.radioContinueMode.setChecked(True)
-            ui.radioTriggerMode.setChecked(False)
-            ui.bnSoftwareTrigger.setEnabled(False)
+            self.ui.radioContinueMode.setChecked(True)
+            self.ui.radioTriggerMode.setChecked(False)
+            self.ui.bnSoftwareTrigger.setEnabled(False)
     
     # ch:设置软触发模式 | en:set software trigger mode
     def set_software_trigger_mode(self):
@@ -168,11 +171,72 @@ class MachineVisionCamera:
             strError = "Set trigger mode failed ret:" + ToHexStr(ret)
             QMessageBox.warning(self.mainWindow, "Error", strError, QMessageBox.Ok)
         else:
-            ui.radioContinueMode.setChecked(False)
-            ui.radioTriggerMode.setChecked(True)
-            ui.bnSoftwareTrigger.setEnabled(isGrabbing)
-  
-
+            self.ui.radioContinueMode.setChecked(False)
+            self.ui.radioTriggerMode.setChecked(True)
+            self.ui.bnSoftwareTrigger.setEnabled(self.isGrabbing)
     
+    # ch:设置触发命令 | en:set trigger software
+    def trigger_once(self):
+        ret = self.obj_cam_operation.Trigger_once()
+        if ret != 0:
+            strError = "TriggerSoftware failed ret:" + ToHexStr(ret)
+            QMessageBox.warning(self.mainWindow, "Error", strError, QMessageBox.Ok)
 
+    # ch:存图 | en:save image
+    def save_bmp(self):
+        ret = self.obj_cam_operation.Save_Bmp()
+        if ret != MV_OK:
+            strError = "Save BMP failed ret:" + ToHexStr(ret)
+            QMessageBox.warning(self.mainWindow, "Error", strError, QMessageBox.Ok)
+        else:
+            print("Save image success")
+
+    def is_float(self, str):
+        try:
+            float(str)
+            return True
+        except ValueError:
+            return False
+    
+    # ch: 获取参数 | en:get param
+    def get_param(self):
+        ret = self.obj_cam_operation.Get_parameter()
+        if ret != MV_OK:
+            strError = "Get param failed ret:" + ToHexStr(ret)
+            QMessageBox.warning(self.mainWindow, "Error", strError, QMessageBox.Ok)
+        else:
+            self.ui.edtExposureTime.setText("{0:.2f}".format(self.obj_cam_operation.exposure_time))
+            self.ui.edtGain.setText("{0:.2f}".format(self.obj_cam_operation.gain))
+            self.ui.edtFrameRate.setText("{0:.2f}".format(self.obj_cam_operation.frame_rate))
+
+    # ch: 设置参数 | en:set param
+    def set_param(self):
+        frame_rate = self.ui.edtFrameRate.text()
+        exposure = self.ui.edtExposureTime.text()
+        gain = self.ui.edtGain.text()
+
+        if self.is_float(frame_rate)!=True or self.is_float(exposure)!=True or self.is_float(gain)!=True:
+            strError = "Set param failed ret:" + ToHexStr(MV_E_PARAMETER)
+            QMessageBox.warning(self.mainWindow, "Error", strError, QMessageBox.Ok)
+            return MV_E_PARAMETER
         
+        ret = self.obj_cam_operation.Set_parameter(frame_rate, exposure, gain)
+        if ret != MV_OK:
+            strError = "Set param failed ret:" + ToHexStr(ret)
+            QMessageBox.warning(self.mainWindow, "Error", strError, QMessageBox.Ok)
+        return MV_OK
+
+    # ch: 设置控件状态 | en:set enable status
+    def enable_controls(self):
+        # Set the status of the group first, and then set the status of each control individually.
+        self.ui.groupGrab.setEnabled(self.isOpen)
+        self.ui.groupParam.setEnabled(self.isOpen)
+
+        self.ui.bnOpen.setEnabled(not self.isOpen)
+        self.ui.bnClose.setEnabled(self.isOpen)
+
+        self.ui.bnStart.setEnabled(self.isOpen and (not self.isGrabbing))
+        self.ui.bnStop.setEnabled(self.isOpen and self.isGrabbing)
+        self.ui.bnSoftwareTrigger.setEnabled(self.isGrabbing and self.ui.radioTriggerMode.isChecked())
+  
+        self.ui.bnSaveImage.setEnabled(self.isOpen and self.isGrabbing)

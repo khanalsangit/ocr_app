@@ -1,5 +1,7 @@
 import sys 
 from PyQt5 import QtWidgets, QtGui, QtCore
+from pathlib import Path
+import os
 
 class BrandFrame(QtWidgets.QFrame):
     def __init__(self, parent):
@@ -131,13 +133,36 @@ class createWindow(QtWidgets.QMainWindow):
         self.label.setText('Enter Brand Name')
         self.doneButton.setText('Done')
         self.setCentralWidget(self.widget)
-    
-def do_action():
-    value = window.lineEdit.text()
-    print('v',value)      
         
+def do_action(obj : createWindow) -> str:
+    return obj.lineEdit.text()
+    
+    
+def create_brand():
+    try:
+        data = {
+            'BRAND':{
+                'brand_name': str,
+                'brand_path': str,
+                'brand_det_model':str,
+                'brand_seg_model':str,
+                'brand_pickle':str
+            },
+            'parameters_dir':str,
+            'captured_image':str,
+            'det_labeled_image':str,
+            'reg_labeled_image':str,
+            'det_augmented_image':str,
+            'seg_augmented_image':str,
+            'NG_image':str
+        }
+    except Exception as e:
+        print(f'error: {e}')
+        
+    
 if __name__ == '__main__':
-
+    FILE = Path(__file__).parent
+    BRAND_DIR = Path(FILE / 'Brands')
     app = QtWidgets.QApplication(sys.argv)
     # window = MainWindow()
     window = createWindow()
@@ -148,7 +173,7 @@ if __name__ == '__main__':
     # for _ in range(12):
     #     window.placeBrand()
     
-    window.lineEdit.returnPressed.connect(do_action)
+    window.lineEdit.returnPressed.connect(lambda:do_action(window))
     window.show()
     app.exec_()
     sys.exit()

@@ -1,5 +1,6 @@
 import sys 
 import ctypes
+from ctypes import c_int, c_bool
 
 from PyQt5.QtWidgets import QMessageBox, QMainWindow
 
@@ -119,11 +120,6 @@ class MachineVisionCamera:
 
             self.isOpen = True
             self.enable_controls()
-        
-        from ctypes import c_int
-        stEnumInt = c_int()
-        print(self.obj_cam_operation.obj_cam.MV_CC_GetEnumValue("TriggerMode", stEnumInt))
-
     
     # ch:开始取流 | en:Start grab image
     def start_grabbing(self):
@@ -159,9 +155,13 @@ class MachineVisionCamera:
     def set_continue_mode(self):
         strError = None
 
+        
+        stEnumInt = c_int()
+        current_trigger_mode = self.obj_cam_operation.obj_cam.MV_CC_GetEnumValue("TriggerMode", stEnumInt)
+        trigger_mode = ['Off', 'On']
         ret = self.obj_cam_operation.Set_trigger_mode(False)
         if ret != 0:
-            strError = "Set continue mode failed ret:" + ToHexStr(ret) + " mode is " + str(is_trigger_mode)
+            strError = "Set continue mode failed ret:" + ToHexStr(ret) + "Trigger mode is " + str(trigger_mode[current_trigger_mode])
             self.message_box( "Error", strError)
         else:
             self.ui.radioContinueMode.setChecked(True)

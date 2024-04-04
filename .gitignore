@@ -7,5 +7,10 @@ new_latest_gui_debug.ui
 /current_img
 /Pickle
 ./system_pickles
-*.pkl 
 CamOperation_class_rl.py.bak
+
+
+# extensions to ignore
+*.pkl 
+*.jpg
+*.png

@@ -9,20 +9,12 @@ import datetime
 import inspect
 import ctypes
 import random
-from PyQt5.QtWidgets import *
-import pickle
 from ctypes import *
-
 
 sys.path.append("./MvImport")
 
-from MvImport.CameraParams_header import *
-from MvImport.MvCameraControl_class import *
-import sys
-
-############## Loading Existing File #################
-dir_file = os.path.join(sys.path[0] + '\Pickle')
-gui_params = pickle.load(open(dir_file + '\\' + os.listdir(dir_file)[0],'rb'))
+from .MvImport.CameraParams_header import *
+from .MvImport.MvCameraControl_class import *
 
 # 强制关闭线程
 def Async_raise(tid, exctype):
@@ -40,6 +32,21 @@ def Async_raise(tid, exctype):
 # 停止线程
 def Stop_thread(thread):
     Async_raise(thread.ident, SystemExit)
+
+
+# 转为16进制字符串
+def To_hex_str(num):
+    chaDic = {10: 'a', 11: 'b', 12: 'c', 13: 'd', 14: 'e', 15: 'f'}
+    hexStr = ""
+    if num < 0:
+        num = num + 2 ** 32
+    while num >= 16:
+        digit = num % 16
+        hexStr = chaDic.get(digit, str(digit)) + hexStr
+        num //= 16
+    hexStr = chaDic.get(num, str(num)) + hexStr
+    return hexStr
+
 
 # 是否是Mono图像
 def Is_mono_data(enGvspPixelType):
@@ -122,21 +129,7 @@ class CameraOperation:
         self.frame_rate = frame_rate
         self.exposure_time = exposure_time
         self.gain = gain
-        self.in_live = False
         self.buf_lock = threading.Lock()  # 取图和存图的buffer锁
-
-    # 转为16进制字符串
-    def To_hex_str(self,num):
-        chaDic = {10: 'a', 11: 'b', 12: 'c', 13: 'd', 14: 'e', 15: 'f'}
-        hexStr = ""
-        if num < 0:
-            num = num + 2 ** 32
-        while num >= 16:
-            digit = num % 16
-            hexStr = chaDic.get(digit, str(digit)) + hexStr
-            num //= 16
-        hexStr = chaDic.get(num, str(num)) + hexStr
-        return hexStr
 
     # 打开相机
     def Open_device(self):
@@ -152,13 +145,10 @@ class CameraOperation:
             ret = self.obj_cam.MV_CC_CreateHandle(stDeviceList)
             if ret != 0:
                 self.obj_cam.MV_CC_DestroyHandle()
-                QMessageBox.critical('show error','create handle fail! ret = '+ self.To_hex_str(ret))
-
                 return ret
 
-            ret = self.obj_cam.MV_CC_OpenDevice(MV_ACCESS_Exclusive, 0)
+            ret = self.obj_cam.MV_CC_OpenDevice()
             if ret != 0:
-                QMessageBox.critical('show error','open device fail! ret = '+ self.To_hex_str(ret))
                 return ret
             print("open device successfully!")
             self.b_open_device = True
@@ -187,12 +177,10 @@ class CameraOperation:
 
     # 开始取图
     def Start_grabbing(self, winHandle):
-        self.winHandle = winHandle
         if not self.b_start_grabbing and self.b_open_device:
             self.b_exit = False
             ret = self.obj_cam.MV_CC_StartGrabbing()
             if ret != 0:
-                QMessageBox.critical('show error','start grabbing fail! ret = '+ self.To_hex_str(ret))
                 return ret
             self.b_start_grabbing = True
             print("start grabbing successfully!")
@@ -216,7 +204,6 @@ class CameraOperation:
                 self.b_thread_closed = False
             ret = self.obj_cam.MV_CC_StopGrabbing()
             if ret != 0:
-                QMessageBox.critical('show error','stop grabbing fail! ret = '+self.To_hex_str(ret))
                 return ret
             print("stop grabbing successfully!")
             self.b_start_grabbing = False
@@ -234,55 +221,32 @@ class CameraOperation:
                 self.b_thread_closed = False
             ret = self.obj_cam.MV_CC_CloseDevice()
             if ret != 0:
-                QMessageBox.critical('show error','close deivce fail! ret = '+self.To_hex_str(ret))
                 return ret
 
         # ch:销毁句柄 | Destroy handle
         self.obj_cam.MV_CC_DestroyHandle()
         self.b_open_device = False
         self.b_start_grabbing = False
-        self.b_exit = True 
+        self.b_exit = True
         print("close device successfully!")
 
         return MV_OK
 
     # 设置触发模式
-    def Set_trigger_mode(self, trigger_mode, software_trigger = False):
-        '''
-        Sets the trigger mode to capture image from camera.
-        Args
-        ---------------
-        strMode : str
-            - "continous_mode" - trigger off and continously capture the image.
-            - "trigger_mode" -trigger activated wither hardware or software.
-        
-        soft_trigger : bool
-            - True: Enable software trigger
-            - False: Enable Hardware trigger
-        '''
+    def Set_trigger_mode(self, is_trigger_mode):
         if not self.b_open_device:
             return MV_E_CALLORDER
 
-        if trigger_mode == "continuous_mode":
+        if not is_trigger_mode:
             ret = self.obj_cam.MV_CC_SetEnumValue("TriggerMode", 0)
             if ret != 0:
-                QMessageBox.critical('show error','set triggermode fail! ret = '+self.To_hex_str(ret))
                 return ret
-        if trigger_mode == 'trigger_mode':
+        else:
             ret = self.obj_cam.MV_CC_SetEnumValue("TriggerMode", 1)
             if ret != 0:
-                QMessageBox.critical('show error','set triggermode fail! ret = '+self.To_hex_str(ret))
                 return ret
-            
-            ########## value 7 is set for software trigger and 0 for hardware trigger
-            self.software_trigger = software_trigger
-            if software_trigger == True:
-                trigger_flag = 7
-            else:
-                trigger_flag = 0
-            ret = self.obj_cam.MV_CC_SetEnumValue("TriggerSource", trigger_flag)
+            ret = self.obj_cam.MV_CC_SetEnumValue("TriggerSource", 7)
             if ret != 0:
-                QMessageBox.critical('show error','set triggersource fail! ret = '+self.To_hex_str(ret))
                 return ret
 
         return MV_OK
@@ -328,44 +292,25 @@ class CameraOperation:
             time.sleep(0.2)
             ret = self.obj_cam.MV_CC_SetFloatValue("ExposureTime", float(exposureTime))
             if ret != 0:
-                print('show error', 'set exposure time fail! ret = ' + self.To_hex_str(ret))
+                print('show error', 'set exposure time fail! ret = ' + To_hex_str(ret))
                 return ret
 
             ret = self.obj_cam.MV_CC_SetFloatValue("Gain", float(gain))
             if ret != 0:
-                print('show error', 'set gain fail! ret = ' + self.To_hex_str(ret))
+                print('show error', 'set gain fail! ret = ' + To_hex_str(ret))
                 return ret
 
             ret = self.obj_cam.MV_CC_SetFloatValue("AcquisitionFrameRate", float(frameRate))
             if ret != 0:
-                print('show error', 'set acquistion frame rate fail! ret = ' + self.To_hex_str(ret))
+                print('show error', 'set acquistion frame rate fail! ret = ' + To_hex_str(ret))
                 return ret
 
             print('show info', 'set parameter success!')
 
             return MV_OK
-        
 
-
-    ######### rejection mechanism ######
-    def single_reject(self):
-        ret = self.obj_cam.MV_CC_SetEnumValue("LineSelector", 1)
-        
-        if ret != 0:
-            QMessageBox.critical('show error',
-                                 'Selector failed! ret = '
-                                 +self.To_hex_str(ret))
-        else:
-            print("Line Selection Done")
-        ret = self.obj_cam.MV_CC_SetCommandValue("LineTriggerSoftware")
-        if ret != 0:
-            QMessageBox.critical('show error',
-                                 'set linetriggersoftware fail! ret = '
-                                + self.To_hex_str(ret))
-        else:
-            print("Rejection Triggered")
     # 取图线程函数
-    def Work_thread(self, winHandle:QApplication):
+    def Work_thread(self, winHandle):
         stOutFrame = MV_FRAME_OUT()
         memset(byref(stOutFrame), 0, sizeof(stOutFrame))
 
@@ -376,7 +321,6 @@ class CameraOperation:
                 if self.buf_save_image is None:
                     self.buf_save_image = (c_ubyte * stOutFrame.stFrameInfo.nFrameLen)()
                 self.st_frame_info = stOutFrame.stFrameInfo
-                print("Image Frame",self.st_frame_info)
 
                 # 获取缓存锁
                 self.buf_lock.acquire()
@@ -388,56 +332,20 @@ class CameraOperation:
                 # 释放缓存
                 self.obj_cam.MV_CC_FreeImageBuffer(stOutFrame)
             else:
-                print("no data, ret = " + self.To_hex_str(ret))
+                print("no data, ret = " + To_hex_str(ret))
                 continue
 
             # 使用Display接口显示图像
             stDisplayParam = MV_DISPLAY_FRAME_INFO()
-            print("Image Display",stDisplayParam)
             memset(byref(stDisplayParam), 0, sizeof(stDisplayParam))
             stDisplayParam.hWnd = int(winHandle)
             stDisplayParam.nWidth = self.st_frame_info.nWidth
             stDisplayParam.nHeight = self.st_frame_info.nHeight
             stDisplayParam.enPixelType = self.st_frame_info.enPixelType
-            print('pixel type', stDisplayParam.enPixelType)
             stDisplayParam.pData = self.buf_save_image
-          
             stDisplayParam.nDataLen = self.st_frame_info.nFrameLen
             self.obj_cam.MV_CC_DisplayOneFrame(stDisplayParam)
-            print('received ', type(stDisplayParam))
-            
-            # rl codes 
-            if None != stOutFrame.pBufAddr and 0 == ret :
-                print ("get one frame: Width[%d], Height[%d], nFrameNum[%d]"  % (stOutFrame.stFrameInfo.nWidth, stOutFrame.stFrameInfo.nHeight, stOutFrame.stFrameInfo.nFrameNum))
 
-                nRGBSize = stOutFrame.stFrameInfo.nWidth * stOutFrame.stFrameInfo.nHeight * 3
-                stConvertParam = MV_CC_PIXEL_CONVERT_PARAM_EX()
-                memset(byref(stConvertParam), 0, sizeof(stConvertParam))
-                stConvertParam.nWidth = stOutFrame.stFrameInfo.nWidth
-                stConvertParam.nHeight = stOutFrame.stFrameInfo.nHeight
-                stConvertParam.pSrcData = stOutFrame.pBufAddr
-                stConvertParam.nSrcDataLen = stOutFrame.stFrameInfo.nFrameLen
-                stConvertParam.enSrcPixelType = stOutFrame.stFrameInfo.enPixelType  
-                stConvertParam.enDstPixelType = PixelType_Gvsp_RGB8_Packed
-                stConvertParam.pDstBuffer = (c_ubyte * nRGBSize)()
-                stConvertParam.nDstBufferSize = nRGBSize
-
-                ret = self.obj_cam.MV_CC_ConvertPixelTypeEx(stConvertParam)
-                if ret != 0:
-                    print ("convert pixel fail! ret[0x%x]" % ret)
-                    # sys.exit()
-                img_buff = (c_ubyte * stConvertParam.nDstLen)()
-                cdll.msvcrt.memcpy(byref(img_buff), stConvertParam.pDstBuffer, stConvertParam.nDstLen)
-                numArray = Color_numpy(img_buff,self.st_frame_info.nWidth,self.st_frame_info.nHeight)
-                print(numArray)
-
-            if numArray is not None:
-                print("Num Array is not null",numArray)
-                self.orig_img = numArray.copy()
-                print("Software Trigger",self.software_trigger,self.in_live)
-                if (not self.software_trigger) and self.in_live:
-                    print("hardware trigger")
-                    # winHandle.event_generate
             # 是否退出
             if self.b_exit:
                 if self.buf_save_image is not None:

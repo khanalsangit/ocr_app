@@ -277,3 +277,4 @@ class PyQTWidgetFunction(Ui_MainWindow):
         self.createProjectButton.setStyleSheet("")
         self.cameraButton.setStyleSheet("")
         self.preprocessingButton.setStyleSheet("")
+

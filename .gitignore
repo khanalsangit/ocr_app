@@ -1,3 +1,16 @@
+__pycache__
 new_latest_debug.py
 new_latest_gui_debug.ui
-./backup
+/backup
+/BasicDemo
+/Brands
+/current_img
+/Pickle
+./system_pickles
+CamOperation_class_rl.py.bak
+
+
+# extensions to ignore
+*.pkl 
+*.jpg
+*.png

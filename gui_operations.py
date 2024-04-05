@@ -3,7 +3,8 @@ import glob
 import cv2
 import os
 import shutil
-from pyUIdesign import Ui_MainWindow
+from gui.pyUIdesign import Ui_MainWindow
+#from gui.PyUICBasicDemo import Ui_MainWindow 
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtWidgets import *
 

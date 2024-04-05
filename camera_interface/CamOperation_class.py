@@ -233,7 +233,7 @@ class CameraOperation:
         return MV_OK
 
     # 设置触发模式
-    def Set_trigger_mode(self, is_trigger_mode, hardware_trigger):
+    def Set_trigger_mode(self, is_trigger_mode, hardware_trigger = False):
         if not self.b_open_device:
             return MV_E_CALLORDER
 

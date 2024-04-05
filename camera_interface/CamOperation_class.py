@@ -233,7 +233,7 @@ class CameraOperation:
         return MV_OK
 
     # 设置触发模式
-    def Set_trigger_mode(self, is_trigger_mode):
+    def Set_trigger_mode(self, is_trigger_mode, hardware_trigger):
         if not self.b_open_device:
             return MV_E_CALLORDER
 
@@ -245,7 +245,12 @@ class CameraOperation:
             ret = self.obj_cam.MV_CC_SetEnumValue("TriggerMode", 1)
             if ret != 0:
                 return ret
-            ret = self.obj_cam.MV_CC_SetEnumValue("TriggerSource", 7)
+            
+            software_tigger_enum_value = 7
+            hardware_tigger_enum_value = 0
+
+            trigger_source = hardware_tigger_enum_value if hardware_trigger else software_tigger_enum_value 
+            ret = self.obj_cam.MV_CC_SetEnumValue("TriggerSource", trigger_source)
             if ret != 0:
                 return ret
 

@@ -42,3 +42,21 @@ The documentation of the whole project is done by using the `sphinx` library in 
     ```bash
     <projectdir>\docs > make.bat html
     ```
+
+## to document your modules, class or methods use the following docstring style.
+
+```python
+def method(*args, **kwargs):
+    """[Summary]
+
+    :param [ParamName]: [ParamDescription], defaults to [DefaultParamVal]
+    :type [ParamName]: [ParamType](, optional)
+    ...
+    :raises [ErrorType]: [ErrorDescription]
+    ...
+    :return: [ReturnDescription]
+    :rtype: [ReturnType]
+    """
+    # code statements
+    ... 
+```

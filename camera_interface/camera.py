@@ -13,6 +13,10 @@ from .CamOperation_class import CameraOperation
 from .tools import TxtWrapBy, ToHexStr
 
 class MachineVisionCamera:
+    """
+    Class to interact with the HikRobot's MVS camera: 
+    the CE series and CS series Area scan cameras
+    """
     def __init__(self) -> None:
         self.deviceList = MV_CC_DEVICE_INFO_LIST()
         self.cam = MvCamera()
@@ -28,8 +32,11 @@ class MachineVisionCamera:
     def set_ui(self, ui):
         self.ui = ui 
 
-    # Bind the drop-down list to the device information index
-    def xFunc(self, event):
+    
+    def xFunc(self, event) -> None:
+        """
+        Bind the drop-down list to the device information index
+        """
         self.nSelCamIndex = TxtWrapBy("[", "]", self.ui.ComboDevices.get())
 
     def set_device_information_index(self, camera_name): # same as xFunc
@@ -37,7 +44,7 @@ class MachineVisionCamera:
         self.nSelCamIndex = TxtWrapBy("[", "]", camera_name)
 
     # decoding characters
-    def decoding_char(self, c_ubyte_value):
+    def decoding_char(self, c_ubyte_value) -> str:
         c_char_p_value = ctypes.cast(c_ubyte_value, ctypes.c_char_p)
         try:
             decode_str = c_char_p_value.value.decode('gbk')  # Chinese characters
@@ -46,7 +53,10 @@ class MachineVisionCamera:
         return decode_str
 
     # ch:枚举相机 | en:enum devices
-    def enum_devices(self):
+    def enum_devices(self) -> int:
+        """
+        List all the camera devices connected to the host
+        """
         self.deviceList = MV_CC_DEVICE_INFO_LIST()
         ret = MvCamera.MV_CC_EnumDevices(MV_GIGE_DEVICE | MV_USB_DEVICE, self.deviceList)
         if ret != 0:
@@ -98,7 +108,10 @@ class MachineVisionCamera:
         self.ui.ComboDevices.setCurrentIndex(0)
 
     # ch:打开相机 | en:open device
-    def open_device(self):
+    def open_device(self) -> int:
+        """
+        Opens the camera and establishes a connection between host and camera
+        """
         if self.isOpen:
             self.message_box( "Error", 'Camera is Running!')
             return MV_E_CALLORDER
@@ -123,7 +136,12 @@ class MachineVisionCamera:
             self.enable_controls()
     
     # ch:开始取流 | en:Start grab image
-    def start_grabbing(self):
+    def start_grabbing(self) -> None:
+        """
+        Begins to grab image from the camera, 
+        notice the trigger set on the camera as it contains: continuous, hardware trigger and software trigger modes
+        """
+
         self.obj_cam_operation.image_captured_callback = self.callback
         
         ret = self.obj_cam_operation.Start_grabbing(self.ui.widgetDisplay.winId())
@@ -135,7 +153,10 @@ class MachineVisionCamera:
             self.enable_controls()
     
     # ch:停止取流 | en:Stop grab image
-    def stop_grabbing(self):
+    def stop_grabbing(self) -> None:
+        """
+        stops the image capture even if there are triggers to the camera
+        """
         ret = self.obj_cam_operation.Stop_grabbing()
         if ret != 0:
             strError = "Stop grabbing failed ret:" + ToHexStr(ret)
@@ -149,6 +170,10 @@ class MachineVisionCamera:
     
     # ch:关闭设备 | Close device
     def close_device(self):
+        """
+        Closes the camera and disables the connection between host and camera
+        """
+        
         if self.isOpen:
             self.obj_cam_operation.Close_device()
             self.isOpen = False

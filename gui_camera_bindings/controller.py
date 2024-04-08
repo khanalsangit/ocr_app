@@ -2,8 +2,19 @@
 from gui.PyUICBasicDemo import Ui_MainWindow 
 from camera_interface.camera import MachineVisionCamera
 
+def test():
+    """
+    your document here
+    : param kind: optional
+    : type kind: list 
+    : raise 
+    : return: The value of test
+    : rtype: list[str]
+    """
+    ...
 
 class Controller(Ui_MainWindow):
+    
     def __init__(self, main_window, camera: MachineVisionCamera) -> None:
         super().__init__()
         self.setupUi(main_window)

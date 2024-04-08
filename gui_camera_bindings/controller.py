@@ -11,7 +11,7 @@ class Controller(Ui_MainWindow):
 
     def set_camera_to_gui(self):
         self.camera.set_ui(self)
-        '''
+
         self.bnEnum.clicked.connect(self.camera.enum_devices)
         self.bnOpen.clicked.connect(self.camera.open_device)
         self.bnClose.clicked.connect(self.camera.close_device)
@@ -26,4 +26,24 @@ class Controller(Ui_MainWindow):
         self.bnSetParam.clicked.connect(self.camera.set_param)
 
         self.bnSaveImage.clicked.connect(self.camera.save_bmp)
-        '''
+        #'''
+        
+    def basic_demo_test(self):
+
+        self.camera.set_ui(self)
+        
+        self.bnEnum.clicked.connect(self.camera.enum_devices)
+        self.bnOpen.clicked.connect(self.camera.open_device)
+        self.bnClose.clicked.connect(self.camera.close_device)
+        self.bnStart.clicked.connect(self.camera.start_grabbing)
+        self.bnStop.clicked.connect(self.camera.stop_grabbing)
+
+        self.bnSoftwareTrigger.clicked.connect(self.camera.trigger_once)
+        self.radioTriggerMode.clicked.connect(self.camera.set_software_trigger_mode)
+        self.radioContinueMode.clicked.connect(self.camera.set_continue_mode)
+
+        self.bnGetParam.clicked.connect(self.camera.get_param)
+        self.bnSetParam.clicked.connect(self.camera.set_param)
+
+        self.bnSaveImage.clicked.connect(self.camera.save_bmp)
+        #'''

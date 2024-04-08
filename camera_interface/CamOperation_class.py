@@ -314,6 +314,9 @@ class CameraOperation:
 
             return MV_OK
 
+    def image_captured_callback(self):
+        ... 
+
     # 取图线程函数
     def Work_thread(self, winHandle):
         stOutFrame = MV_FRAME_OUT()
@@ -350,6 +353,32 @@ class CameraOperation:
             stDisplayParam.pData = self.buf_save_image
             stDisplayParam.nDataLen = self.st_frame_info.nFrameLen
             self.obj_cam.MV_CC_DisplayOneFrame(stDisplayParam)
+
+            # converting to numpy array 
+            if None != stOutFrame.pBufAddr:
+                nRGBSize = stOutFrame.stFrameInfo.nWidth * stOutFrame.stFrameInfo.nHeight * 3
+                stConvertParam = MV_CC_PIXEL_CONVERT_PARAM_EX()
+                memset(byref(stConvertParam), 0, sizeof(stConvertParam))
+                stConvertParam.nWidth = stOutFrame.stFrameInfo.nWidth
+                stConvertParam.nHeight = stOutFrame.stFrameInfo.nHeight
+                stConvertParam.pSrcData = stOutFrame.pBufAddr
+                stConvertParam.nSrcDataLen = stOutFrame.stFrameInfo.nFrameLen
+                stConvertParam.enSrcPixelType = stOutFrame.stFrameInfo.enPixelType  
+                stConvertParam.enDstPixelType = PixelType_Gvsp_RGB8_Packed
+                stConvertParam.pDstBuffer = (c_ubyte * nRGBSize)()
+                stConvertParam.nDstBufferSize = nRGBSize
+
+                ret = self.obj_cam.MV_CC_ConvertPixelTypeEx(stConvertParam)
+                if ret != 0:
+                    print ("convert pixel fail! ret[0x%x]" % ret)
+                    continue
+                img_buff = (c_ubyte * stConvertParam.nDstLen)()
+                cdll.msvcrt.memcpy(byref(img_buff), stConvertParam.pDstBuffer, stConvertParam.nDstLen)
+                numArray = Color_numpy(img_buff,self.st_frame_info.nWidth,self.st_frame_info.nHeight)
+                print("Camera Image",numArray.shape)
+
+                self.image_captured_callback(numArray)
+
 
             # 是否退出
             if self.b_exit:

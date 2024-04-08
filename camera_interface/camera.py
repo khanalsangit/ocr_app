@@ -2,7 +2,7 @@ import sys
 import ctypes
 from ctypes import c_int, c_bool
 
-from PyQt5.QtWidgets import QMessageBox, QMainWindow
+from PyQt5.QtWidgets import QErrorMessage
 
 from .MvImport.MvCameraControl_class import * 
 from .MvImport.MvErrorDefine_const import * 
@@ -23,6 +23,7 @@ class MachineVisionCamera:
         self.isCalibMode = True # Whether it is calibration mode (get the original image)
 
         self.trigger_mode = None
+        self.callback = None 
 
     def set_ui(self, ui):
         self.ui = ui 
@@ -50,11 +51,11 @@ class MachineVisionCamera:
         ret = MvCamera.MV_CC_EnumDevices(MV_GIGE_DEVICE | MV_USB_DEVICE, self.deviceList)
         if ret != 0:
             strError = "Enum devices fail! ret = :" + ToHexStr(ret)
-            self.message_box( "Error", strError)
+            self.message_box("Error", strError)
             return ret
 
         if self.deviceList.nDeviceNum == 0:
-            self.message_box( "Info", "Find no device",QMessageBox.Ok)
+            self.message_box( "Info", "Find no device")
             return ret
         print("Find %d devices!" % self.deviceList.nDeviceNum)
 
@@ -123,6 +124,8 @@ class MachineVisionCamera:
     
     # ch:开始取流 | en:Start grab image
     def start_grabbing(self):
+        self.obj_cam_operation.image_captured_callback = self.callback
+        
         ret = self.obj_cam_operation.Start_grabbing(self.ui.widgetDisplay.winId())
         if ret != 0:
             strError = "Start grabbing failed ret:" + ToHexStr(ret)
@@ -140,6 +143,9 @@ class MachineVisionCamera:
         else:
             self.isGrabbing = False
             self.enable_controls()
+        
+        import cv2 
+        cv2.destroyAllWindows()
     
     # ch:关闭设备 | Close device
     def close_device(self):
@@ -170,7 +176,6 @@ class MachineVisionCamera:
     
     # ch:设置软触发模式 | en:set software trigger mode
     def set_software_trigger_mode(self):
-
         ret = self.obj_cam_operation.Set_trigger_mode(True)
         if ret != 0:
             strError = "Set trigger mode failed ret:" + ToHexStr(ret)
@@ -247,15 +252,24 @@ class MachineVisionCamera:
         self.ui.bnSaveImage.setEnabled(self.isOpen and self.isGrabbing)
 
     def message_box(self, title: str, text: str, value = None):
-        msgBox = QMessageBox()
-        msgBox.setIcon(QMessageBox.Information)
-        msgBox.setWindowTitle(title)
-        msgBox.setText(text)
-        msgBox.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
-        returnValue = msgBox.exec()
-        if returnValue == QMessageBox.Ok:
-            print('OK clicked')
-            return True 
-        else:
-            print('Cancel clicked')
-            return False 
+        error_dialog = ErrorMessage(title) 
+        print(error_dialog.showMessage(text))
+        print(error_dialog.exec())
+
+    def set_image_callback_on_trigger(self, callback):
+        """
+        pass a callback function that has image as an argument in it
+        def callback(image):
+            ...
+        """
+        self.obj_cam_operation.image_captured_callback = self.callback
+        ...
+
+
+
+class ErrorMessage(QErrorMessage):
+    def __init__(self, title:str ) -> None:
+        super().__init__()
+        self.setWindowTitle(title)
+        # TODO: add an icon to the error message
+        # self.windowIcon(QErrorMessage.)

@@ -13,7 +13,7 @@ import cv2
 def test_callback(numArray):
     print('image size ', numArray.shape)
     cv2.imshow('test', cv2.resize(numArray, (500,500)))
-    cv2.waitKey(5000)
+    cv2.waitKey(100)
     
 
 if __name__=="__main__":

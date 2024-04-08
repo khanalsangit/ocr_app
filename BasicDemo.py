@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 import sys
 from PyQt5.QtWidgets import *
-from CamOperation_class import CameraOperation
-from MvCameraControl_class import *
-from MvErrorDefine_const import *
-from CameraParams_header import *
-from PyUICBasicDemo import Ui_MainWindow
+from camera_interface.CamOperation_class import CameraOperation
+from camera_interface.MvImport.MvCameraControl_class import *
+from camera_interface.MvImport.MvErrorDefine_const import *
+from camera_interface.MvImport.CameraParams_header import *
+from gui.PyUICBasicDemo import Ui_MainWindow
 import ctypes
 
 

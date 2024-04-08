@@ -1,5 +1,5 @@
 from PyQt5 import QtWidgets, QtCore, QtGui
-from pyUIdesign import Ui_MainWindow
+from gui.pyUIdesign import Ui_MainWindow
 import os
 from PyQt5.QtWidgets import *
 import cv2
@@ -9,12 +9,12 @@ import sys
 import shutil
 
 ######### camera libraries #######
-from CamOperation_class import CameraOperation
+from camera_interface.CamOperation_class import CameraOperation
 sys.path.append("./MvImport")
 
-from MvImport.MvCameraControl_class import *
-from MvImport.MvErrorDefine_const import *
-from MvImport.CameraParams_header import *
+from camera_interface.MvImport.MvCameraControl_class import *
+from camera_interface.MvImport.MvErrorDefine_const import *
+from camera_interface.MvImport.CameraParams_header import *
 import ctypes
 
 class MainWin(QtWidgets.QMainWindow):

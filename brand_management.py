@@ -2,6 +2,8 @@ import sys
 from PyQt5 import QtWidgets, QtGui, QtCore
 from pathlib import Path
 import os
+from typing import Callable
+import yaml
 
 class BrandFrame(QtWidgets.QFrame):
     def __init__(self, parent):
@@ -95,6 +97,7 @@ class MainWindow(QtWidgets.QMainWindow):
         brand.addBrand()
 
 class createWindow(QtWidgets.QMainWindow):
+    brandNameEntered = QtCore.pyqtSignal(str)
     def __init__(self):
         super().__init__()
         self.widget = QtWidgets.QWidget(self)
@@ -133,17 +136,28 @@ class createWindow(QtWidgets.QMainWindow):
         self.label.setText('Enter Brand Name')
         self.doneButton.setText('Done')
         self.setCentralWidget(self.widget)
-        
-def do_action(obj : createWindow) -> str:
-    return obj.lineEdit.text()
+        self.lineEdit.returnPressed.connect(self.emit_brand_name)
+
+    def emit_brand_name(self):
+        brand_name = self.lineEdit.text()
+        self.brandNameEntered.emit(brand_name)
+        self.close()
+    # def __call__(self):
+    #     value = self.lineEdit.text()
+    #     return value
     
-    
-def create_brand():
+def create_brand(brand_name):
+    brand_pwd = Path(BRAND_DIR / brand_name)
+    print(brand_pwd)
+    brand_config = Path(brand_pwd / 'config.yaml')
+
     try:
+        brand_pwd.mkdir(parents=True , exist_ok=True)
+        print(f'Directory creadted at {brand_pwd}')
         data = {
             'BRAND':{
-                'brand_name': str,
-                'brand_path': str,
+                'brand_name': brand_name,
+                'brand_path': str(BRAND_DIR),
                 'brand_det_model':str,
                 'brand_seg_model':str,
                 'brand_pickle':str
@@ -156,16 +170,25 @@ def create_brand():
             'seg_augmented_image':str,
             'NG_image':str
         }
+        with open(brand_config , 'w') as yaml_file:
+            yaml.dump(data, yaml_file)
+            
+    except FileExistsError:
+        print(f"Directory at {brand_pwd} already exists")
     except Exception as e:
-        print(f'error: {e}')
+        print(f"An error occurred: {e}")
         
+def edit_brand(brand_name):
+    print('edit', brand_name)
     
 if __name__ == '__main__':
     FILE = Path(__file__).parent
     BRAND_DIR = Path(FILE / 'Brands')
+    print(BRAND_DIR)
     app = QtWidgets.QApplication(sys.argv)
     # window = MainWindow()
     window = createWindow()
+
     # window.gridLayout = QtWidgets.QGridLayout(window.widget)
     # for row in range(4):
     #     for column in range(3):
@@ -173,7 +196,10 @@ if __name__ == '__main__':
     # for _ in range(12):
     #     window.placeBrand()
     
-    window.lineEdit.returnPressed.connect(lambda:do_action(window))
+    window.brandNameEntered.connect(create_brand)
+    window.brandNameEntered.connect(edit_brand)
+    # window.lineEdit.returnPressed.connect(lambda: create_brand(window()))
+
     window.show()
     app.exec_()
     sys.exit()

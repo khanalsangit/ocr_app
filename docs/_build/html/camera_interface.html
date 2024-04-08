@@ -6,30 +6,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>camera_interface package &#8212; Batch-code-inspection-system v0.0.2 documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d1102ebc" />
-    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=12dfc556" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/classic.css?v=514cf933" />
+    
     <script src="_static/documentation_options.js?v=1812e922"></script>
     <script src="_static/doctools.js?v=888ff710"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="gui_camera_bindings package" href="gui_camera_bindings.html" />
-    <link rel="prev" title="gui package" href="gui.html" />
-   
-  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
-  
-
-  
-  
-
+    <link rel="prev" title="gui package" href="gui.html" /> 
   </head><body>
-  
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="gui_camera_bindings.html" title="gui_camera_bindings package"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="gui.html" title="gui package"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Batch-code-inspection-system v0.0.2 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" accesskey="U">PyQT5-Batch-Code-Inspection-System</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">camera_interface package</a></li> 
+      </ul>
+    </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          
-
           <div class="body" role="main">
             
   <section id="camera-interface-package">
@@ -284,45 +296,96 @@ def callback(image):</p>
 </section>
 
 
+            <div class="clearer"></div>
           </div>
-          
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="index.html">Batch-code-inspection-system</a></h1>
-
-
-
-
-
-
-
-
-<h3>Navigation</h3>
-<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">PyQT5-Batch-Code-Inspection-System</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="gui.html">gui package</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">camera_interface package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gui_camera_bindings.html">gui_camera_bindings package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="main.html">main module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="main_gui.html">main_gui module</a></li>
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">camera_interface package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-camera_interface.CamOperation_class">camera_interface.CamOperation_class module</a><ul>
+<li><a class="reference internal" href="#camera_interface.CamOperation_class.Async_raise"><code class="docutils literal notranslate"><span class="pre">Async_raise()</span></code></a></li>
+<li><a class="reference internal" href="#camera_interface.CamOperation_class.Stop_thread"><code class="docutils literal notranslate"><span class="pre">Stop_thread()</span></code></a></li>
+<li><a class="reference internal" href="#camera_interface.CamOperation_class.To_hex_str"><code class="docutils literal notranslate"><span class="pre">To_hex_str()</span></code></a></li>
+<li><a class="reference internal" href="#camera_interface.CamOperation_class.Is_mono_data"><code class="docutils literal notranslate"><span class="pre">Is_mono_data()</span></code></a></li>
+<li><a class="reference internal" href="#camera_interface.CamOperation_class.Is_color_data"><code class="docutils literal notranslate"><span class="pre">Is_color_data()</span></code></a></li>
+<li><a class="reference internal" href="#camera_interface.CamOperation_class.Mono_numpy"><code class="docutils literal notranslate"><span class="pre">Mono_numpy()</span></code></a></li>
+<li><a class="reference internal" href="#camera_interface.CamOperation_class.Color_numpy"><code class="docutils literal notranslate"><span class="pre">Color_numpy()</span></code></a></li>
+<li><a class="reference internal" href="#camera_interface.CamOperation_class.CameraOperation"><code class="docutils literal notranslate"><span class="pre">CameraOperation</span></code></a><ul>
+<li><a class="reference internal" href="#camera_interface.CamOperation_class.CameraOperation.Open_device"><code class="docutils literal notranslate"><span class="pre">CameraOperation.Open_device()</span></code></a></li>
+<li><a class="reference internal" href="#camera_interface.CamOperation_class.CameraOperation.Start_grabbing"><code class="docutils literal notranslate"><span class="pre">CameraOperation.Start_grabbing()</span></code></a></li>
+<li><a class="reference internal" href="#camera_interface.CamOperation_class.CameraOperation.Stop_grabbing"><code class="docutils literal notranslate"><span class="pre">CameraOperation.Stop_grabbing()</span></code></a></li>
+<li><a class="reference internal" href="#camera_interface.CamOperation_class.CameraOperation.Close_device"><code class="docutils literal notranslate"><span class="pre">CameraOperation.Close_device()</span></code></a></li>
+<li><a class="reference internal" href="#camera_interface.CamOperation_class.CameraOperation.Set_trigger_mode"><code class="docutils literal notranslate"><span class="pre">CameraOperation.Set_trigger_mode()</span></code></a></li>
+<li><a class="reference internal" href="#camera_interface.CamOperation_class.CameraOperation.Trigger_once"><code class="docutils literal notranslate"><span class="pre">CameraOperation.Trigger_once()</span></code></a></li>
+<li><a class="reference internal" href="#camera_interface.CamOperation_class.CameraOperation.Get_parameter"><code class="docutils literal notranslate"><span class="pre">CameraOperation.Get_parameter()</span></code></a></li>
+<li><a class="reference internal" href="#camera_interface.CamOperation_class.CameraOperation.Set_parameter"><code class="docutils literal notranslate"><span class="pre">CameraOperation.Set_parameter()</span></code></a></li>
+<li><a class="reference internal" href="#camera_interface.CamOperation_class.CameraOperation.image_captured_callback"><code class="docutils literal notranslate"><span class="pre">CameraOperation.image_captured_callback()</span></code></a></li>
+<li><a class="reference internal" href="#camera_interface.CamOperation_class.CameraOperation.Work_thread"><code class="docutils literal notranslate"><span class="pre">CameraOperation.Work_thread()</span></code></a></li>
+<li><a class="reference internal" href="#camera_interface.CamOperation_class.CameraOperation.Save_jpg"><code class="docutils literal notranslate"><span class="pre">CameraOperation.Save_jpg()</span></code></a></li>
+<li><a class="reference internal" href="#camera_interface.CamOperation_class.CameraOperation.Save_Bmp"><code class="docutils literal notranslate"><span class="pre">CameraOperation.Save_Bmp()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-camera_interface.camera">camera_interface.camera module</a><ul>
+<li><a class="reference internal" href="#camera_interface.camera.MachineVisionCamera"><code class="docutils literal notranslate"><span class="pre">MachineVisionCamera</span></code></a><ul>
+<li><a class="reference internal" href="#camera_interface.camera.MachineVisionCamera.set_ui"><code class="docutils literal notranslate"><span class="pre">MachineVisionCamera.set_ui()</span></code></a></li>
+<li><a class="reference internal" href="#camera_interface.camera.MachineVisionCamera.xFunc"><code class="docutils literal notranslate"><span class="pre">MachineVisionCamera.xFunc()</span></code></a></li>
+<li><a class="reference internal" href="#camera_interface.camera.MachineVisionCamera.set_device_information_index"><code class="docutils literal notranslate"><span class="pre">MachineVisionCamera.set_device_information_index()</span></code></a></li>
+<li><a class="reference internal" href="#camera_interface.camera.MachineVisionCamera.decoding_char"><code class="docutils literal notranslate"><span class="pre">MachineVisionCamera.decoding_char()</span></code></a></li>
+<li><a class="reference internal" href="#camera_interface.camera.MachineVisionCamera.enum_devices"><code class="docutils literal notranslate"><span class="pre">MachineVisionCamera.enum_devices()</span></code></a></li>
+<li><a class="reference internal" href="#camera_interface.camera.MachineVisionCamera.open_device"><code class="docutils literal notranslate"><span class="pre">MachineVisionCamera.open_device()</span></code></a></li>
+<li><a class="reference internal" href="#camera_interface.camera.MachineVisionCamera.start_grabbing"><code class="docutils literal notranslate"><span class="pre">MachineVisionCamera.start_grabbing()</span></code></a></li>
+<li><a class="reference internal" href="#camera_interface.camera.MachineVisionCamera.stop_grabbing"><code class="docutils literal notranslate"><span class="pre">MachineVisionCamera.stop_grabbing()</span></code></a></li>
+<li><a class="reference internal" href="#camera_interface.camera.MachineVisionCamera.close_device"><code class="docutils literal notranslate"><span class="pre">MachineVisionCamera.close_device()</span></code></a></li>
+<li><a class="reference internal" href="#camera_interface.camera.MachineVisionCamera.set_continue_mode"><code class="docutils literal notranslate"><span class="pre">MachineVisionCamera.set_continue_mode()</span></code></a></li>
+<li><a class="reference internal" href="#camera_interface.camera.MachineVisionCamera.set_software_trigger_mode"><code class="docutils literal notranslate"><span class="pre">MachineVisionCamera.set_software_trigger_mode()</span></code></a></li>
+<li><a class="reference internal" href="#camera_interface.camera.MachineVisionCamera.trigger_once"><code class="docutils literal notranslate"><span class="pre">MachineVisionCamera.trigger_once()</span></code></a></li>
+<li><a class="reference internal" href="#camera_interface.camera.MachineVisionCamera.save_bmp"><code class="docutils literal notranslate"><span class="pre">MachineVisionCamera.save_bmp()</span></code></a></li>
+<li><a class="reference internal" href="#camera_interface.camera.MachineVisionCamera.is_float"><code class="docutils literal notranslate"><span class="pre">MachineVisionCamera.is_float()</span></code></a></li>
+<li><a class="reference internal" href="#camera_interface.camera.MachineVisionCamera.get_param"><code class="docutils literal notranslate"><span class="pre">MachineVisionCamera.get_param()</span></code></a></li>
+<li><a class="reference internal" href="#camera_interface.camera.MachineVisionCamera.set_param"><code class="docutils literal notranslate"><span class="pre">MachineVisionCamera.set_param()</span></code></a></li>
+<li><a class="reference internal" href="#camera_interface.camera.MachineVisionCamera.enable_controls"><code class="docutils literal notranslate"><span class="pre">MachineVisionCamera.enable_controls()</span></code></a></li>
+<li><a class="reference internal" href="#camera_interface.camera.MachineVisionCamera.message_box"><code class="docutils literal notranslate"><span class="pre">MachineVisionCamera.message_box()</span></code></a></li>
+<li><a class="reference internal" href="#camera_interface.camera.MachineVisionCamera.set_image_callback_on_trigger"><code class="docutils literal notranslate"><span class="pre">MachineVisionCamera.set_image_callback_on_trigger()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#camera_interface.camera.ErrorMessage"><code class="docutils literal notranslate"><span class="pre">ErrorMessage</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-camera_interface.tools">camera_interface.tools module</a><ul>
+<li><a class="reference internal" href="#camera_interface.tools.TxtWrapBy"><code class="docutils literal notranslate"><span class="pre">TxtWrapBy()</span></code></a></li>
+<li><a class="reference internal" href="#camera_interface.tools.ToHexStr"><code class="docutils literal notranslate"><span class="pre">ToHexStr()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-camera_interface">Module contents</a></li>
 </ul>
 </li>
 </ul>
 
-<div class="relations">
-<h3>Related Topics</h3>
-<ul>
-  <li><a href="index.html">Documentation overview</a><ul>
-  <li><a href="modules.html">PyQT5-Batch-Code-Inspection-System</a><ul>
-      <li>Previous: <a href="gui.html" title="previous chapter">gui package</a></li>
-      <li>Next: <a href="gui_camera_bindings.html" title="next chapter">gui_camera_bindings package</a></li>
-  </ul></li>
-  </ul></li>
-</ul>
-</div>
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="gui.html"
+                          title="previous chapter">gui package</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="gui_camera_bindings.html"
+                          title="next chapter">gui_camera_bindings package</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/camera_interface.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
 <div id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
@@ -333,32 +396,33 @@ def callback(image):</p>
     </div>
 </div>
 <script>document.getElementById('searchbox').style.display = "block"</script>
-
-
-
-
-
-
-
-
         </div>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="footer">
-      &#169;2024, Chabbi, Rukesh, Rhimesh, Sanket and Yushan.
-      
-      |
-      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.2.6</a>
-      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
-      
-      |
-      <a href="_sources/camera_interface.rst.txt"
-          rel="nofollow">Page source</a>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="gui_camera_bindings.html" title="gui_camera_bindings package"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="gui.html" title="gui package"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Batch-code-inspection-system v0.0.2 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >PyQT5-Batch-Code-Inspection-System</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">camera_interface package</a></li> 
+      </ul>
     </div>
-
-    
-
-    
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2024, Chabbi, Rukesh, Rhimesh, Sanket and Yushan.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    </div>
   </body>
 </html>

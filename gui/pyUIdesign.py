@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file './gui/ui/mainGUI.ui'
+# Form implementation generated from reading ui file 'mainGUI.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.9
 #
@@ -1271,7 +1271,7 @@ class Ui_MainWindow(object):
 "    border-radius:4px;\n"
 "}")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("./gui/ui\\LOGO/bin.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("LOGO/bin.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.deleteImage_Button.setIcon(icon)
         self.deleteImage_Button.setIconSize(QtCore.QSize(20, 20))
         self.deleteImage_Button.setObjectName("deleteImage_Button")
@@ -1280,7 +1280,7 @@ class Ui_MainWindow(object):
         self.captureButton = QtWidgets.QPushButton(self.frame_5)
         self.captureButton.setText("")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("./gui/ui\\LOGO/capture.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap("LOGO/capture.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.captureButton.setIcon(icon1)
         self.captureButton.setIconSize(QtCore.QSize(80, 80))
         self.captureButton.setObjectName("captureButton")
@@ -1333,7 +1333,7 @@ class Ui_MainWindow(object):
         self.detection_labelingButton = QtWidgets.QPushButton(self.frame_6)
         self.detection_labelingButton.setText("")
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap("./gui/ui\\LOGO/labeling.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon2.addPixmap(QtGui.QPixmap("LOGO/labeling.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.detection_labelingButton.setIcon(icon2)
         self.detection_labelingButton.setIconSize(QtCore.QSize(50, 50))
         self.detection_labelingButton.setObjectName("detection_labelingButton")
@@ -2382,7 +2382,7 @@ class Ui_MainWindow(object):
         self.crimsonLogo = QtWidgets.QLabel(self.topGrid)
         self.crimsonLogo.setMaximumSize(QtCore.QSize(176, 59))
         self.crimsonLogo.setText("")
-        self.crimsonLogo.setPixmap(QtGui.QPixmap("./gui/ui\\LOGO/crimson_logo.png"))
+        self.crimsonLogo.setPixmap(QtGui.QPixmap("LOGO/crimson_logo.png"))
         self.crimsonLogo.setScaledContents(True)
         self.crimsonLogo.setObjectName("crimsonLogo")
         self.horizontalLayout_20.addWidget(self.crimsonLogo)

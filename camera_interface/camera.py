@@ -2,7 +2,7 @@ import sys
 import ctypes
 from ctypes import c_int, c_bool
 
-from PyQt5.QtWidgets import QMessageBox, QMainWindow
+from PyQt5.QtWidgets import QErrorMessage
 
 from .MvImport.MvCameraControl_class import * 
 from .MvImport.MvErrorDefine_const import * 
@@ -13,6 +13,10 @@ from .CamOperation_class import CameraOperation
 from .tools import TxtWrapBy, ToHexStr
 
 class MachineVisionCamera:
+    """
+    Class to interact with the HikRobot's MVS camera: 
+    the CE series and CS series Area scan cameras
+    """
     def __init__(self) -> None:
         self.deviceList = MV_CC_DEVICE_INFO_LIST()
         self.cam = MvCamera()
@@ -23,12 +27,16 @@ class MachineVisionCamera:
         self.isCalibMode = True # Whether it is calibration mode (get the original image)
 
         self.trigger_mode = None
+        self.callback = None 
 
     def set_ui(self, ui):
         self.ui = ui 
 
-    # Bind the drop-down list to the device information index
-    def xFunc(self, event):
+    
+    def xFunc(self, event) -> None:
+        """
+        Bind the drop-down list to the device information index
+        """
         self.nSelCamIndex = TxtWrapBy("[", "]", self.ui.ComboDevices.get())
 
     def set_device_information_index(self, camera_name): # same as xFunc
@@ -36,7 +44,7 @@ class MachineVisionCamera:
         self.nSelCamIndex = TxtWrapBy("[", "]", camera_name)
 
     # decoding characters
-    def decoding_char(self, c_ubyte_value):
+    def decoding_char(self, c_ubyte_value) -> str:
         c_char_p_value = ctypes.cast(c_ubyte_value, ctypes.c_char_p)
         try:
             decode_str = c_char_p_value.value.decode('gbk')  # Chinese characters
@@ -45,16 +53,19 @@ class MachineVisionCamera:
         return decode_str
 
     # ch:枚举相机 | en:enum devices
-    def enum_devices(self):
+    def enum_devices(self) -> int:
+        """
+        List all the camera devices connected to the host
+        """
         self.deviceList = MV_CC_DEVICE_INFO_LIST()
         ret = MvCamera.MV_CC_EnumDevices(MV_GIGE_DEVICE | MV_USB_DEVICE, self.deviceList)
         if ret != 0:
             strError = "Enum devices fail! ret = :" + ToHexStr(ret)
-            self.message_box( "Error", strError)
+            self.message_box("Error", strError)
             return ret
 
         if self.deviceList.nDeviceNum == 0:
-            self.message_box( "Info", "Find no device",QMessageBox.Ok)
+            self.message_box( "Info", "Find no device")
             return ret
         print("Find %d devices!" % self.deviceList.nDeviceNum)
 
@@ -97,7 +108,10 @@ class MachineVisionCamera:
         self.ui.ComboDevices.setCurrentIndex(0)
 
     # ch:打开相机 | en:open device
-    def open_device(self):
+    def open_device(self) -> int:
+        """
+        Opens the camera and establishes a connection between host and camera
+        """
         if self.isOpen:
             self.message_box( "Error", 'Camera is Running!')
             return MV_E_CALLORDER
@@ -122,7 +136,14 @@ class MachineVisionCamera:
             self.enable_controls()
     
     # ch:开始取流 | en:Start grab image
-    def start_grabbing(self):
+    def start_grabbing(self) -> None:
+        """
+        Begins to grab image from the camera, 
+        notice the trigger set on the camera as it contains: continuous, hardware trigger and software trigger modes
+        """
+
+        self.obj_cam_operation.image_captured_callback = self.callback
+        
         ret = self.obj_cam_operation.Start_grabbing(self.ui.widgetDisplay.winId())
         if ret != 0:
             strError = "Start grabbing failed ret:" + ToHexStr(ret)
@@ -132,7 +153,10 @@ class MachineVisionCamera:
             self.enable_controls()
     
     # ch:停止取流 | en:Stop grab image
-    def stop_grabbing(self):
+    def stop_grabbing(self) -> None:
+        """
+        stops the image capture even if there are triggers to the camera
+        """
         ret = self.obj_cam_operation.Stop_grabbing()
         if ret != 0:
             strError = "Stop grabbing failed ret:" + ToHexStr(ret)
@@ -140,9 +164,16 @@ class MachineVisionCamera:
         else:
             self.isGrabbing = False
             self.enable_controls()
+        
+        import cv2 
+        cv2.destroyAllWindows()
     
     # ch:关闭设备 | Close device
     def close_device(self):
+        """
+        Closes the camera and disables the connection between host and camera
+        """
+        
         if self.isOpen:
             self.obj_cam_operation.Close_device()
             self.isOpen = False
@@ -170,7 +201,6 @@ class MachineVisionCamera:
     
     # ch:设置软触发模式 | en:set software trigger mode
     def set_software_trigger_mode(self):
-
         ret = self.obj_cam_operation.Set_trigger_mode(True)
         if ret != 0:
             strError = "Set trigger mode failed ret:" + ToHexStr(ret)
@@ -247,15 +277,24 @@ class MachineVisionCamera:
         self.ui.bnSaveImage.setEnabled(self.isOpen and self.isGrabbing)
 
     def message_box(self, title: str, text: str, value = None):
-        msgBox = QMessageBox()
-        msgBox.setIcon(QMessageBox.Information)
-        msgBox.setWindowTitle(title)
-        msgBox.setText(text)
-        msgBox.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
-        returnValue = msgBox.exec()
-        if returnValue == QMessageBox.Ok:
-            print('OK clicked')
-            return True 
-        else:
-            print('Cancel clicked')
-            return False 
+        error_dialog = ErrorMessage(title) 
+        print(error_dialog.showMessage(text))
+        print(error_dialog.exec())
+
+    def set_image_callback_on_trigger(self, callback):
+        """
+        pass a callback function that has image as an argument in it
+        def callback(image):
+            ...
+        """
+        self.obj_cam_operation.image_captured_callback = self.callback
+        ...
+
+
+
+class ErrorMessage(QErrorMessage):
+    def __init__(self, title:str ) -> None:
+        super().__init__()
+        self.setWindowTitle(title)
+        # TODO: add an icon to the error message
+        # self.windowIcon(QErrorMessage.)

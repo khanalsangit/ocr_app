@@ -1,6 +1,3 @@
-from PyQt5 import QtWidgets, QtCore, QtGui
-# from gui.PyUICBasicDemo import Ui_MainWindow
-from gui.pyUIdesign import Ui_MainWindow
 import os
 from PyQt5.QtWidgets import QMainWindow
 import cv2
@@ -8,7 +5,10 @@ import pickle
 import glob
 import sys
 import shutil
-######### camera libraries #######
+
+from PyQt5 import QtWidgets, QtCore, QtGui
+from gui.pyUIdesign import Ui_MainWindow
+
 from camera_interface.camera import MachineVisionCamera
 from controller.gui_operations import PyQTWidgetFunction
 from controller.gui_bindings import Controller
@@ -95,13 +95,15 @@ if __name__=="__main__":
     if hasattr(QtCore.Qt, 'AA_UseHighDpiPixmaps'):
         QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_UseHighDpiPixmaps, True)
     app = QtWidgets.QApplication(sys.argv)
-    ui = MainWin()
+
+    ui = QMainWindow() # MainWin()
     camera = MachineVisionCamera()
     gui_operations = PyQTWidgetFunction(ui)
     controller = Controller(camera, gui_operations)
-    controller.set_gui_func_to_gui()
+    controller.connect_camera_and_ui()
     camera.callback = test_callback
     ui.show()
+    
     sys.exit(app.exec_())
 
 

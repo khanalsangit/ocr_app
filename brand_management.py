@@ -1,14 +1,22 @@
 import sys 
 from PyQt5 import QtWidgets, QtGui, QtCore
+from PyQt5.QtCore import Qt
 from pathlib import Path
 import os
 from typing import Callable
 import yaml
+import shutil
 
 class BrandFrame(QtWidgets.QFrame):
-    def __init__(self, parent):
+    def __init__(self, parent, brand_title):
         super(BrandFrame, self).__init__(parent)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHeightForWidth(self.sizePolicy().hasHeightForWidth())
+        self.setSizePolicy(sizePolicy)
+        self.setMaximumSize(QtCore.QSize(250, 150))
+        self.setMinimumSize(QtCore.QSize(0, 150))
         self.horizontalLayout = QtWidgets.QHBoxLayout(self)
+        self.brand_title = brand_title
         
     def addBrand(self):
         self.frame1 = QtWidgets.QFrame(self)
@@ -24,15 +32,15 @@ class BrandFrame(QtWidgets.QFrame):
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
         self.frame2.setStyleSheet("#iconFrame{\n"
                                   "border:1px solid #d4cdcd;\n}")
-        self.verticalLayout.setSpacing(23)
+        self.verticalLayout.setSpacing(21)
         self.brandName = QtWidgets.QLabel(self.frame2)
-        self.brandName.setMaximumSize(QtCore.QSize(16777215,12))
+        self.brandName.setMaximumSize(QtCore.QSize(16777215,16))
         font = QtGui.QFont()
         font.setPointSize(10)
         font.setBold(True)
         self.brandName.setFont(font)
         self.brandName.setAlignment(QtCore.Qt.AlignCenter)
-        self.brandName.setText('brand')
+        self.brandName.setText(self.brand_title)
         self.iconFrame = QtWidgets.QFrame(self.frame2)
         self.iconFrame.setMaximumSize(QtCore.QSize(16777215, 40))
         self.iconFrame.setObjectName('iconFrame')
@@ -73,29 +81,44 @@ class BrandFrame(QtWidgets.QFrame):
         self.verticalLayout.addWidget(self.brandName)
         self.verticalLayout.addWidget(self.iconFrame)
         self.verticalLayout.addWidget(self.importButton)
+        self.binButton.clicked.connect(self.delete_brand)
+        
+    def delete_brand(self):
+        pwd = Path(BRAND_DIR / self.brand_title)
+        shutil.rmtree(pwd)
+        window.gridLayout.removeWidget(self)
         
 class MainWindow(QtWidgets.QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("hello world!")
-        self.widget = QtWidgets.QWidget(self)
-        self.widget.setStyleSheet("#brand{\n"
+        self.mainWidget = QtWidgets.QWidget(self)
+        self.mainWidget.setStyleSheet("#brand{\n"
                                          "border:1px solid;\n}")
-        
-        self.setCentralWidget(self.widget)
-        
+        self.scrollWidget = QtWidgets.QScrollArea(self)
+        self.scrollWidget.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
+        self.scrollWidget.setWidgetResizable(True)
+        self.scrollWidget.setWidget(self.mainWidget)
+        self.setCentralWidget(self.scrollWidget)
         self.setGeometry(200,100,900,700)
-        self.gridLayout = QtWidgets.QGridLayout(self.widget)
+        self.gridLayout = QtWidgets.QGridLayout(self.mainWidget)
+        self.placeBrand()
         
     def placeBrand(self):
-        brand = BrandFrame(self.widget)
-        brand.setMaximumSize(QtCore.QSize(250, 150))
-        brand.setObjectName("brand")
         # self.gridLayout = self.widget.findChild(QtWidgets.QGridLayout)
-
-        self.gridLayout.addWidget(brand, len(self.gridLayout)//3, len(self.gridLayout)%3)
-        brand.addBrand()
-
+        dir_list = os.listdir(BRAND_DIR)
+        rows = int((len(dir_list) / 3) + 1) if len(dir_list) % 3 else int((len(dir_list) / 3)) 
+        for row in range(rows):
+            for column in range(3):
+                list_index = row * 3 + column
+                if list_index < len(dir_list):
+                    self.brand_title = dir_list[list_index]
+                    brand = BrandFrame(self.mainWidget, self.brand_title)
+                    brand.setMaximumSize(QtCore.QSize(250, 150))
+                    brand.setObjectName("brand")
+                    brand.addBrand()
+                    self.gridLayout.addWidget(brand, row, column)
+        
 class createWindow(QtWidgets.QMainWindow):
     brandNameEntered = QtCore.pyqtSignal(str)
     def __init__(self):
@@ -178,26 +201,24 @@ def create_brand(brand_name):
     except Exception as e:
         print(f"An error occurred: {e}")
         
-def edit_brand(brand_name):
-    print('edit', brand_name)
+# def brand_title():
+#     dir_list = os.listdir(BRAND_DIR)
+    # ...
     
 if __name__ == '__main__':
     FILE = Path(__file__).parent
     BRAND_DIR = Path(FILE / 'Brands')
-    print(BRAND_DIR)
     app = QtWidgets.QApplication(sys.argv)
-    # window = MainWindow()
-    window = createWindow()
+    window = MainWindow()
+    # window = createWindow()
 
     # window.gridLayout = QtWidgets.QGridLayout(window.widget)
-    # for row in range(4):
-    #     for column in range(3):
-    #         window.placeBrand(row, column)
+
     # for _ in range(12):
     #     window.placeBrand()
     
-    window.brandNameEntered.connect(create_brand)
-    window.brandNameEntered.connect(edit_brand)
+    # window.brandNameEntered.connect(create_brand)
+    # window.brandNameEntered.connect(edit_brand)
     # window.lineEdit.returnPressed.connect(lambda: create_brand(window()))
 
     window.show()

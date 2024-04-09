@@ -95,15 +95,14 @@ if __name__=="__main__":
     if hasattr(QtCore.Qt, 'AA_UseHighDpiPixmaps'):
         QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_UseHighDpiPixmaps, True)
     app = QtWidgets.QApplication(sys.argv)
-
     ui = QMainWindow() # MainWin()
+
     camera = MachineVisionCamera()
     gui_operations = PyQTWidgetFunction(ui)
     controller = Controller(camera, gui_operations)
-    controller.connect_camera_and_ui()
     camera.callback = test_callback
-    ui.show()
     
+    ui.show()
     sys.exit(app.exec_())
 
 

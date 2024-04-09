@@ -14,6 +14,9 @@ class Controller():
         self.camera = camera
         self.gui = gui
 
+        self.connect_camera_and_ui()
+        self.connect_methods_and_ui()
+
 
     def connect_camera_and_ui(self):
          ######################## camera function called ##############################
@@ -21,6 +24,7 @@ class Controller():
         self.gui.onButton.clicked.connect(self.camera.open_device)
         self.gui.offButton.clicked.connect(self.camera.close_device)
 
+    def connect_methods_and_ui(self):
         ####################### Live Mode function called ############################
         self.gui.stackWidget.setCurrentWidget(self.gui.liveMode_Page) ####### default switch mode 
         self.gui.editProject.setCurrentWidget(self.gui.createProject_Page) ####### default live mode page
@@ -31,9 +35,9 @@ class Controller():
         self.gui.openImage_Button.pressed.connect(self.gui.open_image)
         self.gui.saveData_Button.pressed.connect(self.gui.save_data)
         self.gui.click_Button.pressed.connect(self.gui.choose_directory_path)
-        self.gui.systemSetting_update_Button.pressed.connect(self.gui.save_gui_values)
-        self.gui.rejectSetting_updateButton.pressed.connect(self.gui.save_gui_values)
-        self.gui.cameraSetting_update_Button.pressed.connect(self.gui.save_gui_values)
+        self.gui.systemSetting_update_Button.pressed.connect(self.gui.get_live_gui_values)
+        self.gui.rejectSetting_updateButton.pressed.connect(self.gui.get_live_gui_values)
+        self.gui.cameraSetting_update_Button.pressed.connect(self.gui.get_live_gui_values)
     
         ####################### Debug Mode function called ######################
         self.gui.createProjectButton.clicked.connect(self.gui.create_project)

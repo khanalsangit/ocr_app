@@ -3,10 +3,12 @@ import glob
 import cv2
 import os
 import shutil
+import sys
 from gui.pyUIdesign import Ui_MainWindow
 #from gui.PyUICBasicDemo import Ui_MainWindow 
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtWidgets import *
+
 
 class PyQTWidgetFunction(Ui_MainWindow):
     def __init__(self, main_window) -> None:
@@ -143,11 +145,15 @@ class PyQTWidgetFunction(Ui_MainWindow):
         '''
         Function that sets the path to save the image.
         '''
-        file_path = QFileDialog.getExistingDirectory(self,"Select Directory")
+        file_path = QFileDialog.getExistingDirectory()
         if file_path:
             self.directoryName_Entry.insert(file_path)
         else:
-            QMessageBox.warning(self,'Warning',"Please Select the Path")
+            msgBox = QMessageBox()
+            msgBox.setIcon(QMessageBox.Information)
+            msgBox.setText("Message box pop up window")
+            msgBox.setWindowTitle("QMessageBox Example")
+            msgBox.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
 
         ######################### Function to save all the parameters ########################
         ###########################################################################
@@ -193,7 +199,7 @@ class PyQTWidgetFunction(Ui_MainWindow):
                     ,'roi':self.roiEntry.text()
                     ,'save_img':True if self.saveImage_Checkbox.isChecked() else False
                     ,'save_ng':True if self.saveNG_Checkbox.isChecked() else False
-                    ,'save_result':True if self.saveResult_Checkbox.isChecked() else False
+                    ,'save_result':True if self.ui.isChecked() else False
                     ,'img_dir':self.directoryName_Entry.text()
                 }
 
@@ -206,7 +212,12 @@ class PyQTWidgetFunction(Ui_MainWindow):
         pik_str = pik_str.split('\\')
         dests = os.getcwd() + '/Pickle/' + pik_str[1]
         shutil.copy(srcs, dests)
-        QMessageBox.information(self,'Success',"Parameter Saved Successfully")
+        msgBox = QMessageBox()
+        msgBox.setIcon(QMessageBox.Information)
+        msgBox.setText("Parameter Save Successfully")
+        msgBox.setWindowTitle("Parameter")
+        msgBox.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
+        msgBox.exec()
 
         ##################################################### DEBUG METHOD ####################################################
             ##############################################################################################################

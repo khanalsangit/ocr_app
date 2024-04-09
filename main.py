@@ -1,5 +1,5 @@
 from PyQt5 import QtWidgets, QtCore, QtGui
-# from gui.PyUICBasicDemo import Ui_MainWindow
+from gui.PyUICBasicDemo import Ui_MainWindow
 from gui.pyUIdesign import Ui_MainWindow
 import os
 from PyQt5.QtWidgets import QMainWindow
@@ -16,13 +16,8 @@ from controller.gui_bindings import Controller
 class MainWin(QMainWindow):
     def __init__(self):
         super().__init__()
-        # self.ui = Ui_MainWindow()
-        # self.ui.setupUi(self)
-        # self.widget_func = PyQTWidgetFunction(self.ui)
         self.ui = PyQTWidgetFunction(self)
-        
-
-        
+         
         ############### Loading existing pickle values for all the parameters of GUI ###############################
         pkl_file = glob.glob('Pickle/*')  
         if len(pkl_file)==0:
@@ -33,7 +28,7 @@ class MainWin(QMainWindow):
                 with open(p,"rb") as file:
                     brand_values = pickle.load(file)
 
-        
+        print("Brand",brand_values)
         ###### Setting the initial values in GUI Parameters
         if brand_values['ocr_method_enable'] == True:  ######## Set the ocr method radiobutton 
             self.ui.detection_recognition.setChecked(True)

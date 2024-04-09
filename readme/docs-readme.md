@@ -60,3 +60,9 @@ def method(*args, **kwargs):
     # code statements
     ... 
 ```
+
+## Open documentation
+    enter the command below
+    ```bash
+        start .\docs\_build\html\index.html 
+    ```

@@ -19,7 +19,7 @@ class PyQTWidgetFunction(Ui_MainWindow):
                             ###########################################################################################
     def switch_mode(self):
         '''
-        Thid function switch the live or debug mode
+        This function switch the live or debug mode
         '''
         if self.switchButton.isChecked():
             self.stackWidget.setCurrentWidget(self.debugMode_Page)
@@ -212,6 +212,7 @@ class PyQTWidgetFunction(Ui_MainWindow):
             ##############################################################################################################
                 ######################################################################################################
                     ##########################################################################################
+    
     def create_project(self):
         self.editProject.setCurrentWidget(self.createProject_Page)
         self.createProjectButton.setStyleSheet("QPushButton{\n"
@@ -223,6 +224,7 @@ class PyQTWidgetFunction(Ui_MainWindow):
         self.detectionButton.setStyleSheet("")
         self.recognitionButton.setStyleSheet("")
         self.analysisButton.setStyleSheet("")
+    
     def camera_debug(self):
         self.editProject.setCurrentWidget(self.camera_Page)
         self.cameraButton.setStyleSheet("QPushButton{\n"
@@ -234,6 +236,7 @@ class PyQTWidgetFunction(Ui_MainWindow):
         self.detectionButton.setStyleSheet("")
         self.recognitionButton.setStyleSheet("")
         self.analysisButton.setStyleSheet("")
+    
     def preprocessing_step(self):
         self.editProject.setCurrentWidget(self.dataProcessing_Page)
         self.preprocessingButton.setStyleSheet("QPushButton{\n"
@@ -245,6 +248,7 @@ class PyQTWidgetFunction(Ui_MainWindow):
         self.detectionButton.setStyleSheet("")
         self.recognitionButton.setStyleSheet("")
         self.analysisButton.setStyleSheet("")
+    
     def detection(self):
         self.editProject.setCurrentWidget(self.detection_Page)
         self.detectionButton.setStyleSheet("QPushButton{\n"
@@ -256,6 +260,7 @@ class PyQTWidgetFunction(Ui_MainWindow):
         self.preprocessingButton.setStyleSheet("")
         self.recognitionButton.setStyleSheet("")
         self.analysisButton.setStyleSheet("")
+    
     def recognition(self):
         self.editProject.setCurrentWidget(self.recognition_Page)
         self.recognitionButton.setStyleSheet("QPushButton{\n"
@@ -267,6 +272,7 @@ class PyQTWidgetFunction(Ui_MainWindow):
         self.cameraButton.setStyleSheet("")
         self.preprocessingButton.setStyleSheet("")
         self.analysisButton.setStyleSheet("")
+    
     def analysis(self):
         self.editProject.setCurrentWidget(self.analysis_Page)
         self.analysisButton.setStyleSheet("QPushButton{\n"

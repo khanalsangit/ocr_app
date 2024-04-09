@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>introduction &#8212; Batch-code-inspection-system v0.0.2 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/classic.css?v=514cf933" />
+    
+    <script src="_static/documentation_options.js?v=1812e922"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="main_gui module" href="main_gui.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="main_gui.html" title="main_gui module"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Batch-code-inspection-system v0.0.2 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">introduction</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="introduction">
+<h1>introduction<a class="headerlink" href="#introduction" title="Link to this heading">¶</a></h1>
+</section>
+<section id="batch-code-inspection-system">
+<h1>Batch-Code-Inspection system<a class="headerlink" href="#batch-code-inspection-system" title="Link to this heading">¶</a></h1>
+<p>This is a repository that contains the latest OCR technique that detects and recognizes batch labels used for industrial purposes, which helps to increase the efficiency and production of industry.</p>
+<section id="badges">
+<h2>Badges<a class="headerlink" href="#badges" title="Link to this heading">¶</a></h2>
+<p><img alt="openSource License" src="https://img.shields.io/badge/License-Commercial-blue" /></p>
+<p><img alt="openSource License" src="https://img.shields.io/badge/build-passing-green" /></p>
+<p><img alt="" src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&amp;logo=python&amp;logoColor=white" /></p>
+</section>
+<section id="table-of-contents">
+<h2>Table of contents<a class="headerlink" href="#table-of-contents" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="#features"><span class="xref myst">Features</span></a></p></li>
+<li><p><a class="reference internal" href="#documentation"><span class="xref myst">Documentation</span></a></p></li>
+<li><p><a class="reference internal" href="#run"><span class="xref myst">Run Locally</span></a></p></li>
+<li><p><a class="reference internal" href="#techstack"><span class="xref myst">Tech Stack</span></a></p></li>
+</ul>
+<p><a name="features"></a></p>
+</section>
+<section id="features">
+<h2>Features<a class="headerlink" href="#features" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>High Speed Batch code inspection</p></li>
+<li><p>In-built feature for easy one step training</p></li>
+<li><p>In-built feature for data annotation and data augmentation.</p></li>
+<li><p>Cross platform</p></li>
+</ul>
+<p><a name="documentation"></a></p>
+</section>
+<section id="documentation">
+<h2>Documentation<a class="headerlink" href="#documentation" title="Link to this heading">¶</a></h2>
+<section id="this-project-has-two-stages">
+<h3>This project has two stages:<a class="headerlink" href="#this-project-has-two-stages" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Text Detection</p></li>
+<li><p>Text Recognition</p></li>
+</ul>
+</section>
+<section id="overall-system-is-completed-in-following-steps">
+<h3>Overall system is completed in following steps:<a class="headerlink" href="#overall-system-is-completed-in-following-steps" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Data Collection and Preprocessing
+At first, data, i.e., the product’s batch label, is collected from industries by using the Hikrobot camera, sensor, and bar light. The raw data that has been collected must be processed to fit into the OCR model. Here, image cropping ,image alignment and Image partition techniques are used to preprocess the image. For Detection whole image is considered but for recognition the we need to find the roi of each batch lines and used image alignment technique to align them. And then each line is partitioned into two parts so that model can also train and learn both full and half images. link for data preprocessing files is ‘https://github.com/lalchhabi/Batch_Encoding_Error_Detector/tree/master/data_preparation_script’</p></li>
+<li><p>Data Training
+Now the data is ready to train, for detection, Differentiable Binarization(DB) net algorithm and MobileNetV3 architecture is used to train the model for more than 200 epochs depending upon accuracy you get while training. Similarly for Recognition Scene Text Recognition with a Single Visual Model(SVTR) algorithm and MobileNetV1Enhance architecture is used. To train the model we have -:</p></li>
+</ul>
+<p>If CPU version installed, please set the parameter use_gpu to false in the configuration.(det_mv3_db.yml) python3 tools/train.py -c configs/det/det_mv3_db.yml
+-o Global.pretrained_model=./pretrain_models/MobileNetV3_large_x0_5_pretrained</p>
+<p><a name="run"></a></p>
+</section>
+</section>
+<section id="run-locally">
+<h2>Run Locally<a class="headerlink" href="#run-locally" title="Link to this heading">¶</a></h2>
+<p>Clone the project</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">  </span>git<span class="w"> </span>clone<span class="w"> </span>https://link-to-project
+</pre></div>
+</div>
+<p>Go to the project directory</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nb">cd</span><span class="w"> </span>my-project
+</pre></div>
+</div>
+<p>Install dependencies</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">  </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">  </span>pipwin<span class="w"> </span>install<span class="w"> </span>cairocffi
+</pre></div>
+</div>
+<p>Start the project</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">  </span>python<span class="w"> </span>main_gui.py
+</pre></div>
+</div>
+<p>OR convert ‘.ui’ file</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">  </span>pyuic5<span class="w"> </span>-x<span class="w"> </span>mainGUI.ui<span class="w"> </span>-o<span class="w"> </span>pyUIdesign.py
+<span class="w">  </span>
+<span class="w">  </span><span class="c1"># Run GUI</span>
+<span class="w">  </span>python<span class="w"> </span>pyUIdesign.py
+</pre></div>
+</div>
+<p><a name="techstack"></a></p>
+</section>
+<section id="tech-stack">
+<h2>Tech Stack<a class="headerlink" href="#tech-stack" title="Link to this heading">¶</a></h2>
+<p><strong>FrontEnd:</strong> python, PyQT</p>
+<p><strong>BackEnd:</strong> python, paddlepaddle</p>
+</section>
+</section>
+<section id="installation-for-documentation">
+<h1>Installation for documentation<a class="headerlink" href="#installation-for-documentation" title="Link to this heading">¶</a></h1>
+<p>The documentation of the whole project is done by using the <code class="docutils literal notranslate"><span class="pre">sphinx</span></code> library in python.</p>
+<section id="to-start-the-docs">
+<h2>To start the docs<a class="headerlink" href="#to-start-the-docs" title="Link to this heading">¶</a></h2>
+<ol class="arabic">
+<li><p>install the necessary documentation libraries required which are inside the <code class="docutils literal notranslate"><span class="pre">./requirements/docs-requirements.txt</span></code>.</p></li>
+<li><p>enter the command</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&lt;projectdir&gt;<span class="w"> </span>&gt;<span class="w"> </span>sphinx-quickstart<span class="w"> </span>docs
+</pre></div>
+</div>
+<p>you’ll be prompted to a series of question relating to the project and provide the relevant information.</p>
+</li>
+<li><p>now you have a folder docs, navigate inside the directory then enter the following command.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&lt;projectdir&gt;<span class="se">\d</span>ocs<span class="w"> </span>&gt;<span class="w"> </span>make.bat<span class="w"> </span>html
+</pre></div>
+</div>
+<p>This will create a directory <code class="docutils literal notranslate"><span class="pre">html</span></code> inside of build. Open up the <code class="docutils literal notranslate"><span class="pre">index.html</span></code> in a browser, you’ll be provided with a basic documentation page.</p>
+</li>
+<li><p>To build <code class="docutils literal notranslate"><span class="pre">.rst</span></code> files of your modules and files, execute the following command</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&lt;projectdir&gt;&gt;<span class="w"> </span>sphinx-apidoc<span class="w"> </span>-o<span class="w"> </span>docs<span class="w"> </span>&lt;specific-modules-to-build&gt;
+
+OR
+&lt;projectdir&gt;&gt;<span class="w"> </span>sphinx-apidoc<span class="w"> </span>-o<span class="w"> </span>docs<span class="w"> </span>.<span class="w"> </span><span class="c1"># to build all</span>
+</pre></div>
+</div>
+<p>reStructuredText(.rst) is the default plaintext markup language used by Sphinx.</p>
+</li>
+<li><p>Add the following code snippet to the <code class="docutils literal notranslate"><span class="pre">conf.py</span></code> present inside docs.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span> 
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s1">&#39;..&#39;</span><span class="p">))</span> <span class="c1"># sets the file path in root directory of the project</span>
+</pre></div>
+</div>
+</li>
+<li><p>After executing the command in the 4th point, you’ll get <code class="docutils literal notranslate"><span class="pre">.rst</span></code> files of your modules, along with a <code class="docutils literal notranslate"><span class="pre">modules.rst</span></code> file. Inside of the <code class="docutils literal notranslate"><span class="pre">index.rst</span></code> file add the follwoing snippet.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">toctree</span><span class="p">::</span>
+<span class="p">:</span><span class="n">maxdepth</span><span class="p">:</span> <span class="mi">2</span>
+<span class="p">:</span><span class="n">caption</span><span class="p">:</span> <span class="n">Contents</span><span class="p">:</span>
+
+<span class="n">modules</span> <span class="c1"># add this as it contains all the modules in the project</span>
+</pre></div>
+</div>
+</li>
+<li><p>Again build the document with the following command. First navigate inside of the <code class="docutils literal notranslate"><span class="pre">docs</span></code> directory. And run the <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">html</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&lt;projectdir&gt;<span class="se">\d</span>ocs<span class="w"> </span>&gt;<span class="w"> </span>make.bat<span class="w"> </span>html
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="to-document-your-modules-class-or-methods-use-the-following-docstring-style">
+<h2>to document your modules, class or methods use the following docstring style.<a class="headerlink" href="#to-document-your-modules-class-or-methods-use-the-following-docstring-style" title="Link to this heading">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">method</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;[Summary]</span>
+
+<span class="sd">    :param [ParamName]: [ParamDescription], defaults to [DefaultParamVal]</span>
+<span class="sd">    :type [ParamName]: [ParamType](, optional)</span>
+<span class="sd">    ...</span>
+<span class="sd">    :raises [ErrorType]: [ErrorDescription]</span>
+<span class="sd">    ...</span>
+<span class="sd">    :return: [ReturnDescription]</span>
+<span class="sd">    :rtype: [ReturnType]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># code statements</span>
+    <span class="o">...</span> 
+</pre></div>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">introduction</a></li>
+<li><a class="reference internal" href="#batch-code-inspection-system">Batch-Code-Inspection system</a><ul>
+<li><a class="reference internal" href="#badges">Badges</a></li>
+<li><a class="reference internal" href="#table-of-contents">Table of contents</a></li>
+<li><a class="reference internal" href="#features">Features</a></li>
+<li><a class="reference internal" href="#documentation">Documentation</a><ul>
+<li><a class="reference internal" href="#this-project-has-two-stages">This project has two stages:</a></li>
+<li><a class="reference internal" href="#overall-system-is-completed-in-following-steps">Overall system is completed in following steps:</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#run-locally">Run Locally</a></li>
+<li><a class="reference internal" href="#tech-stack">Tech Stack</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#installation-for-documentation">Installation for documentation</a><ul>
+<li><a class="reference internal" href="#to-start-the-docs">To start the docs</a></li>
+<li><a class="reference internal" href="#to-document-your-modules-class-or-methods-use-the-following-docstring-style">to document your modules, class or methods use the following docstring style.</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="main_gui.html"
+                          title="previous chapter">main_gui module</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/readme_links.md.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="main_gui.html" title="main_gui module"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Batch-code-inspection-system v0.0.2 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">introduction</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2024, Chabbi, Rukesh, Rhimesh, Sanket and Yushan.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    </div>
+  </body>
+</html>

@@ -12,6 +12,12 @@ Welcome to Batch-code-inspection-system's documentation!
 
    modules
 
+Readme File
+===========
+.. toctree::
+   readme_links.md 
+
+
 Indices and tables
 ==================
 

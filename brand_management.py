@@ -82,26 +82,107 @@ class BrandFrame(QtWidgets.QFrame):
         self.verticalLayout.addWidget(self.iconFrame)
         self.verticalLayout.addWidget(self.importButton)
         self.binButton.clicked.connect(self.delete_brand)
+        self.editButton.clicked.connect(self.rename_brand)
+        self.loginButton.clicked.connect(self.login_brand)
         
     def delete_brand(self):
         pwd = Path(BRAND_DIR / self.brand_title)
         shutil.rmtree(pwd)
         window.gridLayout.removeWidget(self)
         
+    def rename_brand(self):
+        rename_text, ok = QtWidgets.QInputDialog.getText(self, 'Rename Brand', 'Enter new brand name:')
+        if ok:
+            try:
+                pwd = Path(BRAND_DIR / self.brand_title)
+                config_file = Path(pwd / 'config.yaml')
+                with open(config_file, 'r') as yaml_file:
+                    data = yaml.safe_load(yaml_file)  
+                data['BRAND']['brand_name'] = rename_text
+
+                with open(config_file, 'w') as yaml_file:
+                    yaml.dump(data, yaml_file)            
+                        
+                new_brand_dir = Path(BRAND_DIR / rename_text)
+                pwd.rename(new_brand_dir)
+                self.brand_title = rename_text
+                QtWidgets.QMessageBox.information(self, 'Renamed', 'Brand renamed!')   
+                window.update_layout()
+            except:
+                QtWidgets.QMessageBox.warning(self, 'Error', 'Empty field!')
+    
+    def login_brand(self):
+        self.editWindow = editBrand(window.mainWidget)
+        self.editWindow.show()
+        
+class editBrand(QtWidgets.QMainWindow):
+    def __init__(self, parent):
+        super(editBrand, self).__init__(parent)
+        self.widget = QtWidgets.QWidget(self)
+        self.setGeometry(200, 100, 285, 244)
+        self.setWindowTitle('Edit Brand')
+        self.setMaximumSize(QtCore.QSize(285, 244))
+        self.formLayout = QtWidgets.QFormLayout(self.widget)
+        self.setCentralWidget(self.widget)
+        self.setStyleSheet("QLabel{\n"
+                                            "font-size:12px;\n"
+                                            "font-family: Arial;\n"
+                                        "}\n"
+                                        "QPushButton{\n"
+                                            "color:white;\n"
+                                            "background-color:#D9305C;\n"
+                                        "}")
+        self.addWidget()
+        
+    def addWidget(self):
+        self.label = QtWidgets.QLabel(self.widget)
+        self.label.setText("Detection Model")
+        self.label_2 = QtWidgets.QLabel(self.widget)
+        self.label_2.setText("Recognition Model")
+        self.label_3 = QtWidgets.QLabel(self.widget)
+        self.label_3.setText("Reference Image")
+        self.label_4 = QtWidgets.QLabel(self.widget)
+        self.label_4.setText("Detected Image")
+        self.label_5 = QtWidgets.QLabel(self.widget)
+        self.label_5.setText("Detection Labeled Image")
+        self.label_6 = QtWidgets.QLabel(self.widget)
+        self.label_6.setText("Recognition Labeled Image")
+        self.label_7 = QtWidgets.QLabel(self.widget)
+        self.label_7.setText("Detection Dataset ")
+        self.label_8 = QtWidgets.QLabel(self.widget)
+        self.label_8.setText("Recognition Dataset")
+        self.formLayout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.label)
+        self.formLayout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.label_2)
+        self.formLayout.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.label_3)
+        self.formLayout.setWidget(3, QtWidgets.QFormLayout.LabelRole, self.label_4)
+        self.formLayout.setWidget(4, QtWidgets.QFormLayout.LabelRole, self.label_5)
+        self.formLayout.setWidget(5, QtWidgets.QFormLayout.LabelRole, self.label_6)
+        self.formLayout.setWidget(6, QtWidgets.QFormLayout.LabelRole, self.label_7)
+        self.formLayout.setWidget(7, QtWidgets.QFormLayout.LabelRole, self.label_8)
+        
+        for row in range(8):
+            self.deleteButton = QtWidgets.QPushButton(self.widget)
+            self.deleteButton.setText('Delete')
+            self.formLayout.setWidget(row, QtWidgets.QFormLayout.FieldRole, self.deleteButton)
+            self.deleteButton.clicked.connect(self.delete_func)
+        
+    def delete_func(self):
+        print('deleted')
+    
 class MainWindow(QtWidgets.QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("hello world!")
+        self.setWindowTitle("Import Brand")
         self.mainWidget = QtWidgets.QWidget(self)
         self.mainWidget.setStyleSheet("#brand{\n"
                                          "border:1px solid;\n}")
+        self.gridLayout = QtWidgets.QGridLayout(self.mainWidget)
         self.scrollWidget = QtWidgets.QScrollArea(self)
         self.scrollWidget.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
         self.scrollWidget.setWidgetResizable(True)
         self.scrollWidget.setWidget(self.mainWidget)
         self.setCentralWidget(self.scrollWidget)
         self.setGeometry(200,100,900,700)
-        self.gridLayout = QtWidgets.QGridLayout(self.mainWidget)
         self.placeBrand()
         
     def placeBrand(self):
@@ -118,6 +199,13 @@ class MainWindow(QtWidgets.QMainWindow):
                     brand.setObjectName("brand")
                     brand.addBrand()
                     self.gridLayout.addWidget(brand, row, column)
+                    
+    def update_layout(self):
+        for i in reversed(range(self.gridLayout.count())):
+            widget = self.gridLayout.itemAt(i).widget()
+            if widget is not None:
+                widget.deleteLater()
+        self.placeBrand()
         
 class createWindow(QtWidgets.QMainWindow):
     brandNameEntered = QtCore.pyqtSignal(str)
@@ -159,47 +247,50 @@ class createWindow(QtWidgets.QMainWindow):
         self.label.setText('Enter Brand Name')
         self.doneButton.setText('Done')
         self.setCentralWidget(self.widget)
-        self.lineEdit.returnPressed.connect(self.emit_brand_name)
+        self.lineEdit.returnPressed.connect(self.create_brand)
 
-    def emit_brand_name(self):
-        brand_name = self.lineEdit.text()
-        self.brandNameEntered.emit(brand_name)
-        self.close()
+    # def emit_brand_name(self):
+    #     self.brand_name = self.lineEdit.text()
+    #     self.brandNameEntered.emit(self.brand_name)
+    #     self.close()
     # def __call__(self):
     #     value = self.lineEdit.text()
     #     return value
     
-def create_brand(brand_name):
-    brand_pwd = Path(BRAND_DIR / brand_name)
-    print(brand_pwd)
-    brand_config = Path(brand_pwd / 'config.yaml')
+    def create_brand(self):
+        brand_name = self.lineEdit.text()
+        brand_pwd = Path(BRAND_DIR / brand_name)
+        print(brand_pwd)
+        brand_config = Path(brand_pwd / 'config.yaml')
 
-    try:
-        brand_pwd.mkdir(parents=True , exist_ok=True)
-        print(f'Directory creadted at {brand_pwd}')
-        data = {
-            'BRAND':{
-                'brand_name': brand_name,
-                'brand_path': str(BRAND_DIR),
-                'brand_det_model':str,
-                'brand_seg_model':str,
-                'brand_pickle':str
-            },
-            'parameters_dir':str,
-            'captured_image':str,
-            'det_labeled_image':str,
-            'reg_labeled_image':str,
-            'det_augmented_image':str,
-            'seg_augmented_image':str,
-            'NG_image':str
-        }
-        with open(brand_config , 'w') as yaml_file:
-            yaml.dump(data, yaml_file)
-            
-    except FileExistsError:
-        print(f"Directory at {brand_pwd} already exists")
-    except Exception as e:
-        print(f"An error occurred: {e}")
+        try:
+            brand_pwd.mkdir(parents=True , exist_ok=True)
+            print(f'Directory creadted at {brand_pwd}')
+            data = {
+                'BRAND':{
+                    'brand_name': brand_name,
+                    'brand_path': str(BRAND_DIR),
+                    'brand_det_model':str,
+                    'brand_seg_model':str,
+                    'brand_pickle':str
+                },
+                'parameters_dir':str,
+                'captured_image':str,
+                'detected_image': str,
+                'det_labeled_image':str,
+                'reg_labeled_image':str,
+                'det_augmented_image':str,
+                'seg_augmented_image':str,
+                'NG_image':str
+            }
+            with open(brand_config , 'w') as yaml_file:
+                yaml.dump(data, yaml_file)
+                
+        except FileExistsError:
+            print(f"Directory at {brand_pwd} already exists")
+        except Exception as e:
+            print(f"An error occurred: {e}")
+        self.close()
         
 # def brand_title():
 #     dir_list = os.listdir(BRAND_DIR)
@@ -211,6 +302,7 @@ if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
     window = MainWindow()
     # window = createWindow()
+    # window = editBrand()
 
     # window.gridLayout = QtWidgets.QGridLayout(window.widget)
 

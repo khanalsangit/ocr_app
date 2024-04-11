@@ -184,19 +184,43 @@ the CE series and CS series Area scan cameras</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="camera_interface.camera.MachineVisionCamera.enum_devices">
-<span class="sig-name descname"><span class="pre">enum_devices</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#camera_interface.camera.MachineVisionCamera.enum_devices" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">enum_devices</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">combobox</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">QComboBox</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span></span></span><a class="headerlink" href="#camera_interface.camera.MachineVisionCamera.enum_devices" title="Link to this definition">¶</a></dt>
 <dd><p>List all the camera devices connected to the host</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>combobox</strong> (<em>QtWidgets.QComboBox</em>) – the combobox variable to display the list of devices</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>devList</strong> (<em>List</em>) – list of all devices connected to host,</p></li>
+<li><p><strong>error_code</strong> (<em>int</em>) – returns the error code</p></li>
+</ul>
+</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="camera_interface.camera.MachineVisionCamera.open_device">
-<span class="sig-name descname"><span class="pre">open_device</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#camera_interface.camera.MachineVisionCamera.open_device" title="Link to this definition">¶</a></dt>
-<dd><p>Opens the camera and establishes a connection between host and camera</p>
+<span class="sig-name descname"><span class="pre">open_device</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">combobox</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">QComboBox</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#camera_interface.camera.MachineVisionCamera.open_device" title="Link to this definition">¶</a></dt>
+<dd><p>Opens the camera, that is establish the connection with the camera.
+But does not caputers of does any operation, it is just to establish the connection between the host and camera</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>combobox</strong> (<em>QtWidgets.QComboBox</em>) – the combobox variable to display the list of devices</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>error_code</strong> – the error codes occured when there is any fault in opening the device</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="camera_interface.camera.MachineVisionCamera.start_grabbing">
-<span class="sig-name descname"><span class="pre">start_grabbing</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#camera_interface.camera.MachineVisionCamera.start_grabbing" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">start_grabbing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">widgetDisplay</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">QLabel</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#camera_interface.camera.MachineVisionCamera.start_grabbing" title="Link to this definition">¶</a></dt>
 <dd><p>Begins to grab image from the camera,
 notice the trigger set on the camera as it contains: continuous, hardware trigger and software trigger modes</p>
 </dd></dl>
@@ -209,8 +233,13 @@ notice the trigger set on the camera as it contains: continuous, hardware trigge
 
 <dl class="py method">
 <dt class="sig sig-object py" id="camera_interface.camera.MachineVisionCamera.close_device">
-<span class="sig-name descname"><span class="pre">close_device</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#camera_interface.camera.MachineVisionCamera.close_device" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">close_device</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#camera_interface.camera.MachineVisionCamera.close_device" title="Link to this definition">¶</a></dt>
 <dd><p>Closes the camera and disables the connection between host and camera</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>*args</strong> (<em>Any</em>) – kept for event receiving while exiting the whole program</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
@@ -240,8 +269,10 @@ notice the trigger set on the camera as it contains: continuous, hardware trigge
 
 <dl class="py method">
 <dt class="sig sig-object py" id="camera_interface.camera.MachineVisionCamera.get_param">
-<span class="sig-name descname"><span class="pre">get_param</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#camera_interface.camera.MachineVisionCamera.get_param" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<span class="sig-name descname"><span class="pre">get_param</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#camera_interface.camera.MachineVisionCamera.get_param" title="Link to this definition">¶</a></dt>
+<dd><p>returns the current parameter of the camera
+:rtype [exposure_time, gain, frame_rate]: current set exposure time, gain and frame rate of the camera</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="camera_interface.camera.MachineVisionCamera.set_param">

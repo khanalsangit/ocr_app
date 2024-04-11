@@ -81,12 +81,13 @@ class MainWin(QMainWindow):
 
 import cv2 
 def test_callback(numArray):
-    print('image size ', numArray.shape)
+    global num
     # cv2.imshow('test', cv2.resize(numArray, (500,500)))
     # cv2.waitKey(100)
     numArray = cv2.putText(numArray, 'OpenCV', (50, 50), fontFace=cv2.FONT_HERSHEY_SIMPLEX ,  
                     fontScale=1, color = (255, 0, 0) , thickness = 2, lineType=cv2.LINE_AA) 
     
+    numArray = cv2.resize(numArray, (3000, 3000))
     return numArray
     
 
@@ -106,7 +107,6 @@ if __name__=="__main__":
     controller = Controller(camera, gui_operations)
     camera.callback = test_callback
 
-    
     ui.closeEvent = camera.close_device
     ui.show()
     sys.exit(app.exec_())

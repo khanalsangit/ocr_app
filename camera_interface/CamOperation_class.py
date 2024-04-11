@@ -10,6 +10,7 @@ import inspect
 import ctypes
 import random
 from ctypes import *
+import traceback
 
 sys.path.append("./MvImport")
 
@@ -327,6 +328,7 @@ class CameraOperation:
             if 0 == ret:
                 # 拷贝图像和图像信息
                 if self.buf_save_image is None:
+                    # <class 'camera_interface.CamOperation_class.c_ubyte_Array_5013504'>
                     self.buf_save_image = (c_ubyte * stOutFrame.stFrameInfo.nFrameLen)()
                 self.st_frame_info = stOutFrame.stFrameInfo
 
@@ -335,24 +337,25 @@ class CameraOperation:
                 cdll.msvcrt.memcpy(byref(self.buf_save_image), stOutFrame.pBufAddr, self.st_frame_info.nFrameLen)
                 self.buf_lock.release()
 
-                print("get one frame: Width[%d], Height[%d], nFrameNum[%d]"
-                      % (self.st_frame_info.nWidth, self.st_frame_info.nHeight, self.st_frame_info.nFrameNum))
+                # print("get one frame: Width[%d], Height[%d], nFrameNum[%d]"
+                    #   % (self.st_frame_info.nWidth, self.st_frame_info.nHeight, self.st_frame_info.nFrameNum))
                 # 释放缓存
                 self.obj_cam.MV_CC_FreeImageBuffer(stOutFrame)
             else:
                 print("no data, ret = " + To_hex_str(ret))
                 continue
 
-            # 使用Display接口显示图像
-            stDisplayParam = MV_DISPLAY_FRAME_INFO()
-            memset(byref(stDisplayParam), 0, sizeof(stDisplayParam))
-            stDisplayParam.hWnd = int(winHandle)
-            stDisplayParam.nWidth = self.st_frame_info.nWidth
-            stDisplayParam.nHeight = self.st_frame_info.nHeight
-            stDisplayParam.enPixelType = self.st_frame_info.enPixelType
-            stDisplayParam.pData = self.buf_save_image
-            stDisplayParam.nDataLen = self.st_frame_info.nFrameLen
-            self.obj_cam.MV_CC_DisplayOneFrame(stDisplayParam)
+            # 使用Display接口显示图像 
+            # display the captured image directly
+            # stDisplayParam = MV_DISPLAY_FRAME_INFO()
+            # memset(byref(stDisplayParam), 0, sizeof(stDisplayParam))
+            # stDisplayParam.hWnd = int(winHandle)
+            # stDisplayParam.nWidth = self.st_frame_info.nWidth
+            # stDisplayParam.nHeight = self.st_frame_info.nHeight
+            # stDisplayParam.enPixelType = self.st_frame_info.enPixelType
+            # stDisplayParam.pData = self.buf_save_image
+            # stDisplayParam.nDataLen = self.st_frame_info.nFrameLen
+            # self.obj_cam.MV_CC_DisplayOneFrame(stDisplayParam)
 
             # converting to numpy array 
             if None != stOutFrame.pBufAddr:
@@ -375,10 +378,29 @@ class CameraOperation:
                 img_buff = (c_ubyte * stConvertParam.nDstLen)()
                 cdll.msvcrt.memcpy(byref(img_buff), stConvertParam.pDstBuffer, stConvertParam.nDstLen)
                 numArray = Color_numpy(img_buff,self.st_frame_info.nWidth,self.st_frame_info.nHeight)
-                print("Camera Image",numArray.shape)
 
-                self.image_captured_callback(numArray)
+                try: 
+                    numArray = self.image_captured_callback(numArray)
+                except Exception as e:
+                    print('[-] Process Error')
+                    print(traceback.format_exc())
 
+                # preparing for the conversion
+                nHeight, nWidth, _channels = numArray.shape
+                numArray_pointer = numArray.ctypes.data_as(ctypes.POINTER(ctypes.c_ubyte))
+                self.st_frame_info.nWidth,self.st_frame_info.nHeight = nWidth, nHeight 
+                self.st_frame_info.nFrameLen = nWidth * nHeight
+                
+                
+                stDisplayParam = MV_DISPLAY_FRAME_INFO()
+                memset(byref(stDisplayParam), 0, sizeof(stDisplayParam))
+                stDisplayParam.hWnd = int(winHandle)
+                stDisplayParam.nWidth = self.st_frame_info.nWidth
+                stDisplayParam.nHeight = self.st_frame_info.nHeight
+                stDisplayParam.enPixelType = PixelType_Gvsp_RGB8_Packed #  self.st_frame_info.enPixelType
+                stDisplayParam.pData = numArray_pointer # .tobytes(order='C') # self.buf_save_image # 
+                stDisplayParam.nDataLen = self.st_frame_info.nFrameLen
+                self.obj_cam.MV_CC_DisplayOneFrame(stDisplayParam)
 
             # 是否退出
             if self.b_exit:

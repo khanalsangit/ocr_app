@@ -19,10 +19,13 @@ class Controller():
 
 
     def connect_camera_and_ui(self):
-         ######################## camera function called ##############################
-        self.gui.findCamera_Button.clicked.connect(self.camera.enum_devices)
-        self.gui.onButton.clicked.connect(self.camera.open_device)
+        ######################## camera function called ##############################
+        self.gui.findCamera_Button.clicked.connect(lambda : self.camera.enum_devices(self.gui.comboBox))
+        self.gui.onButton.clicked.connect(
+            lambda : [self.camera.open_device(self.gui.comboBox), self.camera.start_grabbing(self.gui.imageWidget_Live)] 
+        )
         self.gui.offButton.clicked.connect(self.camera.close_device)
+        
 
     def connect_methods_and_ui(self):
         ####################### Live Mode function called ############################

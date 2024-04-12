@@ -56,7 +56,7 @@ class Controller():
         self.gui.cameraSetting_Button.pressed.connect(self.gui.camera_setting)
         self.gui.openImage_Button.pressed.connect(self.gui.open_image)
         self.gui.saveData_Button.pressed.connect(self.gui.save_data)
-        self.gui.click_Button.pressed.connect(self.gui.choose_directory_path)
+        self.gui.chooseDirectory_Button.pressed.connect(self.gui.choose_directory_path)
         self.gui.systemSetting_update_Button.pressed.connect(self.gui.get_live_gui_values)
         self.gui.rejectSetting_updateButton.pressed.connect(self.gui.get_live_gui_values)
         self.gui.cameraSetting_update_Button.pressed.connect(self.gui.get_live_gui_values)
@@ -70,6 +70,6 @@ class Controller():
         self.gui.analysisButton.clicked.connect(self.gui.analysis)
 
 
-        self.gui.live.resetCounter_Button.clicked.connect(
-            self.gui.live.reset_counter_values
-        )
+        # self.gui.live.resetCounter_Button.clicked.connect(
+        #     self.gui.live.reset_counter_values
+        # )

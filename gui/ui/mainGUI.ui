@@ -74,7 +74,7 @@
        </size>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="liveMode_Page">
        <layout class="QGridLayout" name="gridLayout_7">
@@ -3103,7 +3103,7 @@ border:1px solid;</string>
                     </property>
                     <property name="icon">
                      <iconset>
-                      <normaloff>LOGO/bin.png</normaloff>LOGO/bin.png</iconset>
+                      <normaloff>../../LOGO/bin.png</normaloff>../../LOGO/bin.png</iconset>
                     </property>
                     <property name="iconSize">
                      <size>
@@ -3123,7 +3123,7 @@ border:1px solid;</string>
                  </property>
                  <property name="icon">
                   <iconset>
-                   <normaloff>LOGO/capture.png</normaloff>LOGO/capture.png</iconset>
+                   <normaloff>../../LOGO/capture.png</normaloff>../../LOGO/capture.png</iconset>
                  </property>
                  <property name="iconSize">
                   <size>
@@ -3258,7 +3258,7 @@ border:1px solid;</string>
                  </property>
                  <property name="icon">
                   <iconset>
-                   <normaloff>LOGO/labeling.png</normaloff>LOGO/labeling.png</iconset>
+                   <normaloff>../../LOGO/labeling.png</normaloff>../../LOGO/labeling.png</iconset>
                  </property>
                  <property name="iconSize">
                   <size>
@@ -4527,7 +4527,7 @@ Contrast should be multile of 10.</string>
                  </property>
                  <property name="icon">
                   <iconset>
-                   <normaloff>LOGO/labeling.png</normaloff>LOGO/labeling.png</iconset>
+                   <normaloff>../../LOGO/labeling.png</normaloff>../../LOGO/labeling.png</iconset>
                  </property>
                  <property name="iconSize">
                   <size>
@@ -6076,7 +6076,7 @@ QPushButton:pressed{
           <string/>
          </property>
          <property name="pixmap">
-          <pixmap>LOGO/crimson_logo.png</pixmap>
+          <pixmap>../../LOGO/crimson_logo.png</pixmap>
          </property>
          <property name="scaledContents">
           <bool>true</bool>

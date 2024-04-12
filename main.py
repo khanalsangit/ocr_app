@@ -8,6 +8,7 @@ import shutil
 
 from PyQt5 import QtWidgets, QtCore, QtGui
 from gui.pyUIdesign import Ui_MainWindow
+from Custom_Widgets import *
 
 from camera_interface.camera import MachineVisionCamera
 from controller.gui_operations import PyQTWidgetFunction
@@ -20,8 +21,6 @@ class MainWin(QMainWindow):
         # self.ui.setupUi(self)
         # self.widget_func = PyQTWidgetFunction(self.ui)
         self.ui = PyQTWidgetFunction(self)
-        
-
         
         ############### Loading existing pickle values for all the parameters of GUI ###############################
         pkl_file = glob.glob('Pickle/*')  
@@ -106,6 +105,7 @@ if __name__=="__main__":
     gui_operations = PyQTWidgetFunction(ui)
     controller = Controller(camera, gui_operations)
     camera.callback = test_callback
+    loadJsonStyle(ui, gui_operations)
 
     ui.closeEvent = camera.close_device
     ui.show()

@@ -12,6 +12,7 @@ class PyQTWidgetFunction(Ui_MainWindow):
     def __init__(self, main_window) -> None:
         super().__init__()
         self.setupUi(main_window)
+        
         self.save_image_path = None 
 
     ################################################################ Live Mode Functions ###############################################################

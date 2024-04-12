@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>main_gui module &#8212; Batch-code-inspection-system v0.0.2 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/classic.css?v=514cf933" />
+    
+    <script src="_static/documentation_options.js?v=1812e922"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="introduction" href="readme_links.html" />
+    <link rel="prev" title="main module" href="main.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="readme_links.html" title="introduction"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="main.html" title="main module"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Batch-code-inspection-system v0.0.2 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" accesskey="U">PyQT5-Batch-Code-Inspection-System</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">main_gui module</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="module-main_gui">
+<span id="main-gui-module"></span><h1>main_gui module<a class="headerlink" href="#module-main_gui" title="Link to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="main_gui.MainWin">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">main_gui.</span></span><span class="sig-name descname"><span class="pre">MainWin</span></span><a class="headerlink" href="#main_gui.MainWin" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">QMainWindow</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="main_gui.MainWin.switch_mode">
+<span class="sig-name descname"><span class="pre">switch_mode</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#main_gui.MainWin.switch_mode" title="Link to this definition">¶</a></dt>
+<dd><p>Function that checks the switch mode and change its when button is clicked.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main_gui.MainWin.save_gui_values">
+<span class="sig-name descname"><span class="pre">save_gui_values</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#main_gui.MainWin.save_gui_values" title="Link to this definition">¶</a></dt>
+<dd><p>Function that takes all the user inputs values from GUI and saved in pickle file</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main_gui.MainWin.camera_setting">
+<span class="sig-name descname"><span class="pre">camera_setting</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#main_gui.MainWin.camera_setting" title="Link to this definition">¶</a></dt>
+<dd><p>Function that change the camera setting page.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main_gui.MainWin.open_image">
+<span class="sig-name descname"><span class="pre">open_image</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#main_gui.MainWin.open_image" title="Link to this definition">¶</a></dt>
+<dd><p>Function that opens the image to select the ROI to be used and display in the GUI</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main_gui.MainWin.save_data">
+<span class="sig-name descname"><span class="pre">save_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#main_gui.MainWin.save_data" title="Link to this definition">¶</a></dt>
+<dd><p>Function that change into save data page.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main_gui.MainWin.choose_directory_path">
+<span class="sig-name descname"><span class="pre">choose_directory_path</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#main_gui.MainWin.choose_directory_path" title="Link to this definition">¶</a></dt>
+<dd><p>Function that sets the path to save the image.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main_gui.MainWin.create_project">
+<span class="sig-name descname"><span class="pre">create_project</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#main_gui.MainWin.create_project" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main_gui.MainWin.camera_debug">
+<span class="sig-name descname"><span class="pre">camera_debug</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#main_gui.MainWin.camera_debug" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main_gui.MainWin.preprocessing_step">
+<span class="sig-name descname"><span class="pre">preprocessing_step</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#main_gui.MainWin.preprocessing_step" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main_gui.MainWin.detection">
+<span class="sig-name descname"><span class="pre">detection</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#main_gui.MainWin.detection" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main_gui.MainWin.recognition">
+<span class="sig-name descname"><span class="pre">recognition</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#main_gui.MainWin.recognition" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main_gui.MainWin.analysis">
+<span class="sig-name descname"><span class="pre">analysis</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#main_gui.MainWin.analysis" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main_gui.MainWin.ToHexStr">
+<span class="sig-name descname"><span class="pre">ToHexStr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main_gui.MainWin.ToHexStr" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">main_gui module</a><ul>
+<li><a class="reference internal" href="#main_gui.MainWin"><code class="docutils literal notranslate"><span class="pre">MainWin</span></code></a><ul>
+<li><a class="reference internal" href="#main_gui.MainWin.switch_mode"><code class="docutils literal notranslate"><span class="pre">MainWin.switch_mode()</span></code></a></li>
+<li><a class="reference internal" href="#main_gui.MainWin.save_gui_values"><code class="docutils literal notranslate"><span class="pre">MainWin.save_gui_values()</span></code></a></li>
+<li><a class="reference internal" href="#main_gui.MainWin.camera_setting"><code class="docutils literal notranslate"><span class="pre">MainWin.camera_setting()</span></code></a></li>
+<li><a class="reference internal" href="#main_gui.MainWin.open_image"><code class="docutils literal notranslate"><span class="pre">MainWin.open_image()</span></code></a></li>
+<li><a class="reference internal" href="#main_gui.MainWin.save_data"><code class="docutils literal notranslate"><span class="pre">MainWin.save_data()</span></code></a></li>
+<li><a class="reference internal" href="#main_gui.MainWin.choose_directory_path"><code class="docutils literal notranslate"><span class="pre">MainWin.choose_directory_path()</span></code></a></li>
+<li><a class="reference internal" href="#main_gui.MainWin.create_project"><code class="docutils literal notranslate"><span class="pre">MainWin.create_project()</span></code></a></li>
+<li><a class="reference internal" href="#main_gui.MainWin.camera_debug"><code class="docutils literal notranslate"><span class="pre">MainWin.camera_debug()</span></code></a></li>
+<li><a class="reference internal" href="#main_gui.MainWin.preprocessing_step"><code class="docutils literal notranslate"><span class="pre">MainWin.preprocessing_step()</span></code></a></li>
+<li><a class="reference internal" href="#main_gui.MainWin.detection"><code class="docutils literal notranslate"><span class="pre">MainWin.detection()</span></code></a></li>
+<li><a class="reference internal" href="#main_gui.MainWin.recognition"><code class="docutils literal notranslate"><span class="pre">MainWin.recognition()</span></code></a></li>
+<li><a class="reference internal" href="#main_gui.MainWin.analysis"><code class="docutils literal notranslate"><span class="pre">MainWin.analysis()</span></code></a></li>
+<li><a class="reference internal" href="#main_gui.MainWin.ToHexStr"><code class="docutils literal notranslate"><span class="pre">MainWin.ToHexStr()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="main.html"
+                          title="previous chapter">main module</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="readme_links.html"
+                          title="next chapter">introduction</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/main_gui.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="readme_links.html" title="introduction"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="main.html" title="main module"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Batch-code-inspection-system v0.0.2 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >PyQT5-Batch-Code-Inspection-System</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">main_gui module</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2024, Chabbi, Rukesh, Rhimesh, Sanket and Yushan.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    </div>
+  </body>
+</html>

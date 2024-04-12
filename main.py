@@ -11,6 +11,8 @@ from gui.pyUIdesign import Ui_MainWindow
 
 from camera_interface.camera import MachineVisionCamera
 from controller.gui_operations import PyQTWidgetFunction
+from controller.live_operations import LiveOperationFunction
+from controller.debug_operations import DebugOperationFunction
 from controller.gui_bindings import Controller
 
 class MainWin(QMainWindow):
@@ -99,7 +101,9 @@ if __name__=="__main__":
 
     camera = MachineVisionCamera()
     gui_operations = PyQTWidgetFunction(ui)
-    controller = Controller(camera, gui_operations)
+    live_mode = LiveOperationFunction(gui_operations)
+    debug_mode = DebugOperationFunction(gui_operations)
+    controller = Controller(camera, live_mode, debug_mode, gui_operations)
     camera.callback = test_callback
 
     ui.closeEvent = camera.close_device

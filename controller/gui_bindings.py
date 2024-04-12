@@ -70,6 +70,6 @@ class Controller():
         self.gui.analysisButton.clicked.connect(self.gui.analysis)
 
 
-        self.gui.live.resetCounter_Button.clicked.connect(
-            self.gui.live.reset_counter_values
-        )
+        # self.gui.live.resetCounter_Button.clicked.connect(
+        #     self.gui.live.reset_counter_values
+        # )

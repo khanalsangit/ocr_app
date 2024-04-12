@@ -101,7 +101,7 @@ if __name__=="__main__":
         QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_UseHighDpiPixmaps, True)
     app = QtWidgets.QApplication(sys.argv)
     ui = QMainWindow() # MainWin()
-
+    # loadJsonStyle(self,ui)
     camera = MachineVisionCamera()
     gui_operations = PyQTWidgetFunction(ui)
     controller = Controller(camera, gui_operations)

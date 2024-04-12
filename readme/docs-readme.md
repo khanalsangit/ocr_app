@@ -60,6 +60,7 @@ def method(*args, **kwargs):
     # code statements
     ... 
 ```
+For more visit the following link [DOCSTRING](https://note.nkmk.me/en/python-docstring/#:~:text=In%20Visual%20Studio%20Code%20(VSCode,k%2C%20control%20%2B%20i%20).)
 
 ## Open documentation
     enter the command below

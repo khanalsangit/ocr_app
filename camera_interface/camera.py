@@ -1,8 +1,10 @@
 import sys 
 import ctypes
 from ctypes import c_int, c_bool
+import traceback 
 
 from PyQt5.QtWidgets import QErrorMessage
+from PyQt5 import QtWidgets
 
 from .MvImport.MvCameraControl_class import * 
 from .MvImport.MvErrorDefine_const import * 
@@ -53,9 +55,21 @@ class MachineVisionCamera:
         return decode_str
 
     # ch:枚举相机 | en:enum devices
-    def enum_devices(self) -> int:
+    def enum_devices(self, combobox: QtWidgets.QComboBox = None) -> list | int:
         """
         List all the camera devices connected to the host
+
+        Parameters
+        -----------------------------
+        combobox: QtWidgets.QComboBox
+            the combobox variable to display the list of devices 
+
+        Returns
+        ------------------------------
+        devList: List 
+            list of all devices connected to host,
+        error_code: int
+            returns the error code
         """
         self.deviceList = MV_CC_DEVICE_INFO_LIST()
         ret = MvCamera.MV_CC_EnumDevices(MV_GIGE_DEVICE | MV_USB_DEVICE, self.deviceList)
@@ -103,20 +117,43 @@ class MachineVisionCamera:
                 devList.append("[" + str(i) + "]USB: " + user_defined_name + " " + model_name
                                + "(" + str(strSerialNumber) + ")")
 
-        self.ui.ComboDevices.clear()
-        self.ui.ComboDevices.addItems(devList)
-        self.ui.ComboDevices.setCurrentIndex(0)
-
+        try:
+            if type(combobox) != type(None):
+                combobox.clear()
+                combobox.addItems(devList)
+                combobox.setCurrentIndex(0)
+        except Exception as e:
+            print('[-] Error enum devices')
+            print(traceback.format_exc())
+        return devList
+    
     # ch:打开相机 | en:open device
-    def open_device(self) -> int:
-        """
-        Opens the camera and establishes a connection between host and camera
+    def open_device(self, combobox: QtWidgets.QComboBox = None) -> int:
+        """ 
+        Opens the camera, that is establish the connection with the camera. 
+        But does not caputers of does any operation, it is just to establish the connection between the host and camera
+            
+        Parameters
+        ---------------------------
+        combobox: QtWidgets.QComboBox
+            the combobox variable to display the list of devices 
+        Returns
+        ---------------------------
+        error_code: int
+            the error codes occured when there is any fault in opening the device
         """
         if self.isOpen:
             self.message_box( "Error", 'Camera is Running!')
             return MV_E_CALLORDER
 
-        self.nSelCamIndex = self.ui.ComboDevices.currentIndex()
+        try:
+            if type(combobox) != type(None):
+                self.nSelCamIndex = combobox.currentIndex()
+        except Exception as e:
+            self.message_box( "Error", 'Please select a camera!')
+            print('[-] Error Opening device')
+            print(traceback.format_exc())
+    
         if self.nSelCamIndex < 0:
             self.message_box( "Error", 'Please select a camera!')
             return MV_E_CALLORDER
@@ -128,15 +165,15 @@ class MachineVisionCamera:
             self.message_box( "Error", strError)
             self.isOpen = False
         else:
-            self.set_continue_mode()
+            # self.set_continue_mode()
 
             self.get_param()
 
             self.isOpen = True
-            self.enable_controls()
+            # self.enable_controls()
     
     # ch:开始取流 | en:Start grab image
-    def start_grabbing(self) -> None:
+    def start_grabbing(self, widgetDisplay: QtWidgets.QLabel) -> None:
         """
         Begins to grab image from the camera, 
         notice the trigger set on the camera as it contains: continuous, hardware trigger and software trigger modes
@@ -144,13 +181,13 @@ class MachineVisionCamera:
 
         self.obj_cam_operation.image_captured_callback = self.callback
         
-        ret = self.obj_cam_operation.Start_grabbing(self.ui.widgetDisplay.winId())
+        ret = self.obj_cam_operation.Start_grabbing(widgetDisplay.winId())
         if ret != 0:
             strError = "Start grabbing failed ret:" + ToHexStr(ret)
             self.message_box( "Error", strError)
         else:
             self.isGrabbing = True
-            self.enable_controls()
+            # self.enable_controls()
     
     # ch:停止取流 | en:Stop grab image
     def stop_grabbing(self) -> None:
@@ -163,15 +200,20 @@ class MachineVisionCamera:
             self.message_box( "Error", strError)
         else:
             self.isGrabbing = False
-            self.enable_controls()
+            # self.enable_controls()
         
         import cv2 
         cv2.destroyAllWindows()
     
     # ch:关闭设备 | Close device
-    def close_device(self):
+    def close_device(self, *args):
         """
         Closes the camera and disables the connection between host and camera
+        
+        Parameters 
+        ------------------
+        *args: Any
+            kept for event receiving while exiting the whole program
         """
         
         if self.isOpen:
@@ -179,8 +221,7 @@ class MachineVisionCamera:
             self.isOpen = False
 
         self.isGrabbing = False
-
-        self.enable_controls()    
+        # self.enable_controls()    
 
     # ch:设置触发模式 | en:set trigger mode
     def set_continue_mode(self):
@@ -194,10 +235,11 @@ class MachineVisionCamera:
         if ret != 0:
             strError = "Set continue mode failed ret:" + ToHexStr(ret) + "Trigger mode is " + str(trigger_mode[current_trigger_mode])
             self.message_box( "Error", strError)
-        else:
-            self.ui.radioContinueMode.setChecked(True)
-            self.ui.radioTriggerMode.setChecked(False)
-            self.ui.bnSoftwareTrigger.setEnabled(False)
+        # else:
+        #     # from the pybasicdemo.py 
+        #     self.ui.radioContinueMode.setChecked(True)
+        #     self.ui.radioTriggerMode.setChecked(False)
+        #     self.ui.bnSoftwareTrigger.setEnabled(False)
     
     # ch:设置软触发模式 | en:set software trigger mode
     def set_software_trigger_mode(self):
@@ -205,16 +247,23 @@ class MachineVisionCamera:
         if ret != 0:
             strError = "Set trigger mode failed ret:" + ToHexStr(ret)
             self.message_box( "Error", strError)
-        else:
-            self.ui.radioContinueMode.setChecked(False)
-            self.ui.radioTriggerMode.setChecked(True)
-            self.ui.bnSoftwareTrigger.setEnabled(self.isGrabbing)
+        # else:
+        #     # from the pybasicdemo.py
+        #     self.ui.radioContinueMode.setChecked(False)
+        #     self.ui.radioTriggerMode.setChecked(True)
+        #     self.ui.bnSoftwareTrigger.setEnabled(self.isGrabbing)
     
     # ch:设置触发命令 | en:set trigger software
     def trigger_once(self):
         ret = self.obj_cam_operation.Trigger_once()
         if ret != 0:
             strError = "TriggerSoftware failed ret:" + ToHexStr(ret)
+            self.message_box( "Error", strError)
+
+    def set_hardware_trigger_mode(self):
+        ret = self.obj_cam_operation.Set_trigger_mode(True, hardware_trigger=True)
+        if ret != 0:
+            strError = "Set trigger mode failed ret:" + ToHexStr(ret)
             self.message_box( "Error", strError)
 
     # ch:存图 | en:save image
@@ -234,15 +283,26 @@ class MachineVisionCamera:
             return False
     
     # ch: 获取参数 | en:get param
-    def get_param(self):
+    def get_param(self) -> list[int, int, int]:
+        '''
+        returns the current parameter of the camera 
+        :rtype [exposure_time, gain, frame_rate]: current set exposure time, gain and frame rate of the camera 
+
+        '''
+
         ret = self.obj_cam_operation.Get_parameter()
         if ret != MV_OK:
             strError = "Get param failed ret:" + ToHexStr(ret)
             self.message_box( "Error", strError)
         else:
-            self.ui.edtExposureTime.setText("{0:.2f}".format(self.obj_cam_operation.exposure_time))
-            self.ui.edtGain.setText("{0:.2f}".format(self.obj_cam_operation.gain))
-            self.ui.edtFrameRate.setText("{0:.2f}".format(self.obj_cam_operation.frame_rate))
+            # self.ui.edtExposureTime.setText("{0:.2f}".format(self.obj_cam_operation.exposure_time))
+            # self.ui.edtGain.setText("{0:.2f}".format(self.obj_cam_operation.gain))
+            # self.ui.edtFrameRate.setText("{0:.2f}".format(self.obj_cam_operation.frame_rate))
+            exposure_time = self.obj_cam_operation.exposure_time
+            gain = self.obj_cam_operation.gain
+            frame_rate = self.obj_cam_operation.frame_rate
+            
+            return [exposure_time, gain, frame_rate]
 
     # ch: 设置参数 | en:set param
     def set_param(self):

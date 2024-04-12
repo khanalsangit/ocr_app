@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'mainGUI.ui'
+# Form implementation generated from reading ui file './gui/ui/mainGUI.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.9
 #
@@ -193,9 +193,9 @@ class Ui_MainWindow(object):
         self.goodCount = QtWidgets.QLabel(self.frame_7)
         self.goodCount.setObjectName("goodCount")
         self.gridLayout_9.addWidget(self.goodCount, 0, 1, 1, 1, QtCore.Qt.AlignHCenter|QtCore.Qt.AlignVCenter)
-        self.notGoodCOunt = QtWidgets.QLabel(self.frame_7)
-        self.notGoodCOunt.setObjectName("notGoodCOunt")
-        self.gridLayout_9.addWidget(self.notGoodCOunt, 1, 1, 1, 1, QtCore.Qt.AlignHCenter)
+        self.notGoodCount = QtWidgets.QLabel(self.frame_7)
+        self.notGoodCount.setObjectName("notGoodCount")
+        self.gridLayout_9.addWidget(self.notGoodCount, 1, 1, 1, 1, QtCore.Qt.AlignHCenter)
         self.verticalLayout_13.addWidget(self.frame_7)
         self.resetCounter_Button = QtWidgets.QPushButton(self.counterFrame)
         self.resetCounter_Button.setMaximumSize(QtCore.QSize(16777215, 27))
@@ -1271,7 +1271,7 @@ class Ui_MainWindow(object):
 "    border-radius:4px;\n"
 "}")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("LOGO/bin.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("./gui/ui\\LOGO/bin.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.deleteImage_Button.setIcon(icon)
         self.deleteImage_Button.setIconSize(QtCore.QSize(20, 20))
         self.deleteImage_Button.setObjectName("deleteImage_Button")
@@ -1280,7 +1280,7 @@ class Ui_MainWindow(object):
         self.captureButton = QtWidgets.QPushButton(self.frame_5)
         self.captureButton.setText("")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("LOGO/capture.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap("./gui/ui\\LOGO/capture.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.captureButton.setIcon(icon1)
         self.captureButton.setIconSize(QtCore.QSize(80, 80))
         self.captureButton.setObjectName("captureButton")
@@ -1333,7 +1333,7 @@ class Ui_MainWindow(object):
         self.detection_labelingButton = QtWidgets.QPushButton(self.frame_6)
         self.detection_labelingButton.setText("")
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap("LOGO/labeling.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon2.addPixmap(QtGui.QPixmap("./gui/ui\\LOGO/labeling.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.detection_labelingButton.setIcon(icon2)
         self.detection_labelingButton.setIconSize(QtCore.QSize(50, 50))
         self.detection_labelingButton.setObjectName("detection_labelingButton")
@@ -2382,7 +2382,7 @@ class Ui_MainWindow(object):
         self.crimsonLogo = QtWidgets.QLabel(self.topGrid)
         self.crimsonLogo.setMaximumSize(QtCore.QSize(176, 59))
         self.crimsonLogo.setText("")
-        self.crimsonLogo.setPixmap(QtGui.QPixmap("LOGO/crimson_logo.png"))
+        self.crimsonLogo.setPixmap(QtGui.QPixmap("./gui/ui\\LOGO/crimson_logo.png"))
         self.crimsonLogo.setScaledContents(True)
         self.crimsonLogo.setObjectName("crimsonLogo")
         self.horizontalLayout_20.addWidget(self.crimsonLogo)
@@ -2409,7 +2409,7 @@ class Ui_MainWindow(object):
         self.lastNG_countLabel.setText(_translate("MainWindow", "Last NG Count  :"))
         self.lastNG_timeLabel.setText(_translate("MainWindow", "Last NG Time    :"))
         self.goodCount.setText(_translate("MainWindow", "0"))
-        self.notGoodCOunt.setText(_translate("MainWindow", "0"))
+        self.notGoodCount.setText(_translate("MainWindow", "0"))
         self.resetCounter_Button.setText(_translate("MainWindow", "Reset Counter"))
         self.lastNG_imageLabel.setText(_translate("MainWindow", "Last NG Image"))
         self.systemSetting_Label.setText(_translate("MainWindow", "System Setting"))

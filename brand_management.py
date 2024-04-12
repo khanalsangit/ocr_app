@@ -84,7 +84,7 @@ class BrandFrame(QtWidgets.QFrame):
         self.binButton.clicked.connect(self.delete_brand)
         self.editButton.clicked.connect(self.rename_brand)
         self.loginButton.clicked.connect(self.login_brand)
-        
+            
     def delete_brand(self):
         pwd = Path(BRAND_DIR / self.brand_title)
         shutil.rmtree(pwd)
@@ -112,12 +112,17 @@ class BrandFrame(QtWidgets.QFrame):
                 QtWidgets.QMessageBox.warning(self, 'Error', 'Empty field!')
     
     def login_brand(self):
-        self.editWindow = editBrand(window.mainWidget)
-        self.editWindow.show()
-        
+        if hasattr(self, 'editWindow'):
+            self.editWindow.activateWindow()
+            self.editWindow.show()
+        else:                                                        
+            self.editWindow = editBrand(window, self.brand_title)
+            self.editWindow.show()
+            
 class editBrand(QtWidgets.QMainWindow):
-    def __init__(self, parent):
+    def __init__(self, parent, brand):
         super(editBrand, self).__init__(parent)
+        self.brand = brand
         self.widget = QtWidgets.QWidget(self)
         self.setGeometry(200, 100, 285, 244)
         self.setWindowTitle('Edit Brand')
@@ -125,13 +130,13 @@ class editBrand(QtWidgets.QMainWindow):
         self.formLayout = QtWidgets.QFormLayout(self.widget)
         self.setCentralWidget(self.widget)
         self.setStyleSheet("QLabel{\n"
-                                            "font-size:12px;\n"
-                                            "font-family: Arial;\n"
-                                        "}\n"
-                                        "QPushButton{\n"
-                                            "color:white;\n"
-                                            "background-color:#D9305C;\n"
-                                        "}")
+                                    "font-size:12px;\n"
+                                    "font-family: Arial;\n"
+                                    "}\n"
+                            "QPushButton{\n"
+                                        "color:white;\n"
+                                        "background-color:#D9305C;\n"
+                                    "}")
         self.addWidget()
         
     def addWidget(self):
@@ -167,8 +172,10 @@ class editBrand(QtWidgets.QMainWindow):
             self.deleteButton.clicked.connect(self.delete_func)
         
     def delete_func(self):
-        print('deleted')
-    
+        # main = MainWindow()
+        # brand_name = getattr(main, 'placeBrand')
+        print(self.brand)
+
 class MainWindow(QtWidgets.QMainWindow):
     def __init__(self):
         super().__init__()
@@ -184,7 +191,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.setCentralWidget(self.scrollWidget)
         self.setGeometry(200,100,900,700)
         self.placeBrand()
-        
+    
     def placeBrand(self):
         # self.gridLayout = self.widget.findChild(QtWidgets.QGridLayout)
         dir_list = os.listdir(BRAND_DIR)
@@ -193,8 +200,8 @@ class MainWindow(QtWidgets.QMainWindow):
             for column in range(3):
                 list_index = row * 3 + column
                 if list_index < len(dir_list):
-                    self.brand_title = dir_list[list_index]
-                    brand = BrandFrame(self.mainWidget, self.brand_title)
+                    brand_title = dir_list[list_index]
+                    brand = BrandFrame(self.mainWidget, brand_title)
                     brand.setMaximumSize(QtCore.QSize(250, 150))
                     brand.setObjectName("brand")
                     brand.addBrand()

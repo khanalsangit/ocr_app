@@ -74,7 +74,7 @@
        </size>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="liveMode_Page">
        <layout class="QGridLayout" name="gridLayout_7">
@@ -1730,6 +1730,12 @@ QPushButton:pressed{
                   </property>
                   <item row="3" column="0" alignment="Qt::AlignLeft">
                    <widget class="QFrame" name="roiFrame">
+                    <property name="maximumSize">
+                     <size>
+                      <width>176</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
                     <property name="frameShape">
                      <enum>QFrame::StyledPanel</enum>
                     </property>
@@ -1738,7 +1744,7 @@ QPushButton:pressed{
                     </property>
                     <layout class="QHBoxLayout" name="horizontalLayout_7">
                      <property name="spacing">
-                      <number>10</number>
+                      <number>4</number>
                      </property>
                      <property name="leftMargin">
                       <number>0</number>
@@ -1747,7 +1753,7 @@ QPushButton:pressed{
                       <number>0</number>
                      </property>
                      <property name="rightMargin">
-                      <number>0</number>
+                      <number>7</number>
                      </property>
                      <property name="bottomMargin">
                       <number>0</number>
@@ -1771,8 +1777,17 @@ QPushButton:pressed{
                        </property>
                       </widget>
                      </item>
+                     <item>
+                      <widget class="QLineEdit" name="roiEntry1"/>
+                     </item>
+                     <item>
+                      <widget class="QLineEdit" name="roiEntry2"/>
+                     </item>
+                     <item>
+                      <widget class="QLineEdit" name="roiEntry3"/>
+                     </item>
                      <item alignment="Qt::AlignLeft">
-                      <widget class="QLineEdit" name="roiEntry">
+                      <widget class="QLineEdit" name="roiEntry4">
                        <property name="maximumSize">
                         <size>
                          <width>99</width>
@@ -1803,25 +1818,6 @@ QPushButton:pressed{
                     </property>
                     <property name="text">
                      <string>Exposure Time</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="2" column="1" alignment="Qt::AlignRight">
-                   <widget class="QLineEdit" name="cameraGain_Entry">
-                    <property name="maximumSize">
-                     <size>
-                      <width>75</width>
-                      <height>16777215</height>
-                     </size>
-                    </property>
-                    <property name="font">
-                     <font>
-                      <weight>75</weight>
-                      <bold>true</bold>
-                     </font>
-                    </property>
-                    <property name="alignment">
-                     <set>Qt::AlignCenter</set>
                     </property>
                    </widget>
                   </item>
@@ -1857,8 +1853,8 @@ QPushButton:pressed{
                     </property>
                    </widget>
                   </item>
-                  <item row="0" column="1" alignment="Qt::AlignRight">
-                   <widget class="QLineEdit" name="exposureTime_Entry">
+                  <item row="2" column="1" alignment="Qt::AlignRight">
+                   <widget class="QLineEdit" name="cameraGain_Entry">
                     <property name="maximumSize">
                      <size>
                       <width>75</width>
@@ -1876,16 +1872,22 @@ QPushButton:pressed{
                     </property>
                    </widget>
                   </item>
-                  <item row="2" column="0">
-                   <widget class="QLabel" name="cameraGain_Label">
+                  <item row="0" column="1" alignment="Qt::AlignRight">
+                   <widget class="QLineEdit" name="exposureTime_Entry">
+                    <property name="maximumSize">
+                     <size>
+                      <width>75</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
                     <property name="font">
                      <font>
-                      <family>Arial</family>
-                      <pointsize>10</pointsize>
+                      <weight>75</weight>
+                      <bold>true</bold>
                      </font>
                     </property>
-                    <property name="text">
-                     <string>Camera Gain</string>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
                     </property>
                    </widget>
                   </item>
@@ -1911,6 +1913,19 @@ QPushButton:pressed{
                     </property>
                     <property name="text">
                      <string>Open Image</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="0">
+                   <widget class="QLabel" name="cameraGain_Label">
+                    <property name="font">
+                     <font>
+                      <family>Arial</family>
+                      <pointsize>10</pointsize>
+                     </font>
+                    </property>
+                    <property name="text">
+                     <string>Camera Gain</string>
                     </property>
                    </widget>
                   </item>
@@ -2074,7 +2089,7 @@ QPushButton:pressed{
                    </widget>
                   </item>
                   <item row="0" column="1">
-                   <widget class="QPushButton" name="click_Button">
+                   <widget class="QPushButton" name="chooseDirectory_Button">
                     <property name="sizePolicy">
                      <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
                       <horstretch>0</horstretch>
@@ -2717,6 +2732,14 @@ border:1px solid;</string>
                    <height>151</height>
                   </size>
                  </property>
+                 <property name="styleSheet">
+                  <string notr="true">QPushButton{
+	color:white;
+	background-color:#263B90;
+	font-family: Arial;
+	font-size:10pt;
+}</string>
+                 </property>
                  <property name="frameShape">
                   <enum>QFrame::StyledPanel</enum>
                  </property>
@@ -2737,37 +2760,11 @@ border:1px solid;</string>
                    <number>4</number>
                   </property>
                   <property name="horizontalSpacing">
-                   <number>0</number>
+                   <number>4</number>
                   </property>
                   <property name="verticalSpacing">
                    <number>3</number>
                   </property>
-                  <item row="5" column="0" colspan="2">
-                   <widget class="QPushButton" name="cameraSettingUpdate_Button">
-                    <property name="maximumSize">
-                     <size>
-                      <width>16777215</width>
-                      <height>30</height>
-                     </size>
-                    </property>
-                    <property name="font">
-                     <font>
-                      <family>Arial</family>
-                      <pointsize>10</pointsize>
-                     </font>
-                    </property>
-                    <property name="styleSheet">
-                     <string notr="true">QPushButton{
-	color:white;
-	background-color:#263B90;
-	border-radius:4px;
-}</string>
-                    </property>
-                    <property name="text">
-                     <string>Update</string>
-                    </property>
-                   </widget>
-                  </item>
                   <item row="4" column="0">
                    <widget class="QLabel" name="timeDelay_debugLabel">
                     <property name="font">
@@ -2918,6 +2915,32 @@ border:1px solid;</string>
                     </property>
                     <property name="text">
                      <string>Camera Settings</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="5" column="0">
+                   <widget class="QPushButton" name="getParameter_Button">
+                    <property name="maximumSize">
+                     <size>
+                      <width>16777215</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="text">
+                     <string>Get Parameter</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="5" column="1">
+                   <widget class="QPushButton" name="setParameter_Button">
+                    <property name="maximumSize">
+                     <size>
+                      <width>16777215</width>
+                      <height>30</height>
+                     </size>
+                    </property>
+                    <property name="text">
+                     <string>Set Parameter</string>
                     </property>
                    </widget>
                   </item>
@@ -4839,6 +4862,18 @@ Contrast should be multile of 10.</string>
             </item>
             <item>
              <widget class="QFrame" name="analysisSystem_Frame">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>185</height>
+               </size>
+              </property>
               <property name="frameShape">
                <enum>QFrame::StyledPanel</enum>
               </property>
@@ -5184,7 +5219,7 @@ border-radius: 3px;</string>
                  <property name="maximumSize">
                   <size>
                    <width>16777215</width>
-                   <height>24</height>
+                   <height>30</height>
                   </size>
                  </property>
                  <property name="font">
@@ -5263,7 +5298,7 @@ QPushButton:pressed{
               <property name="sizeHint" stdset="0">
                <size>
                 <width>20</width>
-                <height>332</height>
+                <height>321</height>
                </size>
               </property>
              </spacer>

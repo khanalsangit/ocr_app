@@ -9,6 +9,8 @@ from gui.pyUIdesign import Ui_MainWindow
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtWidgets import *
 
+from .live_operations import LiveOperationFunction
+from .debug_operations import DebugOperationFunction 
 
 class PyQTWidgetFunction(Ui_MainWindow):
     def __init__(self, main_window) -> None:
@@ -16,6 +18,7 @@ class PyQTWidgetFunction(Ui_MainWindow):
         self.setupUi(main_window)
         self.save_image_path = None 
 
+        self.live = LiveOperationFunction(self)
     ################################################################ Live Mode Functions ###############################################################
             ################################################################################################################################
                     ################################################################################################################
@@ -30,6 +33,18 @@ class PyQTWidgetFunction(Ui_MainWindow):
         else:
             self.switchButton.setText('Live')
             self.stackWidget.setCurrentWidget(self.liveMode_Page)
+    
+    def get_current_mode(self) -> str:
+        """
+        returns the current mode of the gui: Live or Debug
+
+        Returns
+        --------------
+        mode: str
+            returns string either Debug or Live
+
+        """
+        return self.switchButton.text()
 
     def camera_setting(self):
         '''

@@ -8,6 +8,7 @@ import shutil
 
 from PyQt5 import QtWidgets, QtCore, QtGui
 from gui.pyUIdesign import Ui_MainWindow
+from Custom_Widgets import *
 
 from camera_interface.camera import MachineVisionCamera
 from controller.gui_operations import PyQTWidgetFunction
@@ -105,6 +106,7 @@ if __name__=="__main__":
     debug_mode = DebugOperationFunction(gui_operations)
     controller = Controller(camera, live_mode, debug_mode, gui_operations)
     camera.callback = test_callback
+    loadJsonStyle(ui, gui_operations)
 
     ui.closeEvent = camera.close_device
     ui.show()

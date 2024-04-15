@@ -1,6 +1,6 @@
 import pickle
 import os
-
+import sys
 
 system_param = {
     'ocr_method':True,

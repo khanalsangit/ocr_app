@@ -2270,6 +2270,22 @@ QPushButton:pressed{
             <number>0</number>
            </property>
            <item>
+            <spacer name="verticalSpacer">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::Fixed</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>13</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
             <widget class="QFrame" name="frame_12">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
@@ -2280,7 +2296,7 @@ QPushButton:pressed{
              <property name="maximumSize">
               <size>
                <width>181</width>
-               <height>406</height>
+               <height>598</height>
               </size>
              </property>
              <property name="styleSheet">
@@ -2476,24 +2492,24 @@ QPushButton:pressed{
                 </property>
                </widget>
               </item>
+              <item>
+               <spacer name="verticalSpacer_12">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeType">
+                 <enum>QSizePolicy::Fixed</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>20</width>
+                  <height>159</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
              </layout>
             </widget>
-           </item>
-           <item>
-            <spacer name="verticalSpacer">
-             <property name="orientation">
-              <enum>Qt::Vertical</enum>
-             </property>
-             <property name="sizeType">
-              <enum>QSizePolicy::Fixed</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>20</width>
-               <height>188</height>
-              </size>
-             </property>
-            </spacer>
            </item>
           </layout>
          </widget>
@@ -2804,38 +2820,6 @@ border:1px solid;</string>
                   <property name="verticalSpacing">
                    <number>3</number>
                   </property>
-                  <item row="4" column="0">
-                   <widget class="QLabel" name="timeDelay_debugLabel">
-                    <property name="font">
-                     <font>
-                      <family>Arial</family>
-                      <pointsize>10</pointsize>
-                     </font>
-                    </property>
-                    <property name="text">
-                     <string>Time Delay</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="1" alignment="Qt::AlignRight">
-                   <widget class="QLineEdit" name="exposureEntry_Debug">
-                    <property name="maximumSize">
-                     <size>
-                      <width>70</width>
-                      <height>16777215</height>
-                     </size>
-                    </property>
-                    <property name="font">
-                     <font>
-                      <weight>75</weight>
-                      <bold>true</bold>
-                     </font>
-                    </property>
-                    <property name="alignment">
-                     <set>Qt::AlignCenter</set>
-                    </property>
-                   </widget>
-                  </item>
                   <item row="3" column="1" alignment="Qt::AlignRight">
                    <widget class="QLineEdit" name="frameRateEntry_Debug">
                     <property name="maximumSize">
@@ -2855,8 +2839,40 @@ border:1px solid;</string>
                     </property>
                    </widget>
                   </item>
+                  <item row="4" column="0">
+                   <widget class="QLabel" name="timeDelay_debugLabel">
+                    <property name="font">
+                     <font>
+                      <family>Arial</family>
+                      <pointsize>10</pointsize>
+                     </font>
+                    </property>
+                    <property name="text">
+                     <string>Time Delay</string>
+                    </property>
+                   </widget>
+                  </item>
                   <item row="2" column="1" alignment="Qt::AlignRight">
                    <widget class="QLineEdit" name="gainEntry_Debug">
+                    <property name="maximumSize">
+                     <size>
+                      <width>70</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <weight>75</weight>
+                      <bold>true</bold>
+                     </font>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="1" alignment="Qt::AlignRight">
+                   <widget class="QLineEdit" name="exposureEntry_Debug">
                     <property name="maximumSize">
                      <size>
                       <width>70</width>
@@ -2893,6 +2909,19 @@ border:1px solid;</string>
                     </property>
                    </widget>
                   </item>
+                  <item row="3" column="0">
+                   <widget class="QLabel" name="frameRate_debugLabel">
+                    <property name="font">
+                     <font>
+                      <family>Arial</family>
+                      <pointsize>10</pointsize>
+                     </font>
+                    </property>
+                    <property name="text">
+                     <string>Frame Rate</string>
+                    </property>
+                   </widget>
+                  </item>
                   <item row="1" column="0">
                    <widget class="QLabel" name="exposureTime_debugLabel">
                     <property name="font">
@@ -2906,16 +2935,16 @@ border:1px solid;</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="3" column="0">
-                   <widget class="QLabel" name="frameRate_debugLabel">
-                    <property name="font">
-                     <font>
-                      <family>Arial</family>
-                      <pointsize>10</pointsize>
-                     </font>
+                  <item row="5" column="0">
+                   <widget class="QPushButton" name="getParameter_Button">
+                    <property name="maximumSize">
+                     <size>
+                      <width>16777215</width>
+                      <height>30</height>
+                     </size>
                     </property>
                     <property name="text">
-                     <string>Frame Rate</string>
+                     <string>Get Parameter</string>
                     </property>
                    </widget>
                   </item>
@@ -2954,19 +2983,6 @@ border:1px solid;</string>
                     </property>
                     <property name="text">
                      <string>Camera Settings</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="5" column="0">
-                   <widget class="QPushButton" name="getParameter_Button">
-                    <property name="maximumSize">
-                     <size>
-                      <width>16777215</width>
-                      <height>30</height>
-                     </size>
-                    </property>
-                    <property name="text">
-                     <string>Get Parameter</string>
                     </property>
                    </widget>
                   </item>

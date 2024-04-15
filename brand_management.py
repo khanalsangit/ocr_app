@@ -299,7 +299,7 @@ class createWindow(QtWidgets.QMainWindow):
             print(f"An error occurred: {e}")
         self.close()
         
-# def brand_title():
+# def brand_title(): 
 #     dir_list = os.listdir(BRAND_DIR)
     # ...
     

@@ -7,8 +7,12 @@ new_latest_gui_debug.ui
 /current_img
 /Pickle
 ./system_pickles
-./LOGO
-*.pkl 
+CamOperation_class_rl.py.bak
+/Qss
 
-#ignore directory
-__pycache__
+# extensions to ignore
+*.pkl 
+*.jpg
+*.png
+
+test*.py 

@@ -51,7 +51,7 @@ class LiveOperationFunction(Ui_MainWindow):
         self.exposureTime_Entry = parent.exposureTime_Entry 
         self.triggerDelay_Entry = parent.triggerDelay_Entry 
         self.cameraGain_Entry = parent.cameraGain_Entry
-        self.roiEntry = parent.roiEntry
+        self.roiEntry1 = parent.roiEntry1 
         # TODO: set x1, x2, y1, y2 position of the ROI
         self.cameraSetting_update_Button = parent.cameraSetting_update_Button
         

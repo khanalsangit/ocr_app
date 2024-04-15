@@ -61,7 +61,7 @@ class Controller():
             lambda : self.live.open_image(image = self.camera.numArray)
         )
         self.gui.saveData_Button.pressed.connect(self.live.save_data)
-        self.gui.click_Button.pressed.connect(self.live.choose_directory_path)
+        self.gui.chooseDirectory_Button.pressed.connect(self.live.choose_directory_path)
         self.gui.systemSetting_update_Button.pressed.connect(self.gui.get_live_gui_values)
         self.gui.rejectSetting_updateButton.pressed.connect(self.gui.get_live_gui_values)
         self.gui.cameraSetting_update_Button.pressed.connect(self.gui.get_live_gui_values)

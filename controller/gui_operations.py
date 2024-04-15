@@ -15,6 +15,7 @@ from .debug_operations import DebugOperationFunction
 class PyQTWidgetFunction(Ui_MainWindow):
     def __init__(self, main_window) -> None:
         super().__init__()
+        self.main_window = main_window
         self.setupUi(main_window)
         
         self.save_image_path = None 

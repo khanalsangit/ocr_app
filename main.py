@@ -109,8 +109,5 @@ if __name__=="__main__":
 
     ui.closeEvent = camera.close_device
     ui.show()
+
     sys.exit(app.exec_())
-
-
-
-

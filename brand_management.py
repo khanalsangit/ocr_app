@@ -85,7 +85,7 @@ class BrandFrame(QtWidgets.QFrame):
         self.editButton.clicked.connect(self.rename_brand)
         self.loginButton.clicked.connect(self.login_brand)
             
-    def delete_brand(self):
+    def delete_brand(self, path_to_brand = None):
         pwd = Path(BRAND_DIR / self.brand_title)
         shutil.rmtree(pwd)
         window.gridLayout.removeWidget(self)
@@ -177,8 +177,13 @@ class editBrand(QtWidgets.QMainWindow):
         print(self.brand)
 
 class MainWindow(QtWidgets.QMainWindow):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, parent: QtWidgets.QMainWindow = None, brand_dir : Path = None):
+        
+        if parent == None:
+            super().__init__()
+        else: 
+            super().__init__(parent)
+
         self.setWindowTitle("Import Brand")
         self.mainWidget = QtWidgets.QWidget(self)
         self.mainWidget.setStyleSheet("#brand{\n"
@@ -190,11 +195,13 @@ class MainWindow(QtWidgets.QMainWindow):
         self.scrollWidget.setWidget(self.mainWidget)
         self.setCentralWidget(self.scrollWidget)
         self.setGeometry(200,100,900,700)
+        self.brand_dir = brand_dir 
         self.placeBrand()
-    
+
     def placeBrand(self):
         # self.gridLayout = self.widget.findChild(QtWidgets.QGridLayout)
-        dir_list = os.listdir(BRAND_DIR)
+        dir_list = os.listdir(BRAND_DIR) if type(self.brand_dir) == type(None) else self.brand_dir
+
         rows = int((len(dir_list) / 3) + 1) if len(dir_list) % 3 else int((len(dir_list) / 3)) 
         for row in range(rows):
             for column in range(3):
@@ -216,8 +223,11 @@ class MainWindow(QtWidgets.QMainWindow):
         
 class createWindow(QtWidgets.QMainWindow):
     brandNameEntered = QtCore.pyqtSignal(str)
-    def __init__(self):
-        super().__init__()
+    def __init__(self,parent = None):
+        if parent == None:
+            super(createWindow, self).__init__(parent)
+        else:
+            super().__init__()
         self.widget = QtWidgets.QWidget(self)
         self.setWindowTitle('Create Brand')
         self.setGeometry(200,100,200,150)
@@ -264,9 +274,15 @@ class createWindow(QtWidgets.QMainWindow):
     #     value = self.lineEdit.text()
     #     return value
     
-    def create_brand(self):
+    def create_brand(self, path_to_brand = None):
         brand_name = self.lineEdit.text()
-        brand_pwd = Path(BRAND_DIR / brand_name)
+        if type(path_to_brand) == type(None):
+            brand_pwd = Path(BRAND_DIR / brand_name)
+        else: 
+            if not os.path.exists(path_to_brand):
+                print('error path to brand given: ', path_to_brand)
+                return 
+            brand_pwd = Path(path_to_brand / brand_name)
         print(brand_pwd)
         brand_config = Path(brand_pwd / 'config.yaml')
 

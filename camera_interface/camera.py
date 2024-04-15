@@ -349,6 +349,9 @@ class MachineVisionCamera:
         """
         self.obj_cam_operation.image_captured_callback = self.callback
         ...
+    
+    def get_current_image(self):
+        return self.obj_cam_operation.current_image
 
 
 

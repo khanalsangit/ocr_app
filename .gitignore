@@ -8,7 +8,7 @@ new_latest_gui_debug.ui
 /Pickle
 ./system_pickles
 CamOperation_class_rl.py.bak
-
+/Qss
 
 # extensions to ignore
 *.pkl 

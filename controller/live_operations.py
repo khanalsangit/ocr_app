@@ -51,7 +51,7 @@ class LiveOperationFunction(Ui_MainWindow):
         self.exposureTime_Entry = parent.exposureTime_Entry 
         self.triggerDelay_Entry = parent.triggerDelay_Entry 
         self.cameraGain_Entry = parent.cameraGain_Entry
-        self.roiEntry = parent.roiEntry
+        self.roiEntry1 = parent.roiEntry1 
         # TODO: set x1, x2, y1, y2 position of the ROI
         self.cameraSetting_update_Button = parent.cameraSetting_update_Button
         
@@ -131,14 +131,15 @@ class LiveOperationFunction(Ui_MainWindow):
         "\n"
         "}")
 
-    def open_image(self)-> None:
+    def open_image(self, image = None)-> None:
         '''
         Method that opens the image to select the ROI to be used and display in the GUI
         '''
         file_path="current_img/1.jpg"
         started = 0
         if file_path:
-            image = cv2.imread(file_path)
+            if type(image) == type(None):
+                image = cv2.imread(file_path)
             r_image=cv2.resize(image,(int(0.75*image.shape[1]),int(0.75*image.shape[0])))
             ###### mouse click event########
             drawing = True
@@ -185,6 +186,7 @@ class LiveOperationFunction(Ui_MainWindow):
             self.roiEntry.clear()  # clear any existing text in the entry box
             self.roiEntry.insert(roi)
             cv2.destroyAllWindows()
+            
 
     def choose_directory_path(self):
         '''

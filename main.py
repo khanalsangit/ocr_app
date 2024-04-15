@@ -1,11 +1,11 @@
 import os
-from PyQt5.QtWidgets import QMainWindow
 import cv2
 import pickle
 import glob
 import sys
 import shutil
 
+from PyQt5.QtWidgets import QMainWindow
 from PyQt5 import QtWidgets, QtCore, QtGui
 from gui.pyUIdesign import Ui_MainWindow
 from Custom_Widgets import *
@@ -80,7 +80,6 @@ class MainWin(QMainWindow):
 
 import cv2 
 def test_callback(numArray):
-    global num
     # cv2.imshow('test', cv2.resize(numArray, (500,500)))
     # cv2.waitKey(100)
     numArray = cv2.putText(numArray, 'OpenCV', (50, 50), fontFace=cv2.FONT_HERSHEY_SIMPLEX ,  
@@ -111,8 +110,5 @@ if __name__=="__main__":
 
     ui.closeEvent = camera.close_device
     ui.show()
+
     sys.exit(app.exec_())
-
-
-
-

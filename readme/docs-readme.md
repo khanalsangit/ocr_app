@@ -49,13 +49,19 @@ The documentation of the whole project is done by using the `sphinx` library in 
 def method(*args, **kwargs):
     """[Summary]
 
-    :param [ParamName]: [ParamDescription], defaults to [DefaultParamVal]
-    :type [ParamName]: [ParamType](, optional)
-    ...
-    :raises [ErrorType]: [ErrorDescription]
-    ...
-    :return: [ReturnDescription]
-    :rtype: [ReturnType]
+
+    Parameters
+    ----------------------
+    args: args_type:
+        [args explanation]
+
+    kwargs: kwargs_type:
+        [kwargs explanation]
+
+    Returns
+    ----------------------
+    [return_var]: [type]:
+        [explanation]
     """
     # code statements
     ... 

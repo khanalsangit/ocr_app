@@ -132,6 +132,8 @@ class CameraOperation:
         self.gain = gain
         self.buf_lock = threading.Lock()  # 取图和存图的buffer锁
 
+        self.current_image = None 
+
     # 打开相机
     def Open_device(self):
         if not self.b_open_device:
@@ -378,6 +380,7 @@ class CameraOperation:
                 img_buff = (c_ubyte * stConvertParam.nDstLen)()
                 cdll.msvcrt.memcpy(byref(img_buff), stConvertParam.pDstBuffer, stConvertParam.nDstLen)
                 numArray = Color_numpy(img_buff,self.st_frame_info.nWidth,self.st_frame_info.nHeight)
+                self.current_image = numArray.copy()
 
                 try: 
                     numArray = self.image_captured_callback(numArray)

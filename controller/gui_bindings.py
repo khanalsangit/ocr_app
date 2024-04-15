@@ -56,10 +56,12 @@ class Controller():
             ]
         )
         self.gui.stackWidget_cameraSetting.setCurrentWidget(self.gui.cameraSetting_Page) ######### default camera setting mode
-        self.gui.cameraSetting_Button.pressed.connect(self.gui.camera_setting)
-        self.gui.openImage_Button.pressed.connect(self.gui.open_image)
-        self.gui.saveData_Button.pressed.connect(self.gui.save_data)
-        self.gui.chooseDirectory_Button.pressed.connect(self.gui.choose_directory_path)
+        self.gui.cameraSetting_Button.pressed.connect(self.live.camera_setting)
+        self.gui.openImage_Button.pressed.connect(
+            lambda : self.live.open_image()
+        )
+        self.gui.saveData_Button.pressed.connect(self.live.save_data)
+        self.gui.chooseDirectory_Button.pressed.connect(self.live.choose_directory_path)
         self.gui.systemSetting_update_Button.pressed.connect(self.gui.get_live_gui_values)
         self.gui.rejectSetting_updateButton.pressed.connect(self.gui.get_live_gui_values)
         self.gui.cameraSetting_update_Button.pressed.connect(self.gui.get_live_gui_values)
@@ -71,6 +73,8 @@ class Controller():
         self.gui.detectionButton.clicked.connect(self.debug.detection)
         self.gui.recognitionButton.clicked.connect(self.debug.recognition)
         self.gui.analysisButton.clicked.connect(self.debug.analysis)
+
+
 
 
         # self.gui.live.resetCounter_Button.clicked.connect(

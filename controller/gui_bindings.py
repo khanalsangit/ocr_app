@@ -57,7 +57,9 @@ class Controller():
         )
         self.gui.stackWidget_cameraSetting.setCurrentWidget(self.gui.cameraSetting_Page) ######### default camera setting mode
         self.gui.cameraSetting_Button.pressed.connect(self.live.camera_setting)
-        self.gui.openImage_Button.pressed.connect(self.live.open_image)
+        self.gui.openImage_Button.pressed.connect(
+            lambda : self.live.open_image(image = self.camera.numArray)
+        )
         self.gui.saveData_Button.pressed.connect(self.live.save_data)
         self.gui.click_Button.pressed.connect(self.live.choose_directory_path)
         self.gui.systemSetting_update_Button.pressed.connect(self.gui.get_live_gui_values)

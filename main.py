@@ -9,19 +9,19 @@ import shutil
 from PyQt5 import QtWidgets, QtCore, QtGui
 from gui.pyUIdesign import Ui_MainWindow
 from Custom_Widgets import *
+from Custom_Widgets import *
 
 from camera_interface.camera import MachineVisionCamera
 from controller.gui_operations import PyQTWidgetFunction
+from controller.live_operations import LiveOperationFunction
+from controller.debug_operations import DebugOperationFunction
 from controller.gui_bindings import Controller
 
 class MainWin(QMainWindow):
     def __init__(self):
         super().__init__()
-        # self.ui = Ui_MainWindow()
-        # self.ui.setupUi(self)
-        # self.widget_func = PyQTWidgetFunction(self.ui)
         self.ui = PyQTWidgetFunction(self)
-        
+         
         ############### Loading existing pickle values for all the parameters of GUI ###############################
         pkl_file = glob.glob('Pickle/*')  
         if len(pkl_file)==0:
@@ -32,7 +32,7 @@ class MainWin(QMainWindow):
                 with open(p,"rb") as file:
                     brand_values = pickle.load(file)
 
-        
+        print("Brand",brand_values)
         ###### Setting the initial values in GUI Parameters
         if brand_values['ocr_method_enable'] == True:  ######## Set the ocr method radiobutton 
             self.ui.detection_recognition.setChecked(True)
@@ -103,7 +103,9 @@ if __name__=="__main__":
 
     camera = MachineVisionCamera()
     gui_operations = PyQTWidgetFunction(ui)
-    controller = Controller(camera, gui_operations)
+    live_mode = LiveOperationFunction(gui_operations)
+    debug_mode = DebugOperationFunction(gui_operations)
+    controller = Controller(camera, live_mode, debug_mode, gui_operations)
     camera.callback = test_callback
     loadJsonStyle(ui, gui_operations)
 

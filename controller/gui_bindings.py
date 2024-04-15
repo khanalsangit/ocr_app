@@ -1,7 +1,9 @@
 from gui.pyUIdesign import Ui_MainWindow
-#from gui.PyUICBasicDemo import Ui_MainWindow 
+from gui.PyUICBasicDemo import Ui_MainWindow 
 from camera_interface.camera import MachineVisionCamera
 from .gui_operations import PyQTWidgetFunction
+from .live_operations import LiveOperationFunction
+from .debug_operations import DebugOperationFunction
 
 class Controller():
     """
@@ -14,7 +16,7 @@ class Controller():
     gui: PyQTWidgetFunction
         instace of the current main window
     """
-    def __init__(self, camera: MachineVisionCamera, gui: PyQTWidgetFunction) -> None:
+    def __init__(self, camera: MachineVisionCamera, live:LiveOperationFunction, debug:DebugOperationFunction, gui: PyQTWidgetFunction) -> None:
         """
         Initialize the controller, 
             - It connects the camera to ui components 
@@ -22,7 +24,8 @@ class Controller():
         """
         self.camera = camera
         self.gui = gui
-
+        self.live = live
+        self.debug = debug
         self.connect_camera_and_ui()
         self.connect_methods_and_ui()
 
@@ -62,12 +65,12 @@ class Controller():
         self.gui.cameraSetting_update_Button.pressed.connect(self.gui.get_live_gui_values)
     
         ####################### Debug Mode function called ######################
-        self.gui.createProjectButton.clicked.connect(self.gui.create_project)
-        self.gui.cameraButton.clicked.connect(self.gui.camera_debug)
-        self.gui.preprocessingButton.clicked.connect(self.gui.preprocessing_step)
-        self.gui.detectionButton.clicked.connect(self.gui.detection)
-        self.gui.recognitionButton.clicked.connect(self.gui.recognition)
-        self.gui.analysisButton.clicked.connect(self.gui.analysis)
+        self.gui.createProjectButton.clicked.connect(self.debug.create_project)
+        self.gui.cameraButton.clicked.connect(self.debug.camera_debug)
+        self.gui.preprocessingButton.clicked.connect(self.debug.preprocessing_step)
+        self.gui.detectionButton.clicked.connect(self.debug.detection)
+        self.gui.recognitionButton.clicked.connect(self.debug.recognition)
+        self.gui.analysisButton.clicked.connect(self.debug.analysis)
 
 
         # self.gui.live.resetCounter_Button.clicked.connect(

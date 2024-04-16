@@ -181,10 +181,10 @@ class editBrand(QtWidgets.QMainWindow):
 class MainWindow(QtWidgets.QMainWindow):
     def __init__(self, parent: QtWidgets.QMainWindow = None, brand_dir : Path = None):
         
-        if parent == None:
-            super().__init__()
-        else: 
-            super().__init__(parent)
+        super().__init__()
+        # if parent == None:
+        # else: 
+        super().__init__(parent)
 
         self.setWindowTitle("Import Brand")
         self.mainWidget = QtWidgets.QWidget(self)
@@ -203,7 +203,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def placeBrand(self):
         # self.gridLayout = self.widget.findChild(QtWidgets.QGridLayout)
-        dir_list = os.listdir(BRAND_DIR) if type(self.brand_dir) == type(None) else self.brand_dir
+        dir_list = os.listdir(BRAND_DIR) if type(self.brand_dir) == type(None) else os.listdir(self.brand_dir)
 
         rows = int((len(dir_list) / 3) + 1) if len(dir_list) % 3 else int((len(dir_list) / 3)) 
         for row in range(rows):

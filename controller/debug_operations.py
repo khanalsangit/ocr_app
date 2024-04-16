@@ -13,7 +13,7 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from .gui_operations import PyQTWidgetFunction
 
-import brand_management as bm
+from gui import brand_management as bm 
 
 class DebugOperationFunction(Ui_MainWindow):
     def __init__(self, parent: PyQTWidgetFunction):
@@ -135,3 +135,4 @@ class DebugOperationFunction(Ui_MainWindow):
     def import_brand(self):
         bm.MainWindow(self.parent.main_window, brand_dir = './Brands/').show()
         ...
+

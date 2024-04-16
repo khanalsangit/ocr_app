@@ -51,8 +51,16 @@ class DebugOperationFunction(Ui_MainWindow):
         self.createButton = parent.createButton
         self.importButton = parent.importButton
 
+        # camera button
+        self.getParameter_Button = parent.getParameter_Button 
+        self.setParameter_Button = parent.setParameter_Button 
+        self.totalImage_Count = parent.totalImage_Count 
+        self.deleteImage_Button = parent.deleteImage_Button
+        self.captureButton = parent.captureButton 
+
+        # bindings of the buttons 
         self.create_project_button_bindings()
-    
+        self.camera_image_button_bindings()
 
     def create_project(self):
         self.editProject.setCurrentWidget(self.createProject_Page)
@@ -83,6 +91,10 @@ class DebugOperationFunction(Ui_MainWindow):
         self.recognitionButton.setStyleSheet("")
         self.analysisButton.setStyleSheet("")
     
+    def camera_image_button_bindings(self):
+        self.getParameter_Button.clicked.connect(self.get_parameter_from_camera)
+        ...
+
     def preprocessing_step(self):
         self.editProject.setCurrentWidget(self.dataProcessing_Page)
         self.preprocessingButton.setStyleSheet("QPushButton{\n"
@@ -155,3 +167,8 @@ class DebugOperationFunction(Ui_MainWindow):
         print('logic to update the project in the gui')
         ...
 
+
+
+    def get_parameter_from_camera(self):
+        
+        ...

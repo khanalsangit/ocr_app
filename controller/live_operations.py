@@ -24,56 +24,128 @@ class LiveOperationFunction(Ui_MainWindow):
         parent: PyQTWidgetFunction
             pass the object `PyQTWidgetFunction` that inherits the class `Ui_MainWindow` generated from `ui`
         '''
-
-       
-        # system setting 
-        self.detectionOnly = parent.detectionOnly 
+        ########### system parameters variables
         self.detection_recognition = parent.detection_recognition
+        self.detectionOnly = parent.detectionOnly
         self.no_ofLine_comboBox = parent.no_ofLine_comboBox
         self.line1Box = parent.line1Box
-        self.line2Box = parent.line2Box 
-        self.line3Box = parent.line3Box 
+        self.line2Box = parent.line2Box
+        self.line3Box = parent.line3Box
         self.line4Box = parent.line4Box
         self.systemSetting_update_Button = parent.systemSetting_update_Button
-        
-        # Rejection Setting 
+
+        ########### rejection parameters variables
         self.minPercent_Entry = parent.minPercent_Entry
-        self.linearThresh_Entry = parent.linearThresh_Entry 
+        self.lineThresh_Entry = parent.linearThresh_Entry
         self.rejectCount_Entry = parent.rejectCount_Entry
-        self.rejectEnable_Yes = parent.rejectEnable_Yes 
+        self.rejectEnable_Yes = parent.rejectEnable_Yes
         self.rejectEnable_No = parent.rejectEnable_No
         self.rejectSetting_updateButton = parent.rejectSetting_updateButton 
 
-        # camera setting page
+         ########### camera parameters variables
         self.stackWidget_cameraSetting = parent.stackWidget_cameraSetting
         self.cameraSetting_Page = parent.cameraSetting_Page
         self.cameraSetting_Button = parent.cameraSetting_Button
-        self.exposureTime_Entry = parent.exposureTime_Entry 
-        self.triggerDelay_Entry = parent.triggerDelay_Entry 
-        self.cameraGain_Entry = parent.cameraGain_Entry
-        self.roiEntry1 = parent.roiEntry1 
-        # TODO: set x1, x2, y1, y2 position of the ROI
         self.cameraSetting_update_Button = parent.cameraSetting_update_Button
-        
-        # save data
-        # TODO: button for the directory
+        self.cameraGain_Entry = parent.cameraGain_Entry
+        self.exposureTime_Entry = parent.exposureTime_Entry
+        self.triggerDelay_Entry = parent.triggerDelay_Entry
+        self.roiEntry1 = parent.roiEntry1
+        self.roiEntry2 = parent.roiEntry2
+        self.roiEntry3 = parent.roiEntry3
+        self.roiEntry4 = parent.roiEntry4
+
+         ########### save data parameters variables
+        self.saveImage_Checkbox = parent.saveImage_Checkbox
+        self.saveResult_Checkbox = parent.saveResult_Checkbox
+        self.saveNG_Checkbox = parent.saveNG_Checkbox
+        self.directoryName_Entry = parent.directoryName_Entry
         self.saveData_Page = parent.saveData_Page
         self.saveData_Button = parent.saveData_Button
         self.directoryName_Entry = parent.directoryName_Entry
 
-        # detection result 
+
+        ############ last ng image 
+        self.lastNG_Image = parent.lastNG_Image 
+
+        ##### detection result 
         self.detectionResult = parent.detectionResult 
         self.detectionTime = parent.detectionTime 
 
-        # good, not good, last not good counts 
+        ####### good, not good, last not good counts 
         self.goodCount = parent.goodCount
         self.notGoodCount = parent.notGoodCount
         self.lastNG_Count = parent.lastNG_Count 
         self.lastNG_timeCount = parent.lastNG_timeCount 
         self.resetCounter_Button = parent.resetCounter_Button
 
-        # last ng image 
-        self.lastNG_Image = parent.lastNG_Image 
+    ###### Loading system widgets parameter
+    def system_param_load(self):
+        with open(os.path.join(os.getcwd(),'Parameter_Value/system.pkl'),'rb') as f:
+            system_param = pickle.load(f)   
+        if system_param['ocr_method'] == True:  ######## Set the ocr method radiobutton 
+            self.detection_recognition.setChecked(True)
+        else:
+            self.detectionOnly.setChecked(True)
+        
+        self.no_ofLine_comboBox.setCurrentText(str(system_param['nooflines']))
+        self.line1Box.setText(system_param['line1'])
+        self.line2Box.setText(system_param['line2'])
+        self.line3Box.setText(system_param['line3'])
+        self.line4Box.setText(system_param['line4'])
+
+    ########## Loading rejection widgets parameters
+    def reject_param_load(self):
+        with open(os.path.join(os.getcwd(),'Parameter_Value/rejection.pkl'),'rb') as f:
+            reject_param = pickle.load(f)
+        self.minPercent_Entry.setText(str(reject_param['min_per_thresh']))
+        self.lineThresh_Entry.setText(str(reject_param['line_per_thresh']))
+        self.rejectCount_Entry.setText(str(reject_param['reject_count']))
+        if reject_param['reject_enable'] == True:
+            self.rejectEnable_Yes.setChecked(True)
+        else:
+            self.rejectEnable_No.setChecked(True)
+
+    ###### Loading camera widgets parameters
+    def camera_param_load(self):
+        with open(os.path.join(os.getcwd(),'Parameter_Value/camera.pkl'),'rb') as f:
+            camera_param = pickle.load(f)
+            first_point,second_point = camera_param['ROI'].split(',')
+            first,second = first_point.split(':')
+            third,forth = second_point.split(':')
+        self.cameraGain_Entry.setText(str(camera_param['camera_gain']))
+        self.exposureTime_Entry.setText(str(camera_param['exposure_time']))
+        self.triggerDelay_Entry.setText(str(camera_param['trigger_delay']))
+        self.roiEntry1.setText(str(first))
+        self.roiEntry2.setText(str(second))
+        self.roiEntry3.setText(str(third))
+        self.roiEntry4.setText(str(forth))
+
+    ###### Loading save param widgets parameter
+    def save_param_load(self):
+        with open(os.path.join(os.getcwd(),'Parameter_Value/save_data.pkl'),'rb') as f:
+            save_data_param = pickle.load(f)
+           
+        ################ For Save Image ##################
+        if save_data_param['save_img'] == True:
+            self.saveImage_Checkbox.setChecked(True)
+        else:
+            self.saveImage_Checkbox.setChecked(False)
+
+        ################ For Save Result #################
+        if save_data_param['save_result'] == True:
+            self.saveResult_Checkbox.setChecked(True)
+        else:
+            self.saveResult_Checkbox.setChecked(False)
+        
+        ################# For Save NG Image #############
+        if save_data_param['save_ng'] == True:
+            self.saveNG_Checkbox.setChecked(True)
+        else:
+            self.saveNG_Checkbox.setChecked(False)
+
+        self.directoryName_Entry.setText(save_data_param['img_dir'])
+        
 
     def camera_setting(self):
         '''

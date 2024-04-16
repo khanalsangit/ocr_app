@@ -193,6 +193,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.gridLayout = QtWidgets.QGridLayout(self.mainWidget)
         self.scrollWidget = QtWidgets.QScrollArea(self)
         self.scrollWidget.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
+        self.scrollWidget.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.scrollWidget.setWidgetResizable(True)
         self.scrollWidget.setWidget(self.mainWidget)
         self.setCentralWidget(self.scrollWidget)

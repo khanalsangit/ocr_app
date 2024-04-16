@@ -1,4 +1,4 @@
-[submodule "Object-Annotator"]
+[submodule "Object_Annotator"]
 	path = Object_Annotator
 	url = https://github.com/crimsontech-io/Object-Annotator.git
 	branch = usn_merge

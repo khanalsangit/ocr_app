@@ -1,5 +1,3 @@
-from gui.pyUIdesign import Ui_MainWindow
-from gui.PyUICBasicDemo import Ui_MainWindow 
 from camera_interface.camera import MachineVisionCamera
 from .gui_operations import PyQTWidgetFunction
 from .live_operations import LiveOperationFunction

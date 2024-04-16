@@ -7,6 +7,8 @@ from typing import Callable
 import yaml
 import shutil
 
+import traceback
+
 class BrandFrame(QtWidgets.QFrame):
     def __init__(self, parent, brand_title):
         super(BrandFrame, self).__init__(parent)
@@ -283,48 +285,54 @@ class createWindow(QtWidgets.QMainWindow):
                 print('error path to brand given: ', path_to_brand)
                 return 
             brand_pwd = Path(path_to_brand / brand_name)
-        print(brand_pwd)
         brand_config = Path(brand_pwd / 'config.yaml')
-
         try:
             brand_pwd.mkdir(parents=True , exist_ok=True)
             print(f'Directory creadted at {brand_pwd}')
             data = {
-                'BRAND':{
-                    'brand_name': brand_name,
-                    'brand_path': str(BRAND_DIR),
-                    'brand_det_model':str,
-                    'brand_seg_model':str,
-                    'brand_pickle':str
-                },
-                'parameters_dir':str,
-                'captured_image':str,
-                'detected_image': str,
-                'det_labeled_image':str,
-                'reg_labeled_image':str,
-                'det_augmented_image':str,
-                'seg_augmented_image':str,
-                'NG_image':str
+                'brand_name': brand_name,
+                
+                'main_path': './Brands',
+                'brand_path': os.path.join('./Brands', brand_name, ''),
+                
+                'images_path': os.path.join('./Brands', brand_name, 'images', ''), # saves the captured image in this folder -- the image to train on 
+
+                'detection_path': os.path.join('./Brands', brand_name, 'detection', ''),
+                'detection_model_path': os.path.join('./Brands', brand_name, 'detection', 'model', ''),
+                'detection_result_path': os.path.join('./Brands', brand_name, 'detection', 'result', ''),
+                'detection_dataset_path': os.path.join('./Brands', brand_name, 'detection', 'dataset', ''),
+
+                'recognition_path': os.path.join('./Brands', brand_name, 'recognition', ''),
+                'recognition_model_path': os.path.join('./Brands', brand_name, 'recognition', 'model', ''),
+                'recognition_result_path': os.path.join('./Brands', brand_name, 'recognition', 'result', ''),
+                'recognition_dataset_path': os.path.join('./Brands', brand_name, 'recognition', 'dataset', ''),
+
+                'pickle_path': os.path.join('./Brands', brand_name, 'pickle_values'),
+
+                'good_image_path': os.path.join('./Brands', brand_name, 'good_images'),
+                'not_good_image_path': os.path.join('./Brands', brand_name, 'not_good_images'),
             }
             with open(brand_config , 'w') as yaml_file:
                 yaml.dump(data, yaml_file)
+
+            for key, value in data.items():
+                if '_path' in key:
+                    os.makedirs(Path(brand_pwd.parent.parent / value), exist_ok=True)
                 
         except FileExistsError:
             print(f"Directory at {brand_pwd} already exists")
+            print(traceback.format_exc())
         except Exception as e:
             print(f"An error occurred: {e}")
+            print(traceback.format_exc())
         self.close()
-        
-# def brand_title(): 
-#     dir_list = os.listdir(BRAND_DIR)
-    # ...
     
 if __name__ == '__main__':
     FILE = Path(__file__).parent
     BRAND_DIR = Path(FILE / 'Brands')
     app = QtWidgets.QApplication(sys.argv)
-    window = MainWindow()
-    # window = createWindow()
+    # window = MainWindow()
+    window = createWindow()
     # window = editBrand()
 
     # window.gridLayout = QtWidgets.QGridLayout(window.widget)

@@ -8,10 +8,12 @@ import shutil
 from gui.pyUIdesign import Ui_MainWindow
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtWidgets import *
-
+from Parameter_Value import *
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from .gui_operations import PyQTWidgetFunction
+
+import brand_management as bm
 
 class DebugOperationFunction(Ui_MainWindow):
     def __init__(self, parent: PyQTWidgetFunction):
@@ -25,6 +27,7 @@ class DebugOperationFunction(Ui_MainWindow):
         '''
 
         ###### debug buttons variables ######
+        self.parent = parent
         self.editProject = parent.editProject
         self.createProject_Page = parent.createProject_Page
         self.createProjectButton = parent.createProjectButton
@@ -41,6 +44,30 @@ class DebugOperationFunction(Ui_MainWindow):
         self.recognition_Page = parent.recognition_Page
         self.analysis_Page = parent.analysis_Page
 
+
+        # project create and import 
+        self.createButton = parent.createButton
+        self.importButton = parent.importButton
+        self.create_project_button_bindings()
+
+
+     
+        
+        
+        def load_augment_param():
+            ##### Loading pickle values and assign them with debug widgets
+            with open(os.path.join(os.getcwd(),'Parameter_Value/augment.pkl'),'rb') as f:
+                augmentation = pickle.load(f)
+            parent.nTimesEntry.setText(str(augmentation['ntimes']))
+            parent.rotateEntry.setText(str(augmentation['rotate']))
+            parent.blurEntry.setText(str(augmentation['blur']))
+            parent.contrastEntry.setText(str(augmentation['contrast']))
+            parent.recursionRateEntry.setText(str(augmentation['recursion_rate']))
+            parent.flipEntry.setText(str(augmentation['flip']))
+            parent.rigidEntry.setText(str(augmentation['rigid']))
+            parent.elasticEntry.setText(str(augmentation['elastic']))
+    
+        load_augment_param()  
     def create_project(self):
         self.editProject.setCurrentWidget(self.createProject_Page)
         self.createProjectButton.setStyleSheet("QPushButton{\n"
@@ -52,7 +79,12 @@ class DebugOperationFunction(Ui_MainWindow):
         self.detectionButton.setStyleSheet("")
         self.recognitionButton.setStyleSheet("")
         self.analysisButton.setStyleSheet("")
-    
+        
+
+    def create_project_button_bindings(self):
+        self.createButton.clicked.connect(self.create_brand)
+        self.importButton.clicked.connect(self.import_brand)
+
     def camera_debug(self):
         self.editProject.setCurrentWidget(self.camera_Page)
         self.cameraButton.setStyleSheet("QPushButton{\n"
@@ -113,4 +145,9 @@ class DebugOperationFunction(Ui_MainWindow):
         self.cameraButton.setStyleSheet("")
         self.preprocessingButton.setStyleSheet("")
         
-        
+    def create_brand(self):
+        bm.createWindow(self.parent.main_window).show()
+    
+    def import_brand(self):
+        bm.MainWindow(self.parent.main_window, brand_dir = './Brands/').show()
+        ...

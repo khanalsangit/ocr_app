@@ -74,7 +74,7 @@ class Controller():
         self.gui.recognitionButton.clicked.connect(self.debug.recognition)
         self.gui.analysisButton.clicked.connect(self.debug.analysis)
 
-
+     
 
 
         # self.gui.live.resetCounter_Button.clicked.connect(

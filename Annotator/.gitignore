@@ -1,0 +1,16 @@
+/__pycache__
+./*.txt
+./**/*.txt
+./*.jpg
+
+*.jpg
+*.txt
+*.JPG 
+*.bmp
+*.png
+
+/data_for_yolo_annotator
+/aug_result_suraj
+/yolo_dir_suraj
+/Examples
+/log

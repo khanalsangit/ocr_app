@@ -19,6 +19,7 @@ class BrandFrame(QtWidgets.QFrame):
         self.setMinimumSize(QtCore.QSize(0, 150))
         self.horizontalLayout = QtWidgets.QHBoxLayout(self)
         self.brand_title = brand_title
+        self.index = None 
         
     def addBrand(self):
         self.frame1 = QtWidgets.QFrame(self)
@@ -185,6 +186,9 @@ class MainWindow(QtWidgets.QMainWindow):
             super().__init__()
         else: 
             super().__init__(parent)
+        
+        self.brands = [] 
+        self.brand_dir =  Path(brand_dir) if(type(brand_dir) !=  type(None)) else None 
 
         self.setWindowTitle("Import Brand")
         self.mainWidget = QtWidgets.QWidget(self)
@@ -198,8 +202,8 @@ class MainWindow(QtWidgets.QMainWindow):
         self.scrollWidget.setWidget(self.mainWidget)
         self.setCentralWidget(self.scrollWidget)
         self.setGeometry(200,100,900,700)
-        self.brand_dir = brand_dir 
         self.placeBrand()
+
 
     def placeBrand(self):
         # self.gridLayout = self.widget.findChild(QtWidgets.QGridLayout)
@@ -209,28 +213,68 @@ class MainWindow(QtWidgets.QMainWindow):
         for row in range(rows):
             for column in range(3):
                 list_index = row * 3 + column
+                num = 0
                 if list_index < len(dir_list):
                     brand_title = dir_list[list_index]
                     brand = BrandFrame(self.mainWidget, brand_title)
+                    # self.brands.append(BrandFrame(self.mainWidget, brand_title))
                     brand.setMaximumSize(QtCore.QSize(250, 150))
                     brand.setObjectName("brand")
                     brand.addBrand()
-                    self.gridLayout.addWidget(brand, row, column)
+                    brand.index = list_index
+                    brand.importButton.clicked.connect( self.current_index_list(brand.brand_title, dir_list, brand.index))
+                    num += 1
+                    self.brands.append(brand)
                     
+                    self.gridLayout.addWidget(self.brands[-1], row, column)
+
+    def current_index_list(self, project_name, dir_list, index):
+        def create_main_config():
+            print(f'importing {project_name} from dir {dir_list[index]}, index {index} ')
+            project_data = None 
+            try:
+                with open(Path(self.brand_dir / project_name / 'config.yaml')) as data_stream:
+                    project_data = yaml.safe_load(data_stream)
+            except Exception as e :
+                print('error ', e )
+                print(traceback.format_exc())
+            try : 
+                with open(Path(self.brand_dir.parent / 'main_config.yaml'), 'w') as yaml_file:
+                    yaml.dump(project_data, yaml_file)
+            except Exception as e :
+                print('error writing to main_config.yaml')
+                print(traceback.format_exc())
+            self.on_exit()
+            self.close()
+        return create_main_config
+    
+
     def update_layout(self):
         for i in reversed(range(self.gridLayout.count())):
             widget = self.gridLayout.itemAt(i).widget()
             if widget is not None:
                 widget.deleteLater()
         self.placeBrand()
+    
+    def on_exit(self):
+        '''
+        Assign a function that will update you gui based on the import logic 
+        '''
+        ...
+
+
         
 class createWindow(QtWidgets.QMainWindow):
-    brandNameEntered = QtCore.pyqtSignal(str)
-    def __init__(self,parent = None):
-        if parent == None:
+    # brandNameEntered = QtCore.pyqtSignal(str)
+    def __init__(self,parent = None, brand_dir: Path = None):
+        if parent != None:
             super(createWindow, self).__init__(parent)
         else:
             super().__init__()
+        print('typeee', type(brand_dir))
+        self.brand_dir = brand_dir if(type(brand_dir) ==  type(str)) else Path(brand_dir)
+        
+        
         self.widget = QtWidgets.QWidget(self)
         self.setWindowTitle('Create Brand')
         self.setGeometry(200,100,200,150)
@@ -279,13 +323,21 @@ class createWindow(QtWidgets.QMainWindow):
     
     def create_brand(self, path_to_brand = None):
         brand_name = self.lineEdit.text()
-        if type(path_to_brand) == type(None):
+        if type(path_to_brand) == type(None) and type(self.brand_dir) == type(None) :
             brand_pwd = Path(BRAND_DIR / brand_name)
-        else: 
+        elif type(path_to_brand) != type(None): 
             if not os.path.exists(path_to_brand):
                 print('error path to brand given: ', path_to_brand)
                 return 
             brand_pwd = Path(path_to_brand / brand_name)
+        elif type(self.brand_dir) != type(None):
+            if not os.path.exists(self.brand_dir):
+                print('error path to brand given: ', path_to_brand)
+                return 
+            brand_pwd = Path(Path(self.brand_dir) / brand_name)
+        else :
+            print('configure path')
+        
         brand_config = Path(brand_pwd / 'config.yaml')
         try:
             brand_pwd.mkdir(parents=True , exist_ok=True)

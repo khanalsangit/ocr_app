@@ -181,10 +181,10 @@ class editBrand(QtWidgets.QMainWindow):
 class MainWindow(QtWidgets.QMainWindow):
     def __init__(self, parent: QtWidgets.QMainWindow = None, brand_dir : Path = None):
         
-        super().__init__()
-        # if parent == None:
-        # else: 
-        super().__init__(parent)
+        if parent == None:
+            super().__init__()
+        else: 
+            super().__init__(parent)
 
         self.setWindowTitle("Import Brand")
         self.mainWidget = QtWidgets.QWidget(self)

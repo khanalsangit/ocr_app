@@ -66,10 +66,7 @@ class DebugOperationFunction(Ui_MainWindow):
 
         # bindings of the buttons 
         self.create_project_button_bindings()
-        self.camera_image_button_bindings()
-
-     
-        
+        self.camera_image_button_bindings()   
         
         def load_augment_param():
             ##### Loading pickle values and assign them with debug widgets
@@ -85,6 +82,7 @@ class DebugOperationFunction(Ui_MainWindow):
             parent.elasticEntry.setText(str(augmentation['elastic']))
     
         load_augment_param()  
+
     def create_project(self):
         self.editProject.setCurrentWidget(self.createProject_Page)
         self.createProjectButton.setStyleSheet("QPushButton{\n"

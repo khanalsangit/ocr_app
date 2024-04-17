@@ -281,7 +281,7 @@ notice the trigger set on the camera as it contains: continuous, hardware trigge
 
 <dl class="py method">
 <dt class="sig sig-object py" id="camera_interface.camera.MachineVisionCamera.set_param">
-<span class="sig-name descname"><span class="pre">set_param</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#camera_interface.camera.MachineVisionCamera.set_param" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">set_param</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">exposure</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gain</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">15</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame_rate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#camera_interface.camera.MachineVisionCamera.set_param" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -303,6 +303,11 @@ def callback(image):</p>
 <div><p>…</p>
 </div></blockquote>
 </dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camera_interface.camera.MachineVisionCamera.get_current_image">
+<span class="sig-name descname"><span class="pre">get_current_image</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#camera_interface.camera.MachineVisionCamera.get_current_image" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
@@ -390,6 +395,7 @@ def callback(image):</p>
 <li><a class="reference internal" href="#camera_interface.camera.MachineVisionCamera.enable_controls"><code class="docutils literal notranslate"><span class="pre">MachineVisionCamera.enable_controls()</span></code></a></li>
 <li><a class="reference internal" href="#camera_interface.camera.MachineVisionCamera.message_box"><code class="docutils literal notranslate"><span class="pre">MachineVisionCamera.message_box()</span></code></a></li>
 <li><a class="reference internal" href="#camera_interface.camera.MachineVisionCamera.set_image_callback_on_trigger"><code class="docutils literal notranslate"><span class="pre">MachineVisionCamera.set_image_callback_on_trigger()</span></code></a></li>
+<li><a class="reference internal" href="#camera_interface.camera.MachineVisionCamera.get_current_image"><code class="docutils literal notranslate"><span class="pre">MachineVisionCamera.get_current_image()</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#camera_interface.camera.ErrorMessage"><code class="docutils literal notranslate"><span class="pre">ErrorMessage</span></code></a></li>

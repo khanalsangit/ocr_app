@@ -79,7 +79,6 @@ class LiveOperationFunction(Ui_MainWindow):
         self.lastNG_timeCount = parent.lastNG_timeCount 
         self.resetCounter_Button = parent.resetCounter_Button
 
-    ###### Loading system widgets parameter
     def system_param_load(self)->None :
         '''
         Load the system parameter values from pickle

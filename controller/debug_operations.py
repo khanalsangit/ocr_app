@@ -76,7 +76,7 @@ class DebugOperationFunction(Ui_MainWindow):
         self.rigidEntry = parent.rigidEntry
         self.elasticEntry = parent.elasticEntry
 
-    def load_augment_param(self)->None:
+    def load_augment_param(self)-> None:
         '''
         Load the augmentation parameters from pickle values
         '''
@@ -218,14 +218,28 @@ class DebugOperationFunction(Ui_MainWindow):
         print('logic to update the project in the gui')
         ...
 
-
-
-    def get_parameter_from_camera(self):
-        
-        ...
-    def get_parameter_from_pickel(self):
+    def set_camera_values_to_entry(self):
         self.exposureEntry_Debug.setText() 
         self.gainEntry_Debug.setText() 
         self.frameRateEntry_Debug.setText() 
         self.delayEntry_Debug.setText()
         ...
+    
+    def get_camera_values_to_entry(self) -> list[float, float, float, float]:
+        '''
+        returns the values in the entry gui in camera parameters
+
+        Returns
+        ---------------------------------
+        exposure : float
+        gain: float
+        frame_rate: float
+        delay: float
+            
+            Returns these vaule in a list in the following order.
+        '''
+        exposure = float(self.exposureEntry_Debug.text().strip(' ')) 
+        gain = float(self.gainEntry_Debug.text().strip(' ')) 
+        frame_rate = float(self.frameRateEntry_Debug.text().strip(' ')) 
+        delay = float(self.delayEntry_Debug.text().strip(' '))
+        return exposure, gain, frame_rate, delay 

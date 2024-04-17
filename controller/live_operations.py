@@ -80,7 +80,10 @@ class LiveOperationFunction(Ui_MainWindow):
         self.resetCounter_Button = parent.resetCounter_Button
 
     ###### Loading system widgets parameter
-    def system_param_load(self):
+    def system_param_load(self)->None :
+        '''
+        Load the system parameter values from pickle
+        '''
         with open(os.path.join(os.getcwd(),'Parameter_Value/system.pkl'),'rb') as f:
             system_param = pickle.load(f)   
         if system_param['ocr_method'] == True:  ######## Set the ocr method radiobutton 
@@ -95,7 +98,10 @@ class LiveOperationFunction(Ui_MainWindow):
         self.line4Box.setText(system_param['line4'])
 
     ########## Loading rejection widgets parameters
-    def reject_param_load(self):
+    def reject_param_load(self)->None:
+        '''
+        Load the rejection parameter values from pickle
+        '''
         with open(os.path.join(os.getcwd(),'Parameter_Value/rejection.pkl'),'rb') as f:
             reject_param = pickle.load(f)
         self.minPercent_Entry.setText(str(reject_param['min_per_thresh']))
@@ -107,7 +113,10 @@ class LiveOperationFunction(Ui_MainWindow):
             self.rejectEnable_No.setChecked(True)
 
     ###### Loading camera widgets parameters
-    def camera_param_load(self):
+    def camera_param_load(self)->None:
+        '''
+        Load the camera parameter value from pickle
+        '''
         with open(os.path.join(os.getcwd(),'Parameter_Value/camera.pkl'),'rb') as f:
             camera_param = pickle.load(f)
             first_point,second_point = camera_param['ROI'].split(',')
@@ -122,7 +131,10 @@ class LiveOperationFunction(Ui_MainWindow):
         self.roiEntry4.setText(str(forth))
 
     ###### Loading save param widgets parameter
-    def save_param_load(self):
+    def save_param_load(self)->None:
+        '''
+        Load the save data parameter value from pickle
+        '''
         with open(os.path.join(os.getcwd(),'Parameter_Value/save_data.pkl'),'rb') as f:
             save_data_param = pickle.load(f)
            
@@ -146,8 +158,20 @@ class LiveOperationFunction(Ui_MainWindow):
 
         self.directoryName_Entry.setText(save_data_param['img_dir'])
         
+    ########### Getting system parameters and save it
+        
+        system  = {
+            'ocr_method':True if self.detection_recognition.isChecked() else False
+            ,'no_of_lines':self.no_ofLine_comboBox.currentText()
+            ,'line1':self.line1Box.text()
+            ,'line2':self.line2Box.text()
+            ,'line3':self.line3Box.text()
+            ,'line4':self.line4Box.text()
+        }
+        
 
-    def camera_setting(self):
+
+    def camera_setting(self)->None:
         '''
         Method that change the camera setting page in StackedWidget
         '''
@@ -174,7 +198,7 @@ class LiveOperationFunction(Ui_MainWindow):
         "\n"
         "")
 
-    def save_data(self):
+    def save_data(self)->None:
         '''
         Method that change into save data page.
         '''

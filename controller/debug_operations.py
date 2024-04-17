@@ -47,7 +47,6 @@ class DebugOperationFunction(Ui_MainWindow):
         self.recognition_Page = parent.recognition_Page
         self.analysis_Page = parent.analysis_Page
 
-
         # project create and import 
         self.createButton = parent.createButton
         self.importButton = parent.importButton
@@ -66,24 +65,37 @@ class DebugOperationFunction(Ui_MainWindow):
 
         # bindings of the buttons 
         self.create_project_button_bindings()
-        self.camera_image_button_bindings()   
-        
-        def load_augment_param():
-            ##### Loading pickle values and assign them with debug widgets
-            with open(os.path.join(os.getcwd(),'Parameter_Value/augment.pkl'),'rb') as f:
-                augmentation = pickle.load(f)
-            parent.nTimesEntry.setText(str(augmentation['ntimes']))
-            parent.rotateEntry.setText(str(augmentation['rotate']))
-            parent.blurEntry.setText(str(augmentation['blur']))
-            parent.contrastEntry.setText(str(augmentation['contrast']))
-            parent.recursionRateEntry.setText(str(augmentation['recursion_rate']))
-            parent.flipEntry.setText(str(augmentation['flip']))
-            parent.rigidEntry.setText(str(augmentation['rigid']))
-            parent.elasticEntry.setText(str(augmentation['elastic']))
-    
-        load_augment_param()  
 
-    def create_project(self):
+        ##### augmentation widget variables
+        self.nTimesEntry = parent.nTimesEntry
+        self.rotateEntry = parent.rotateEntry
+        self.blurEntry = parent.blurEntry
+        self.contrastEntry = parent.contrastEntry
+        self.recursionRateEntry = parent.recursionRateEntry
+        self.flipEntry = parent.flipEntry
+        self.rigidEntry = parent.rigidEntry
+        self.elasticEntry = parent.elasticEntry
+
+    def load_augment_param(self)->None:
+        '''
+        Load the augmentation parameters from pickle values
+        '''
+        with open(os.path.join(os.getcwd(),'Parameter_Value/augment.pkl'),'rb') as f:
+            augmentation = pickle.load(f)
+        self.nTimesEntry.setText(str(augmentation['ntimes']))
+        self.rotateEntry.setText(str(augmentation['rotate']))
+        self.blurEntry.setText(str(augmentation['blur']))
+        self.contrastEntry.setText(str(augmentation['contrast']))
+        self.recursionRateEntry.setText(str(augmentation['recursion_rate']))
+        self.flipEntry.setText(str(augmentation['flip']))
+        self.rigidEntry.setText(str(augmentation['rigid']))
+        self.elasticEntry.setText(str(augmentation['elastic']))
+    
+         
+    def create_project(self)->None:
+        '''
+        Opens the create project section
+        '''
         self.editProject.setCurrentWidget(self.createProject_Page)
         self.createProjectButton.setStyleSheet("QPushButton{\n"
         "    background-color:#0DC177;\n"
@@ -96,11 +108,17 @@ class DebugOperationFunction(Ui_MainWindow):
         self.analysisButton.setStyleSheet("")
 
 
-    def create_project_button_bindings(self):
+    def create_project_button_bindings(self)->None:
+        '''
+        Opens the create and import button sections
+        '''
         self.createButton.clicked.connect(self.create_brand)
         self.importButton.clicked.connect(self.import_brand)
 
-    def camera_debug(self):
+    def camera_debug(self)->None:
+        '''
+        Opens the camera section for debug mode
+        '''
         self.editProject.setCurrentWidget(self.camera_Page)
         self.cameraButton.setStyleSheet("QPushButton{\n"
         "    background-color:#0DC177;\n"
@@ -116,7 +134,10 @@ class DebugOperationFunction(Ui_MainWindow):
         self.getParameter_Button.clicked.connect(self.get_parameter_from_camera)
         ...
 
-    def preprocessing_step(self):
+    def preprocessing_step(self)->None:
+        '''
+        Opens the preprocessing section
+        '''
         self.editProject.setCurrentWidget(self.dataProcessing_Page)
         self.preprocessingButton.setStyleSheet("QPushButton{\n"
         "    background-color:#0DC177;\n"
@@ -128,7 +149,10 @@ class DebugOperationFunction(Ui_MainWindow):
         self.recognitionButton.setStyleSheet("")
         self.analysisButton.setStyleSheet("")
     
-    def detection(self):
+    def detection(self)->None:
+        '''
+        Opens the detection section
+        '''
         self.editProject.setCurrentWidget(self.detection_Page)
         self.detectionButton.setStyleSheet("QPushButton{\n"
         "    background-color:#0DC177;\n"
@@ -140,7 +164,10 @@ class DebugOperationFunction(Ui_MainWindow):
         self.recognitionButton.setStyleSheet("")
         self.analysisButton.setStyleSheet("")
     
-    def recognition(self):
+    def recognition(self)->None:
+        '''
+        Opens the recognition section
+        '''
         self.editProject.setCurrentWidget(self.recognition_Page)
         self.recognitionButton.setStyleSheet("QPushButton{\n"
         "    background-color:#0DC177;\n"
@@ -152,7 +179,10 @@ class DebugOperationFunction(Ui_MainWindow):
         self.preprocessingButton.setStyleSheet("")
         self.analysisButton.setStyleSheet("")
     
-    def analysis(self):
+    def analysis(self)->None:
+        '''
+        Opens the analysis section
+        '''
         self.editProject.setCurrentWidget(self.analysis_Page)
         self.analysisButton.setStyleSheet("QPushButton{\n"
         "    background-color:#0DC177;\n"

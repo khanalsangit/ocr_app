@@ -305,10 +305,10 @@ class MachineVisionCamera:
             return [exposure_time, gain, frame_rate]
 
     # ch: 设置参数 | en:set param
-    def set_param(self):
-        frame_rate = self.ui.edtFrameRate.text()
-        exposure = self.ui.edtExposureTime.text()
-        gain = self.ui.edtGain.text()
+    def set_param(self, exposure = 1000, gain = 15, frame_rate = 10):
+        # frame_rate = self.ui.edtFrameRate.text()
+        # exposure = self.ui.edtExposureTime.text()
+        # gain = self.ui.edtGain.text()
 
         if self.is_float(frame_rate)!=True or self.is_float(exposure)!=True or self.is_float(gain)!=True:
             strError = "Set param failed ret:" + ToHexStr(MV_E_PARAMETER)

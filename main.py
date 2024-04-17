@@ -9,6 +9,7 @@ from PyQt5.QtWidgets import QMainWindow
 from PyQt5 import QtWidgets, QtCore, QtGui
 from gui.pyUIdesign import Ui_MainWindow
 from Custom_Widgets import *
+from Custom_Widgets import *
 
 from camera_interface.camera import MachineVisionCamera
 from controller.gui_operations import PyQTWidgetFunction

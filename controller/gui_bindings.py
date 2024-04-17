@@ -26,7 +26,10 @@ class Controller():
         self.debug = debug
         self.connect_camera_and_ui()
         self.connect_methods_and_ui()
-
+        self.live.system_param_load()
+        self.live.reject_param_load()
+        self.live.camera_param_load()
+        self.live.save_param_load()
 
     def connect_camera_and_ui(self):
         ######################## camera function called ##############################
@@ -72,7 +75,7 @@ class Controller():
         self.gui.recognitionButton.clicked.connect(self.debug.recognition)
         self.gui.analysisButton.clicked.connect(self.debug.analysis)
 
-
+     
 
 
         # self.gui.live.resetCounter_Button.clicked.connect(

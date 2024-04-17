@@ -8,7 +8,7 @@ import shutil
 from gui.pyUIdesign import Ui_MainWindow
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtWidgets import *
-
+from Parameter_Value import *
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from .gui_operations import PyQTWidgetFunction
@@ -48,10 +48,26 @@ class DebugOperationFunction(Ui_MainWindow):
         # project create and import 
         self.createButton = parent.createButton
         self.importButton = parent.importButton
-
         self.create_project_button_bindings()
-    
 
+
+     
+        
+        
+        def load_augment_param():
+            ##### Loading pickle values and assign them with debug widgets
+            with open(os.path.join(os.getcwd(),'Parameter_Value/augment.pkl'),'rb') as f:
+                augmentation = pickle.load(f)
+            parent.nTimesEntry.setText(str(augmentation['ntimes']))
+            parent.rotateEntry.setText(str(augmentation['rotate']))
+            parent.blurEntry.setText(str(augmentation['blur']))
+            parent.contrastEntry.setText(str(augmentation['contrast']))
+            parent.recursionRateEntry.setText(str(augmentation['recursion_rate']))
+            parent.flipEntry.setText(str(augmentation['flip']))
+            parent.rigidEntry.setText(str(augmentation['rigid']))
+            parent.elasticEntry.setText(str(augmentation['elastic']))
+    
+        load_augment_param()  
     def create_project(self):
         self.editProject.setCurrentWidget(self.createProject_Page)
         self.createProjectButton.setStyleSheet("QPushButton{\n"

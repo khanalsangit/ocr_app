@@ -9,6 +9,9 @@ from gui.pyUIdesign import Ui_MainWindow
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtWidgets import *
 from Parameter_Value import *
+from PyQt5.QtCore import pyqtSlot
+
+
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from .gui_operations import PyQTWidgetFunction
@@ -48,8 +51,22 @@ class DebugOperationFunction(Ui_MainWindow):
         # project create and import 
         self.createButton = parent.createButton
         self.importButton = parent.importButton
-        self.create_project_button_bindings()
 
+        # camera button
+        self.getParameter_Button = parent.getParameter_Button 
+        self.setParameter_Button = parent.setParameter_Button 
+        self.deleteImage_Button = parent.deleteImage_Button
+        self.captureButton = parent.captureButton 
+        # camera entries 
+        self.exposureEntry_Debug = parent.exposureEntry_Debug 
+        self.gainEntry_Debug = parent.gainEntry_Debug 
+        self.frameRateEntry_Debug = parent.frameRateEntry_Debug 
+        self.delayEntry_Debug = parent.delayEntry_Debug
+        self.totalImage_Count = parent.totalImage_Count 
+
+        # bindings of the buttons 
+        self.create_project_button_bindings()
+        self.camera_image_button_bindings()
 
      
         
@@ -79,7 +96,7 @@ class DebugOperationFunction(Ui_MainWindow):
         self.detectionButton.setStyleSheet("")
         self.recognitionButton.setStyleSheet("")
         self.analysisButton.setStyleSheet("")
-        
+
 
     def create_project_button_bindings(self):
         self.createButton.clicked.connect(self.create_brand)
@@ -97,6 +114,10 @@ class DebugOperationFunction(Ui_MainWindow):
         self.recognitionButton.setStyleSheet("")
         self.analysisButton.setStyleSheet("")
     
+    def camera_image_button_bindings(self):
+        self.getParameter_Button.clicked.connect(self.get_parameter_from_camera)
+        ...
+
     def preprocessing_step(self):
         self.editProject.setCurrentWidget(self.dataProcessing_Page)
         self.preprocessingButton.setStyleSheet("QPushButton{\n"
@@ -144,11 +165,39 @@ class DebugOperationFunction(Ui_MainWindow):
         self.createProjectButton.setStyleSheet("")
         self.cameraButton.setStyleSheet("")
         self.preprocessingButton.setStyleSheet("")
-        
+
     def create_brand(self):
-        bm.createWindow(self.parent.main_window).show()
+        enabled = self.createButton.isEnabled()
+        self.createButton.setEnabled(not enabled)
+        if enabled:
+            bm.createWindow(self.parent.main_window, brand_dir = './Brands/').show()
     
     def import_brand(self):
-        bm.MainWindow(self.parent.main_window, brand_dir = './Brands/').show()
+        enabled = self.importButton.isEnabled()
+        self.importButton.setEnabled(not enabled)
+        if enabled:
+            import_window = bm.MainWindow(self.parent.main_window, brand_dir = './Brands/')
+            import_window.on_exit = self.load_project_from_yaml
+            import_window.show()
+            print('end')
+        
+    
+    def load_project_from_yaml(self):
+        '''
+        This method is triggered when there needs to be update in gui because of change in main_config.yaml file
+        cases may be when importing yaml file, when updating parameters in the yaml 
+        '''
+        print('logic to update the project in the gui')
         ...
 
+
+
+    def get_parameter_from_camera(self):
+        
+        ...
+    def get_parameter_from_pickel(self):
+        self.exposureEntry_Debug.setText() 
+        self.gainEntry_Debug.setText() 
+        self.frameRateEntry_Debug.setText() 
+        self.delayEntry_Debug.setText()
+        ...

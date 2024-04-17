@@ -412,15 +412,17 @@ class CameraOperation:
                 break
 
     # 存jpg图像
-    def Save_jpg(self):
-
+    def Save_jpg(self, file_name:str = None):
         if self.buf_save_image is None:
             return
 
         # 获取缓存锁
         self.buf_lock.acquire()
+        
+        print(file_name)
+        file_path_name = file_name if file_name else (str(self.st_frame_info.nFrameNum) + ".jpg" ) 
 
-        file_path = str(self.st_frame_info.nFrameNum) + ".jpg"
+        file_path = file_path_name # str(self.st_frame_info.nFrameNum) + ".jpg"
         c_file_path = file_path.encode('ascii')
         stSaveParam = MV_SAVE_IMAGE_TO_FILE_PARAM_EX()
         stSaveParam.enPixelType = self.st_frame_info.enPixelType  # ch:相机对应的像素格式 | en:Camera pixel type
@@ -433,6 +435,8 @@ class CameraOperation:
         stSaveParam.pcImagePath = ctypes.create_string_buffer(c_file_path)
         stSaveParam.iMethodValue = 2
         ret = self.obj_cam.MV_CC_SaveImageToFileEx(stSaveParam)
+        self.obj_cam.MV_CC_FreeImageBuffer(stSaveParam)
+        self.obj_cam.MV_CC_FreeImageBuffer(self.st_frame_info)
 
         self.buf_lock.release()
         return ret
@@ -462,6 +466,6 @@ class CameraOperation:
         ret = self.obj_cam.MV_CC_SaveImageToFileEx(stSaveParam)
 
         self.buf_lock.release()
-
+        
         return ret
 

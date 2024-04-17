@@ -285,9 +285,15 @@ class MachineVisionCamera:
     # ch: 获取参数 | en:get param
     def get_param(self) -> list[int, int, int]:
         '''
-        returns the current parameter of the camera 
-        :rtype [exposure_time, gain, frame_rate]: current set exposure time, gain and frame rate of the camera 
+        returns the current parameter of the camera  
+        Returns
+        ----------------------------
+        exposure_time: int | float
+        gain:  int | float 
+        frame_rate: int | float
 
+        ------
+        current exposure time, gain and frame rate of the camera 
         '''
 
         ret = self.obj_cam_operation.Get_parameter()
@@ -298,9 +304,9 @@ class MachineVisionCamera:
             # self.ui.edtExposureTime.setText("{0:.2f}".format(self.obj_cam_operation.exposure_time))
             # self.ui.edtGain.setText("{0:.2f}".format(self.obj_cam_operation.gain))
             # self.ui.edtFrameRate.setText("{0:.2f}".format(self.obj_cam_operation.frame_rate))
-            exposure_time = self.obj_cam_operation.exposure_time
-            gain = self.obj_cam_operation.gain
-            frame_rate = self.obj_cam_operation.frame_rate
+            exposure_time = round(self.obj_cam_operation.exposure_time, 2)
+            gain = round(self.obj_cam_operation.gain, 2)
+            frame_rate = round(self.obj_cam_operation.frame_rate, 2)
             
             return [exposure_time, gain, frame_rate]
 

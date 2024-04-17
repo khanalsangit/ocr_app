@@ -22,7 +22,6 @@ augmentation_param = {
     'recursion_rate':0.4
 }
 
-d
 def save_parameter(pickle_parameter_path: Path, pkl_name: str, param: dict):
     if not os.path.exists(pickle_parameter_path):
         try:

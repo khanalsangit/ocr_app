@@ -8,7 +8,7 @@ import shutil
 from gui.pyUIdesign import Ui_MainWindow
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtWidgets import *
-
+from Parameter_Value.live_param_value import save_parameter
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from .gui_operations import PyQTWidgetFunction
@@ -85,12 +85,13 @@ class LiveOperationFunction(Ui_MainWindow):
         '''
         with open(os.path.join(os.getcwd(),'Parameter_Value/system.pkl'),'rb') as f:
             system_param = pickle.load(f)   
+            print(system_param)
         if system_param['ocr_method'] == True:  ######## Set the ocr method radiobutton 
             self.detection_recognition.setChecked(True)
         else:
             self.detectionOnly.setChecked(True)
         
-        self.no_ofLine_comboBox.setCurrentText(str(system_param['nooflines']))
+        self.no_ofLine_comboBox.setCurrentText(str(system_param['no_of_lines']))
         self.line1Box.setText(system_param['line1'])
         self.line2Box.setText(system_param['line2'])
         self.line3Box.setText(system_param['line3'])
@@ -121,13 +122,13 @@ class LiveOperationFunction(Ui_MainWindow):
             first_point,second_point = camera_param['ROI'].split(',')
             first,second = first_point.split(':')
             third,forth = second_point.split(':')
-        self.cameraGain_Entry.setText(str(camera_param['camera_gain']))
-        self.exposureTime_Entry.setText(str(camera_param['exposure_time']))
-        self.triggerDelay_Entry.setText(str(camera_param['trigger_delay']))
-        self.roiEntry1.setText(str(first))
-        self.roiEntry2.setText(str(second))
-        self.roiEntry3.setText(str(third))
-        self.roiEntry4.setText(str(forth))
+            self.cameraGain_Entry.setText(str(camera_param['camera_gain']))
+            self.exposureTime_Entry.setText(str(camera_param['exposure_time']))
+            self.triggerDelay_Entry.setText(str(camera_param['trigger_delay']))
+            self.roiEntry1.setText(str(first))
+            self.roiEntry2.setText(str(second))
+            self.roiEntry3.setText(str(third))
+            self.roiEntry4.setText(str(forth))
 
     ###### Loading save param widgets parameter
     def save_param_load(self)->None:
@@ -158,7 +159,10 @@ class LiveOperationFunction(Ui_MainWindow):
         self.directoryName_Entry.setText(save_data_param['img_dir'])
         
     ########### Getting system parameters and save it
-        
+    def update_system_param(self)->None:
+        '''
+        Saves the updated system parameter
+        '''
         system  = {
             'ocr_method':True if self.detection_recognition.isChecked() else False
             ,'no_of_lines':self.no_ofLine_comboBox.currentText()
@@ -167,8 +171,67 @@ class LiveOperationFunction(Ui_MainWindow):
             ,'line3':self.line3Box.text()
             ,'line4':self.line4Box.text()
         }
-        
+        save_parameter(system,'system')
+        msgBox = QMessageBox()
+        msgBox.setIcon(QMessageBox.Information)
+        msgBox.setText("System Parameter Save Successfully")
+        msgBox.setWindowTitle("Parameter")
+        msgBox.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
+        msgBox.exec()
 
+    def update_reject_param(self)->None:
+        '''
+        Saves the updated rejection parameter
+        '''
+        reject = {
+             'min_per_thresh':self.minPercent_Entry.text()
+            ,'line_per_thresh':self.lineThresh_Entry.text()
+            ,'reject_count':self.rejectCount_Entry.text()
+            ,'reject_enable':True if self.rejectEnable_Yes.isChecked() else False 
+        }
+        save_parameter(reject,'reject')
+        msgBox = QMessageBox()
+        msgBox.setIcon(QMessageBox.Information)
+        msgBox.setText("Reject Parameter Save Successfully")
+        msgBox.setWindowTitle("Parameter")
+        msgBox.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
+        msgBox.exec()
+
+    def update_camera_param(self)->None:
+        '''
+        Saves the updated camera parameter
+        '''
+        camera = {
+        'exposure_time':self.exposureTime_Entry.text()
+        ,'trigger_delay':self.triggerDelay_Entry.text()
+        ,'camera_gain':self.cameraGain_Entry.text()
+        ,'roi':'{}:{},{}:{}'.format(self.roiEntry1.text()).format(self.roiEntry2.text()).format(self.roiEntry3.text()).format(self.roiEntry4.text())
+        }
+        save_parameter(camera,'camera')
+        msgBox = QMessageBox()
+        msgBox.setIcon(QMessageBox.Information)
+        msgBox.setText("Camera Parameter Save Successfully")
+        msgBox.setWindowTitle("Parameter")
+        msgBox.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
+        msgBox.exec()
+
+    def update_save_data_param(self)->None:
+        '''
+        Saves the save data parameter
+        '''
+        save_data = {
+        'save_img':True if self.saveImage_Checkbox.isChecked() else False
+        ,'save_ng':True if self.saveNG_Checkbox.isChecked() else False
+        ,'save_result':True if self.saveResult_Checkbox.isChecked() else False
+        ,'img_dir':self.directoryName_Entry.text()
+        }
+        save_parameter(save_data,'save_data')
+        msgBox = QMessageBox()
+        msgBox.setIcon(QMessageBox.Information)
+        msgBox.setText("Camera Parameter Save Successfully")
+        msgBox.setWindowTitle("Parameter")
+        msgBox.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
+        msgBox.exec()
 
     def camera_setting(self)->None:
         '''
@@ -229,7 +292,7 @@ class LiveOperationFunction(Ui_MainWindow):
     def open_image(self, image = None)-> None:
         '''
         Method that opens the image to select the ROI to be used and display in the GUI
-        '''
+        '''   
         file_path="current_img/1.jpg"
         started = 0
         if file_path:
@@ -278,8 +341,14 @@ class LiveOperationFunction(Ui_MainWindow):
                 cv2.waitKey(0) == ord('q')
                 break
             cv2.destroyAllWindows()
-            self.roiEntry.clear()  # clear any existing text in the entry box
-            self.roiEntry.insert(roi)
+            self.roiEntry1.clear()  # clear any existing text in the entry box
+            self.roiEntry2.clear()
+            self.roiEntry3.clear()
+            self.roiEntry4.clear()
+            self.roiEntry1.insert(roi)
+            self.roiEntry2.insert(roi)
+            self.roiEntry3.insert(roi)
+            self.roiEntry4.insert(roi)
             cv2.destroyAllWindows()
             
 

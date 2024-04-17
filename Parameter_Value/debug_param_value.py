@@ -19,4 +19,4 @@ def save_parameter(param,pkl_name):
     system_pkl_path = os.path.join(pkl_path,'{}.pkl'.format(pkl_name))
     pickle.dump(param,open(system_pkl_path,'wb'))
 
-# save_parameter(augmentation_param,'augment')
+##### save_parameter(augmentation_param,'augment')

@@ -54,9 +54,14 @@ class DebugOperationFunction(Ui_MainWindow):
         # camera button
         self.getParameter_Button = parent.getParameter_Button 
         self.setParameter_Button = parent.setParameter_Button 
-        self.totalImage_Count = parent.totalImage_Count 
         self.deleteImage_Button = parent.deleteImage_Button
         self.captureButton = parent.captureButton 
+        # camera entries 
+        self.exposureEntry_Debug = parent.exposureEntry_Debug 
+        self.gainEntry_Debug = parent.gainEntry_Debug 
+        self.frameRateEntry_Debug = parent.frameRateEntry_Debug 
+        self.delayEntry_Debug = parent.delayEntry_Debug
+        self.totalImage_Count = parent.totalImage_Count 
 
         # bindings of the buttons 
         self.create_project_button_bindings()
@@ -171,4 +176,10 @@ class DebugOperationFunction(Ui_MainWindow):
 
     def get_parameter_from_camera(self):
         
+        ...
+    def get_parameter_from_pickel(self):
+        self.exposureEntry_Debug.setText() 
+        self.gainEntry_Debug.setText() 
+        self.frameRateEntry_Debug.setText() 
+        self.delayEntry_Debug.setText()
         ...

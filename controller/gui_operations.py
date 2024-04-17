@@ -1,9 +1,12 @@
-import pickle
-import glob
-import cv2
 import os
-import shutil
+import cv2
 import sys
+import glob
+import shutil
+import pickle
+import yaml
+import traceback
+
 from gui.pyUIdesign import Ui_MainWindow
 #from gui.PyUICBasicDemo import Ui_MainWindow 
 from PyQt5 import QtWidgets, QtCore
@@ -15,13 +18,17 @@ from .debug_operations import DebugOperationFunction
 class PyQTWidgetFunction(Ui_MainWindow):
     def __init__(self, main_window) -> None:
         super().__init__()
+
         self.main_window = main_window
         self.setupUi(main_window)
-        
+                
         self.save_image_path = None 
 
         self.live = LiveOperationFunction(self)
         self.debug = DebugOperationFunction(self)
+
+        
+    
     ################################################################ Live Mode Functions ###############################################################
             ################################################################################################################################
                     ################################################################################################################
@@ -104,5 +111,4 @@ class PyQTWidgetFunction(Ui_MainWindow):
         msgBox.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
         msgBox.exec()
 
-       
-
+    

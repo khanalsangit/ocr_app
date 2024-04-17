@@ -51,7 +51,8 @@ class Controller():
         self.live.reject_param_load()
         self.live.camera_param_load()
         self.live.save_param_load()
-
+        self.debug.load_augment_param()
+        
     def connect_camera_and_ui(self):
         ######################## camera function called ##############################
         self.gui.findCamera_Button.clicked.connect(lambda : self.camera.enum_devices(self.gui.comboBox))
@@ -84,16 +85,16 @@ class Controller():
             ]
         )
         self.gui.stackWidget_cameraSetting.setCurrentWidget(self.gui.cameraSetting_Page) ######### default camera setting mode
-        self.gui.cameraSetting_Button.pressed.connect(self.live.camera_setting)
-        self.gui.openImage_Button.pressed.connect(
+        self.live.cameraSetting_Button.pressed.connect(self.live.camera_setting)
+        self.live.openImage_Button.pressed.connect(
             lambda : self.live.open_image()
         )
-        self.gui.saveData_Button.pressed.connect(self.live.save_data)
-        self.gui.chooseDirectory_Button.pressed.connect(self.live.choose_directory_path)
-        self.gui.systemSetting_update_Button.pressed.connect(self.gui.get_live_gui_values)
-        self.gui.rejectSetting_updateButton.pressed.connect(self.gui.get_live_gui_values)
-        self.gui.cameraSetting_update_Button.pressed.connect(self.gui.get_live_gui_values)
-    
+        self.live.saveData_Button.pressed.connect(self.live.save_data)
+        self.live.chooseDirectory_Button.pressed.connect(self.live.choose_directory_path)
+        self.live.systemSetting_update_Button.pressed.connect(self.live.update_system_param)
+        self.live.rejectSetting_updateButton.pressed.connect(self.live.update_reject_param)
+        self.live.cameraSetting_update_Button.pressed.connect(self.live.update_camera_param)
+        self.live.systemSetting_update_Button.pressed.connect(self.live.update_save_data_param)
         ####################### Debug Mode function called ######################
 
         # side panel buttons

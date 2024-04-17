@@ -185,20 +185,25 @@ class DebugOperationFunction(Ui_MainWindow):
         self.preprocessingButton.setStyleSheet("")
 
     def create_brand(self):
-        enabled = self.createButton.isEnabled()
-        self.createButton.setEnabled(not enabled)
-        if enabled:
-            bm.createWindow(self.parent.main_window, brand_dir = './Brands/').show()
+        """
+        Method to open brand creation window
+        """
+        # enabled = self.createButton.isEnabled()
+        # self.createButton.setEnabled(not enabled)
+        # if enabled:
+        bm.createWindow(self.parent.main_window, brand_dir = './Brands/').show()
     
     def import_brand(self):
-        enabled = self.importButton.isEnabled()
-        self.importButton.setEnabled(not enabled)
-        if enabled:
-            import_window = bm.MainWindow(self.parent.main_window, brand_dir = './Brands/')
-            import_window.on_exit = self.brand_exit_call_back_method
-            import_window.show()
-            print('end')
-    
+        """
+        Method to open brand import windows
+        """
+        # enabled = self.importButton.isEnabled()
+        # self.importButton.setEnabled(not enabled)
+        # if enabled:
+        import_window = bm.MainWindow(self.parent.main_window, brand_dir = './Brands/')
+        import_window.on_exit = self.brand_exit_call_back_method
+        import_window.show()
+
     def brand_exit_call_back_method(self):
         '''
         This method is triggered when there needs to be update in gui because of change in main_config.yaml file

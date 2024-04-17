@@ -3,6 +3,8 @@ import yaml
 import datetime
 import traceback
 
+import cv2
+
 from PyQt5.QtWidgets import QFileDialog
 
 from camera_interface.camera import MachineVisionCamera
@@ -42,6 +44,7 @@ class Controller():
 
         # debug parameter
         self.load_saved_camera_parameter()
+        self.debug.brand_exit_call_back_method = self.load_main_configs
 
         # live parameter
         self.live.system_param_load()
@@ -112,7 +115,8 @@ class Controller():
     def load_main_configs(self):
         try:
             with open('./main_config.yaml', 'r') as file_stream:
-                return yaml.safe_load(file_stream)
+                self.current_brand_config = yaml.safe_load(file_stream)
+                return self.current_brand_config
         except Exception as e :
             print('error loading in main_config.yaml', e)
             print(traceback.format_exc())
@@ -170,19 +174,29 @@ class Controller():
         ...
 
     def capture_image(self):
-        self.camera.set_software_trigger_mode()
-        self.camera.trigger_once()
-        image = self.camera.get_current_image()
         try:
-            ret = self.camera.obj_cam_operation.Save_jpg( 
+            self.camera.set_software_trigger_mode()
+            self.camera.trigger_once()
+            image = self.camera.get_current_image()
+        except Exception as e: 
+            print('[-] error capture', e)
+            print(traceback.format_exc())
+        
+        try:
+            # ret = self.camera.obj_cam_operation.Save_jpg( 
+            #     os.path.join(self.current_brand_config['images_path'] , 
+            #     datetime.datetime.now().strftime("%y-%m-%d-%I-%M-%S-%f %p.jpg"))
+            # )
+
+            cv2.imwrite(
                 os.path.join(self.current_brand_config['images_path'] , 
-                datetime.datetime.now().strftime("%y-%m-%d-%I-%M-%S-%f %p.jpg"))
+                    datetime.datetime.now().strftime("%y-%m-%d-%I-%M-%S-%f %p.jpg")), 
+                cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
             )
-            print('value ', ret)
+            self.camera.set_continue_mode()
         except Exception as e :
             print('exception ', e )
             print(traceback.format_exc())
-        print('callled capture')
         ...
         
         

@@ -250,3 +250,6 @@ class DebugOperationFunction(Ui_MainWindow):
         except Exception as e:
             print('[-] failed to get camera parameter, ', e)
             print(traceback.format_exc()) 
+    
+    def captured_image_count(self, image_count:int = 0):
+        self.totalImage_Count.setText(str(image_count))

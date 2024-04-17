@@ -92,7 +92,12 @@ class Controller():
 
         # side panel buttons
         self.debug.createProjectButton.clicked.connect(self.debug.create_project)
-        self.debug.cameraButton.clicked.connect(self.debug.camera_debug)
+        self.debug.cameraButton.clicked.connect(
+            lambda : [
+                self.debug.camera_debug(),          # switch to the gui
+                self.update_captured_image_count()  # update the count in the image
+            ]
+        )
         self.debug.preprocessingButton.clicked.connect(self.debug.preprocessing_step)
         self.debug.detectionButton.clicked.connect(self.debug.detection)
         self.debug.recognitionButton.clicked.connect(self.debug.recognition)
@@ -149,6 +154,9 @@ class Controller():
             print(traceback.format_exc())
 
     def set_camera_parameter(self):
+        '''
+        method to set the camera parameter
+        '''
         try:
             exposure, gain, frame_rate, delay = self.debug.get_camera_values_to_entry()
             self.camera.set_param(exposure, gain, frame_rate)
@@ -171,9 +179,14 @@ class Controller():
             self.current_brand_config['images_path'], 'Image files (*.jpg)')
         if fileName:
             print('file Name')
+        self.update_captured_image_count()
         ...
 
     def capture_image(self):
+        '''
+        method to capture the image
+        '''
+
         try:
             self.camera.set_software_trigger_mode()
             self.camera.trigger_once()
@@ -196,6 +209,14 @@ class Controller():
         except Exception as e :
             print('exception ', e )
             print(traceback.format_exc())
+        self.update_captured_image_count()
+
+    def update_captured_image_count(self):
+        '''
+        method to update the image count in the gui by reading from the brand folder 
+        '''
+        image_count = len(os.listdir(self.current_brand_config['images_path']))
+        self.debug.captured_image_count(image_count)
         ...
         
         

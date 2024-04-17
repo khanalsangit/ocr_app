@@ -193,7 +193,6 @@ class Controller():
                     datetime.datetime.now().strftime("%y-%m-%d-%I-%M-%S-%f %p.jpg")), 
                 cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
             )
-            self.camera.set_continue_mode()
         except Exception as e :
             print('exception ', e )
             print(traceback.format_exc())

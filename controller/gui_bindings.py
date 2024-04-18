@@ -59,9 +59,15 @@ class Controller():
             lambda : [
                 self.camera.open_device(self.gui.comboBox), 
                 self.camera.start_grabbing(self.gui.imageWidget_Debug if self.gui.get_current_mode() != "Live" else self.gui.imageWidget_Live) if self.camera.isOpen else None,
+                self.gui.camera_on_status(),
             ] 
         )
-        self.gui.offButton.clicked.connect(self.camera.close_device)
+        self.gui.offButton.clicked.connect(
+            lambda:[
+                self.camera.close_device(),
+                self.gui.camera_off_status()
+            ]
+        )
         
 
     def connect_methods_and_ui(self):
@@ -218,5 +224,4 @@ class Controller():
         image_count = len(os.listdir(self.current_brand_config['images_path']))
         self.debug.captured_image_count(image_count)
         ...
-        
         

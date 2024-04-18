@@ -111,4 +111,54 @@ class PyQTWidgetFunction(Ui_MainWindow):
         msgBox.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
         msgBox.exec()
 
-    
+
+
+    def camera_on_status(self):
+        self.onButton.setStyleSheet("QPushButton{\n"
+            "    background-color: #EF1B79;\n"
+            "    color:white;\n"
+            "    border:none;\n"
+            "}\n"
+            "QPushButton:pressed{\n"
+            "    border-top:2px solid black;\n"
+            "    border-left: 2px solid black;\n"
+            "}\n"
+            ""
+        )     
+        self.offButton.setStyleSheet("QPushButton{\n"
+            "    background: white;\n"
+            "    color:black;\n"
+            "    border:none;\n"
+            "}\n"
+            "QPushButton:pressed{\n"
+            "    border-left:2px solid black;\n"
+            "    border-top:2px solid black;\n"
+            "}\n"
+            "    \n"
+            ""
+        )
+
+    def camera_off_status(self):
+        self.onButton.setStyleSheet("QPushButton{\n"
+            "    background-color: white;\n"
+            "    color:black;\n"
+            "    border:none;\n"
+            "}\n"
+            "QPushButton:pressed{\n"
+            "    border-top:2px solid black;\n"
+            "    border-left: 2px solid black;\n"
+            "}\n"
+            ""
+        )     
+        self.offButton.setStyleSheet("QPushButton{\n"
+            "    background: #EF1B79;\n"
+            "    color:white;\n"
+            "    border:none;\n"
+            "}\n"
+            "QPushButton:pressed{\n"
+            "    border-left:2px solid black;\n"
+            "    border-top:2px solid black;\n"
+            "}\n"
+            "    \n"
+            ""
+        )

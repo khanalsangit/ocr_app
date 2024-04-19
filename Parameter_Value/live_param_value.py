@@ -1,7 +1,3 @@
-import pickle
-import os
-import sys
-
 system_param = {
     'ocr_method':True,
     'no_of_lines': 3,
@@ -19,9 +15,10 @@ rejection_params = {
 }
 
 camera_param = {
-    'exposure_time':300,
+    'exposure':300,
+    'gain':21.0,
+    'frame_rate':10,
     'trigger_delay':0,
-    'camera_gain':21.0,
     'ROI':'736:956,1332:1904'
 }
 
@@ -32,12 +29,7 @@ save_data_param = {
     'img_dir':'None'
 }
 
-def save_parameter(param,pkl_name):
-    pkl_path = os.path.join(os.getcwd(),'Parameter_Value')
-
-    system_pkl_path = os.path.join(pkl_path,'{}.pkl'.format(pkl_name))
-    pickle.dump(param,open(system_pkl_path,'wb'))
-
+# from param_tools import save_parameter, get_parameter
 # save_parameter(system_param,'system')
 # save_parameter(rejection_params,'rejection')
 # save_parameter(camera_param,'camera')

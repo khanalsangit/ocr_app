@@ -7,6 +7,8 @@ from typing import Callable
 import yaml
 import shutil
 
+import traceback
+
 class BrandFrame(QtWidgets.QFrame):
     def __init__(self, parent, brand_title):
         super(BrandFrame, self).__init__(parent)
@@ -17,6 +19,7 @@ class BrandFrame(QtWidgets.QFrame):
         self.setMinimumSize(QtCore.QSize(0, 150))
         self.horizontalLayout = QtWidgets.QHBoxLayout(self)
         self.brand_title = brand_title
+        self.index = None 
         
     def addBrand(self):
         self.frame1 = QtWidgets.QFrame(self)
@@ -183,6 +186,9 @@ class MainWindow(QtWidgets.QMainWindow):
             super().__init__()
         else: 
             super().__init__(parent)
+        
+        self.brands = [] 
+        self.brand_dir =  Path(brand_dir) if(type(brand_dir) !=  type(None)) else None 
 
         self.setWindowTitle("Import Brand")
         self.mainWidget = QtWidgets.QWidget(self)
@@ -196,39 +202,79 @@ class MainWindow(QtWidgets.QMainWindow):
         self.scrollWidget.setWidget(self.mainWidget)
         self.setCentralWidget(self.scrollWidget)
         self.setGeometry(200,100,900,700)
-        self.brand_dir = brand_dir 
         self.placeBrand()
+
 
     def placeBrand(self):
         # self.gridLayout = self.widget.findChild(QtWidgets.QGridLayout)
-        dir_list = os.listdir(BRAND_DIR) if type(self.brand_dir) == type(None) else self.brand_dir
+        dir_list = os.listdir(BRAND_DIR) if type(self.brand_dir) == type(None) else os.listdir(self.brand_dir)
 
         rows = int((len(dir_list) / 3) + 1) if len(dir_list) % 3 else int((len(dir_list) / 3)) 
         for row in range(rows):
             for column in range(3):
                 list_index = row * 3 + column
+                num = 0
                 if list_index < len(dir_list):
                     brand_title = dir_list[list_index]
                     brand = BrandFrame(self.mainWidget, brand_title)
+                    # self.brands.append(BrandFrame(self.mainWidget, brand_title))
                     brand.setMaximumSize(QtCore.QSize(250, 150))
                     brand.setObjectName("brand")
                     brand.addBrand()
-                    self.gridLayout.addWidget(brand, row, column)
+                    brand.index = list_index
+                    brand.importButton.clicked.connect( self.current_index_list(brand.brand_title, dir_list, brand.index))
+                    num += 1
+                    self.brands.append(brand)
                     
+                    self.gridLayout.addWidget(self.brands[-1], row, column)
+
+    def current_index_list(self, project_name, dir_list, index):
+        def create_main_config():
+            print(f'importing {project_name} from dir {dir_list[index]}, index {index} ')
+            project_data = None 
+            try:
+                with open(Path(self.brand_dir / project_name / 'config.yaml')) as data_stream:
+                    project_data = yaml.safe_load(data_stream)
+            except Exception as e :
+                print('error ', e )
+                print(traceback.format_exc())
+            try : 
+                with open(Path(self.brand_dir.parent / 'main_config.yaml'), 'w') as yaml_file:
+                    yaml.dump(project_data, yaml_file)
+            except Exception as e :
+                print('error writing to main_config.yaml')
+                print(traceback.format_exc())
+            self.on_exit()
+            self.close()
+        return create_main_config
+    
+
     def update_layout(self):
         for i in reversed(range(self.gridLayout.count())):
             widget = self.gridLayout.itemAt(i).widget()
             if widget is not None:
                 widget.deleteLater()
         self.placeBrand()
+    
+    def on_exit(self):
+        '''
+        Assign a function that will update you gui based on the import logic 
+        '''
+        ...
+
+
         
 class createWindow(QtWidgets.QMainWindow):
-    brandNameEntered = QtCore.pyqtSignal(str)
-    def __init__(self,parent = None):
-        if parent == None:
+    # brandNameEntered = QtCore.pyqtSignal(str)
+    def __init__(self,parent = None, brand_dir: Path = None):
+        if parent != None:
             super(createWindow, self).__init__(parent)
         else:
             super().__init__()
+        print('typeee', type(brand_dir))
+        self.brand_dir = brand_dir if(type(brand_dir) ==  type(str)) else Path(brand_dir)
+        
+        
         self.widget = QtWidgets.QWidget(self)
         self.setWindowTitle('Create Brand')
         self.setGeometry(200,100,200,150)
@@ -277,54 +323,68 @@ class createWindow(QtWidgets.QMainWindow):
     
     def create_brand(self, path_to_brand = None):
         brand_name = self.lineEdit.text()
-        if type(path_to_brand) == type(None):
+        if type(path_to_brand) == type(None) and type(self.brand_dir) == type(None) :
             brand_pwd = Path(BRAND_DIR / brand_name)
-        else: 
+        elif type(path_to_brand) != type(None): 
             if not os.path.exists(path_to_brand):
                 print('error path to brand given: ', path_to_brand)
                 return 
             brand_pwd = Path(path_to_brand / brand_name)
-        print(brand_pwd)
+        elif type(self.brand_dir) != type(None):
+            if not os.path.exists(self.brand_dir):
+                print('error path to brand given: ', path_to_brand)
+                return 
+            brand_pwd = Path(Path(self.brand_dir) / brand_name)
+        else :
+            print('configure path')
+        
         brand_config = Path(brand_pwd / 'config.yaml')
-
         try:
             brand_pwd.mkdir(parents=True , exist_ok=True)
             print(f'Directory creadted at {brand_pwd}')
             data = {
-                'BRAND':{
-                    'brand_name': brand_name,
-                    'brand_path': str(BRAND_DIR),
-                    'brand_det_model':str,
-                    'brand_seg_model':str,
-                    'brand_pickle':str
-                },
-                'parameters_dir':str,
-                'captured_image':str,
-                'detected_image': str,
-                'det_labeled_image':str,
-                'reg_labeled_image':str,
-                'det_augmented_image':str,
-                'seg_augmented_image':str,
-                'NG_image':str
+                'brand_name': brand_name,
+                
+                'main_path': './Brands',
+                'brand_path': os.path.join('./Brands', brand_name, ''),
+                
+                'images_path': os.path.join('./Brands', brand_name, 'images', ''), # saves the captured image in this folder -- the image to train on 
+
+                'detection_path': os.path.join('./Brands', brand_name, 'detection', ''),
+                'detection_model_path': os.path.join('./Brands', brand_name, 'detection', 'model', ''),
+                'detection_result_path': os.path.join('./Brands', brand_name, 'detection', 'result', ''),
+                'detection_dataset_path': os.path.join('./Brands', brand_name, 'detection', 'dataset', ''),
+
+                'recognition_path': os.path.join('./Brands', brand_name, 'recognition', ''),
+                'recognition_model_path': os.path.join('./Brands', brand_name, 'recognition', 'model', ''),
+                'recognition_result_path': os.path.join('./Brands', brand_name, 'recognition', 'result', ''),
+                'recognition_dataset_path': os.path.join('./Brands', brand_name, 'recognition', 'dataset', ''),
+
+                'pickle_path': os.path.join('./Brands', brand_name, 'pickle_values'),
+
+                'good_image_path': os.path.join('./Brands', brand_name, 'good_images'),
+                'not_good_image_path': os.path.join('./Brands', brand_name, 'not_good_images'),
             }
             with open(brand_config , 'w') as yaml_file:
                 yaml.dump(data, yaml_file)
+
+            for key, value in data.items():
+                if '_path' in key:
+                    os.makedirs(Path(brand_pwd.parent.parent / value), exist_ok=True)
                 
         except FileExistsError:
             print(f"Directory at {brand_pwd} already exists")
+            print(traceback.format_exc())
         except Exception as e:
             print(f"An error occurred: {e}")
+            print(traceback.format_exc())
         self.close()
-        
-# def brand_title(): 
-#     dir_list = os.listdir(BRAND_DIR)
-    # ...
     
 if __name__ == '__main__':
     FILE = Path(__file__).parent
     BRAND_DIR = Path(FILE / 'Brands')
     app = QtWidgets.QApplication(sys.argv)
-    #window = MainWindow()
+    # window = MainWindow()
     window = createWindow()
     # window = editBrand()
 

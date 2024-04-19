@@ -14,7 +14,9 @@
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="main module" href="main.html" />
+    <link rel="prev" title="gui_camera_bindings package" href="gui_camera_bindings.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -25,7 +27,14 @@
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
+        <li class="right" >
+          <a href="main.html" title="main module"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="gui_camera_bindings.html" title="gui_camera_bindings package"
+             accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">Batch-code-inspection-system v0.0.2 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" accesskey="U">PyQT5-Batch-Code-Inspection-System</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">controller package</a></li> 
       </ul>
     </div>  
@@ -44,8 +53,108 @@
 <span id="controller-debug-operations-module"></span><h2>controller.debug_operations module<a class="headerlink" href="#module-controller.debug_operations" title="Link to this heading">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="controller.debug_operations.DebugOperationFunction">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">controller.debug_operations.</span></span><span class="sig-name descname"><span class="pre">DebugOperationFunction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#controller.gui_operations.PyQTWidgetFunction" title="controller.gui_operations.PyQTWidgetFunction"><span class="pre">PyQTWidgetFunction</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#controller.debug_operations.DebugOperationFunction" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">controller.debug_operations.</span></span><span class="sig-name descname"><span class="pre">DebugOperationFunction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#controller.gui_operations.PyQTWidgetFunction" title="controller.gui_operations.PyQTWidgetFunction"><span class="pre">PyQTWidgetFunction</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#controller.debug_operations.DebugOperationFunction" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="gui.html#gui.pyUIdesign.Ui_MainWindow" title="gui.pyUIdesign.Ui_MainWindow"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ui_MainWindow</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="controller.debug_operations.DebugOperationFunction.load_augment_param">
+<span class="sig-name descname"><span class="pre">load_augment_param</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#controller.debug_operations.DebugOperationFunction.load_augment_param" title="Link to this definition">¶</a></dt>
+<dd><p>Load the augmentation parameters from pickle values</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="controller.debug_operations.DebugOperationFunction.create_project">
+<span class="sig-name descname"><span class="pre">create_project</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#controller.debug_operations.DebugOperationFunction.create_project" title="Link to this definition">¶</a></dt>
+<dd><p>Opens the create project section</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="controller.debug_operations.DebugOperationFunction.camera_debug">
+<span class="sig-name descname"><span class="pre">camera_debug</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#controller.debug_operations.DebugOperationFunction.camera_debug" title="Link to this definition">¶</a></dt>
+<dd><p>Opens the camera section for debug mode</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="controller.debug_operations.DebugOperationFunction.camera_image_button_bindings">
+<span class="sig-name descname"><span class="pre">camera_image_button_bindings</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#controller.debug_operations.DebugOperationFunction.camera_image_button_bindings" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="controller.debug_operations.DebugOperationFunction.preprocessing_step">
+<span class="sig-name descname"><span class="pre">preprocessing_step</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#controller.debug_operations.DebugOperationFunction.preprocessing_step" title="Link to this definition">¶</a></dt>
+<dd><p>Opens the preprocessing section</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="controller.debug_operations.DebugOperationFunction.detection">
+<span class="sig-name descname"><span class="pre">detection</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#controller.debug_operations.DebugOperationFunction.detection" title="Link to this definition">¶</a></dt>
+<dd><p>Opens the detection section</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="controller.debug_operations.DebugOperationFunction.recognition">
+<span class="sig-name descname"><span class="pre">recognition</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#controller.debug_operations.DebugOperationFunction.recognition" title="Link to this definition">¶</a></dt>
+<dd><p>Opens the recognition section</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="controller.debug_operations.DebugOperationFunction.analysis">
+<span class="sig-name descname"><span class="pre">analysis</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#controller.debug_operations.DebugOperationFunction.analysis" title="Link to this definition">¶</a></dt>
+<dd><p>Opens the analysis section</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="controller.debug_operations.DebugOperationFunction.create_brand">
+<span class="sig-name descname"><span class="pre">create_brand</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#controller.debug_operations.DebugOperationFunction.create_brand" title="Link to this definition">¶</a></dt>
+<dd><p>Method to open brand creation window</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="controller.debug_operations.DebugOperationFunction.import_brand">
+<span class="sig-name descname"><span class="pre">import_brand</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#controller.debug_operations.DebugOperationFunction.import_brand" title="Link to this definition">¶</a></dt>
+<dd><p>Method to open brand import windows</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="controller.debug_operations.DebugOperationFunction.brand_exit_call_back_method">
+<span class="sig-name descname"><span class="pre">brand_exit_call_back_method</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#controller.debug_operations.DebugOperationFunction.brand_exit_call_back_method" title="Link to this definition">¶</a></dt>
+<dd><p>This method is triggered when there needs to be update in gui because of change in main_config.yaml file
+cases may be when importing yaml file, when updating parameters in the yaml</p>
+<p>Use this function as a place holder for you method, so that your method gets invoked when the brand management exits</p>
+<section id="usage">
+<h3>Usage<a class="headerlink" href="#usage" title="Link to this heading">¶</a></h3>
+<p>brand_exit_call_back_method = your_methods</p>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="controller.debug_operations.DebugOperationFunction.set_camera_values_to_entry">
+<span class="sig-name descname"><span class="pre">set_camera_values_to_entry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">exposure</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gain</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame_rate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delay</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#controller.debug_operations.DebugOperationFunction.set_camera_values_to_entry" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="controller.debug_operations.DebugOperationFunction.get_camera_values_to_entry">
+<span class="sig-name descname"><span class="pre">get_camera_values_to_entry</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#controller.debug_operations.DebugOperationFunction.get_camera_values_to_entry" title="Link to this definition">¶</a></dt>
+<dd><p>returns the values in the entry gui in camera parameters</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><ul class="simple">
+<li><p><strong>exposure</strong> (<em>float</em>)</p></li>
+<li><p><strong>gain</strong> (<em>float</em>)</p></li>
+<li><p><strong>frame_rate</strong> (<em>float</em>)</p></li>
+<li><p><strong>delay</strong> (<em>float</em>)</p></li>
+<li><p><em>———————————</em></p></li>
+<li><p><em>Returns these vaule in a list in the following order.</em></p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="controller.debug_operations.DebugOperationFunction.captured_image_count">
+<span class="sig-name descname"><span class="pre">captured_image_count</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_count</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#controller.debug_operations.DebugOperationFunction.captured_image_count" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 </section>
@@ -53,7 +162,7 @@
 <span id="controller-gui-bindings-module"></span><h2>controller.gui_bindings module<a class="headerlink" href="#module-controller.gui_bindings" title="Link to this heading">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="controller.gui_bindings.Controller">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">controller.gui_bindings.</span></span><span class="sig-name descname"><span class="pre">Controller</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">camera</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="camera_interface.html#camera_interface.camera.MachineVisionCamera" title="camera_interface.camera.MachineVisionCamera"><span class="pre">MachineVisionCamera</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">gui</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#controller.gui_operations.PyQTWidgetFunction" title="controller.gui_operations.PyQTWidgetFunction"><span class="pre">PyQTWidgetFunction</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#controller.gui_bindings.Controller" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">controller.gui_bindings.</span></span><span class="sig-name descname"><span class="pre">Controller</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">camera</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="camera_interface.html#camera_interface.camera.MachineVisionCamera" title="camera_interface.camera.MachineVisionCamera"><span class="pre">MachineVisionCamera</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">live</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#controller.live_operations.LiveOperationFunction" title="controller.live_operations.LiveOperationFunction"><span class="pre">LiveOperationFunction</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#controller.debug_operations.DebugOperationFunction" title="controller.debug_operations.DebugOperationFunction"><span class="pre">DebugOperationFunction</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">gui</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#controller.gui_operations.PyQTWidgetFunction" title="controller.gui_operations.PyQTWidgetFunction"><span class="pre">PyQTWidgetFunction</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#controller.gui_bindings.Controller" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Controller class that inherits the Ui_MainWindow from the autogenerated pyqt ui file</p>
 <dl class="field-list simple">
@@ -73,6 +182,47 @@
 <dt class="sig sig-object py" id="controller.gui_bindings.Controller.connect_methods_and_ui">
 <span class="sig-name descname"><span class="pre">connect_methods_and_ui</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#controller.gui_bindings.Controller.connect_methods_and_ui" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="controller.gui_bindings.Controller.load_main_configs">
+<span class="sig-name descname"><span class="pre">load_main_configs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#controller.gui_bindings.Controller.load_main_configs" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="controller.gui_bindings.Controller.load_saved_camera_parameter">
+<span class="sig-name descname"><span class="pre">load_saved_camera_parameter</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#controller.gui_bindings.Controller.load_saved_camera_parameter" title="Link to this definition">¶</a></dt>
+<dd><p>loading saved parameters in current brand pickel values for camera</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="controller.gui_bindings.Controller.get_mvs_camera_parameter">
+<span class="sig-name descname"><span class="pre">get_mvs_camera_parameter</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#controller.gui_bindings.Controller.get_mvs_camera_parameter" title="Link to this definition">¶</a></dt>
+<dd><p>Method to load camera parameters</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="controller.gui_bindings.Controller.set_camera_parameter">
+<span class="sig-name descname"><span class="pre">set_camera_parameter</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#controller.gui_bindings.Controller.set_camera_parameter" title="Link to this definition">¶</a></dt>
+<dd><p>method to set the camera parameter</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="controller.gui_bindings.Controller.delete_captured_image">
+<span class="sig-name descname"><span class="pre">delete_captured_image</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#controller.gui_bindings.Controller.delete_captured_image" title="Link to this definition">¶</a></dt>
+<dd><p>method to delete the capture image</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="controller.gui_bindings.Controller.capture_image">
+<span class="sig-name descname"><span class="pre">capture_image</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#controller.gui_bindings.Controller.capture_image" title="Link to this definition">¶</a></dt>
+<dd><p>method to capture the image</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="controller.gui_bindings.Controller.update_captured_image_count">
+<span class="sig-name descname"><span class="pre">update_captured_image_count</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#controller.gui_bindings.Controller.update_captured_image_count" title="Link to this definition">¶</a></dt>
+<dd><p>method to update the image count in the gui by reading from the brand folder</p>
+</dd></dl>
 
 </dd></dl>
 
@@ -104,70 +254,10 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="controller.gui_operations.PyQTWidgetFunction.camera_setting">
-<span class="sig-name descname"><span class="pre">camera_setting</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#controller.gui_operations.PyQTWidgetFunction.camera_setting" title="Link to this definition">¶</a></dt>
-<dd><p>Method that change the camera setting page in StackedWidget</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="controller.gui_operations.PyQTWidgetFunction.save_data">
-<span class="sig-name descname"><span class="pre">save_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#controller.gui_operations.PyQTWidgetFunction.save_data" title="Link to this definition">¶</a></dt>
-<dd><p>Method that change into save data page.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="controller.gui_operations.PyQTWidgetFunction.open_image">
-<span class="sig-name descname"><span class="pre">open_image</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#controller.gui_operations.PyQTWidgetFunction.open_image" title="Link to this definition">¶</a></dt>
-<dd><p>Method that opens the image to select the ROI to be used and display in the GUI</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="controller.gui_operations.PyQTWidgetFunction.choose_directory_path">
-<span class="sig-name descname"><span class="pre">choose_directory_path</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#controller.gui_operations.PyQTWidgetFunction.choose_directory_path" title="Link to this definition">¶</a></dt>
-<dd><p>Method that sets the path to save the image.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="controller.gui_operations.PyQTWidgetFunction.get_save_directory_path">
-<span class="sig-name descname"><span class="pre">get_save_directory_path</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#controller.gui_operations.PyQTWidgetFunction.get_save_directory_path" title="Link to this definition">¶</a></dt>
-<dd><p>Method that returns the path to save the image</p>
-</dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="controller.gui_operations.PyQTWidgetFunction.get_live_gui_values">
 <span class="sig-name descname"><span class="pre">get_live_gui_values</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#controller.gui_operations.PyQTWidgetFunction.get_live_gui_values" title="Link to this definition">¶</a></dt>
 <dd><p>Function that takes all the user inputs values from GUI and saved in pickle file</p>
 </dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="controller.gui_operations.PyQTWidgetFunction.create_project">
-<span class="sig-name descname"><span class="pre">create_project</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#controller.gui_operations.PyQTWidgetFunction.create_project" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="controller.gui_operations.PyQTWidgetFunction.camera_debug">
-<span class="sig-name descname"><span class="pre">camera_debug</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#controller.gui_operations.PyQTWidgetFunction.camera_debug" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="controller.gui_operations.PyQTWidgetFunction.preprocessing_step">
-<span class="sig-name descname"><span class="pre">preprocessing_step</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#controller.gui_operations.PyQTWidgetFunction.preprocessing_step" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="controller.gui_operations.PyQTWidgetFunction.detection">
-<span class="sig-name descname"><span class="pre">detection</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#controller.gui_operations.PyQTWidgetFunction.detection" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="controller.gui_operations.PyQTWidgetFunction.recognition">
-<span class="sig-name descname"><span class="pre">recognition</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#controller.gui_operations.PyQTWidgetFunction.recognition" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="controller.gui_operations.PyQTWidgetFunction.analysis">
-<span class="sig-name descname"><span class="pre">analysis</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#controller.gui_operations.PyQTWidgetFunction.analysis" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
 
 </dd></dl>
 
@@ -176,8 +266,62 @@
 <span id="controller-live-operations-module"></span><h2>controller.live_operations module<a class="headerlink" href="#module-controller.live_operations" title="Link to this heading">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="controller.live_operations.LiveOperationFunction">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">controller.live_operations.</span></span><span class="sig-name descname"><span class="pre">LiveOperationFunction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#controller.gui_operations.PyQTWidgetFunction" title="controller.gui_operations.PyQTWidgetFunction"><span class="pre">PyQTWidgetFunction</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#controller.live_operations.LiveOperationFunction" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">controller.live_operations.</span></span><span class="sig-name descname"><span class="pre">LiveOperationFunction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#controller.gui_operations.PyQTWidgetFunction" title="controller.gui_operations.PyQTWidgetFunction"><span class="pre">PyQTWidgetFunction</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#controller.live_operations.LiveOperationFunction" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="gui.html#gui.pyUIdesign.Ui_MainWindow" title="gui.pyUIdesign.Ui_MainWindow"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ui_MainWindow</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="controller.live_operations.LiveOperationFunction.system_param_load">
+<span class="sig-name descname"><span class="pre">system_param_load</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#controller.live_operations.LiveOperationFunction.system_param_load" title="Link to this definition">¶</a></dt>
+<dd><p>Load the system parameter values from pickle</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="controller.live_operations.LiveOperationFunction.reject_param_load">
+<span class="sig-name descname"><span class="pre">reject_param_load</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#controller.live_operations.LiveOperationFunction.reject_param_load" title="Link to this definition">¶</a></dt>
+<dd><p>Load the rejection parameter values from pickle</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="controller.live_operations.LiveOperationFunction.camera_param_load">
+<span class="sig-name descname"><span class="pre">camera_param_load</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#controller.live_operations.LiveOperationFunction.camera_param_load" title="Link to this definition">¶</a></dt>
+<dd><p>Load the camera parameter value from pickle</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="controller.live_operations.LiveOperationFunction.save_param_load">
+<span class="sig-name descname"><span class="pre">save_param_load</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#controller.live_operations.LiveOperationFunction.save_param_load" title="Link to this definition">¶</a></dt>
+<dd><p>Load the save data parameter value from pickle</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="controller.live_operations.LiveOperationFunction.camera_setting">
+<span class="sig-name descname"><span class="pre">camera_setting</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#controller.live_operations.LiveOperationFunction.camera_setting" title="Link to this definition">¶</a></dt>
+<dd><p>Method that change the camera setting page in StackedWidget</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="controller.live_operations.LiveOperationFunction.save_data">
+<span class="sig-name descname"><span class="pre">save_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#controller.live_operations.LiveOperationFunction.save_data" title="Link to this definition">¶</a></dt>
+<dd><p>Method that change into save data page.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="controller.live_operations.LiveOperationFunction.open_image">
+<span class="sig-name descname"><span class="pre">open_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#controller.live_operations.LiveOperationFunction.open_image" title="Link to this definition">¶</a></dt>
+<dd><p>Method that opens the image to select the ROI to be used and display in the GUI</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="controller.live_operations.LiveOperationFunction.choose_directory_path">
+<span class="sig-name descname"><span class="pre">choose_directory_path</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#controller.live_operations.LiveOperationFunction.choose_directory_path" title="Link to this definition">¶</a></dt>
+<dd><p>Method that sets the path to save the image.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="controller.live_operations.LiveOperationFunction.get_save_directory_path">
+<span class="sig-name descname"><span class="pre">get_save_directory_path</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#controller.live_operations.LiveOperationFunction.get_save_directory_path" title="Link to this definition">¶</a></dt>
+<dd><p>Method that returns the path to save the image</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="controller.live_operations.LiveOperationFunction.reset_counter_values">
 <span class="sig-name descname"><span class="pre">reset_counter_values</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#controller.live_operations.LiveOperationFunction.reset_counter_values" title="Link to this definition">¶</a></dt>
@@ -209,13 +353,36 @@
 <li><a class="reference internal" href="#">controller package</a><ul>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
 <li><a class="reference internal" href="#module-controller.debug_operations">controller.debug_operations module</a><ul>
-<li><a class="reference internal" href="#controller.debug_operations.DebugOperationFunction"><code class="docutils literal notranslate"><span class="pre">DebugOperationFunction</span></code></a></li>
+<li><a class="reference internal" href="#controller.debug_operations.DebugOperationFunction"><code class="docutils literal notranslate"><span class="pre">DebugOperationFunction</span></code></a><ul>
+<li><a class="reference internal" href="#controller.debug_operations.DebugOperationFunction.load_augment_param"><code class="docutils literal notranslate"><span class="pre">DebugOperationFunction.load_augment_param()</span></code></a></li>
+<li><a class="reference internal" href="#controller.debug_operations.DebugOperationFunction.create_project"><code class="docutils literal notranslate"><span class="pre">DebugOperationFunction.create_project()</span></code></a></li>
+<li><a class="reference internal" href="#controller.debug_operations.DebugOperationFunction.camera_debug"><code class="docutils literal notranslate"><span class="pre">DebugOperationFunction.camera_debug()</span></code></a></li>
+<li><a class="reference internal" href="#controller.debug_operations.DebugOperationFunction.camera_image_button_bindings"><code class="docutils literal notranslate"><span class="pre">DebugOperationFunction.camera_image_button_bindings()</span></code></a></li>
+<li><a class="reference internal" href="#controller.debug_operations.DebugOperationFunction.preprocessing_step"><code class="docutils literal notranslate"><span class="pre">DebugOperationFunction.preprocessing_step()</span></code></a></li>
+<li><a class="reference internal" href="#controller.debug_operations.DebugOperationFunction.detection"><code class="docutils literal notranslate"><span class="pre">DebugOperationFunction.detection()</span></code></a></li>
+<li><a class="reference internal" href="#controller.debug_operations.DebugOperationFunction.recognition"><code class="docutils literal notranslate"><span class="pre">DebugOperationFunction.recognition()</span></code></a></li>
+<li><a class="reference internal" href="#controller.debug_operations.DebugOperationFunction.analysis"><code class="docutils literal notranslate"><span class="pre">DebugOperationFunction.analysis()</span></code></a></li>
+<li><a class="reference internal" href="#controller.debug_operations.DebugOperationFunction.create_brand"><code class="docutils literal notranslate"><span class="pre">DebugOperationFunction.create_brand()</span></code></a></li>
+<li><a class="reference internal" href="#controller.debug_operations.DebugOperationFunction.import_brand"><code class="docutils literal notranslate"><span class="pre">DebugOperationFunction.import_brand()</span></code></a></li>
+<li><a class="reference internal" href="#controller.debug_operations.DebugOperationFunction.brand_exit_call_back_method"><code class="docutils literal notranslate"><span class="pre">DebugOperationFunction.brand_exit_call_back_method()</span></code></a></li>
+<li><a class="reference internal" href="#controller.debug_operations.DebugOperationFunction.set_camera_values_to_entry"><code class="docutils literal notranslate"><span class="pre">DebugOperationFunction.set_camera_values_to_entry()</span></code></a></li>
+<li><a class="reference internal" href="#controller.debug_operations.DebugOperationFunction.get_camera_values_to_entry"><code class="docutils literal notranslate"><span class="pre">DebugOperationFunction.get_camera_values_to_entry()</span></code></a></li>
+<li><a class="reference internal" href="#controller.debug_operations.DebugOperationFunction.captured_image_count"><code class="docutils literal notranslate"><span class="pre">DebugOperationFunction.captured_image_count()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a class="reference internal" href="#module-controller.gui_bindings">controller.gui_bindings module</a><ul>
 <li><a class="reference internal" href="#controller.gui_bindings.Controller"><code class="docutils literal notranslate"><span class="pre">Controller</span></code></a><ul>
 <li><a class="reference internal" href="#controller.gui_bindings.Controller.connect_camera_and_ui"><code class="docutils literal notranslate"><span class="pre">Controller.connect_camera_and_ui()</span></code></a></li>
 <li><a class="reference internal" href="#controller.gui_bindings.Controller.connect_methods_and_ui"><code class="docutils literal notranslate"><span class="pre">Controller.connect_methods_and_ui()</span></code></a></li>
+<li><a class="reference internal" href="#controller.gui_bindings.Controller.load_main_configs"><code class="docutils literal notranslate"><span class="pre">Controller.load_main_configs()</span></code></a></li>
+<li><a class="reference internal" href="#controller.gui_bindings.Controller.load_saved_camera_parameter"><code class="docutils literal notranslate"><span class="pre">Controller.load_saved_camera_parameter()</span></code></a></li>
+<li><a class="reference internal" href="#controller.gui_bindings.Controller.get_mvs_camera_parameter"><code class="docutils literal notranslate"><span class="pre">Controller.get_mvs_camera_parameter()</span></code></a></li>
+<li><a class="reference internal" href="#controller.gui_bindings.Controller.set_camera_parameter"><code class="docutils literal notranslate"><span class="pre">Controller.set_camera_parameter()</span></code></a></li>
+<li><a class="reference internal" href="#controller.gui_bindings.Controller.delete_captured_image"><code class="docutils literal notranslate"><span class="pre">Controller.delete_captured_image()</span></code></a></li>
+<li><a class="reference internal" href="#controller.gui_bindings.Controller.capture_image"><code class="docutils literal notranslate"><span class="pre">Controller.capture_image()</span></code></a></li>
+<li><a class="reference internal" href="#controller.gui_bindings.Controller.update_captured_image_count"><code class="docutils literal notranslate"><span class="pre">Controller.update_captured_image_count()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -224,24 +391,22 @@
 <li><a class="reference internal" href="#controller.gui_operations.PyQTWidgetFunction"><code class="docutils literal notranslate"><span class="pre">PyQTWidgetFunction</span></code></a><ul>
 <li><a class="reference internal" href="#controller.gui_operations.PyQTWidgetFunction.switch_mode"><code class="docutils literal notranslate"><span class="pre">PyQTWidgetFunction.switch_mode()</span></code></a></li>
 <li><a class="reference internal" href="#controller.gui_operations.PyQTWidgetFunction.get_current_mode"><code class="docutils literal notranslate"><span class="pre">PyQTWidgetFunction.get_current_mode()</span></code></a></li>
-<li><a class="reference internal" href="#controller.gui_operations.PyQTWidgetFunction.camera_setting"><code class="docutils literal notranslate"><span class="pre">PyQTWidgetFunction.camera_setting()</span></code></a></li>
-<li><a class="reference internal" href="#controller.gui_operations.PyQTWidgetFunction.save_data"><code class="docutils literal notranslate"><span class="pre">PyQTWidgetFunction.save_data()</span></code></a></li>
-<li><a class="reference internal" href="#controller.gui_operations.PyQTWidgetFunction.open_image"><code class="docutils literal notranslate"><span class="pre">PyQTWidgetFunction.open_image()</span></code></a></li>
-<li><a class="reference internal" href="#controller.gui_operations.PyQTWidgetFunction.choose_directory_path"><code class="docutils literal notranslate"><span class="pre">PyQTWidgetFunction.choose_directory_path()</span></code></a></li>
-<li><a class="reference internal" href="#controller.gui_operations.PyQTWidgetFunction.get_save_directory_path"><code class="docutils literal notranslate"><span class="pre">PyQTWidgetFunction.get_save_directory_path()</span></code></a></li>
 <li><a class="reference internal" href="#controller.gui_operations.PyQTWidgetFunction.get_live_gui_values"><code class="docutils literal notranslate"><span class="pre">PyQTWidgetFunction.get_live_gui_values()</span></code></a></li>
-<li><a class="reference internal" href="#controller.gui_operations.PyQTWidgetFunction.create_project"><code class="docutils literal notranslate"><span class="pre">PyQTWidgetFunction.create_project()</span></code></a></li>
-<li><a class="reference internal" href="#controller.gui_operations.PyQTWidgetFunction.camera_debug"><code class="docutils literal notranslate"><span class="pre">PyQTWidgetFunction.camera_debug()</span></code></a></li>
-<li><a class="reference internal" href="#controller.gui_operations.PyQTWidgetFunction.preprocessing_step"><code class="docutils literal notranslate"><span class="pre">PyQTWidgetFunction.preprocessing_step()</span></code></a></li>
-<li><a class="reference internal" href="#controller.gui_operations.PyQTWidgetFunction.detection"><code class="docutils literal notranslate"><span class="pre">PyQTWidgetFunction.detection()</span></code></a></li>
-<li><a class="reference internal" href="#controller.gui_operations.PyQTWidgetFunction.recognition"><code class="docutils literal notranslate"><span class="pre">PyQTWidgetFunction.recognition()</span></code></a></li>
-<li><a class="reference internal" href="#controller.gui_operations.PyQTWidgetFunction.analysis"><code class="docutils literal notranslate"><span class="pre">PyQTWidgetFunction.analysis()</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li><a class="reference internal" href="#module-controller.live_operations">controller.live_operations module</a><ul>
 <li><a class="reference internal" href="#controller.live_operations.LiveOperationFunction"><code class="docutils literal notranslate"><span class="pre">LiveOperationFunction</span></code></a><ul>
+<li><a class="reference internal" href="#controller.live_operations.LiveOperationFunction.system_param_load"><code class="docutils literal notranslate"><span class="pre">LiveOperationFunction.system_param_load()</span></code></a></li>
+<li><a class="reference internal" href="#controller.live_operations.LiveOperationFunction.reject_param_load"><code class="docutils literal notranslate"><span class="pre">LiveOperationFunction.reject_param_load()</span></code></a></li>
+<li><a class="reference internal" href="#controller.live_operations.LiveOperationFunction.camera_param_load"><code class="docutils literal notranslate"><span class="pre">LiveOperationFunction.camera_param_load()</span></code></a></li>
+<li><a class="reference internal" href="#controller.live_operations.LiveOperationFunction.save_param_load"><code class="docutils literal notranslate"><span class="pre">LiveOperationFunction.save_param_load()</span></code></a></li>
+<li><a class="reference internal" href="#controller.live_operations.LiveOperationFunction.camera_setting"><code class="docutils literal notranslate"><span class="pre">LiveOperationFunction.camera_setting()</span></code></a></li>
+<li><a class="reference internal" href="#controller.live_operations.LiveOperationFunction.save_data"><code class="docutils literal notranslate"><span class="pre">LiveOperationFunction.save_data()</span></code></a></li>
+<li><a class="reference internal" href="#controller.live_operations.LiveOperationFunction.open_image"><code class="docutils literal notranslate"><span class="pre">LiveOperationFunction.open_image()</span></code></a></li>
+<li><a class="reference internal" href="#controller.live_operations.LiveOperationFunction.choose_directory_path"><code class="docutils literal notranslate"><span class="pre">LiveOperationFunction.choose_directory_path()</span></code></a></li>
+<li><a class="reference internal" href="#controller.live_operations.LiveOperationFunction.get_save_directory_path"><code class="docutils literal notranslate"><span class="pre">LiveOperationFunction.get_save_directory_path()</span></code></a></li>
 <li><a class="reference internal" href="#controller.live_operations.LiveOperationFunction.reset_counter_values"><code class="docutils literal notranslate"><span class="pre">LiveOperationFunction.reset_counter_values()</span></code></a></li>
 <li><a class="reference internal" href="#controller.live_operations.LiveOperationFunction.update_camera_parameter"><code class="docutils literal notranslate"><span class="pre">LiveOperationFunction.update_camera_parameter()</span></code></a></li>
 </ul>
@@ -253,6 +418,16 @@
 </li>
 </ul>
 
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="gui_camera_bindings.html"
+                          title="previous chapter">gui_camera_bindings package</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="main.html"
+                          title="next chapter">main module</a></p>
   </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
@@ -284,7 +459,14 @@
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
+        <li class="right" >
+          <a href="main.html" title="main module"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="gui_camera_bindings.html" title="gui_camera_bindings package"
+             >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">Batch-code-inspection-system v0.0.2 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >PyQT5-Batch-Code-Inspection-System</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">controller package</a></li> 
       </ul>
     </div>

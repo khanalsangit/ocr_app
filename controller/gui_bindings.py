@@ -74,7 +74,7 @@ class Controller():
     def connect_methods_and_ui(self):
         ####################### Live Mode function called ############################
         self.gui.stackWidget.setCurrentWidget(self.gui.liveMode_Page) ####### default switch mode 
-        self.live.editProject.setCurrentWidget(self.gui.createProject_Page) ####### default live mode page
+        self.gui.editProject.setCurrentWidget(self.gui.createProject_Page) ####### default live mode page
         self.gui.switch_mode_flag = False  ##### switch mode flag
         self.gui.switchButton.clicked.connect(
             lambda : [
@@ -86,7 +86,7 @@ class Controller():
         )
         self.gui.stackWidget_cameraSetting.setCurrentWidget(self.gui.cameraSetting_Page) ######### default camera setting mode
         self.live.cameraSetting_Button.pressed.connect(self.live.camera_setting)
-        self.live.openImage_Button.pressed.connect(
+        self.gui.openImage_Button.pressed.connect(
             lambda : self.live.open_image()
         )
         self.live.saveData_Button.pressed.connect(self.live.save_data)

@@ -203,6 +203,7 @@ class DebugOperationFunction(Ui_MainWindow):
         import_window = bm.MainWindow(self.parent.main_window, brand_dir = './Brands/')
         import_window.on_exit = self.brand_exit_call_back_method
         import_window.show()
+        
 
     def brand_exit_call_back_method(self):
         '''

@@ -318,7 +318,15 @@ class CameraOperation:
             return MV_OK
 
     def image_captured_callback(self):
+        '''
+        assign method to this directly
+        '''
+    def ui_status_callback(self, image = None, rejection = None):
+        '''
+        assign method to this directly
+        '''
         ... 
+    
 
     # 取图线程函数
     def Work_thread(self, winHandle):
@@ -383,7 +391,8 @@ class CameraOperation:
                 self.current_image = numArray.copy()
 
                 try: 
-                    numArray = self.image_captured_callback(numArray)
+                    numArray, rejection = self.image_captured_callback(numArray)
+                    self.ui_status_callback(image = numArray, rejection=rejection)
                 except Exception as e:
                     print('[-] Process Error')
                     print(traceback.format_exc())

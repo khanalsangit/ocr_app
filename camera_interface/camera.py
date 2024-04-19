@@ -30,6 +30,7 @@ class MachineVisionCamera:
 
         self.trigger_mode = None
         self.callback = None 
+        self.ui_update_callback = None
 
     def set_ui(self, ui):
         self.ui = ui 
@@ -180,6 +181,8 @@ class MachineVisionCamera:
         """
 
         self.obj_cam_operation.image_captured_callback = self.callback
+        self.obj_cam_operation.ui_status_callback = self.ui_update_callback
+        # self.set_image_callback_on_trigger(self.callback)
         
         ret = self.obj_cam_operation.Start_grabbing(widgetDisplay.winId())
         if ret != 0:
@@ -350,11 +353,15 @@ class MachineVisionCamera:
     def set_image_callback_on_trigger(self, callback):
         """
         pass a callback function that has image as an argument in it
-        def callback(image):
-            ...
         """
-        self.obj_cam_operation.image_captured_callback = self.callback
+        self.obj_cam_operation.image_captured_callback = callback
         ...
+    
+    def set_ui_events_callback_on_trigger(self, ui_update_callback):
+        """
+        pass a callback function that has image as an argument in it
+        """
+        self.obj_cam_operation.ui_status_callback = ui_update_callback
     
     def get_current_image(self):
         return self.obj_cam_operation.current_image

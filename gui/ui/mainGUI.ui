@@ -2590,7 +2590,7 @@ QPushButton:pressed{
 }</string>
           </property>
           <property name="currentIndex">
-           <number>1</number>
+           <number>2</number>
           </property>
           <widget class="QWidget" name="createProject_Page">
            <property name="minimumSize">
@@ -4035,7 +4035,7 @@ QRadioButton:unchecked {
                       </widget>
                      </item>
                      <item row="3" column="0">
-                      <widget class="QCheckBox" name="checkBox">
+                      <widget class="QCheckBox" name="flip_checkBox">
                        <property name="sizePolicy">
                         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                          <horstretch>0</horstretch>

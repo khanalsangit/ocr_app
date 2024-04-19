@@ -63,6 +63,7 @@ class LiveOperationFunction(Ui_MainWindow):
         self.saveData_Page = parent.saveData_Page
         self.saveData_Button = parent.saveData_Button
         self.directoryName_Entry = parent.directoryName_Entry
+        self.chooseDirectory_Button = parent.chooseDirectory_Button
 
 
         ############ last ng image 
@@ -79,11 +80,11 @@ class LiveOperationFunction(Ui_MainWindow):
         self.lastNG_timeCount = parent.lastNG_timeCount 
         self.resetCounter_Button = parent.resetCounter_Button
 
-    def system_param_load(self)->None :
+    def system_param_load(file_path,self)->None :
         '''
         Load the system parameter values from pickle
         '''
-        with open(os.path.join(os.getcwd(),'Parameter_Value/system.pkl'),'rb') as f:
+        with open(os.path.join(os.getcwd(),os.path.join(file_path,'system.pkl')),'rb') as f:
             system_param = pickle.load(f)   
             print(system_param)
         if system_param['ocr_method'] == True:  ######## Set the ocr method radiobutton 
@@ -189,7 +190,7 @@ class LiveOperationFunction(Ui_MainWindow):
             ,'reject_count':self.rejectCount_Entry.text()
             ,'reject_enable':True if self.rejectEnable_Yes.isChecked() else False 
         }
-        save_parameter(reject,'reject')
+        save_parameter(os.getcwd(),'reject',reject)
         msgBox = QMessageBox()
         msgBox.setIcon(QMessageBox.Information)
         msgBox.setText("Reject Parameter Save Successfully")

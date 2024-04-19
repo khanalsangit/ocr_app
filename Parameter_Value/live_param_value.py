@@ -1,6 +1,6 @@
 system_param = {
     'ocr_method':True,
-    'nooflines': 3,
+    'no_of_lines': 3,
     'line1':'[^^^^^^^^^^^^^^]',
     'line2':'[^^^^^^^^^^^^^^^]',
     'line3':'[^^^^^^^^^^^^^^^]',

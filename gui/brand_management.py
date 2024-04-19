@@ -6,8 +6,11 @@ import os
 from typing import Callable
 import yaml
 import shutil
-
+from Parameter_Value.param_tools import save_parameter
+from Parameter_Value.live_param_value import *
+from .pyUIdesign import Ui_MainWindow
 import traceback
+from controller.live_operations import LiveOperationFunction
 
 class BrandFrame(QtWidgets.QFrame):
     def __init__(self, parent, brand_title):
@@ -180,16 +183,20 @@ class editBrand(QtWidgets.QMainWindow):
         print(self.brand)
 
 class MainWindow(QtWidgets.QMainWindow):
-    def __init__(self, parent: QtWidgets.QMainWindow = None, brand_dir : Path = None):
+    def __init__(self, main_ui:Ui_MainWindow,live:LiveOperationFunction, parent: QtWidgets.QMainWindow = None, brand_dir : Path = None):
         
+        # self.brand_name = main_ui.projectName
+        self.live = live
         if parent == None:
             super().__init__()
         else: 
             super().__init__(parent)
+       
+        
         
         self.brands = [] 
         self.brand_dir =  Path(brand_dir) if(type(brand_dir) !=  type(None)) else None 
-
+        self.main_ui = main_ui
         self.setWindowTitle("Import Brand")
         self.mainWidget = QtWidgets.QWidget(self)
         self.mainWidget.setStyleSheet("#brand{\n"
@@ -225,7 +232,6 @@ class MainWindow(QtWidgets.QMainWindow):
                     brand.importButton.clicked.connect( self.current_index_list(brand.brand_title, dir_list, brand.index))
                     num += 1
                     self.brands.append(brand)
-                    
                     self.gridLayout.addWidget(self.brands[-1], row, column)
 
     def current_index_list(self, project_name, dir_list, index):
@@ -244,8 +250,12 @@ class MainWindow(QtWidgets.QMainWindow):
             except Exception as e :
                 print('error writing to main_config.yaml')
                 print(traceback.format_exc())
+            # self.brand_name.setText(project_name)
             self.on_exit()
             self.close()
+            
+            ###### Loading the pickle values
+        self.live.system_param_load(project_name)
         return create_main_config
     
 
@@ -372,6 +382,12 @@ class createWindow(QtWidgets.QMainWindow):
                 if '_path' in key:
                     os.makedirs(Path(brand_pwd.parent.parent / value), exist_ok=True)
                 
+            #### Create a Pickle file for brand
+            save_parameter(os.path.join(brand_pwd,'pickle_values'),'system',system_param)
+            save_parameter(os.path.join(brand_pwd,'pickle_values'),'rejection',rejection_params)
+            save_parameter(os.path.join(brand_pwd,'pickle_values'), 'camera',camera_param)
+            save_parameter(os.path.join(brand_pwd,'pickle_values'),'save_data',save_data_param)
+            
         except FileExistsError:
             print(f"Directory at {brand_pwd} already exists")
             print(traceback.format_exc())

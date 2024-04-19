@@ -28,9 +28,9 @@ save_data_param = {
     'save_result':'False',
     'img_dir':'None'
 }
-
-# from param_tools import save_parameter, get_parameter
-# save_parameter(system_param,'system')
-# save_parameter(rejection_params,'rejection')
-# save_parameter(camera_param,'camera')
-# save_parameter(save_data_param,'save_data')
+if __name__ == '__main__':
+    from param_tools import save_parameter, get_parameter
+    save_parameter('./','system', system_param)
+    # save_parameter(rejection_params,'rejection')
+    # save_parameter(camera_param,'camera')
+    # save_parameter(save_data_param,'save_data')

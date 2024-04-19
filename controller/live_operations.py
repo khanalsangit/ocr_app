@@ -56,6 +56,7 @@ class LiveOperationFunction(Ui_MainWindow):
         self.roiEntry4 = parent.roiEntry4
 
          ########### save data parameters variables
+        self.openImage_Button = parent.openImage_Button 
         self.saveImage_Checkbox = parent.saveImage_Checkbox
         self.saveResult_Checkbox = parent.saveResult_Checkbox
         self.saveNG_Checkbox = parent.saveNG_Checkbox
@@ -63,6 +64,7 @@ class LiveOperationFunction(Ui_MainWindow):
         self.saveData_Page = parent.saveData_Page
         self.saveData_Button = parent.saveData_Button
         self.directoryName_Entry = parent.directoryName_Entry
+        self.chooseDirectory_Button = parent.chooseDirectory_Button
 
 
         ############ last ng image 

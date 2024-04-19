@@ -70,7 +70,7 @@ class DebugOperationFunction(Ui_MainWindow):
         self.blurEntry = parent.blurEntry
         self.contrastEntry = parent.contrastEntry
         self.recursionRateEntry = parent.recursionRateEntry
-        self.flipEntry = parent.flipEntry
+        self.flip_checkBox = parent.flip_checkBox
         self.rigidEntry = parent.rigidEntry
         self.elasticEntry = parent.elasticEntry
 
@@ -85,7 +85,8 @@ class DebugOperationFunction(Ui_MainWindow):
         self.blurEntry.setText(str(augmentation['blur']))
         self.contrastEntry.setText(str(augmentation['contrast']))
         self.recursionRateEntry.setText(str(augmentation['recursion_rate']))
-        self.flipEntry.setText(str(augmentation['flip']))
+        # self.flip_checkBox.setText(str(augmentation['flip']))
+        self.flip_checkBox.setChecked(augmentation['flip'])
         self.rigidEntry.setText(str(augmentation['rigid']))
         self.elasticEntry.setText(str(augmentation['elastic']))
     

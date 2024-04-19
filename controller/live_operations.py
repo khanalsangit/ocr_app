@@ -8,7 +8,7 @@ import shutil
 from gui.pyUIdesign import Ui_MainWindow
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtWidgets import *
-from Parameter_Value.live_param_value import save_parameter
+from Parameter_Value.param_tools import save_parameter
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from .gui_operations import PyQTWidgetFunction

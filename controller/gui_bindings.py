@@ -74,7 +74,7 @@ class Controller():
     def connect_methods_and_ui(self):
         ####################### Live Mode function called ############################
         self.gui.stackWidget.setCurrentWidget(self.gui.liveMode_Page) ####### default switch mode 
-        self.gui.editProject.setCurrentWidget(self.gui.createProject_Page) ####### default live mode page
+        self.live.editProject.setCurrentWidget(self.gui.createProject_Page) ####### default live mode page
         self.gui.switch_mode_flag = False  ##### switch mode flag
         self.gui.switchButton.clicked.connect(
             lambda : [

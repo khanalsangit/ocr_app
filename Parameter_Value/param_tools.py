@@ -17,7 +17,7 @@ def save_parameter(pickle_parameter_path: Path, pkl_name: str, param: dict):
 
 def get_parameter(pickle_parameter_path: Path, pkl_name: str, param: dict = None):
     if os.path.exists(os.path.join(pickle_parameter_path, '{}.pkl'.format(pkl_name))):
-        print('[+] Loading form the pickle file', )
+        print('[+] Loading from the pickle file', )
         return pickle.load(open(os.path.join(pickle_parameter_path, '{}.pkl'.format(pkl_name)), 'rb'))
     elif param:
         save_parameter(pickle_parameter_path, 'camera_param', param)
@@ -28,3 +28,4 @@ def get_parameter(pickle_parameter_path: Path, pkl_name: str, param: dict = None
         except Exception as e :
             print('Pickle folder error ', e)
             print(traceback.format_exc())
+

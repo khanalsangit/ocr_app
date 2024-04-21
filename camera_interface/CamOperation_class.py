@@ -10,6 +10,7 @@ import inspect
 import ctypes
 import random
 from ctypes import *
+import traceback
 
 sys.path.append("./MvImport")
 
@@ -131,6 +132,8 @@ class CameraOperation:
         self.gain = gain
         self.buf_lock = threading.Lock()  # 取图和存图的buffer锁
 
+        self.current_image = None 
+
     # 打开相机
     def Open_device(self):
         if not self.b_open_device:
@@ -233,7 +236,7 @@ class CameraOperation:
         return MV_OK
 
     # 设置触发模式
-    def Set_trigger_mode(self, is_trigger_mode):
+    def Set_trigger_mode(self, is_trigger_mode, hardware_trigger = False):
         if not self.b_open_device:
             return MV_E_CALLORDER
 
@@ -245,7 +248,12 @@ class CameraOperation:
             ret = self.obj_cam.MV_CC_SetEnumValue("TriggerMode", 1)
             if ret != 0:
                 return ret
-            ret = self.obj_cam.MV_CC_SetEnumValue("TriggerSource", 7)
+            
+            software_tigger_enum_value = 7
+            hardware_tigger_enum_value = 0
+
+            trigger_source = hardware_tigger_enum_value if hardware_trigger else software_tigger_enum_value 
+            ret = self.obj_cam.MV_CC_SetEnumValue("TriggerSource", trigger_source)
             if ret != 0:
                 return ret
 
@@ -309,6 +317,17 @@ class CameraOperation:
 
             return MV_OK
 
+    def image_captured_callback(self):
+        '''
+        assign method to this directly
+        '''
+    def ui_status_callback(self, image = None, rejection = None):
+        '''
+        assign method to this directly
+        '''
+        ... 
+    
+
     # 取图线程函数
     def Work_thread(self, winHandle):
         stOutFrame = MV_FRAME_OUT()
@@ -319,6 +338,7 @@ class CameraOperation:
             if 0 == ret:
                 # 拷贝图像和图像信息
                 if self.buf_save_image is None:
+                    # <class 'camera_interface.CamOperation_class.c_ubyte_Array_5013504'>
                     self.buf_save_image = (c_ubyte * stOutFrame.stFrameInfo.nFrameLen)()
                 self.st_frame_info = stOutFrame.stFrameInfo
 
@@ -327,24 +347,72 @@ class CameraOperation:
                 cdll.msvcrt.memcpy(byref(self.buf_save_image), stOutFrame.pBufAddr, self.st_frame_info.nFrameLen)
                 self.buf_lock.release()
 
-                print("get one frame: Width[%d], Height[%d], nFrameNum[%d]"
-                      % (self.st_frame_info.nWidth, self.st_frame_info.nHeight, self.st_frame_info.nFrameNum))
+                # print("get one frame: Width[%d], Height[%d], nFrameNum[%d]"
+                    #   % (self.st_frame_info.nWidth, self.st_frame_info.nHeight, self.st_frame_info.nFrameNum))
                 # 释放缓存
                 self.obj_cam.MV_CC_FreeImageBuffer(stOutFrame)
             else:
                 print("no data, ret = " + To_hex_str(ret))
                 continue
 
-            # 使用Display接口显示图像
-            stDisplayParam = MV_DISPLAY_FRAME_INFO()
-            memset(byref(stDisplayParam), 0, sizeof(stDisplayParam))
-            stDisplayParam.hWnd = int(winHandle)
-            stDisplayParam.nWidth = self.st_frame_info.nWidth
-            stDisplayParam.nHeight = self.st_frame_info.nHeight
-            stDisplayParam.enPixelType = self.st_frame_info.enPixelType
-            stDisplayParam.pData = self.buf_save_image
-            stDisplayParam.nDataLen = self.st_frame_info.nFrameLen
-            self.obj_cam.MV_CC_DisplayOneFrame(stDisplayParam)
+            # 使用Display接口显示图像 
+            # display the captured image directly
+            # stDisplayParam = MV_DISPLAY_FRAME_INFO()
+            # memset(byref(stDisplayParam), 0, sizeof(stDisplayParam))
+            # stDisplayParam.hWnd = int(winHandle)
+            # stDisplayParam.nWidth = self.st_frame_info.nWidth
+            # stDisplayParam.nHeight = self.st_frame_info.nHeight
+            # stDisplayParam.enPixelType = self.st_frame_info.enPixelType
+            # stDisplayParam.pData = self.buf_save_image
+            # stDisplayParam.nDataLen = self.st_frame_info.nFrameLen
+            # self.obj_cam.MV_CC_DisplayOneFrame(stDisplayParam)
+
+            # converting to numpy array 
+            if None != stOutFrame.pBufAddr:
+                nRGBSize = stOutFrame.stFrameInfo.nWidth * stOutFrame.stFrameInfo.nHeight * 3
+                stConvertParam = MV_CC_PIXEL_CONVERT_PARAM_EX()
+                memset(byref(stConvertParam), 0, sizeof(stConvertParam))
+                stConvertParam.nWidth = stOutFrame.stFrameInfo.nWidth
+                stConvertParam.nHeight = stOutFrame.stFrameInfo.nHeight
+                stConvertParam.pSrcData = stOutFrame.pBufAddr
+                stConvertParam.nSrcDataLen = stOutFrame.stFrameInfo.nFrameLen
+                stConvertParam.enSrcPixelType = stOutFrame.stFrameInfo.enPixelType  
+                stConvertParam.enDstPixelType = PixelType_Gvsp_RGB8_Packed
+                stConvertParam.pDstBuffer = (c_ubyte * nRGBSize)()
+                stConvertParam.nDstBufferSize = nRGBSize
+
+                ret = self.obj_cam.MV_CC_ConvertPixelTypeEx(stConvertParam)
+                if ret != 0:
+                    print ("convert pixel fail! ret[0x%x]" % ret)
+                    continue
+                img_buff = (c_ubyte * stConvertParam.nDstLen)()
+                cdll.msvcrt.memcpy(byref(img_buff), stConvertParam.pDstBuffer, stConvertParam.nDstLen)
+                numArray = Color_numpy(img_buff,self.st_frame_info.nWidth,self.st_frame_info.nHeight)
+                self.current_image = numArray.copy()
+
+                try: 
+                    numArray, rejection = self.image_captured_callback(numArray)
+                    self.ui_status_callback(image = numArray, rejection=rejection)
+                except Exception as e:
+                    print('[-] Process Error')
+                    print(traceback.format_exc())
+
+                # preparing for the conversion
+                nHeight, nWidth, _channels = numArray.shape
+                numArray_pointer = numArray.ctypes.data_as(ctypes.POINTER(ctypes.c_ubyte))
+                self.st_frame_info.nWidth,self.st_frame_info.nHeight = nWidth, nHeight 
+                self.st_frame_info.nFrameLen = nWidth * nHeight
+                
+                
+                stDisplayParam = MV_DISPLAY_FRAME_INFO()
+                memset(byref(stDisplayParam), 0, sizeof(stDisplayParam))
+                stDisplayParam.hWnd = int(winHandle)
+                stDisplayParam.nWidth = self.st_frame_info.nWidth
+                stDisplayParam.nHeight = self.st_frame_info.nHeight
+                stDisplayParam.enPixelType = PixelType_Gvsp_RGB8_Packed #  self.st_frame_info.enPixelType
+                stDisplayParam.pData = numArray_pointer # .tobytes(order='C') # self.buf_save_image # 
+                stDisplayParam.nDataLen = self.st_frame_info.nFrameLen
+                self.obj_cam.MV_CC_DisplayOneFrame(stDisplayParam)
 
             # 是否退出
             if self.b_exit:
@@ -353,15 +421,17 @@ class CameraOperation:
                 break
 
     # 存jpg图像
-    def Save_jpg(self):
-
+    def Save_jpg(self, file_name:str = None):
         if self.buf_save_image is None:
             return
 
         # 获取缓存锁
         self.buf_lock.acquire()
+        
+        print(file_name)
+        file_path_name = file_name if file_name else (str(self.st_frame_info.nFrameNum) + ".jpg" ) 
 
-        file_path = str(self.st_frame_info.nFrameNum) + ".jpg"
+        file_path = file_path_name # str(self.st_frame_info.nFrameNum) + ".jpg"
         c_file_path = file_path.encode('ascii')
         stSaveParam = MV_SAVE_IMAGE_TO_FILE_PARAM_EX()
         stSaveParam.enPixelType = self.st_frame_info.enPixelType  # ch:相机对应的像素格式 | en:Camera pixel type
@@ -374,6 +444,8 @@ class CameraOperation:
         stSaveParam.pcImagePath = ctypes.create_string_buffer(c_file_path)
         stSaveParam.iMethodValue = 2
         ret = self.obj_cam.MV_CC_SaveImageToFileEx(stSaveParam)
+        self.obj_cam.MV_CC_FreeImageBuffer(stSaveParam)
+        self.obj_cam.MV_CC_FreeImageBuffer(self.st_frame_info)
 
         self.buf_lock.release()
         return ret
@@ -403,6 +475,6 @@ class CameraOperation:
         ret = self.obj_cam.MV_CC_SaveImageToFileEx(stSaveParam)
 
         self.buf_lock.release()
-
+        
         return ret
 

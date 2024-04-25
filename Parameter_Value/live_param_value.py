@@ -14,13 +14,7 @@ rejection_params = {
     'reject_enable':True
 }
 
-camera_param = {
-    'exposure':300,
-    'gain':21.0,
-    'frame_rate':10,
-    'trigger_delay':0,
-    'ROI':'736:956,1332:1904'
-}
+
 
 save_data_param = {
     'save_img':'False',
@@ -29,8 +23,3 @@ save_data_param = {
     'img_dir':'None'
 }
 
-# from param_tools import save_parameter, get_parameter
-# save_parameter(system_param,'system')
-# save_parameter(rejection_params,'rejection')
-# save_parameter(camera_param,'camera')
-# save_parameter(save_data_param,'save_data')

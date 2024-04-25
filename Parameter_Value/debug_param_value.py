@@ -16,6 +16,3 @@ augmentation_param = {
     'rigid':10,
     'recursion_rate':0.4
 }
-
-# from param_tools import save_parameter, get_parameter
-# save_parameter(augmentation_param,'augment')

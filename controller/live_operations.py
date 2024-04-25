@@ -3,12 +3,10 @@ import pickle
 import glob
 import cv2
 import os
-import shutil
-
+import traceback
 from gui.pyUIdesign import Ui_MainWindow
-from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtWidgets import *
-from Parameter_Value.param_tools import save_parameter
+from Parameter_Value.param_tools import save_parameter, get_parameter
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from .gui_operations import PyQTWidgetFunction
@@ -80,160 +78,158 @@ class LiveOperationFunction(Ui_MainWindow):
         self.lastNG_timeCount = parent.lastNG_timeCount 
         self.resetCounter_Button = parent.resetCounter_Button
 
-    def system_param_load(file_path,self)->None :
+    def msgbox_display(self,msg,type)-> None:
         '''
-        Load the system parameter values from pickle
+        Displays the messagebox 
+        Parameters:
+        msg: Message to be display
+        type: Type of Message like Information and warning
         '''
-        with open(os.path.join(os.getcwd(),os.path.join(file_path,'system.pkl')),'rb') as f:
-            system_param = pickle.load(f)   
-            print(system_param)
-        if system_param['ocr_method'] == True:  ######## Set the ocr method radiobutton 
+        msgBox = QMessageBox()
+        msgBox.setText("{}".format(msg))
+        msgBox.setWindowTitle("{}".format(type))
+        msgBox.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
+        msgBox.exec()
+    def system_param_load(self, ocr_method:str, no_of_line:int, line1box:str, line2box:str, line3box:str, line4box:str)->None :
+        '''
+        Set the current system parameter values into gui widgets.
+        '''
+        if ocr_method == True:  ######## Set the ocr method radiobutton 
             self.detection_recognition.setChecked(True)
         else:
             self.detectionOnly.setChecked(True)
         
-        self.no_ofLine_comboBox.setCurrentText(str(system_param['no_of_lines']))
-        self.line1Box.setText(system_param['line1'])
-        self.line2Box.setText(system_param['line2'])
-        self.line3Box.setText(system_param['line3'])
-        self.line4Box.setText(system_param['line4'])
+        self.no_ofLine_comboBox.setCurrentText(str(no_of_line))
+        self.line1Box.setText(line1box) # system_param['line1'])
+        self.line2Box.setText(line2box)
+        self.line3Box.setText(line3box)
+        self.line4Box.setText(line4box)
 
     ########## Loading rejection widgets parameters
-    def reject_param_load(self)->None:
+    def reject_param_load(self,min_per_thresh:str,line_per_thresh:str, reject_count:str, reject_enable:bool)->None:
         '''
-        Load the rejection parameter values from pickle
+        Set the current rejection parameter values into gui widgets
         '''
-        with open(os.path.join(os.getcwd(),'Parameter_Value/rejection.pkl'),'rb') as f:
-            reject_param = pickle.load(f)
-        self.minPercent_Entry.setText(str(reject_param['min_per_thresh']))
-        self.lineThresh_Entry.setText(str(reject_param['line_per_thresh']))
-        self.rejectCount_Entry.setText(str(reject_param['reject_count']))
-        if reject_param['reject_enable'] == True:
+        self.minPercent_Entry.setText(str(min_per_thresh))
+        self.lineThresh_Entry.setText(str(line_per_thresh))
+        self.rejectCount_Entry.setText(str(reject_count))
+        if reject_enable == True:
             self.rejectEnable_Yes.setChecked(True)
         else:
             self.rejectEnable_No.setChecked(True)
 
     ###### Loading camera widgets parameters
-    def camera_param_load(self)->None:
+    def camera_param_load(self,exposure_time, cam_gain:str, trigger_delay:int, roi:str)->None:
         '''
-        Load the camera parameter value from pickle
+        Set the current live camera parameter values into gui widgets
         '''
-        with open(os.path.join(os.getcwd(),'Parameter_Value/camera.pkl'),'rb') as f:
-            camera_param = pickle.load(f)
-            first_point,second_point = camera_param['ROI'].split(',')
-            first,second = first_point.split(':')
-            third,forth = second_point.split(':')
-            self.cameraGain_Entry.setText(str(camera_param['camera_gain']))
-            self.exposureTime_Entry.setText(str(camera_param['exposure_time']))
-            self.triggerDelay_Entry.setText(str(camera_param['trigger_delay']))
-            self.roiEntry1.setText(str(first))
-            self.roiEntry2.setText(str(second))
-            self.roiEntry3.setText(str(third))
-            self.roiEntry4.setText(str(forth))
+        first_point,second_point = roi.split(',')
+        first,second = first_point.split(':')
+        third,forth = second_point.split(':')
+        self.cameraGain_Entry.setText(str(cam_gain))
+        self.exposureTime_Entry.setText(str(exposure_time))
+        self.triggerDelay_Entry.setText(str(trigger_delay))
+        self.roiEntry1.setText(str(first))
+        self.roiEntry2.setText(str(second))
+        self.roiEntry3.setText(str(third))
+        self.roiEntry4.setText(str(forth))
 
-    ###### Loading save param widgets parameter
-    def save_param_load(self)->None:
+    ###### Loading save data param widgets parameter
+    def save_data_param_load(self,save_img:bool, save_result:bool, save_ng:bool, img_dir: os.path)->None:
         '''
-        Load the save data parameter value from pickle
+        Set the current save data parameter in gui widgets
         '''
-        with open(os.path.join(os.getcwd(),'Parameter_Value/save_data.pkl'),'rb') as f:
-            save_data_param = pickle.load(f)
-           
         ################ For Save Image ##################
-        if save_data_param['save_img'] == True:
+        if save_img == True:
             self.saveImage_Checkbox.setChecked(True)
         else:
             self.saveImage_Checkbox.setChecked(False)
 
         ################ For Save Result #################
-        if save_data_param['save_result'] == True:
+        if save_result == True:
             self.saveResult_Checkbox.setChecked(True)
         else:
             self.saveResult_Checkbox.setChecked(False)
         
         ################# For Save NG Image #############
-        if save_data_param['save_ng'] == True:
+        if save_ng == True:
             self.saveNG_Checkbox.setChecked(True)
         else:
             self.saveNG_Checkbox.setChecked(False)
 
-        self.directoryName_Entry.setText(save_data_param['img_dir'])
+        self.directoryName_Entry.setText(img_dir)
         
     ########### Getting system parameters and save it
-    def update_system_param(self)->None:
+    def update_system_param(self,file_path)->None:
         '''
         Saves the updated system parameter
         '''
-        system  = {
-            'ocr_method':True if self.detection_recognition.isChecked() else False
-            ,'no_of_lines':self.no_ofLine_comboBox.currentText()
-            ,'line1':self.line1Box.text()
-            ,'line2':self.line2Box.text()
-            ,'line3':self.line3Box.text()
-            ,'line4':self.line4Box.text()
-        }
-        save_parameter(system,'system')
-        msgBox = QMessageBox()
-        msgBox.setIcon(QMessageBox.Information)
-        msgBox.setText("System Parameter Save Successfully")
-        msgBox.setWindowTitle("Parameter")
-        msgBox.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
-        msgBox.exec()
-
-    def update_reject_param(self)->None:
+        try:
+            system  = {
+                'ocr_method':True if self.detection_recognition.isChecked() else False
+                ,'no_of_lines':self.no_ofLine_comboBox.currentText()
+                ,'line1':self.line1Box.text()
+                ,'line2':self.line2Box.text()
+                ,'line3':self.line3Box.text()
+                ,'line4':self.line4Box.text()
+            }
+            save_parameter(file_path,'system',system)
+            self.msgbox_display("System Parameter Save Successfully",'Success')
+        except Exception as e:
+            print("Failed to get the system parameter")
+            print(traceback.format_exc())
+        
+    def update_reject_param(self,file_path)->None:
         '''
         Saves the updated rejection parameter
         '''
-        reject = {
-             'min_per_thresh':self.minPercent_Entry.text()
-            ,'line_per_thresh':self.lineThresh_Entry.text()
-            ,'reject_count':self.rejectCount_Entry.text()
-            ,'reject_enable':True if self.rejectEnable_Yes.isChecked() else False 
-        }
-        save_parameter(os.getcwd(),'reject',reject)
-        msgBox = QMessageBox()
-        msgBox.setIcon(QMessageBox.Information)
-        msgBox.setText("Reject Parameter Save Successfully")
-        msgBox.setWindowTitle("Parameter")
-        msgBox.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
-        msgBox.exec()
+        try:
+            reject = {
+                'min_per_thresh':self.minPercent_Entry.text()
+                ,'line_per_thresh':self.lineThresh_Entry.text()
+                ,'reject_count':self.rejectCount_Entry.text()
+                ,'reject_enable':True if self.rejectEnable_Yes.isChecked() else False 
+            }
+            save_parameter(file_path,'rejection',reject)
+            self.msgbox_display("Rejection Parameter Save Successfully","Success")
+        except Exception as e:
+            print("Failed to get the rejection parameter",e)
+            print(traceback.format_exc())
 
-    def update_camera_param(self)->None:
+    def update_camera_param(self,file_path)->None:
         '''
         Saves the updated camera parameter
         '''
-        camera = {
-        'exposure_time':self.exposureTime_Entry.text()
-        ,'trigger_delay':self.triggerDelay_Entry.text()
-        ,'camera_gain':self.cameraGain_Entry.text()
-        ,'roi':'{}:{},{}:{}'.format(self.roiEntry1.text()).format(self.roiEntry2.text()).format(self.roiEntry3.text()).format(self.roiEntry4.text())
-        }
-        save_parameter(camera,'camera')
-        msgBox = QMessageBox()
-        msgBox.setIcon(QMessageBox.Information)
-        msgBox.setText("Camera Parameter Save Successfully")
-        msgBox.setWindowTitle("Parameter")
-        msgBox.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
-        msgBox.exec()
+        try:
+            camera = {
+            'exposure_time':self.exposureTime_Entry.text()
+            ,'trigger_delay':self.triggerDelay_Entry.text()
+            ,'camera_gain':self.cameraGain_Entry.text()
+            ,'roi':'{}:{},{}:{}'.format(self.roiEntry1.text()).format(self.roiEntry2.text()).format(self.roiEntry3.text()).format(self.roiEntry4.text())
+            }
+            save_parameter(file_path,camera,'camera')
+            self.msgbox_display("Camera Parameter Update Successfully","Information")
+        except Exception as e:
+            print("Failed to get the camera parameter",e)
+            print(traceback.format_exc())
 
-    def update_save_data_param(self)->None:
+    def update_save_data_param(self,file_path)->None:
         '''
         Saves the save data parameter
         '''
-        save_data = {
-        'save_img':True if self.saveImage_Checkbox.isChecked() else False
-        ,'save_ng':True if self.saveNG_Checkbox.isChecked() else False
-        ,'save_result':True if self.saveResult_Checkbox.isChecked() else False
-        ,'img_dir':self.directoryName_Entry.text()
-        }
-        save_parameter(save_data,'save_data')
-        msgBox = QMessageBox()
-        msgBox.setIcon(QMessageBox.Information)
-        msgBox.setText("Camera Parameter Save Successfully")
-        msgBox.setWindowTitle("Parameter")
-        msgBox.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
-        msgBox.exec()
-
+        try:
+            save_data = {
+            'save_img':True if self.saveImage_Checkbox.isChecked() else False
+            ,'save_ng':True if self.saveNG_Checkbox.isChecked() else False
+            ,'save_result':True if self.saveResult_Checkbox.isChecked() else False
+            ,'img_dir':self.directoryName_Entry.text()
+            }
+            save_parameter(file_path,'save_data',save_data)
+            self.msgbox_display("Save Data Update Successfully","Information")
+        except Exception as e:
+            print("Failed to get the save data parameter")
+            print(traceback.format_exc())
+     
     def camera_setting(self)->None:
         '''
         Method that change the camera setting page in StackedWidget
@@ -346,10 +342,13 @@ class LiveOperationFunction(Ui_MainWindow):
             self.roiEntry2.clear()
             self.roiEntry3.clear()
             self.roiEntry4.clear()
-            self.roiEntry1.insert(roi)
-            self.roiEntry2.insert(roi)
-            self.roiEntry3.insert(roi)
-            self.roiEntry4.insert(roi)
+            first_point,second_point = roi.split(',')
+            first,second = first_point.split(':')
+            third,forth = second_point.split(':')
+            self.roiEntry1.insert(first)
+            self.roiEntry2.insert(second)
+            self.roiEntry3.insert(third)
+            self.roiEntry4.insert(forth)
             cv2.destroyAllWindows()
             
 

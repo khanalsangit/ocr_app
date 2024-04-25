@@ -9,8 +9,7 @@ import traceback
 from gui.pyUIdesign import Ui_MainWindow
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtWidgets import *
-from Parameter_Value import *
-from PyQt5.QtCore import pyqtSlot
+from Parameter_Value.param_tools import save_parameter, get_parameter
 
 
 from typing import TYPE_CHECKING
@@ -29,7 +28,6 @@ class DebugOperationFunction(Ui_MainWindow):
         parent: PyQTWidgetFunction
         pass the object `PyQTWidgetFunction` that inherits the class `Ui_MainWindow` generated from `ui`
         '''
-
         ###### debug buttons variables ######
         self.parent = parent
         self.editProject = parent.editProject
@@ -74,21 +72,6 @@ class DebugOperationFunction(Ui_MainWindow):
         self.rigidEntry = parent.rigidEntry
         self.elasticEntry = parent.elasticEntry
 
-    def load_augment_param(self)-> None:
-        '''
-        Load the augmentation parameters from pickle values
-        '''
-        with open(os.path.join(os.getcwd(),'Parameter_Value/augment.pkl'),'rb') as f:
-            augmentation = pickle.load(f)
-        self.nTimesEntry.setText(str(augmentation['ntimes']))
-        self.rotateEntry.setText(str(augmentation['rotate']))
-        self.blurEntry.setText(str(augmentation['blur']))
-        self.contrastEntry.setText(str(augmentation['contrast']))
-        self.recursionRateEntry.setText(str(augmentation['recursion_rate']))
-        self.flipEntry.setText(str(augmentation['flip']))
-        self.rigidEntry.setText(str(augmentation['rigid']))
-        self.elasticEntry.setText(str(augmentation['elastic']))
-    
          
     def create_project(self)->None:
         '''
@@ -139,6 +122,19 @@ class DebugOperationFunction(Ui_MainWindow):
         self.recognitionButton.setStyleSheet("")
         self.analysisButton.setStyleSheet("")
     
+    def load_augment_param(self,ntimes:int, rotate:int, flip:int, blur:int, contrast:int, elastic:int, rigid:int, recursion_rate:float)-> None:
+        '''
+        Load the current augmentation parameters to the gui widgets
+        '''
+        self.nTimesEntry.setText(str(ntimes))
+        self.rotateEntry.setText(str(rotate))
+        self.blurEntry.setText(str(blur))
+        self.contrastEntry.setText(str(contrast))
+        self.recursionRateEntry.setText(str(elastic))
+        self.flipEntry.setText(str(flip))
+        self.rigidEntry.setText(str(rigid))
+        self.elasticEntry.setText(str(recursion_rate))
+
     def detection(self)->None:
         '''
         Opens the detection section
@@ -252,5 +248,30 @@ class DebugOperationFunction(Ui_MainWindow):
             print('[-] failed to get camera parameter, ', e)
             print(traceback.format_exc()) 
     
+    ########### Getting system parameters and save it
+    def update_augment_param(self,file_path)->None:
+        '''
+        Saves the updated system parameter
+        '''
+        try:
+            augment_param  = {
+                'ntimes':self.nTimesEntry.text()
+                ,'rotate':self.rotateEntry.text()
+                ,'flip':self.flipEntry.text()
+                ,'blur':self.blurEntry.text()
+                ,'contrast':self.contrastEntry.text()
+                ,'elastic':self.elasticEntry.text()
+                ,'rigid':self.rigidEntry.text()
+                ,'recursion_rate':self.recursionRateEntry.text()
+            }
+            save_parameter(file_path,'augment',augment_param)
+            msgBox = QMessageBox()
+            msgBox.setText("Augmentation Parameter Update Successfully")
+            msgBox.setWindowTitle("Information")
+            msgBox.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
+            msgBox.exec()
+        except Exception as e:
+            print("Failed to get the system parameter")
+            print(traceback.format_exc())
     def captured_image_count(self, image_count:int = 0):
         self.totalImage_Count.setText(str(image_count))

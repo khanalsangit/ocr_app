@@ -12,7 +12,7 @@ from .gui_operations import PyQTWidgetFunction
 from .live_operations import LiveOperationFunction
 from .debug_operations import DebugOperationFunction
 from Parameter_Value.debug_param_value import  camera_param, augmentation_param
-from Parameter_Value.live_param_value import system_param, rejection_params, camera_param, save_data_param
+from Parameter_Value.live_param_value import system_param, rejection_params, save_data_param
 from Parameter_Value.param_tools import save_parameter, get_parameter
 
 class Controller():
@@ -44,14 +44,15 @@ class Controller():
 
         # debug parameter
         self.load_saved_camera_parameter()
+        self.load_current_augmentation_param()
         self.debug.brand_exit_call_back_method = self.load_main_configs
 
         # live parameter
-        self.live.system_param_load()
-        self.live.reject_param_load()
-        self.live.camera_param_load()
-        self.live.save_param_load()
-        self.debug.load_augment_param()
+        self.load_current_system_param()
+        self.load_current_rejection_param()
+        self.load_live_camera_param()
+        self.load_save_data_param()
+        
         
     def connect_camera_and_ui(self):
         ######################## camera function called ##############################
@@ -91,10 +92,11 @@ class Controller():
         )
         self.live.saveData_Button.pressed.connect(self.live.save_data)
         self.live.chooseDirectory_Button.pressed.connect(self.live.choose_directory_path)
-        self.live.systemSetting_update_Button.pressed.connect(self.live.update_system_param)
-        self.live.rejectSetting_updateButton.pressed.connect(self.live.update_reject_param)
-        self.live.cameraSetting_update_Button.pressed.connect(self.live.update_camera_param)
-        self.live.systemSetting_update_Button.pressed.connect(self.live.update_save_data_param)
+        self.live.systemSetting_update_Button.pressed.connect(self.set_system_parameter)
+        self.live.rejectSetting_updateButton.pressed.connect(self.set_reject_parameter)
+        
+        self.live.cameraSetting_update_Button.pressed.connect(self.set_camera_live_parameter)
+  
         ####################### Debug Mode function called ######################
 
         # side panel buttons
@@ -120,11 +122,13 @@ class Controller():
         self.debug.deleteImage_Button.clicked.connect(self.delete_captured_image)
         self.debug.captureButton.clicked.connect(self.capture_image)
 
+        # augmentation panel buttons creation
+        self.gui.augmentationButton.clicked.connect(self.set_augment_parameter)
         # self.gui.live.resetCounter_Button.clicked.connect(
         #     self.gui.live.reset_counter_values
         # )
     
-    def load_main_configs(self):
+    def load_main_configs(self)->None:
         try:
             with open('./main_config.yaml', 'r') as file_stream:
                 self.current_brand_config = yaml.safe_load(file_stream)
@@ -132,8 +136,8 @@ class Controller():
         except Exception as e :
             print('error loading in main_config.yaml', e)
             print(traceback.format_exc())
-    
-    def load_saved_camera_parameter(self):
+    ### debug 
+    def load_saved_camera_parameter(self)->None:
         '''
         loading saved parameters in current brand pickel values for camera
         '''
@@ -146,8 +150,68 @@ class Controller():
         except Exception as e:
             print('[-] Failed loading saved parameter ', e)
             print(traceback.format_exc())
-    
 
+    def load_current_augmentation_param(self):
+        '''
+        Loading the parameter of current augmentation parameter
+        '''
+        try:
+            temp_augment_data_param = get_parameter(self.current_brand_config['pickle_path'], 'augment', augmentation_param)
+            ntimes, rotate, flip, blur, contrast, elastic, rigid, recursion_rate = list(map(lambda a: temp_augment_data_param[a], ['ntimes','rotate','flip','blur', 'contrast','elastic','rigid','recursion_rate']))
+            self.debug.load_augment_param(ntimes, rotate, flip, blur, contrast, elastic, rigid, recursion_rate)
+        except Exception as e:
+            print("[+] Augmentation Parameter load failed", e)
+            print(traceback.format_exc())
+    
+    ### live
+    def load_current_system_param(self):
+        '''
+        Loading the parameter of current system parameter
+        '''
+        try:
+            temp_system_param = get_parameter(self.current_brand_config['pickle_path'], 'system', system_param )
+            ocr_method, no_of_line, line1, line2, line3, line4 = list(map(lambda a : temp_system_param[a], ['ocr_method', 'no_of_lines', 'line1','line2','line3','line4']))
+            self.live.system_param_load(ocr_method, no_of_line, line1, line2, line3, line4)
+        except Exception as e:
+            print('[-] Failed loading saved parameter ', e)
+            print(traceback.format_exc())
+    
+    def load_current_rejection_param(self):
+        '''
+        Loading parameter of current rejection parameter
+        '''
+        try:
+            temp_reject_param = get_parameter(self.current_brand_config['pickle_path'],'rejection',rejection_params)
+            min_per_thresh, line_per_thresh, reject_count, reject_enable = list(map(lambda a: temp_reject_param[a], ['min_per_thresh', 'line_per_thresh', 'reject_count', 'reject_enable']))
+            self.live.reject_param_load(min_per_thresh, line_per_thresh, reject_count, reject_enable)
+        except Exception as e:
+            print('-[] Failed loading saved parameter', e)
+            print(traceback.format_exc())
+
+    def load_live_camera_param(self):
+        '''
+        Loading parameter of current live camera parameter
+        '''
+        try:
+            temp_live_camera_param = get_parameter(self.current_brand_config['pickle_path'],'camera_param', camera_param)
+            exposure_time, camera_gain, frame_rate, trigger_delay,roi = list(map(lambda a: temp_live_camera_param[a],['exposure','gain','frame_rate','trigger_delay','ROI']))
+            self.live.camera_param_load(exposure_time, camera_gain, trigger_delay, roi)
+        except Exception as e:
+            print("Camera Parameter loading failed", e)
+            print(traceback.format_exc())
+
+    def load_save_data_param(self):
+        '''
+        Loading paramter of current save data parameter
+        '''
+        try:
+            temp_save_data_param = get_parameter(self.current_brand_config['pickle_path'],'save_data',save_data_param)
+            save_img, save_ng, save_result, img_dir = list(map(lambda a: temp_save_data_param[a],['save_img','save_ng','save_result','img_dir']))
+            self.live.save_data_param_load(save_img, save_ng, save_result, img_dir)
+        except Exception as e:
+            print("[+] Save Data Parameter Load Failed", e)
+            print(traceback.format_exc())
+        
     def get_mvs_camera_parameter(self):
         '''
         Method to load camera parameters
@@ -159,8 +223,39 @@ class Controller():
         except Exception as e:
             print('[-] Failed to get the mvs parameter')
             print(traceback.format_exc())
+    def set_augment_parameter(self)->None:
+        '''
+        Update or saves the augmentation parameter in pickle
+        '''
+        try:
+            file_path = self.current_brand_config['pickle_path']
+            self.debug.update_augment_param(file_path)
+        except Exception as e:
+            print("Update augmentation parameters failed",e)
+            print(traceback.format_exc())
+    def set_system_parameter(self)->None:
+        '''
+        Update or saves the system parameter in pickle
+        '''
+        try:
+            file_path = self.current_brand_config['pickle_path']
+            self.live.update_system_param(file_path)
+        except Exception as e:
+            print('update system setting parameters failed ', e)
+            print(traceback.format_exc())
 
-    def set_camera_parameter(self):
+    def set_reject_parameter(self)->None:
+        '''
+        Update or saves the rejection parameter in pickle
+        '''
+        try:
+            file_path = self.current_brand_config['pickle_path']
+            self.live.update_reject_param(file_path)
+        except Exception as e:
+            print('update reject setting parameters failed ', e)
+            print(traceback.format_exc())
+
+    def set_camera_parameter(self)->None:
         '''
         method to set the camera parameter
         '''
@@ -174,11 +269,34 @@ class Controller():
             camera_param['frame_rate'] = frame_rate
 
             save_parameter(self.current_brand_config['pickle_path'], 'camera_param', camera_param )
-
+            self.live.msgbox_display("Camera Parameter Update Successfully")
         except Exception as e:
             print('error setting camera parameters ', e)
             print(traceback.format_exc())
         
+    def set_camera_live_parameter(self)->None:
+        '''
+        Update the camera data parameter
+        '''
+        try:
+            file_path = self.current_brand_config['pickle_path']
+            self.live.update_camera_param(file_path)
+        except Exception as e:
+            print('update reject setting parameters failed ', e)
+            print(traceback.format_exc())
+
+    def set_save_data_parameter(self)->None:
+        '''
+        Update the save data parameter
+        '''
+        try:
+            file_path = self.current_brand_config['pickle_path']
+            self.live.update_save_data_param(file_path)
+        except Exception as e:
+            print('update reject setting parameters failed ', e)
+            print(traceback.format_exc())
+
+    
     def delete_captured_image(self):
         "method to delete the capture image" 
 

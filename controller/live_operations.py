@@ -90,6 +90,7 @@ class LiveOperationFunction(Ui_MainWindow):
         msgBox.setWindowTitle("{}".format(type))
         msgBox.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
         msgBox.exec()
+
     def system_param_load(self, ocr_method:str, no_of_line:int, line1box:str, line2box:str, line3box:str, line4box:str)->None :
         '''
         Set the current system parameter values into gui widgets.
@@ -167,7 +168,7 @@ class LiveOperationFunction(Ui_MainWindow):
         try:
             system  = {
                 'ocr_method':True if self.detection_recognition.isChecked() else False
-                ,'no_of_lines':self.no_ofLine_comboBox.currentText()
+                ,'nooflines':self.no_ofLine_comboBox.currentText()
                 ,'line1':self.line1Box.text()
                 ,'line2':self.line2Box.text()
                 ,'line3':self.line3Box.text()
@@ -201,13 +202,18 @@ class LiveOperationFunction(Ui_MainWindow):
         Saves the updated camera parameter
         '''
         try:
+            roi1 = self.roiEntry1.text()
+            roi2 = self.roiEntry2.text()
+            roi3 = self.roiEntry3.text()
+            roi4 = self.roiEntry4.text()
             camera = {
             'exposure_time':self.exposureTime_Entry.text()
             ,'trigger_delay':self.triggerDelay_Entry.text()
             ,'camera_gain':self.cameraGain_Entry.text()
-            ,'roi':'{}:{},{}:{}'.format(self.roiEntry1.text()).format(self.roiEntry2.text()).format(self.roiEntry3.text()).format(self.roiEntry4.text())
+            ,'ROI':'{}:{},{}:{}'.format(roi1,roi2,roi3,roi4)
             }
-            save_parameter(file_path,camera,'camera')
+           
+            save_parameter(file_path,'camera_live', camera)
             self.msgbox_display("Camera Parameter Update Successfully","Information")
         except Exception as e:
             print("Failed to get the camera parameter",e)
@@ -230,61 +236,6 @@ class LiveOperationFunction(Ui_MainWindow):
             print("Failed to get the save data parameter")
             print(traceback.format_exc())
      
-    def camera_setting(self)->None:
-        '''
-        Method that change the camera setting page in StackedWidget
-        '''
-        self.stackWidget_cameraSetting.setCurrentWidget(self.cameraSetting_Page)
-        self.saveData_Button.setStyleSheet("QPushButton{\n"
-        "    background-color: #eaeaea;\n"
-        "    border:none;\n"
-        "    border-top-left-radius:4px;\n"
-        "    border-top-right-radius:4px;\n"
-        "    border-bottom-right-radius:4px;\n"
-        "\n"
-        "\n"
-        "}")
-        self.cameraSetting_Button.setStyleSheet("QPushButton{\n"
-        "    color:#D9305C;\n"
-        "    border-top:1px solid#D9305C;\n"
-        "    border-right:1px solid#D9305C;\n"
-        "    border-top-left-radius:4px;\n"
-        "    border-top-right-radius:4px;\n"
-        "\n"
-        "}\n"
-        "\n"
-        "\n"
-        "\n"
-        "")
-
-    def save_data(self)->None:
-        '''
-        Method that change into save data page.
-        '''
-        self.stackWidget_cameraSetting.setCurrentWidget(self.saveData_Page)
-
-        self.saveData_Button.setStyleSheet("QPushButton{\n"
-        "    color:#D9305C;\n"
-        "    border-top:1px solid#D9305C;\n"
-        "    border-right:1px solid#D9305C;\n"
-        "    border-top-left-radius:4px;\n"
-        "    border-top-right-radius:4px;\n"
-        "\n"
-        "}\n"
-        "\n"
-        "\n"
-        "\n"
-        "")
-        self.cameraSetting_Button.setStyleSheet(
-            "QPushButton{\n"
-        "    background-color: #eaeaea;\n"
-        "    border:none;\n"
-        "    border-top-left-radius:4px;\n"
-        "    border-top-right-radius:4px;\n"
-        "    border-bottom-right-radius:4px;\n"
-        "\n"
-        "\n"
-        "}")
 
     def open_image(self, image = None)-> None:
         '''

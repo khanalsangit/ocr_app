@@ -14,6 +14,7 @@ from .debug_operations import DebugOperationFunction
 from Parameter_Value.debug_param_value import  camera_param, augmentation_param
 from Parameter_Value.live_param_value import system_param, rejection_params, save_data_param
 from Parameter_Value.param_tools import save_parameter, get_parameter
+from PyQt5 import QtWidgets
 
 class Controller():
     """
@@ -52,7 +53,9 @@ class Controller():
         self.load_current_rejection_param()
         self.load_live_camera_param()
         self.load_save_data_param()
-        
+        # self.update_camera_save_data()
+
+        # print(self.gui.stackWidget_cameraSetting.setCurrentWidget())
         
     def connect_camera_and_ui(self):
         ######################## camera function called ##############################
@@ -76,7 +79,6 @@ class Controller():
         ####################### Live Mode function called ############################
         self.gui.stackWidget.setCurrentWidget(self.gui.liveMode_Page) ####### default switch mode 
         self.gui.editProject.setCurrentWidget(self.gui.createProject_Page) ####### default live mode page
-        self.gui.switch_mode_flag = False  ##### switch mode flag
         self.gui.switchButton.clicked.connect(
             lambda : [
                 self.camera.close_device(),
@@ -85,17 +87,25 @@ class Controller():
                 self.gui.switch_mode(),
             ]
         )
+        self.gui.stackWidget_cameraSetting.camera_setting_page = True
         self.gui.stackWidget_cameraSetting.setCurrentWidget(self.gui.cameraSetting_Page) ######### default camera setting mode
-        self.live.cameraSetting_Button.pressed.connect(self.live.camera_setting)
+
+        self.live.cameraSetting_update_Button.pressed.connect(
+            lambda : [
+                self.set_camera_live_parameter() if self.gui.stackWidget_cameraSetting.camera_setting_page else self.set_save_data_parameter()
+            ]
+        )
+
+
+        self.live.cameraSetting_Button.pressed.connect(self.camera_setting)
         self.gui.openImage_Button.pressed.connect(
             lambda : self.live.open_image()
         )
-        self.live.saveData_Button.pressed.connect(self.live.save_data)
+        self.live.saveData_Button.pressed.connect(self.save_data)
         self.live.chooseDirectory_Button.pressed.connect(self.live.choose_directory_path)
         self.live.systemSetting_update_Button.pressed.connect(self.set_system_parameter)
         self.live.rejectSetting_updateButton.pressed.connect(self.set_reject_parameter)
-        
-        self.live.cameraSetting_update_Button.pressed.connect(self.set_camera_live_parameter)
+        # self.live.cameraSetting_update_Button.pressed.connect(self.set_camera_live_parameter)
   
         ####################### Debug Mode function called ######################
 
@@ -127,7 +137,73 @@ class Controller():
         # self.gui.live.resetCounter_Button.clicked.connect(
         #     self.gui.live.reset_counter_values
         # )
-    
+
+    ###### Update button for camera and save_dat
+        # print(self.live.stackWidget_cameraSetting)
+
+    def camera_setting(self)->None:
+        '''
+        Method that change the camera setting page in StackedWidget
+        '''
+        # self.live.cameraSetting_update_Button.pressed.connect(self.set_camera_live_parameter)
+        self.gui.stackWidget_cameraSetting.camera_setting_page = True
+
+        self.live.stackWidget_cameraSetting.setCurrentWidget(self.live.cameraSetting_Page)
+        self.live.saveData_Button.setStyleSheet("QPushButton{\n"
+        "    background-color: #eaeaea;\n"
+        "    border:none;\n"
+        "    border-top-left-radius:4px;\n"
+        "    border-top-right-radius:4px;\n"
+        "    border-bottom-right-radius:4px;\n"
+        "\n"
+        "\n"
+        "}")
+        self.live.cameraSetting_Button.setStyleSheet("QPushButton{\n"
+        "    color:#D9305C;\n"
+        "    border-top:1px solid#D9305C;\n"
+        "    border-right:1px solid#D9305C;\n"
+        "    border-top-left-radius:4px;\n"
+        "    border-top-right-radius:4px;\n"
+        "\n"
+        "}\n"
+        "\n"
+        "\n"
+        "\n"
+        "")
+
+    def save_data(self)->None:
+        '''
+        Method that change into save data page.
+        '''
+        # self.live.cameraSetting_update_Button.pressed.connect(self.set_save_data_parameter)
+        self.gui.stackWidget_cameraSetting.camera_setting_page = False
+        self.live.stackWidget_cameraSetting.setCurrentWidget(self.live.saveData_Page)
+
+
+        self.live.saveData_Button.setStyleSheet("QPushButton{\n"
+        "    color:#D9305C;\n"
+        "    border-top:1px solid#D9305C;\n"
+        "    border-right:1px solid#D9305C;\n"
+        "    border-top-left-radius:4px;\n"
+        "    border-top-right-radius:4px;\n"
+        "\n"
+        "}\n"
+        "\n"
+        "\n"
+        "\n"
+        "")
+        self.live.cameraSetting_Button.setStyleSheet(
+            "QPushButton{\n"
+        "    background-color: #eaeaea;\n"
+        "    border:none;\n"
+        "    border-top-left-radius:4px;\n"
+        "    border-top-right-radius:4px;\n"
+        "    border-bottom-right-radius:4px;\n"
+        "\n"
+        "\n"
+        "}")
+  
+
     def load_main_configs(self)->None:
         try:
             with open('./main_config.yaml', 'r') as file_stream:
@@ -170,7 +246,7 @@ class Controller():
         '''
         try:
             temp_system_param = get_parameter(self.current_brand_config['pickle_path'], 'system', system_param )
-            ocr_method, no_of_line, line1, line2, line3, line4 = list(map(lambda a : temp_system_param[a], ['ocr_method', 'no_of_lines', 'line1','line2','line3','line4']))
+            ocr_method, no_of_line, line1, line2, line3, line4 = list(map(lambda a : temp_system_param[a], ['ocr_method', 'nooflines', 'line1','line2','line3','line4']))
             self.live.system_param_load(ocr_method, no_of_line, line1, line2, line3, line4)
         except Exception as e:
             print('[-] Failed loading saved parameter ', e)
@@ -193,8 +269,8 @@ class Controller():
         Loading parameter of current live camera parameter
         '''
         try:
-            temp_live_camera_param = get_parameter(self.current_brand_config['pickle_path'],'camera_param', camera_param)
-            exposure_time, camera_gain, frame_rate, trigger_delay,roi = list(map(lambda a: temp_live_camera_param[a],['exposure','gain','frame_rate','trigger_delay','ROI']))
+            temp_live_camera_param = get_parameter(self.current_brand_config['pickle_path'],'camera_live', camera_param)
+            exposure_time, camera_gain, trigger_delay,roi = list(map(lambda a: temp_live_camera_param[a],['exposure_time','camera_gain','trigger_delay','ROI']))
             self.live.camera_param_load(exposure_time, camera_gain, trigger_delay, roi)
         except Exception as e:
             print("Camera Parameter loading failed", e)
@@ -281,6 +357,7 @@ class Controller():
         try:
             file_path = self.current_brand_config['pickle_path']
             self.live.update_camera_param(file_path)
+           
         except Exception as e:
             print('update reject setting parameters failed ', e)
             print(traceback.format_exc())

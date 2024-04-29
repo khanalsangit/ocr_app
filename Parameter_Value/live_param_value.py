@@ -23,3 +23,9 @@ save_data_param = {
     'img_dir':'None'
 }
 
+camera_live = {
+    'exposure_time':300,
+    'camera_gain':21.0,
+    'trigger_delay':0,
+    'ROI':'736:956,1332:1904'
+}

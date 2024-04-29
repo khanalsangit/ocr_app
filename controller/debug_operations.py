@@ -11,7 +11,6 @@ from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtWidgets import *
 from Parameter_Value.param_tools import save_parameter, get_parameter
 
-
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from .gui_operations import PyQTWidgetFunction
@@ -131,7 +130,12 @@ class DebugOperationFunction(Ui_MainWindow):
         self.blurEntry.setText(str(blur))
         self.contrastEntry.setText(str(contrast))
         self.recursionRateEntry.setText(str(elastic))
-        self.flipEntry.setText(str(flip))
+            ################ For Save Image ##################
+        if flip == True:
+            self.flip_checkBox.setChecked(True)
+        else:
+            self.flip_checkBox.setChecked(False)
+        
         self.rigidEntry.setText(str(rigid))
         self.elasticEntry.setText(str(recursion_rate))
 
@@ -257,7 +261,7 @@ class DebugOperationFunction(Ui_MainWindow):
             augment_param  = {
                 'ntimes':self.nTimesEntry.text()
                 ,'rotate':self.rotateEntry.text()
-                ,'flip':self.flipEntry.text()
+                ,'flip':True if self.flip_checkBox.isChecked() else False
                 ,'blur':self.blurEntry.text()
                 ,'contrast':self.contrastEntry.text()
                 ,'elastic':self.elasticEntry.text()

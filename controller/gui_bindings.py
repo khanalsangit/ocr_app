@@ -4,9 +4,8 @@ import datetime
 import traceback
 
 import cv2
-
 from PyQt5.QtWidgets import QFileDialog
-
+from Augmentation.main import augmentation
 from camera_interface.camera import MachineVisionCamera
 from .gui_operations import PyQTWidgetFunction
 from .live_operations import LiveOperationFunction
@@ -56,7 +55,7 @@ class Controller():
         # self.update_camera_save_data()
 
         # print(self.gui.stackWidget_cameraSetting.setCurrentWidget())
-        self.debug.load_augment_param()
+        # self.debug.load_current_augmentation_param()
                 
     def connect_camera_and_ui(self):
         ######################## camera function called ##############################
@@ -132,7 +131,7 @@ class Controller():
         self.debug.setParameter_Button.clicked.connect(self.set_camera_parameter)
         self.debug.deleteImage_Button.clicked.connect(self.delete_captured_image)
         self.debug.captureButton.clicked.connect(self.capture_image)
-
+        self.gui.augmentationButton.clicked.connect(augmentation)
         # augmentation panel buttons creation
         self.gui.augmentationButton.clicked.connect(self.set_augment_parameter)
         # self.gui.live.resetCounter_Button.clicked.connect(
@@ -234,7 +233,7 @@ class Controller():
         '''
         try:
             temp_augment_data_param = get_parameter(self.current_brand_config['pickle_path'], 'augment', augmentation_param)
-            ntimes, rotate, flip, blur, contrast, elastic, rigid, recursion_rate = list(map(lambda a: temp_augment_data_param[a], ['ntimes','rotate','flip','blur', 'contrast','elastic','rigid','recursion_rate']))
+            ntimes, rotate, flip, blur, contrast, elastic, rigid, recursion_rate = list(map(lambda a: temp_augment_data_param[a], ['ntimes','rotate','flip','blur','contrast','elastic','rigid','recursion_rate']))
             self.debug.load_augment_param(ntimes, rotate, flip, blur, contrast, elastic, rigid, recursion_rate)
         except Exception as e:
             print("[+] Augmentation Parameter load failed", e)

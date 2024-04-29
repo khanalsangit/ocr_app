@@ -8,6 +8,7 @@ import yaml
 import shutil
 from Parameter_Value.param_tools import save_parameter
 from Parameter_Value.live_param_value import *
+from Parameter_Value.debug_param_value import *
 from .pyUIdesign import Ui_MainWindow
 import traceback
 from controller.live_operations import LiveOperationFunction
@@ -183,7 +184,7 @@ class editBrand(QtWidgets.QMainWindow):
         print(self.brand)
 
 class MainWindow(QtWidgets.QMainWindow):
-    def __init__(self, main_ui:Ui_MainWindow,live:LiveOperationFunction, parent: QtWidgets.QMainWindow = None, brand_dir : Path = None):
+    def __init__(self, main_ui:Ui_MainWindow, live:LiveOperationFunction, parent: QtWidgets.QMainWindow = None, brand_dir : Path = None):
         
         # self.brand_name = main_ui.projectName
         self.live = live
@@ -192,8 +193,6 @@ class MainWindow(QtWidgets.QMainWindow):
         else: 
             super().__init__(parent)
        
-        
-        
         self.brands = [] 
         self.brand_dir =  Path(brand_dir) if(type(brand_dir) !=  type(None)) else None 
         self.main_ui = main_ui
@@ -385,9 +384,9 @@ class createWindow(QtWidgets.QMainWindow):
             #### Create a Pickle file for brand
             save_parameter(os.path.join(brand_pwd,'pickle_values'),'system',system_param)
             save_parameter(os.path.join(brand_pwd,'pickle_values'),'rejection',rejection_params)
-            save_parameter(os.path.join(brand_pwd,'pickle_values'), 'camera',camera_param)
+            save_parameter(os.path.join(brand_pwd, 'pickle_values'), 'camera_param',camera_param)
             save_parameter(os.path.join(brand_pwd,'pickle_values'),'save_data',save_data_param)
-            
+            save_parameter(os.path.join(brand_pwd, 'pickle_values'), 'augment',augmentation_param)
         except FileExistsError:
             print(f"Directory at {brand_pwd} already exists")
             print(traceback.format_exc())

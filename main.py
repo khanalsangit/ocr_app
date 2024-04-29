@@ -50,9 +50,8 @@ if __name__=="__main__":
         QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_UseHighDpiPixmaps, True)
     app = QtWidgets.QApplication(sys.argv)
     ui = QMainWindow() # MainWin()
-
-    camera = MachineVisionCamera()
     gui_operations = PyQTWidgetFunction(ui)
+    camera = MachineVisionCamera()
     live_mode = LiveOperationFunction(gui_operations)
     debug_mode = DebugOperationFunction(gui_operations)
     controller = Controller(camera, live_mode, debug_mode, gui_operations)

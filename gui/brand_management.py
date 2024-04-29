@@ -9,11 +9,11 @@ import shutil
 from Parameter_Value.param_tools import save_parameter
 from Parameter_Value.live_param_value import *
 from Parameter_Value.debug_param_value import *
-from .pyUIdesign import Ui_MainWindow
 import traceback
-from controller.live_operations import LiveOperationFunction
+from gui.pyUIdesign import Ui_MainWindow
+from typing import TYPE_CHECKING
 
-class BrandFrame(QtWidgets.QFrame):
+class BrandFrame(QtWidgets.QFrame, Ui_MainWindow):
     def __init__(self, parent, brand_title):
         super(BrandFrame, self).__init__(parent)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
@@ -184,10 +184,9 @@ class editBrand(QtWidgets.QMainWindow):
         print(self.brand)
 
 class MainWindow(QtWidgets.QMainWindow):
-    def __init__(self, main_ui:Ui_MainWindow, live:LiveOperationFunction, parent: QtWidgets.QMainWindow = None, brand_dir : Path = None):
+    def __init__(self, main_ui:Ui_MainWindow, parent: QtWidgets.QMainWindow = None, brand_dir : Path = None):
         
         # self.brand_name = main_ui.projectName
-        self.live = live
         if parent == None:
             super().__init__()
         else: 
@@ -249,12 +248,11 @@ class MainWindow(QtWidgets.QMainWindow):
             except Exception as e :
                 print('error writing to main_config.yaml')
                 print(traceback.format_exc())
-            # self.brand_name.setText(project_name)
             self.on_exit()
             self.close()
             
             ###### Loading the pickle values
-        self.live.system_param_load(project_name)
+       
         return create_main_config
     
 
@@ -322,14 +320,6 @@ class createWindow(QtWidgets.QMainWindow):
         self.setCentralWidget(self.widget)
         self.lineEdit.returnPressed.connect(self.create_brand)
 
-    # def emit_brand_name(self):
-    #     self.brand_name = self.lineEdit.text()
-    #     self.brandNameEntered.emit(self.brand_name)
-    #     self.close()
-    # def __call__(self):
-    #     value = self.lineEdit.text()
-    #     return value
-    
     def create_brand(self, path_to_brand = None):
         brand_name = self.lineEdit.text()
         if type(path_to_brand) == type(None) and type(self.brand_dir) == type(None) :
@@ -387,6 +377,7 @@ class createWindow(QtWidgets.QMainWindow):
             save_parameter(os.path.join(brand_pwd, 'pickle_values'), 'camera_param',camera_param)
             save_parameter(os.path.join(brand_pwd,'pickle_values'),'save_data',save_data_param)
             save_parameter(os.path.join(brand_pwd, 'pickle_values'), 'augment',augmentation_param)
+            save_parameter(os.path.join(brand_pwd, 'pickle_values'),'camera_live',camera_live)
         except FileExistsError:
             print(f"Directory at {brand_pwd} already exists")
             print(traceback.format_exc())
@@ -400,18 +391,6 @@ if __name__ == '__main__':
     BRAND_DIR = Path(FILE / 'Brands')
     app = QtWidgets.QApplication(sys.argv)
     window = MainWindow()
-    # window = createWindow()
-    # window = editBrand()
-
-    # window.gridLayout = QtWidgets.QGridLayout(window.widget)
-
-    # for _ in range(12):
-    #     window.placeBrand()
-    
-    # window.brandNameEntered.connect(create_brand)
-    # window.brandNameEntered.connect(edit_brand)
-    # window.lineEdit.returnPressed.connect(lambda: create_brand(window()))
-
     window.show()
     app.exec_()
     sys.exit()

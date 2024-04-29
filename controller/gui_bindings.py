@@ -56,7 +56,8 @@ class Controller():
         # self.update_camera_save_data()
 
         # print(self.gui.stackWidget_cameraSetting.setCurrentWidget())
-        
+        self.debug.load_augment_param()
+                
     def connect_camera_and_ui(self):
         ######################## camera function called ##############################
         self.gui.findCamera_Button.clicked.connect(lambda : self.camera.enum_devices(self.gui.comboBox))

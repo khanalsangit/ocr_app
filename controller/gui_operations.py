@@ -4,6 +4,7 @@ import sys
 import glob
 import shutil
 import pickle
+import cv2.data
 import yaml
 import traceback
 
@@ -107,3 +108,16 @@ class PyQTWidgetFunction(Ui_MainWindow):
             "    \n"
             ""
         )
+    
+    def update_live_gui_with_based_on_result(self, image: cv2 = None, rejection=None):
+        from PyQt5.QtGui import QPixmap, QImage
+        import numpy as np 
+        if not (image is  None):
+            imgDown = cv2.pyrDown(image)
+            imgDown = np.float32(imgDown)        
+            cvRGBImg = cv2.resize(cv2.cvtColor(imgDown, cv2.COLOR_RGB2BGR),(self.lastNG_Image.width(), self.lastNG_Image.height()) )
+            qimg = QImage(cvRGBImg.data, cvRGBImg.shape[1], cvRGBImg.shape[0], QImage.Format_RGB888)
+            pixmap01 = QPixmap.fromImage(qimg)
+            self.lastNG_Image.setPixmap(pixmap01)
+        
+        ...

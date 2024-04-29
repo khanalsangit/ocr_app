@@ -671,6 +671,9 @@
                 <property name="text">
                  <string/>
                 </property>
+                <property name="scaledContents">
+                 <bool>false</bool>
+                </property>
                </widget>
               </item>
              </layout>
@@ -1335,6 +1338,9 @@ QPushButton:pressed{
                     </property>
                     <item alignment="Qt::AlignLeft">
                      <widget class="QRadioButton" name="rejectEnable_Yes">
+                      <property name="layoutDirection">
+                       <enum>Qt::RightToLeft</enum>
+                      </property>
                       <property name="text">
                        <string>Yes</string>
                       </property>
@@ -1342,6 +1348,9 @@ QPushButton:pressed{
                     </item>
                     <item alignment="Qt::AlignRight">
                      <widget class="QRadioButton" name="rejectEnable_No">
+                      <property name="layoutDirection">
+                       <enum>Qt::RightToLeft</enum>
+                      </property>
                       <property name="text">
                        <string>No</string>
                       </property>
@@ -1688,7 +1697,7 @@ QPushButton:pressed{
                  <number>0</number>
                 </property>
                 <property name="currentIndex">
-                 <number>1</number>
+                 <number>0</number>
                 </property>
                 <widget class="QWidget" name="cameraSetting_Page">
                  <property name="sizePolicy">
@@ -2575,6 +2584,9 @@ QPushButton:pressed{
 }
 #recognitionTesting_Frame{
 	border:1px solid black;
+}
+#triggerSettings_Frame{
+	border:1px solid black;
 }</string>
           </property>
           <property name="currentIndex">
@@ -2785,7 +2797,7 @@ border:1px solid;</string>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_19">
                <property name="spacing">
-                <number>0</number>
+                <number>6</number>
                </property>
                <property name="leftMargin">
                 <number>0</number>
@@ -2799,6 +2811,142 @@ border:1px solid;</string>
                <property name="bottomMargin">
                 <number>0</number>
                </property>
+               <item>
+                <widget class="QFrame" name="triggerSettings_Frame">
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>54</height>
+                  </size>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QRadioButton::indicator {
+    width:                  10px;
+    height:                 10px;
+    border-radius:          7px;
+}
+
+QRadioButton::indicator:checked {
+    background-color:       red;
+    border:                 2px solid black;
+}
+
+QRadioButton::indicator:unchecked {
+    background-color:       white;
+    border:                 2px solid black;
+
+}
+QRadioButton:checked {
+		color: #D9305C;
+}
+QRadioButton:unchecked {
+		color: solid black;
+}</string>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::StyledPanel</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Raised</enum>
+                 </property>
+                 <layout class="QGridLayout" name="gridLayout_2">
+                  <property name="leftMargin">
+                   <number>4</number>
+                  </property>
+                  <property name="topMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="rightMargin">
+                   <number>4</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>4</number>
+                  </property>
+                  <property name="horizontalSpacing">
+                   <number>4</number>
+                  </property>
+                  <property name="verticalSpacing">
+                   <number>3</number>
+                  </property>
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="cameraSettings_Label_2">
+                    <property name="maximumSize">
+                     <size>
+                      <width>16777215</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>Arial</family>
+                      <pointsize>10</pointsize>
+                      <weight>50</weight>
+                      <bold>false</bold>
+                      <underline>true</underline>
+                     </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">color:#263B90;</string>
+                    </property>
+                    <property name="text">
+                     <string>Trigger Settings</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="1">
+                   <widget class="QRadioButton" name="software_radioButton">
+                    <property name="font">
+                     <font>
+                      <family>Arial</family>
+                      <pointsize>10</pointsize>
+                     </font>
+                    </property>
+                    <property name="layoutDirection">
+                     <enum>Qt::RightToLeft</enum>
+                    </property>
+                    <property name="text">
+                     <string>Software </string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="0">
+                   <widget class="QRadioButton" name="continuous_radioButton">
+                    <property name="font">
+                     <font>
+                      <family>Arial</family>
+                      <pointsize>10</pointsize>
+                     </font>
+                    </property>
+                    <property name="layoutDirection">
+                     <enum>Qt::RightToLeft</enum>
+                    </property>
+                    <property name="text">
+                     <string>Continuous </string>
+                    </property>
+                    <property name="checked">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="2">
+                   <widget class="QRadioButton" name="hardware_radioButton">
+                    <property name="font">
+                     <font>
+                      <family>Arial</family>
+                      <pointsize>10</pointsize>
+                     </font>
+                    </property>
+                    <property name="layoutDirection">
+                     <enum>Qt::RightToLeft</enum>
+                    </property>
+                    <property name="text">
+                     <string>Hardware </string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
                <item>
                 <widget class="QFrame" name="cameraSettings_Frame">
                  <property name="maximumSize">
@@ -2840,27 +2988,21 @@ border:1px solid;</string>
                   <property name="verticalSpacing">
                    <number>3</number>
                   </property>
-                  <item row="3" column="1" alignment="Qt::AlignRight">
-                   <widget class="QLineEdit" name="frameRateEntry_Debug">
+                  <item row="5" column="0">
+                   <widget class="QPushButton" name="getParameter_Button">
                     <property name="maximumSize">
                      <size>
-                      <width>70</width>
-                      <height>16777215</height>
+                      <width>16777215</width>
+                      <height>30</height>
                      </size>
                     </property>
-                    <property name="font">
-                     <font>
-                      <weight>75</weight>
-                      <bold>true</bold>
-                     </font>
-                    </property>
-                    <property name="alignment">
-                     <set>Qt::AlignCenter</set>
+                    <property name="text">
+                     <string>Get Parameter</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="4" column="0">
-                   <widget class="QLabel" name="timeDelay_debugLabel">
+                  <item row="1" column="0">
+                   <widget class="QLabel" name="exposureTime_debugLabel">
                     <property name="font">
                      <font>
                       <family>Arial</family>
@@ -2868,26 +3010,7 @@ border:1px solid;</string>
                      </font>
                     </property>
                     <property name="text">
-                     <string>Time Delay</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="2" column="1" alignment="Qt::AlignRight">
-                   <widget class="QLineEdit" name="gainEntry_Debug">
-                    <property name="maximumSize">
-                     <size>
-                      <width>70</width>
-                      <height>16777215</height>
-                     </size>
-                    </property>
-                    <property name="font">
-                     <font>
-                      <weight>75</weight>
-                      <bold>true</bold>
-                     </font>
-                    </property>
-                    <property name="alignment">
-                     <set>Qt::AlignCenter</set>
+                     <string>Exposure Time</string>
                     </property>
                    </widget>
                   </item>
@@ -2942,8 +3065,8 @@ border:1px solid;</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="1" column="0">
-                   <widget class="QLabel" name="exposureTime_debugLabel">
+                  <item row="4" column="0">
+                   <widget class="QLabel" name="timeDelay_debugLabel">
                     <property name="font">
                      <font>
                       <family>Arial</family>
@@ -2951,20 +3074,45 @@ border:1px solid;</string>
                      </font>
                     </property>
                     <property name="text">
-                     <string>Exposure Time</string>
+                     <string>Time Delay</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="5" column="0">
-                   <widget class="QPushButton" name="getParameter_Button">
+                  <item row="3" column="1" alignment="Qt::AlignRight">
+                   <widget class="QLineEdit" name="frameRateEntry_Debug">
                     <property name="maximumSize">
                      <size>
-                      <width>16777215</width>
-                      <height>30</height>
+                      <width>70</width>
+                      <height>16777215</height>
                      </size>
                     </property>
-                    <property name="text">
-                     <string>Get Parameter</string>
+                    <property name="font">
+                     <font>
+                      <weight>75</weight>
+                      <bold>true</bold>
+                     </font>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="1" alignment="Qt::AlignRight">
+                   <widget class="QLineEdit" name="gainEntry_Debug">
+                    <property name="maximumSize">
+                     <size>
+                      <width>70</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <weight>75</weight>
+                      <bold>true</bold>
+                     </font>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
                     </property>
                    </widget>
                   </item>
@@ -3183,7 +3331,7 @@ border:1px solid;</string>
               <property name="sizeHint" stdset="0">
                <size>
                 <width>20</width>
-                <height>231</height>
+                <height>185</height>
                </size>
               </property>
              </spacer>
@@ -3790,7 +3938,20 @@ border:1px solid;</string>
                      <property name="verticalSpacing">
                       <number>4</number>
                      </property>
-                     <item row="3" column="1" alignment="Qt::AlignRight">
+                     <item row="0" column="0">
+                      <widget class="QLabel" name="recursionRateLabel">
+                       <property name="font">
+                        <font>
+                         <family>Arial</family>
+                         <pointsize>10</pointsize>
+                        </font>
+                       </property>
+                       <property name="text">
+                        <string>Recursion Rate</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="2" column="1" alignment="Qt::AlignRight">
                       <widget class="QLineEdit" name="elasticEntry">
                        <property name="maximumSize">
                         <size>
@@ -3809,7 +3970,7 @@ border:1px solid;</string>
                        </property>
                       </widget>
                      </item>
-                     <item row="3" column="0">
+                     <item row="2" column="0">
                       <widget class="QLabel" name="elasticLabel">
                        <property name="font">
                         <font>
@@ -3819,19 +3980,6 @@ border:1px solid;</string>
                        </property>
                        <property name="text">
                         <string>Elastic</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="0" column="0">
-                      <widget class="QLabel" name="recursionRateLabel">
-                       <property name="font">
-                        <font>
-                         <family>Arial</family>
-                         <pointsize>10</pointsize>
-                        </font>
-                       </property>
-                       <property name="text">
-                        <string>Recursion Rate</string>
                        </property>
                       </widget>
                      </item>
@@ -3854,20 +4002,7 @@ border:1px solid;</string>
                        </property>
                       </widget>
                      </item>
-                     <item row="2" column="0">
-                      <widget class="QLabel" name="rigidLabel">
-                       <property name="font">
-                        <font>
-                         <family>Arial</family>
-                         <pointsize>10</pointsize>
-                        </font>
-                       </property>
-                       <property name="text">
-                        <string>Rigid</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="2" column="1" alignment="Qt::AlignRight">
+                     <item row="1" column="1" alignment="Qt::AlignRight">
                       <widget class="QLineEdit" name="rigidEntry">
                        <property name="maximumSize">
                         <size>
@@ -3886,32 +4021,37 @@ border:1px solid;</string>
                        </property>
                       </widget>
                      </item>
-                     <item row="1" column="1" alignment="Qt::AlignRight">
-                      <widget class="QLineEdit" name="flipEntry">
-                       <property name="maximumSize">
-                        <size>
-                         <width>40</width>
-                         <height>16777215</height>
-                        </size>
-                       </property>
-                       <property name="font">
-                        <font>
-                         <weight>75</weight>
-                         <bold>true</bold>
-                        </font>
-                       </property>
-                       <property name="alignment">
-                        <set>Qt::AlignCenter</set>
-                       </property>
-                      </widget>
-                     </item>
                      <item row="1" column="0">
-                      <widget class="QLabel" name="flipLabel">
+                      <widget class="QLabel" name="rigidLabel">
                        <property name="font">
                         <font>
                          <family>Arial</family>
                          <pointsize>10</pointsize>
                         </font>
+                       </property>
+                       <property name="text">
+                        <string>Rigid</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="3" column="0">
+                      <widget class="QCheckBox" name="flip_checkBox">
+                       <property name="sizePolicy">
+                        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                         <horstretch>0</horstretch>
+                         <verstretch>0</verstretch>
+                        </sizepolicy>
+                       </property>
+                       <property name="font">
+                        <font>
+                         <family>Arial</family>
+                         <pointsize>10</pointsize>
+                         <weight>50</weight>
+                         <bold>false</bold>
+                        </font>
+                       </property>
+                       <property name="layoutDirection">
+                        <enum>Qt::LeftToRight</enum>
                        </property>
                        <property name="text">
                         <string>Flip</string>

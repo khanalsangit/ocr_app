@@ -68,7 +68,7 @@ class DebugOperationFunction(Ui_MainWindow):
         self.blurEntry = parent.blurEntry
         self.contrastEntry = parent.contrastEntry
         self.recursionRateEntry = parent.recursionRateEntry
-        self.flipEntry = parent.flipEntry
+        self.flip_checkBox = parent.flip_checkBox
         self.rigidEntry = parent.rigidEntry
         self.elasticEntry = parent.elasticEntry
 

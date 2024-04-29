@@ -37,7 +37,8 @@ def test_callback(numArray):
                     fontScale=1, color = (255, 0, 0) , thickness = 2, lineType=cv2.LINE_AA) 
     
     numArray = cv2.resize(numArray, (3000, 3000))
-    return numArray
+    rejected = True
+    return numArray, rejected 
     
 
 if __name__=="__main__":
@@ -56,8 +57,8 @@ if __name__=="__main__":
     debug_mode = DebugOperationFunction(gui_operations)
     controller = Controller(camera, live_mode, debug_mode, gui_operations)
     camera.callback = test_callback
+    camera.ui_update_callback =  gui_operations.update_live_gui_with_based_on_result
     loadJsonStyle(ui, gui_operations)
-
     ui.closeEvent = camera.close_device
     ui.show()
 

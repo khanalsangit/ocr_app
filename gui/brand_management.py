@@ -399,8 +399,8 @@ if __name__ == '__main__':
     FILE = Path(__file__).parent
     BRAND_DIR = Path(FILE / 'Brands')
     app = QtWidgets.QApplication(sys.argv)
-    # window = MainWindow()
-    window = createWindow()
+    window = MainWindow()
+    # window = createWindow()
     # window = editBrand()
 
     # window.gridLayout = QtWidgets.QGridLayout(window.widget)

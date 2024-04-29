@@ -28,4 +28,3 @@ def get_parameter(pickle_parameter_path: Path, pkl_name: str, param: dict = None
         except Exception as e :
             print('Pickle folder error ', e)
             print(traceback.format_exc())
-

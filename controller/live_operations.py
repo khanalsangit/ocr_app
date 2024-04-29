@@ -54,6 +54,7 @@ class LiveOperationFunction(Ui_MainWindow):
         self.roiEntry4 = parent.roiEntry4
 
          ########### save data parameters variables
+        self.openImage_Button = parent.openImage_Button 
         self.saveImage_Checkbox = parent.saveImage_Checkbox
         self.saveResult_Checkbox = parent.saveResult_Checkbox
         self.saveNG_Checkbox = parent.saveNG_Checkbox
@@ -61,6 +62,7 @@ class LiveOperationFunction(Ui_MainWindow):
         self.saveData_Page = parent.saveData_Page
         self.saveData_Button = parent.saveData_Button
         self.directoryName_Entry = parent.directoryName_Entry
+        self.chooseDirectory_Button = parent.chooseDirectory_Button
         self.chooseDirectory_Button = parent.chooseDirectory_Button
 
 
@@ -96,6 +98,12 @@ class LiveOperationFunction(Ui_MainWindow):
         Set the current system parameter values into gui widgets.
         '''
         if ocr_method == True:  ######## Set the ocr method radiobutton 
+        Load the system parameter values from pickle
+        '''
+        with open(os.path.join(os.getcwd(),'Parameter_Value/system.pkl'),'rb') as f:
+            system_param = pickle.load(f)   
+            print(system_param)
+        if system_param['ocr_method'] == True:  ######## Set the ocr method radiobutton 
             self.detection_recognition.setChecked(True)
         else:
             self.detectionOnly.setChecked(True)
@@ -236,6 +244,135 @@ class LiveOperationFunction(Ui_MainWindow):
             print("Failed to get the save data parameter")
             print(traceback.format_exc())
      
+    def update_system_param(self)->None:
+        '''
+        Saves the updated system parameter
+        '''
+        system  = {
+            'ocr_method':True if self.detection_recognition.isChecked() else False
+            ,'no_of_lines':self.no_ofLine_comboBox.currentText()
+            ,'line1':self.line1Box.text()
+            ,'line2':self.line2Box.text()
+            ,'line3':self.line3Box.text()
+            ,'line4':self.line4Box.text()
+        }
+        save_parameter(system,'system')
+        msgBox = QMessageBox()
+        msgBox.setIcon(QMessageBox.Information)
+        msgBox.setText("System Parameter Save Successfully")
+        msgBox.setWindowTitle("Parameter")
+        msgBox.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
+        msgBox.exec()
+
+    def update_reject_param(self)->None:
+        '''
+        Saves the updated rejection parameter
+        '''
+        reject = {
+             'min_per_thresh':self.minPercent_Entry.text()
+            ,'line_per_thresh':self.lineThresh_Entry.text()
+            ,'reject_count':self.rejectCount_Entry.text()
+            ,'reject_enable':True if self.rejectEnable_Yes.isChecked() else False 
+        }
+        save_parameter(reject,'reject')
+        msgBox = QMessageBox()
+        msgBox.setIcon(QMessageBox.Information)
+        msgBox.setText("Reject Parameter Save Successfully")
+        msgBox.setWindowTitle("Parameter")
+        msgBox.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
+        msgBox.exec()
+
+    def update_camera_param(self)->None:
+        '''
+        Saves the updated camera parameter
+        '''
+        camera = {
+        'exposure_time':self.exposureTime_Entry.text()
+        ,'trigger_delay':self.triggerDelay_Entry.text()
+        ,'camera_gain':self.cameraGain_Entry.text()
+        ,'roi':'{}:{},{}:{}'.format(self.roiEntry1.text()).format(self.roiEntry2.text()).format(self.roiEntry3.text()).format(self.roiEntry4.text())
+        }
+        save_parameter(camera,'camera')
+        msgBox = QMessageBox()
+        msgBox.setIcon(QMessageBox.Information)
+        msgBox.setText("Camera Parameter Save Successfully")
+        msgBox.setWindowTitle("Parameter")
+        msgBox.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
+        msgBox.exec()
+
+    def update_save_data_param(self)->None:
+        '''
+        Saves the save data parameter
+        '''
+        save_data = {
+        'save_img':True if self.saveImage_Checkbox.isChecked() else False
+        ,'save_ng':True if self.saveNG_Checkbox.isChecked() else False
+        ,'save_result':True if self.saveResult_Checkbox.isChecked() else False
+        ,'img_dir':self.directoryName_Entry.text()
+        }
+        save_parameter(save_data,'save_data')
+        msgBox = QMessageBox()
+        msgBox.setIcon(QMessageBox.Information)
+        msgBox.setText("Camera Parameter Save Successfully")
+        msgBox.setWindowTitle("Parameter")
+        msgBox.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
+        msgBox.exec()
+
+    def camera_setting(self)->None:
+        '''
+        Method that change the camera setting page in StackedWidget
+        '''
+        self.stackWidget_cameraSetting.setCurrentWidget(self.cameraSetting_Page)
+        self.saveData_Button.setStyleSheet("QPushButton{\n"
+        "    background-color: #eaeaea;\n"
+        "    border:none;\n"
+        "    border-top-left-radius:4px;\n"
+        "    border-top-right-radius:4px;\n"
+        "    border-bottom-right-radius:4px;\n"
+        "\n"
+        "\n"
+        "}")
+        self.cameraSetting_Button.setStyleSheet("QPushButton{\n"
+        "    color:#D9305C;\n"
+        "    border-top:1px solid#D9305C;\n"
+        "    border-right:1px solid#D9305C;\n"
+        "    border-top-left-radius:4px;\n"
+        "    border-top-right-radius:4px;\n"
+        "\n"
+        "}\n"
+        "\n"
+        "\n"
+        "\n"
+        "")
+
+    def save_data(self)->None:
+        '''
+        Method that change into save data page.
+        '''
+        self.stackWidget_cameraSetting.setCurrentWidget(self.saveData_Page)
+
+        self.saveData_Button.setStyleSheet("QPushButton{\n"
+        "    color:#D9305C;\n"
+        "    border-top:1px solid#D9305C;\n"
+        "    border-right:1px solid#D9305C;\n"
+        "    border-top-left-radius:4px;\n"
+        "    border-top-right-radius:4px;\n"
+        "\n"
+        "}\n"
+        "\n"
+        "\n"
+        "\n"
+        "")
+        self.cameraSetting_Button.setStyleSheet(
+            "QPushButton{\n"
+        "    background-color: #eaeaea;\n"
+        "    border:none;\n"
+        "    border-top-left-radius:4px;\n"
+        "    border-top-right-radius:4px;\n"
+        "    border-bottom-right-radius:4px;\n"
+        "\n"
+        "\n"
+        "}")
 
     def open_image(self, image = None)-> None:
         '''

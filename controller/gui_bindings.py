@@ -45,17 +45,15 @@ class Controller():
         # debug parameter
         self.load_saved_camera_parameter()
         self.load_current_augmentation_param()
-        self.debug.brand_exit_call_back_method = self.load_main_configs
+        self.update_current_project()
+        self.debug.brand_exit_call_back_method = lambda : [self.load_main_configs(), self.update_current_project()]
 
-        # live parameter
+        #### Load the current brand pickle values
         self.load_current_system_param()
         self.load_current_rejection_param()
         self.load_live_camera_param()
         self.load_save_data_param()
-        # self.update_camera_save_data()
-
-        # print(self.gui.stackWidget_cameraSetting.setCurrentWidget())
-        # self.debug.load_current_augmentation_param()
+        self.live.silence_line()
                 
     def connect_camera_and_ui(self):
         ######################## camera function called ##############################
@@ -209,10 +207,33 @@ class Controller():
             with open('./main_config.yaml', 'r') as file_stream:
                 self.current_brand_config = yaml.safe_load(file_stream)
                 return self.current_brand_config
+            
+
         except Exception as e :
             print('error loading in main_config.yaml', e)
             print(traceback.format_exc())
+
+    def update_current_project(self)->None:
+        '''
+        Sets the active project name in gui 
+        '''
+        try:
+            config_file = self.load_main_configs()
+            brand_name = config_file['brand_name']
+            self.gui.projectName.setText(brand_name)
+
+            ### Load all the pickle values for current active project
+            self.load_current_system_param()
+            self.load_current_rejection_param()
+            self.load_live_camera_param()
+            self.load_save_data_param()
+
+        except Exception as e:
+            print("Config file load failed")
+
+
     ### debug 
+
     def load_saved_camera_parameter(self)->None:
         '''
         loading saved parameters in current brand pickel values for camera
@@ -313,12 +334,15 @@ class Controller():
         '''
         Update or saves the system parameter in pickle
         '''
+        
         try:
+
             file_path = self.current_brand_config['pickle_path']
             self.live.update_system_param(file_path)
         except Exception as e:
             print('update system setting parameters failed ', e)
             print(traceback.format_exc())
+
 
     def set_reject_parameter(self)->None:
         '''

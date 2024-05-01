@@ -4,6 +4,7 @@ import glob
 import cv2
 import os
 import shutil
+import yaml
 import traceback
 
 from gui.pyUIdesign import Ui_MainWindow
@@ -16,7 +17,7 @@ if TYPE_CHECKING:
     from .gui_operations import PyQTWidgetFunction
 
 from gui import brand_management as bm 
-
+ 
 class DebugOperationFunction(Ui_MainWindow):
     def __init__(self, parent: PyQTWidgetFunction):
         '''
@@ -193,18 +194,6 @@ class DebugOperationFunction(Ui_MainWindow):
         # if enabled:
         bm.createWindow(self.parent.main_window, brand_dir = './Brands/').show()
     
-    def import_brand(self):
-        """
-        Method to open brand import windows
-        """
-        # enabled = self.importButton.isEnabled()
-        # self.importButton.setEnabled(not enabled)
-        # if enabled:
-        import_window = bm.MainWindow(self.parent.main_window, brand_dir = './Brands/')
-        import_window.on_exit = self.brand_exit_call_back_method
-        import_window.show()
-        
-
     def brand_exit_call_back_method(self):
         '''
         This method is triggered when there needs to be update in gui because of change in main_config.yaml file
@@ -217,9 +206,18 @@ class DebugOperationFunction(Ui_MainWindow):
         brand_exit_call_back_method = your_methods
         
         '''
-        # TODO: load new main_config.yaml 
-        print('logic to update the project in the gui')
-        ...
+    
+    def import_brand(self):
+        """
+        Method to open brand import windows
+        """
+        # enabled = self.importButton.isEnabled()
+        # self.importButton.setEnabled(not enabled)
+        # if enabled:
+        import_window = bm.MainWindow(self.parent.main_window, brand_dir = './Brands/' ,  on_exit = self.brand_exit_call_back_method)
+        # import_window.on_exit = self.brand_exit_call_back_method
+        import_window.show()
+        # import_window.closed 
 
     def set_camera_values_to_entry(self, exposure: float | int, gain : float | int, frame_rate: float | int, delay: float | int ):
         self.exposureEntry_Debug.setText(str(exposure)) 

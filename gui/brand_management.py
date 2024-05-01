@@ -184,9 +184,10 @@ class editBrand(QtWidgets.QMainWindow):
         print(self.brand)
 
 class MainWindow(QtWidgets.QMainWindow):
-    def __init__(self, main_ui:Ui_MainWindow, parent: QtWidgets.QMainWindow = None, brand_dir : Path = None):
+    def __init__(self, main_ui:Ui_MainWindow, parent: QtWidgets.QMainWindow = None, brand_dir : Path = None, on_exit = None ):
         
         # self.brand_name = main_ui.projectName
+        self.on_exit = None 
         if parent == None:
             super().__init__()
         else: 
@@ -208,6 +209,9 @@ class MainWindow(QtWidgets.QMainWindow):
         self.setCentralWidget(self.scrollWidget)
         self.setGeometry(200,100,900,700)
         self.placeBrand()
+        if type(on_exit) != type(None):
+            print('bboy')
+            self.on_exit = on_exit
 
 
     def placeBrand(self):
@@ -227,12 +231,12 @@ class MainWindow(QtWidgets.QMainWindow):
                     brand.setObjectName("brand")
                     brand.addBrand()
                     brand.index = list_index
-                    brand.importButton.clicked.connect( self.current_index_list(brand.brand_title, dir_list, brand.index))
+                    brand.importButton.clicked.connect(self.change_brand(brand.brand_title, dir_list, brand.index))
                     num += 1
                     self.brands.append(brand)
                     self.gridLayout.addWidget(self.brands[-1], row, column)
 
-    def current_index_list(self, project_name, dir_list, index):
+    def change_brand(self, project_name, dir_list, index):
         def create_main_config():
             print(f'importing {project_name} from dir {dir_list[index]}, index {index} ')
             project_data = None 
@@ -248,11 +252,10 @@ class MainWindow(QtWidgets.QMainWindow):
             except Exception as e :
                 print('error writing to main_config.yaml')
                 print(traceback.format_exc())
-            self.on_exit()
+            # self.u.project_datai.setText(project_name)
+            self._on_exit()
             self.close()
             
-            ###### Loading the pickle values
-       
         return create_main_config
     
 
@@ -263,12 +266,12 @@ class MainWindow(QtWidgets.QMainWindow):
                 widget.deleteLater()
         self.placeBrand()
     
-    def on_exit(self):
+    def _on_exit(self):
         '''
         Assign a function that will update you gui based on the import logic 
         '''
-        ...
-
+        print('rhomes')
+        self.on_exit()
 
         
 class createWindow(QtWidgets.QMainWindow):

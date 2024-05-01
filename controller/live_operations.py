@@ -79,6 +79,35 @@ class LiveOperationFunction(Ui_MainWindow):
         self.lastNG_timeCount = parent.lastNG_timeCount 
         self.resetCounter_Button = parent.resetCounter_Button
 
+    def silence_line(self):
+        combo_box = int(self.no_ofLine_comboBox.currentText())
+        if combo_box == 0:
+            self.line1Box.setDisabled(True)
+            self.line2Box.setDisabled(True)
+            self.line3Box.setDisabled(True)
+            self.line4Box.setDisabled(True)
+        elif combo_box == 1:
+            self.line1Box.setDisabled(False)
+            self.line2Box.setDisabled(True)
+            self.line3Box.setDisabled(True)
+            self.line4Box.setDisabled(True)
+        elif combo_box == 2:
+            self.line1Box.setDisabled(False)
+            self.line2Box.setDisabled(False)
+            self.line3Box.setDisabled(True)
+            self.line4Box.setDisabled(True)
+        
+        elif combo_box == 3:
+            self.line1Box.setDisabled(False)
+            self.line2Box.setDisabled(False)
+            self.line3Box.setDisabled(False)
+            self.line4Box.setDisabled(True)
+        elif combo_box == 4:
+            self.line1Box.setDisabled(False)
+            self.line2Box.setDisabled(False)
+            self.line3Box.setDisabled(False)
+            self.line4Box.setDisabled(False)
+
     def msgbox_display(self,msg,type)-> None:
         '''
         Displays the messagebox 
@@ -176,6 +205,7 @@ class LiveOperationFunction(Ui_MainWindow):
                 ,'line4':self.line4Box.text()
             }
             save_parameter(file_path,'system',system)
+            self.silence_line()
             self.msgbox_display("System Parameter Save Successfully",'Success')
         except Exception as e:
             print("Failed to get the system parameter")

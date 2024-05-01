@@ -10,8 +10,7 @@ import numpy as np
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import * 
 from PyQt5.QtCore import *
-import sys
-import time
+
 def augmentation():
     ###### Load configuration file
     def load_config_file():
@@ -25,8 +24,10 @@ def augmentation():
     with open(pickle_path,'rb') as f:
             augment_values = pickle.load(f)
     print("Augment values",augment_values)
+
     dir = yaml_file['images_path']
     rotate_val = int(augment_values['rotate'])
+    flip_val = int(augment_values['flip'])
     blur = int(augment_values['blur'])
     contrast = int(augment_values['contrast'])
     elastic = int(augment_values['elastic'])
@@ -49,11 +50,7 @@ def augmentation():
     outdir=dir_name+'/'
     count=0
 
-
     print("Augmentation Started")
-
-    aug_weight = 0
-    current_file_name = ''
     weights = [0.1, 0.2, 0.1,0.2,0.2,0.1,0.1]   ####### probability values of each augmentation methods
 
     def random_augment():
@@ -128,7 +125,7 @@ def augmentation():
             rigid = int(random.randrange(float(rvalue_list[0]), float(rvalue_list[1])))
             aug_methods = [                                               ###### Augmentation methods
                 ('ori', aug.original, (filename,outdir,i)),
-                ('ro', aug.rotate, (filename,angle,outdir,i)),
+                ('ro', aug.rotate, (filename,angle,outdir,i)), 
                 ('fl', aug.img_flip, (filename,outdir,i)),
                 ('bl', aug.blur, (filename,blur,outdir,i)),
                 ('co', aug.contrast, (filename,contrast,outdir,i)),
@@ -151,6 +148,7 @@ def augmentation():
     print("Total number of data created: ", count)
 
     print("Augmentation Completed")
+
 
 
 

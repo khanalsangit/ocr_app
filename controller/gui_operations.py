@@ -10,7 +10,7 @@ import traceback
 
 from gui.pyUIdesign import Ui_MainWindow
 #from gui.PyUICBasicDemo import Ui_MainWindow 
-from PyQt5 import QtWidgets, QtCore
+from PyQt5 import QtWidgets, QtCore, QtGui
 from PyQt5.QtWidgets import *
 
 from .live_operations import LiveOperationFunction
@@ -112,12 +112,28 @@ class PyQTWidgetFunction(Ui_MainWindow):
     def update_live_gui_with_based_on_result(self, image: cv2 = None, rejection=None):
         from PyQt5.QtGui import QPixmap, QImage
         import numpy as np 
+        import time
         if not (image is  None):
             imgDown = cv2.pyrDown(image)
-            imgDown = np.float32(imgDown)        
-            cvRGBImg = cv2.resize(cv2.cvtColor(imgDown, cv2.COLOR_RGB2BGR),(self.lastNG_Image.width(), self.lastNG_Image.height()) )
-            qimg = QImage(cvRGBImg.data, cvRGBImg.shape[1], cvRGBImg.shape[0], QImage.Format_RGB888)
-            pixmap01 = QPixmap.fromImage(qimg)
-            self.lastNG_Image.setPixmap(pixmap01)
+            imgDown = np.float32(imgDown)
+            imgDown = cv2.imread("20240124105236993057_Img.jpg")
+            width1 = self.lastNG_Image.width()
+            height1 = self.lastNG_Image.height()
+            new_resized_img = cv2.resize(imgDown,(int(width1-10), int(height1)))
+            height, width, channel = new_resized_img.shape
+            qimage =  QImage(new_resized_img.data, width, height, QImage.Format_BGR888)
+            pixmap = QPixmap.fromImage(qimage)
+            self.lastNG_Image.setPixmap(QtGui.QPixmap(pixmap))
+
+
+
+
+
+
+
+      
+
+
+ 
         
-        ...
+

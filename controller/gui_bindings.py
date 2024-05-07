@@ -5,7 +5,7 @@ import traceback
 
 import cv2
 from PyQt5.QtWidgets import QFileDialog
-from Augmentation.main import augmentation
+from Augmentation.main import Augmentation_ProgressBar
 from camera_interface.camera import MachineVisionCamera
 from .gui_operations import PyQTWidgetFunction
 from .live_operations import LiveOperationFunction
@@ -26,14 +26,14 @@ class Controller():
     gui: PyQTWidgetFunction
         instace of the current main window
     """
-    def __init__(self, camera: MachineVisionCamera, live:LiveOperationFunction, debug:DebugOperationFunction, gui: PyQTWidgetFunction) -> None:
+    def __init__(self, camera: MachineVisionCamera, live:LiveOperationFunction, debug:DebugOperationFunction, gui: PyQTWidgetFunction, augment: Augmentation_ProgressBar) -> None:
         """
         Initialize the controller, 
             - It connects the camera to ui components 
             - It connects methods to ui components 
         """
         self.camera = camera
-
+        self.augment = augment
         self.gui = gui
         self.current_brand_config = self.load_main_configs()
         self.live = live
@@ -72,7 +72,6 @@ class Controller():
             ]
         )
         
-
     def connect_methods_and_ui(self):
         ####################### Live Mode function called ############################
         self.gui.stackWidget.setCurrentWidget(self.gui.liveMode_Page) ####### default switch mode 
@@ -129,15 +128,10 @@ class Controller():
         self.debug.setParameter_Button.clicked.connect(self.set_camera_parameter)
         self.debug.deleteImage_Button.clicked.connect(self.delete_captured_image)
         self.debug.captureButton.clicked.connect(self.capture_image)
-        self.gui.augmentationButton.clicked.connect(augmentation)
         # augmentation panel buttons creation
+        # self.gui.augmentationButton.clicked.connect(self.set_augment_parameter)
         self.gui.augmentationButton.clicked.connect(self.set_augment_parameter)
-        # self.gui.live.resetCounter_Button.clicked.connect(
-        #     self.gui.live.reset_counter_values
-        # )
 
-    ###### Update button for camera and save_dat
-        # print(self.live.stackWidget_cameraSetting)
 
     def camera_setting(self)->None:
         '''
@@ -327,6 +321,7 @@ class Controller():
         try:
             file_path = self.current_brand_config['pickle_path']
             self.debug.update_augment_param(file_path)
+            self.augment.augmentation()
         except Exception as e:
             print("Update augmentation parameters failed",e)
             print(traceback.format_exc())
@@ -400,7 +395,6 @@ class Controller():
     
     def delete_captured_image(self):
         "method to delete the capture image" 
-
         fileName, filter = QFileDialog.getOpenFileName(None, 'Open file', 
             self.current_brand_config['images_path'], 'Image files (*.jpg)')
         if fileName:
@@ -441,6 +435,7 @@ class Controller():
         '''
         method to update the image count in the gui by reading from the brand folder 
         '''
+
         image_count = len(os.listdir(self.current_brand_config['images_path']))
         self.debug.captured_image_count(image_count)
         ...

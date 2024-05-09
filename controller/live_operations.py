@@ -6,11 +6,16 @@ import cv2
 import os
 import traceback
 from gui.pyUIdesign import Ui_MainWindow
+from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import *
 from Parameter_Value.param_tools import save_parameter, get_parameter
 from typing import TYPE_CHECKING
+
 if TYPE_CHECKING:
     from .gui_operations import PyQTWidgetFunction
+
+
+
 
 class LiveOperationFunction(Ui_MainWindow):
 
@@ -22,7 +27,7 @@ class LiveOperationFunction(Ui_MainWindow):
         -----------------------
         parent: PyQTWidgetFunction
             pass the object `PyQTWidgetFunction` that inherits the class `Ui_MainWindow` generated from `ui`
-        '''
+        '''    
         ########### system parameters variables
         self.detection_recognition = parent.detection_recognition
         self.detectionOnly = parent.detectionOnly
@@ -78,6 +83,8 @@ class LiveOperationFunction(Ui_MainWindow):
         self.lastNG_Count = parent.lastNG_Count 
         self.lastNG_timeCount = parent.lastNG_timeCount 
         self.resetCounter_Button = parent.resetCounter_Button
+
+        self.circleWidget = parent.circleWidget
 
     def silence_line(self):
         combo_box = int(self.no_ofLine_comboBox.currentText())

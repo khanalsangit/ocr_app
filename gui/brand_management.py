@@ -394,6 +394,7 @@ if __name__ == '__main__':
     BRAND_DIR = Path(FILE / 'Brands')
     app = QtWidgets.QApplication(sys.argv)
     window = MainWindow()
+    
     window.show()
     app.exec_()
     sys.exit()

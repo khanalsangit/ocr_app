@@ -71,8 +71,7 @@ def main_file():
         - bounding_box (str): Path of the bounding box returned by the augmentation method.
         - rr (float): Recursion rate indicating the threshold for stopping the recursion.
         '''
-
-        global aug_weight, current_file_name
+        aug_weight = 0
         prob_val, img, bbox, aug_method_name = random_augment()
         aug_weight += prob_val
         if aug_weight >= rr:
@@ -148,7 +147,5 @@ def main_file():
     print("Total number of data created: ", count)
 
     print("Augmentation Completed")
-
-
 
 main_file()

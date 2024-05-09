@@ -6,16 +6,14 @@ import sys
 import shutil
 
 from PyQt5.QtWidgets import QMainWindow
-from PyQt5 import QtWidgets, QtCore, QtGui
-from gui.pyUIdesign import Ui_MainWindow
 from Custom_Widgets import *
-from Custom_Widgets import *
-
+from PyQt5 import QtCore, QtGui, QtWidgets 
 from camera_interface.camera import MachineVisionCamera
 from controller.gui_operations import PyQTWidgetFunction
 from controller.live_operations import LiveOperationFunction
 from controller.debug_operations import DebugOperationFunction
 # from Augmentation.main import Augmentation_ProgressBar
+
 from controller.gui_bindings import Controller
 
 class MainWin(QMainWindow):
@@ -41,8 +39,6 @@ def test_callback(numArray):
     
 
 if __name__=="__main__":
-    import sys
-    from multiprocessing import process
     if hasattr(QtCore.Qt, 'AA_EnableHighDpiScaling'):
         QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling, True)
 

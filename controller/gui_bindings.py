@@ -5,7 +5,7 @@ import traceback
 
 import cv2
 from PyQt5.QtWidgets import QFileDialog
-from Augmentation.main import Augmentation_ProgressBar
+# from Augmentation.main import Augmentation_ProgressBar
 from camera_interface.camera import MachineVisionCamera
 from .gui_operations import PyQTWidgetFunction
 from .live_operations import LiveOperationFunction
@@ -26,14 +26,14 @@ class Controller():
     gui: PyQTWidgetFunction
         instace of the current main window
     """
-    def __init__(self, camera: MachineVisionCamera, live:LiveOperationFunction, debug:DebugOperationFunction, gui: PyQTWidgetFunction, augment: Augmentation_ProgressBar) -> None:
+    def __init__(self, camera: MachineVisionCamera, live:LiveOperationFunction, debug:DebugOperationFunction, gui: PyQTWidgetFunction) -> None:
         """
         Initialize the controller, 
             - It connects the camera to ui components 
             - It connects methods to ui components 
         """
         self.camera = camera
-        self.augment = augment
+        # self.augment = augment
         self.gui = gui
         self.current_brand_config = self.load_main_configs()
         self.live = live
@@ -130,7 +130,7 @@ class Controller():
         self.debug.captureButton.clicked.connect(self.capture_image)
         # augmentation panel buttons creation
         # self.gui.augmentationButton.clicked.connect(self.set_augment_parameter)
-        self.gui.augmentationButton.clicked.connect(self.set_augment_parameter)
+        # self.gui.augmentationButton.clicked.connect(self.set_augment_parameter)
 
 
     def camera_setting(self)->None:

@@ -116,14 +116,18 @@ class PyQTWidgetFunction(Ui_MainWindow):
         if not (image is  None):
             imgDown = cv2.pyrDown(image)
             imgDown = np.float32(imgDown)
-            imgDown = cv2.imread("20240124105236993057_Img.jpg")
+            
             width1 = self.lastNG_Image.width()
             height1 = self.lastNG_Image.height()
-            new_resized_img = cv2.resize(imgDown,(int(width1-10), int(height1)))
-            height, width, channel = new_resized_img.shape
-            qimage =  QImage(new_resized_img.data, width, height, QImage.Format_BGR888)
+            # new_resized_img = cv2.resize(imgDown,(int(width1), int(height1)))
+            height, width, channel = imgDown.shape
+            qimage =  QImage(imgDown.data, width, height, QImage.Format.Format_BGR888)
             pixmap = QPixmap.fromImage(qimage)
             self.lastNG_Image.setPixmap(QtGui.QPixmap(pixmap))
+
+      
+
+        
 
 
 

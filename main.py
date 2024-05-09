@@ -15,7 +15,7 @@ from camera_interface.camera import MachineVisionCamera
 from controller.gui_operations import PyQTWidgetFunction
 from controller.live_operations import LiveOperationFunction
 from controller.debug_operations import DebugOperationFunction
-from Augmentation.main import Augmentation_ProgressBar
+# from Augmentation.main import Augmentation_ProgressBar
 from controller.gui_bindings import Controller
 
 class MainWin(QMainWindow):
@@ -52,10 +52,10 @@ if __name__=="__main__":
     ui = QMainWindow() # MainWin()
     gui_operations = PyQTWidgetFunction(ui)
     camera = MachineVisionCamera()
-    augment_mode = Augmentation_ProgressBar()
+    # augment_mode = Augmentation_ProgressBar()
     live_mode = LiveOperationFunction(gui_operations)
     debug_mode = DebugOperationFunction(gui_operations)
-    controller = Controller(camera, live_mode, debug_mode, gui_operations, augment_mode)
+    controller = Controller(camera, live_mode, debug_mode, gui_operations)
     camera.callback = test_callback
     camera.ui_update_callback =  gui_operations.update_live_gui_with_based_on_result
     loadJsonStyle(ui, gui_operations)

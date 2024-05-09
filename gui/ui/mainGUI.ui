@@ -319,6 +319,19 @@
                    </property>
                   </widget>
                  </item>
+                 <item row="0" column="3">
+                  <widget class="QLabel" name="circle4">
+                   <property name="maximumSize">
+                    <size>
+                     <width>25</width>
+                     <height>25</height>
+                    </size>
+                   </property>
+                   <property name="text">
+                    <string/>
+                   </property>
+                  </widget>
+                 </item>
                  <item row="0" column="1">
                   <widget class="QLabel" name="circle2">
                    <property name="sizePolicy">
@@ -338,8 +351,47 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="0" column="3">
-                  <widget class="QLabel" name="circle4">
+                 <item row="1" column="4">
+                  <widget class="QLabel" name="circle10">
+                   <property name="maximumSize">
+                    <size>
+                     <width>25</width>
+                     <height>25</height>
+                    </size>
+                   </property>
+                   <property name="text">
+                    <string/>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="2">
+                  <widget class="QLabel" name="circle8">
+                   <property name="maximumSize">
+                    <size>
+                     <width>25</width>
+                     <height>25</height>
+                    </size>
+                   </property>
+                   <property name="text">
+                    <string/>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="1">
+                  <widget class="QLabel" name="circle7">
+                   <property name="maximumSize">
+                    <size>
+                     <width>25</width>
+                     <height>25</height>
+                    </size>
+                   </property>
+                   <property name="text">
+                    <string/>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="3">
+                  <widget class="QLabel" name="circle9">
                    <property name="maximumSize">
                     <size>
                      <width>25</width>
@@ -366,58 +418,6 @@
                  </item>
                  <item row="1" column="0">
                   <widget class="QLabel" name="circle6">
-                   <property name="maximumSize">
-                    <size>
-                     <width>25</width>
-                     <height>25</height>
-                    </size>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="1">
-                  <widget class="QLabel" name="circle7">
-                   <property name="maximumSize">
-                    <size>
-                     <width>25</width>
-                     <height>25</height>
-                    </size>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="2">
-                  <widget class="QLabel" name="circle8">
-                   <property name="maximumSize">
-                    <size>
-                     <width>25</width>
-                     <height>25</height>
-                    </size>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="3">
-                  <widget class="QLabel" name="circle9">
-                   <property name="maximumSize">
-                    <size>
-                     <width>25</width>
-                     <height>25</height>
-                    </size>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="4">
-                  <widget class="QLabel" name="circle10">
                    <property name="maximumSize">
                     <size>
                      <width>25</width>
@@ -672,7 +672,7 @@
                  <string/>
                 </property>
                 <property name="scaledContents">
-                 <bool>false</bool>
+                 <bool>true</bool>
                 </property>
                </widget>
               </item>
@@ -5574,6 +5574,9 @@ QPushButton:pressed{
              </property>
              <property name="text">
               <string>IMAGE</string>
+             </property>
+             <property name="scaledContents">
+              <bool>true</bool>
              </property>
              <property name="alignment">
               <set>Qt::AlignCenter</set>

@@ -1,13 +1,7 @@
 import os
 import cv2
-import sys
-import glob
-import shutil
-import pickle
 import cv2.data
-import yaml
-import traceback
-
+from copy import deepcopy 
 from gui.pyUIdesign import Ui_MainWindow
 #from gui.PyUICBasicDemo import Ui_MainWindow 
 from PyQt5 import QtWidgets, QtCore, QtGui
@@ -22,22 +16,23 @@ class CircleFrame(QtWidgets.QFrame):
         super(CircleFrame, self).__init__(parent)
         self.frameLayout = QtWidgets.QGridLayout(self)
         self.frameLayout.setContentsMargins(0, 0, 0, 0)
-        self.frameLayout.setSpacing(10)      
+        self.frameLayout.setSpacing(12)      
 
     def addCircle(self):
         circle = QtWidgets.QPushButton(self)
-        # def circle_text():
-        #     print("click me")
-        # circle.pressed.connect(circle_text)
-        circle.setStyleSheet("background-color: white;" "border: 1px solid red;" "border-radius:100")
-        
+        circle.setMaximumHeight(120)
+        circle.setMaximumWidth(180)
+        circle.setStyleSheet("background-color: white;" "border: 1px solid red;" "border-radius:10px;" "height:35px;" "width:35px;")
         self.frameLayout.addWidget(circle, len(self.frameLayout) // 5, len(self.frameLayout) % 5)
-
+        return circle
 
 class PyQTWidgetFunction(Ui_MainWindow):
     def __init__(self, main_window) -> None:
         super().__init__()
-
+        
+        self.last_ten_circle = CircleFrame()
+        circle = self.last_ten_circle.addCircle()
+        self.circle = circle
         self.main_window = main_window
         self.setupUi(main_window)
         self.additional_setup() 
@@ -140,18 +135,45 @@ class PyQTWidgetFunction(Ui_MainWindow):
         )
     
     def update_live_gui_with_based_on_result(self, image: cv2 = None, rejection=None):
-        from PyQt5.QtGui import QPixmap, QImage
-        import numpy as np 
-        import time
-        if not (image is  None):
-            new_h = self.lastNG_Image.height() 
-            new_w = self.lastNG_Image.width()
-            image = cv2.resize(image, (new_w, new_h))
-            image = QImage(image.data, new_w, new_h, QImage.Format.Format_BGR888)
-            self.lastNG_Image.setPixmap(QtGui.QPixmap.fromImage(image))
-          
+        '''
+            Update live gui after trigger or image is received
+        Args:
+            image: image received from camera
+            rejection: status while rejection
+        '''
         if rejection == True:
-            self.circle1.setStyleSheet("background-color: red; border: 1px solid black;")
+            status = 'not_good'
+            self.live.live_mode_param['not_good'] += 1
+            self.live.live_mode_param['last_not_good_count'] = 0
+            self.live.display_last_NG(image)
+            self.notGoodCount.setText(str(self.live.live_mode_param['not_good']))
+            self.live.last_ng_time(0,'0')
+            self.live.red_blinking()
+            
+        else:
+            status = 'good'
+            print("Good Count",self.live.live_mode_param['good'])
+            self.live.live_mode_param['good'] += 1
+            self.live.live_mode_param['last_not_good_count'] += 1
+            self.goodCount.setText(str(self.live.live_mode_param['good']))
+            self.lastNG_Count.setText(str(self.live.live_mode_param['last_not_good_count']))
+            self.live.blue_blinking()
+
+        current_image_info = {'image': deepcopy(image), 'status': status}
+        self.live.live_mode_param['last_ten_result'] = [current_image_info] +  self.live.live_mode_param['last_ten_result']
+        print("Length of the last ten circle",len(self.live.live_mode_param['last_ten_result']))
+        print("Image details",self.live.live_mode_param)
+        if len(self.live.live_mode_param['last_ten_result'] ) > 10: # removing the previous results 
+            self.live.live_mode_param['last_ten_result'].pop(-1)
+            self.circle.setStyleSheet("")
+
+
+
+       
+        
+        
+        
+
        
 
 

@@ -7,10 +7,12 @@ import os
 import traceback
 from gui.pyUIdesign import Ui_MainWindow
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtGui import QImage
 from PyQt5.QtWidgets import *
 from Parameter_Value.param_tools import save_parameter, get_parameter
 from typing import TYPE_CHECKING
-
+import time
+from copy import deepcopy
 if TYPE_CHECKING:
     from .gui_operations import PyQTWidgetFunction
 
@@ -68,8 +70,7 @@ class LiveOperationFunction(Ui_MainWindow):
         self.saveData_Button = parent.saveData_Button
         self.directoryName_Entry = parent.directoryName_Entry
         self.chooseDirectory_Button = parent.chooseDirectory_Button
-
-
+       
         ############ last ng image 
         self.lastNG_Image = parent.lastNG_Image 
 
@@ -83,10 +84,22 @@ class LiveOperationFunction(Ui_MainWindow):
         self.lastNG_Count = parent.lastNG_Count 
         self.lastNG_timeCount = parent.lastNG_timeCount 
         self.resetCounter_Button = parent.resetCounter_Button
-
         self.circleWidget = parent.circleWidget
 
-    def silence_line(self):
+    ########## Live Mode Result Parameter ########
+    live_mode_param = {
+        'detection_time':0,
+        'last_ten_result':[],
+        'good':0,
+        'not_good':0,
+        'last_not_good_count':0,
+        'last_not_good_time':0
+    }
+
+    def silence_line(self)->None:
+        '''
+        Silence the lines based on the number of line
+        '''
         combo_box = int(self.no_ofLine_comboBox.currentText())
         if combo_box == 0:
             self.line1Box.setDisabled(True)
@@ -369,3 +382,80 @@ class LiveOperationFunction(Ui_MainWindow):
     
     def update_camera_parameter(self, value):
         self.exposureTime_Entry.setText(str(value))
+
+    def display_last_ten(self,image,event)->None:
+        """ Display last ten images
+        Args:
+            image : input image from camera
+            event (event): display image event
+        """ 
+        print('the event ', event.widget.__dict__)
+        # try :
+        #     canvas_number = int(event.widget._name[7:]) - 1 
+        # except Exception as e :
+        #      canvas_number = 0
+        # cv2.imshow(f'canvas {canvas_number}',  
+        #     cv2.resize(
+        #         self.live_mode_runtime_param['last_ten_result'][canvas_number]['image'],
+        #         (500, 500)
+        #     )[:,:,::-1]
+        # )
+        # cv2.waitKey(0)
+        # cv2.destroyAllWindows() 
+
+    def display_last_NG(self,image)->None:
+        '''
+        Display last Not Good Image
+        '''
+        if not (image is  None):
+            new_h = self.lastNG_Image.height() 
+            new_w = self.lastNG_Image.width()
+            image = cv2.resize(image, (new_w, new_h))
+            image = QImage(image.data, new_w, new_h, QImage.Format.Format_BGR888)
+            self.lastNG_Image.setPixmap(QtGui.QPixmap.fromImage(image))
+
+    def last_ng_time(self,start_time,last_time)->None:
+        '''
+            Display Last Not Good time
+        Args:
+
+        '''
+        start_time = time.time()
+        if last_time==0:
+            current_time = 0
+        else:
+            current_time = int(time.time() - start_time) 
+        print("Current Time",current_time)
+        self.lastNG_timeCount.setText(str(current_time) + ' sec')
+
+    def red_blinking(self) -> None:
+        '''
+        Display or Blink the red color rectangle when the detection result if Not Good.
+        '''
+        self.detectionResult.setText("Not Good")
+        self.detectionResult.setStyleSheet("QLabel{\n"
+        "    color:white;\n"
+        "    background-color:#D9305C;\n"
+        "    border-radius:2px;\n"
+        "    font: 16pt Arial;"
+        "}")
+        self.detectionResult.setAlignment(QtCore.Qt.AlignCenter)
+    
+    def blue_blinking(self) -> None:
+        '''
+        Display or Blink the blue color rectangle when the detection result is Good.
+        '''
+        self.detectionResult.setText("Good")
+        self.detectionResult.setStyleSheet("QLabel{\n"
+        "    color:white;\n"
+        "    background-color:#349beb;\n"
+        "    border-radius:2px;\n"
+        "    font: 16pt Arial;"
+        "}")
+        self.detectionResult.setAlignment(QtCore.Qt.AlignCenter)
+
+        
+
+
+            
+       

@@ -30,6 +30,8 @@ class LiveOperationFunction(Ui_MainWindow):
         parent: PyQTWidgetFunction
             pass the object `PyQTWidgetFunction` that inherits the class `Ui_MainWindow` generated from `ui`
         '''    
+    
+    
         ########### system parameters variables
         self.detection_recognition = parent.detection_recognition
         self.detectionOnly = parent.detectionOnly
@@ -40,6 +42,7 @@ class LiveOperationFunction(Ui_MainWindow):
         self.line4Box = parent.line4Box
         self.systemSetting_update_Button = parent.systemSetting_update_Button
 
+    
         ########### rejection parameters variables
         self.minPercent_Entry = parent.minPercent_Entry
         self.lineThresh_Entry = parent.linearThresh_Entry
@@ -73,7 +76,10 @@ class LiveOperationFunction(Ui_MainWindow):
        
         ############ last ng image 
         self.lastNG_Image = parent.lastNG_Image 
+    
 
+
+        
         ##### detection result 
         self.detectionResult = parent.detectionResult 
         self.detectionTime = parent.detectionTime 
@@ -95,12 +101,13 @@ class LiveOperationFunction(Ui_MainWindow):
         'last_not_good_count':0,
         'last_not_good_time':0
     }
-
+        
     def silence_line(self)->None:
         '''
         Silence the lines based on the number of line
         '''
         combo_box = int(self.no_ofLine_comboBox.currentText())
+
         if combo_box == 0:
             self.line1Box.setDisabled(True)
             self.line2Box.setDisabled(True)
@@ -140,6 +147,7 @@ class LiveOperationFunction(Ui_MainWindow):
         msgBox.setWindowTitle("{}".format(type))
         msgBox.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
         msgBox.exec()
+        
 
     def system_param_load(self, ocr_method:str, no_of_line:int, line1box:str, line2box:str, line3box:str, line4box:str)->None :
         '''
@@ -383,25 +391,15 @@ class LiveOperationFunction(Ui_MainWindow):
     def update_camera_parameter(self, value):
         self.exposureTime_Entry.setText(str(value))
 
-    def display_last_ten(self,image,event)->None:
+    def display_last_ten(self)->None:
         """ Display last ten images
         Args:
             image : input image from camera
             event (event): display image event
         """ 
-        print('the event ', event.widget.__dict__)
-        # try :
-        #     canvas_number = int(event.widget._name[7:]) - 1 
-        # except Exception as e :
-        #      canvas_number = 0
-        # cv2.imshow(f'canvas {canvas_number}',  
-        #     cv2.resize(
-        #         self.live_mode_runtime_param['last_ten_result'][canvas_number]['image'],
-        #         (500, 500)
-        #     )[:,:,::-1]
-        # )
-        # cv2.waitKey(0)
-        # cv2.destroyAllWindows() 
+        # senders = self.sender()  # Get the button that was clicked
+        # index = buttons.index(senders)  # Get the index of the clicked button
+        print("Button clicked")
 
     def display_last_NG(self,image)->None:
         '''
@@ -425,7 +423,6 @@ class LiveOperationFunction(Ui_MainWindow):
             current_time = 0
         else:
             current_time = int(time.time() - start_time) 
-        print("Current Time",current_time)
         self.lastNG_timeCount.setText(str(current_time) + ' sec')
 
     def red_blinking(self) -> None:
@@ -453,6 +450,9 @@ class LiveOperationFunction(Ui_MainWindow):
         "    font: 16pt Arial;"
         "}")
         self.detectionResult.setAlignment(QtCore.Qt.AlignCenter)
+
+    
+
 
         
 

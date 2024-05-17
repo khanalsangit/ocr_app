@@ -6,38 +6,57 @@ from gui.pyUIdesign import Ui_MainWindow
 #from gui.PyUICBasicDemo import Ui_MainWindow 
 from PyQt5 import QtWidgets, QtCore, QtGui
 from PyQt5.QtWidgets import *
+from functools import partial
 
 from .live_operations import LiveOperationFunction
 from .debug_operations import DebugOperationFunction 
 
+from PyQt5.QtCore import QObject, QEvent, QCoreApplication, QTimer, pyqtSignal, pyqtSlot
+from PyQt5.QtWidgets import QFrame
 
-class CircleFrame(QtWidgets.QFrame):
+class CircleFrame(QFrame):
     def __init__(self, parent=None):
-        super(CircleFrame, self).__init__(parent)
+        super().__init__(parent)
         self.frameLayout = QtWidgets.QGridLayout(self)
         self.frameLayout.setContentsMargins(0, 0, 0, 0)
-        self.frameLayout.setSpacing(12)      
+        self.frameLayout.setSpacing(12) 
+        # for _ in range(10):
+        #    self.addCircle()
+        # self.custom_signal = pyqtSignal(str)
 
     def addCircle(self):
-        circle = QtWidgets.QPushButton(self)
-        circle.setMaximumHeight(120)
-        circle.setMaximumWidth(180)
-        circle.setStyleSheet("background-color: white;" "border: 1px solid red;" "border-radius:10px;" "height:35px;" "width:35px;")
-        self.frameLayout.addWidget(circle, len(self.frameLayout) // 5, len(self.frameLayout) % 5)
-        return circle
+
+        # self.buttons_name = []
+        # self.buttons = []
+        # for i in range(10):
+            self.circle = QtWidgets.QPushButton()#f"{i}")
+            # self.circle.setObjectName(f'circle{i}')
+            self.circle.setMaximumHeight(120)
+            self.circle.setMaximumWidth(180)
+            self.circle.setStyleSheet("background-color: white;" "color: red;" "border: 1px solid red;" "border-radius:10px;" "height:35px;" "width:35px;")
+            self.frameLayout.addWidget(self.circle, len(self.frameLayout) // 5, len(self.frameLayout) % 5)
+            # self.circle.clicked.connect(partial(self.do_something, self.circle))
+            # self.circle.clicked.connect(self.do_something)
+            # self.buttons_name.append(f'circle{i}')
+            # self.buttons.append(self.circle)
+            return self.circle
+        
+    def do_something(self):
+        # self.custom_signal.emit('hello world!')
+        sender = self.sender()
+        index = self.buttons.index(sender)
+        print(index)
+
+
 
 class PyQTWidgetFunction(Ui_MainWindow):
     def __init__(self, main_window) -> None:
         super().__init__()
-        
         self.last_ten_circle = CircleFrame()
-        circle = self.last_ten_circle.addCircle()
-        self.circle = circle
         self.main_window = main_window
         self.setupUi(main_window)
         self.additional_setup() 
         self.save_image_path = None 
-
         self.live = LiveOperationFunction(self)
         self.debug = DebugOperationFunction(self)
 
@@ -45,6 +64,7 @@ class PyQTWidgetFunction(Ui_MainWindow):
             ################################################################################################################################
                     ################################################################################################################
                             ###########################################################################################
+
     def additional_setup(self)->None:
         '''
         Functions to generate the last 10 circle for good or bad detection
@@ -56,14 +76,21 @@ class PyQTWidgetFunction(Ui_MainWindow):
         self.circleWidget.setFrameShadow(QtWidgets.QFrame.Raised)
         self.circleWidget.setObjectName("circleWidget")
         self.verticalLayout_12.addWidget(self.circleWidget)
+  
+        self.circle_buttons = []
         for _ in range(10):
-            self.circleWidget.addCircle()
+            self.circle_name = self.circleWidget.addCircle()
+            self.circle_buttons.append(self.circle_name)
+            self.circle_name.setObjectName(f'{_}')
+            self.circle_name.clicked.connect(partial(self.display_index, self.circle_name))
+    def display_index(self, circle_name):
+        print(str(circle_name.objectName()))
 
     def switch_mode(self)->None:
         '''
         This method switch the live or debug mode
         '''
-        print("Switch Mode Here")
+      
         if self.switchButton.isChecked():
             self.stackWidget.setCurrentWidget(self.debugMode_Page)
             self.switchButton.setText('Debug')
@@ -83,8 +110,8 @@ class PyQTWidgetFunction(Ui_MainWindow):
         """
         return self.switchButton.text()
 
-
     def camera_on_status(self):
+
         self.onButton.setStyleSheet("QPushButton{\n"
             "    background-color: #EF1B79;\n"
             "    color:white;\n"
@@ -133,7 +160,7 @@ class PyQTWidgetFunction(Ui_MainWindow):
             "    \n"
             ""
         )
-    
+
     def update_live_gui_with_based_on_result(self, image: cv2 = None, rejection=None):
         '''
             Update live gui after trigger or image is received
@@ -141,6 +168,8 @@ class PyQTWidgetFunction(Ui_MainWindow):
             image: image received from camera
             rejection: status while rejection
         '''
+        # print("Length of ciecle",self.circle_buttons)
+        # print("Circle buttons",self.circle_buttons[0])
         if rejection == True:
             status = 'not_good'
             self.live.live_mode_param['not_good'] += 1
@@ -149,32 +178,34 @@ class PyQTWidgetFunction(Ui_MainWindow):
             self.notGoodCount.setText(str(self.live.live_mode_param['not_good']))
             self.live.last_ng_time(0,'0')
             self.live.red_blinking()
-            
+
+
+                
         else:
             status = 'good'
-            print("Good Count",self.live.live_mode_param['good'])
             self.live.live_mode_param['good'] += 1
             self.live.live_mode_param['last_not_good_count'] += 1
             self.goodCount.setText(str(self.live.live_mode_param['good']))
             self.lastNG_Count.setText(str(self.live.live_mode_param['last_not_good_count']))
             self.live.blue_blinking()
-
+        
         current_image_info = {'image': deepcopy(image), 'status': status}
         self.live.live_mode_param['last_ten_result'] = [current_image_info] +  self.live.live_mode_param['last_ten_result']
-        print("Length of the last ten circle",len(self.live.live_mode_param['last_ten_result']))
-        print("Image details",self.live.live_mode_param)
-        if len(self.live.live_mode_param['last_ten_result'] ) > 10: # removing the previous results 
+        if len(self.live.live_mode_param['last_ten_result']) >= 10: # removing the previous results if there are more than ten circles
             self.live.live_mode_param['last_ten_result'].pop(-1)
-            self.circle.setStyleSheet("")
+        name = 'circle0'
+      
+        # for i, point in enumerate(self.live.live_mode_param['last_ten_result']):
+        #     if self.live.live_mode_param['last_ten_result'][i]['status'] == "good":
+        #         self.circle_name.setStyleSheet("background: green;" "border: 1px solid green;" "border-radius:10px;" "height:35px;" "width:35px;")
+        #     else:
+        #         self.circle_name.setStyleSheet("background: red;" "border: 1px solid green;" "border-radius:10px;" "height:35px;" "width:35px;")
 
-
-
-       
-        
-        
-        
-
-       
+        for idx in range(len(self.circle_buttons)): ##### Displaying the color of last ten circles green if status is good else red
+            if self.live.live_mode_param['last_ten_result'][i]['status'] == "good":
+                self.circle_buttons[idx].setStyleSheet("background: green;" "border: 1px solid green;" "border-radius:10px;" "height:35px;" "width:35px;")
+            else:
+                self.circle_buttons[idx].setStyleSheet("background: red;" "border: 1px solid green;" "border-radius:10px;" "height:35px;" "width:35px;")
 
 
  

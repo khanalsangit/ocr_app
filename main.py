@@ -53,9 +53,12 @@ if __name__=="__main__":
     debug_mode = DebugOperationFunction(gui_operations)
     controller = Controller(camera, live_mode, debug_mode, gui_operations)
     camera.callback = test_callback
+    
     camera.ui_update_callback =  gui_operations.update_live_gui_with_based_on_result
     loadJsonStyle(ui, gui_operations)
     ui.closeEvent = camera.close_device
     ui.show()
 
     sys.exit(app.exec_())
+
+    

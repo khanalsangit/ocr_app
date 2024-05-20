@@ -71,8 +71,10 @@ class Controller():
                 self.gui.camera_off_status()
             ]
         )
+       
         
     def connect_methods_and_ui(self):
+        
         ####################### Live Mode function called ############################
         self.gui.stackWidget.setCurrentWidget(self.gui.liveMode_Page) ####### default switch mode 
         self.gui.editProject.setCurrentWidget(self.gui.createProject_Page) ####### default live mode page
@@ -102,6 +104,10 @@ class Controller():
         self.live.chooseDirectory_Button.pressed.connect(self.live.choose_directory_path)
         self.live.systemSetting_update_Button.pressed.connect(self.set_system_parameter)
         self.live.rejectSetting_updateButton.pressed.connect(self.set_reject_parameter)
+        self.live.resetCounter_Button.pressed.connect(self.live.reset_counter_values)
+        
+ 
+        
         # self.live.cameraSetting_update_Button.pressed.connect(self.set_camera_live_parameter)
   
         ####################### Debug Mode function called ######################
@@ -132,6 +138,8 @@ class Controller():
         # self.gui.augmentationButton.clicked.connect(self.set_augment_parameter)
         # self.gui.augmentationButton.clicked.connect(self.set_augment_parameter)
 
+
+    
 
     def camera_setting(self)->None:
         '''

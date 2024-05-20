@@ -76,10 +76,6 @@ class LiveOperationFunction(Ui_MainWindow):
        
         ############ last ng image 
         self.lastNG_Image = parent.lastNG_Image 
-    
-
-
-        
         ##### detection result 
         self.detectionResult = parent.detectionResult 
         self.detectionTime = parent.detectionTime 
@@ -90,7 +86,6 @@ class LiveOperationFunction(Ui_MainWindow):
         self.lastNG_Count = parent.lastNG_Count 
         self.lastNG_timeCount = parent.lastNG_timeCount 
         self.resetCounter_Button = parent.resetCounter_Button
-        self.circleWidget = parent.circleWidget
 
     ########## Live Mode Result Parameter ########
     live_mode_param = {
@@ -383,23 +378,28 @@ class LiveOperationFunction(Ui_MainWindow):
     
 
     def reset_counter_values(self):
-        if int(self.goodCount.text()) == 0: 
-            self.goodCount.setText('100')
-        else:
-            self.goodCount.setText('0')
+        self.goodCount.setText(str(0))
+        self.notGoodCount.setText(str(0))
+        self.lastNG_Count.setText(str(0))
+        self.lastNG_timeCount.setText(str(0))
     
     def update_camera_parameter(self, value):
         self.exposureTime_Entry.setText(str(value))
 
-    def display_last_ten(self)->None:
+    def display_last_ten(self, circle_name)->None:
         """ Display last ten images
         Args:
             image : input image from camera
             event (event): display image event
         """ 
-        # senders = self.sender()  # Get the button that was clicked
-        # index = buttons.index(senders)  # Get the index of the clicked button
-        print("Button clicked")
+        try:
+            index_num = (str(circle_name.objectName()))
+        except Exception as e:
+            index_num = 0
+        circle_image = self.live_mode_param['last_ten_result'][int(index_num)]['image']
+        cv2.imshow("Last Ten Image",cv2.resize(circle_image,(500,500)))
+        cv2.waitKey(0)
+        cv2.destroyAllWindows()
 
     def display_last_NG(self,image)->None:
         '''

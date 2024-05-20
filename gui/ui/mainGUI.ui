@@ -434,6 +434,13 @@
 	color:white;
 	background-color:#D9305C;
 	border-radius:2px;
+}
+QPushButton::pressed{
+	color: white;
+	border-radius:2px;
+	background-color:#D9305C;
+	border-left:2px solid rgb(100,180,180);
+	border-top:2px solid rgb(100,180,180);
 }</string>
                 </property>
                 <property name="text">
@@ -1781,6 +1788,12 @@ QPushButton:pressed{
                      <string notr="true">QPushButton{
 	border-radius:2px;
 	background-color: #E8C6FD;
+}
+
+QPushButton:pressed{
+	background-color:#E8C6FD;
+	border-left:2px solid rgb(100,180,180);
+	border-top:2px solid rgb(100,180,180);
 }</string>
                     </property>
                     <property name="text">
@@ -5636,9 +5649,19 @@ border-radius:4px;
              </size>
             </property>
             <property name="styleSheet">
-             <string notr="true">border:1px solid#125872;
+             <string notr="true">QPushButton{
+border:1px solid#125872;
 border-radius:4px;
-color:#125872;</string>
+color:#125872;
+}
+
+QPushButton:pressed{
+	background-color:white;
+	border-left:2px solid rgb(100,180,180);
+	border-top:2px solid rgb(100,180,180);
+}
+
+</string>
             </property>
             <property name="text">
              <string>Find Camera</string>

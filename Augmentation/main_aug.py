@@ -1,4 +1,4 @@
-import Augmentation.augmentation
+import Augmentation.augmentation as aug
 import os
 import argparse
 import random
@@ -113,14 +113,14 @@ def main_file():
             elastic = int(random.randrange(float(evalue_list[0]), float(evalue_list[1])))
             rigid = int(random.randrange(float(rvalue_list[0]), float(rvalue_list[1])))
             aug_methods = [                                               ###### Augmentation methods
-                ('ori', augmentation.original, (filename,outdir,i)),
-                ('ro', augmentation.rotate, (filename,angle,outdir,i)),
-                ('bl', augmentation.blur, (filename,blur,outdir,i)),
-                ('co', augmentation.contrast, (filename,contrast,outdir,i)),
-                ('el', augmentation.elastic_transform, (filename,elastic,outdir,i)),
-                ('ri', augmentation.rigid, (filename,rigid,outdir,i))
+                ('ori', Augmentation.augmentation.original, (filename,outdir,i)),
+                ('ro', Augmentation.augmentation.rotate, (filename,angle,outdir,i)),
+                ('bl', Augmentation.augmentation.blur, (filename,blur,outdir,i)),
+                ('co', Augmentation.augmentation.contrast, (filename,contrast,outdir,i)),
+                ('el', Augmentation.augmentation.elastic_transform, (filename,elastic,outdir,i)),
+                ('ri', Augmentation.augmentation.rigid, (filename,rigid,outdir,i))
             ]
-            flip_method = ('fl', augmentation.img_flip, (filename,outdir,i))
+            flip_method = ('fl', Augmentation.augmentation.img_flip, (filename,outdir,i))
             current_file_name = filename.replace('.jpg', '')
             recursive_augment(filename, bounding_box, outdir, rr)  ###### calling recursive function
 
@@ -140,7 +140,7 @@ def main_file():
         list_of_files = os.listdir(outdir)
         for filename in list_of_files:
             if filename.endswith('.txt'):
-                label_conveter.label_converter_main(os.path.join(outdir, filename), labelvalue)
+                Augmentation.label_conveter.label_converter_main(os.path.join(outdir, filename), labelvalue)
         print(f"Conversion to {labelvalue} format complete. Original text file replaced.")
 
 

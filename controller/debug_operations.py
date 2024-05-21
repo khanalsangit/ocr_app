@@ -87,6 +87,8 @@ class DebugOperationFunction(Ui_MainWindow):
         self.detectionButton.setStyleSheet("")
         self.recognitionButton.setStyleSheet("")
         self.analysisButton.setStyleSheet("")
+    
+    
 
     def camera_debug(self)->None:
         '''

@@ -29,13 +29,22 @@ def test_callback(numArray):
 
     Returns:
         _type_: _description_
-    """    
-    numArray = cv2.putText(numArray, 'OpenCV', (50, 50), fontFace=cv2.FONT_HERSHEY_SIMPLEX ,  
-                    fontScale=1, color = (255, 0, 0) , thickness = 2, lineType=cv2.LINE_AA) 
+    """
+    from ultralytics import YOLO
+    if __name__ == '__main__':
+        ###### Load a model 
+        model = YOLO("C:/Users/User/Desktop/PyQT5/Batch_Code_Inspection_System/Main/algorithm/Yolo/yolov8m-obb.pt")
+        ##### Predict with the model
+        results = model(numArray) ##### predict on the image
+        img= results['orig_img']
+        print("-------------------Image Info --------------------------------",type(results))
+        
+    # numArray = cv2.putText(numArray, 'OpenCV', (50, 50), fontFace=cv2.FONT_HERSHEY_SIMPLEX ,  
+    #                 fontScale=1, color = (255, 0, 0) , thickness = 2, lineType=cv2.LINE_AA) 
     
-    numArray = cv2.resize(numArray, (3000, 3000))
-    rejected = True
-    return numArray, rejected 
+    # numArray = cv2.resize(numArray, (3000, 3000))
+    # rejected = True
+    # return numArray, rejected 
     
 
 if __name__=="__main__":

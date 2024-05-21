@@ -13,6 +13,7 @@ from Parameter_Value.param_tools import save_parameter, get_parameter
 from typing import TYPE_CHECKING
 import time
 from copy import deepcopy
+from PIL import Image, ImageTk
 if TYPE_CHECKING:
     from .gui_operations import PyQTWidgetFunction
 

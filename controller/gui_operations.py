@@ -150,6 +150,12 @@ class PyQTWidgetFunction(Ui_MainWindow):
             image: image received from camera
             rejection: status while rejection
         '''
+        style_green = '''background : green;
+            border : 1px solid green;
+            border-radius:10px;
+            height : 35px;
+            width : 35px;
+        '''
         if rejection == True:
             status = 'not_good'
             self.live.live_mode_param['not_good'] += 1
@@ -170,10 +176,11 @@ class PyQTWidgetFunction(Ui_MainWindow):
         self.live.live_mode_param['last_ten_result'] = [current_image_info] +  self.live.live_mode_param['last_ten_result']
         if len(self.live.live_mode_param['last_ten_result']) > 10: # removing the previous results if there are more than ten circles
             self.live.live_mode_param['last_ten_result'].pop(-1)
-
+        
         for idx in range(len(self.live.live_mode_param['last_ten_result'])): ##### Displaying the color of last ten circles green if status is good else red
             if self.live.live_mode_param['last_ten_result'][idx]['status'] == "not_good":
-                self.circle_buttons[idx].setStyleSheet("background: green;" "border: 1px solid green;" "border-radius:10px;" "height:35px;" "width:35px;")
+
+                self.circle_buttons[idx].setStyleSheet(style_green)
             else:
                 self.circle_buttons[idx].setStyleSheet("background: red;" "border: 1px solid green;" "border-radius:10px;" "height:35px;" "width:35px;")
 

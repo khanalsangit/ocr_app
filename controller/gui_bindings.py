@@ -129,13 +129,15 @@ class Controller():
         self.debug.createButton.clicked.connect(self.debug.create_brand)
         self.debug.importButton.clicked.connect(self.debug.import_brand)
 
+        self.debug.fabricationButton.clicked.connect(self.debug.create_fabrication)
+
         # camera debug panel buttons connection
         self.debug.getParameter_Button.clicked.connect(self.get_mvs_camera_parameter)
         self.debug.setParameter_Button.clicked.connect(self.set_camera_parameter)
         self.debug.deleteImage_Button.clicked.connect(self.delete_captured_image)
         self.debug.captureButton.clicked.connect(self.capture_image)
         # augmentation panel buttons creation
-        # self.gui.augmentationButton.clicked.connect(self.set_augment_parameter)
+        self.debug.augmentationButton.clicked.connect(self.debug.generate_augmentation)
         # self.gui.augmentationButton.clicked.connect(self.set_augment_parameter)
 
 

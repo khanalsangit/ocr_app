@@ -10,7 +10,7 @@ import math
 import os
 import torch
 import pybboxes
-from interp_torch import interp
+from Augmentation.interp_torch import interp
 import time
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else 'cpu') 

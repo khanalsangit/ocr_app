@@ -11,6 +11,8 @@ import traceback
 from gui.pyUIdesign import Ui_MainWindow
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtWidgets import *
+from PyQt5.QtCore import Qt, QTimer
+
 from Parameter_Value.param_tools import save_parameter, get_parameter
 
 from typing import TYPE_CHECKING
@@ -19,7 +21,7 @@ if TYPE_CHECKING:
 
 from gui import brand_management as bm 
 from data_fabrication import mainGUI_v1
-from Augmentation import main_aug
+from Augmentation import main_aug,AugGUI
 
  
 class DebugOperationFunction(Ui_MainWindow):
@@ -297,8 +299,9 @@ class DebugOperationFunction(Ui_MainWindow):
             print("Failed to get the system parameter")
             print(traceback.format_exc())
 
-    def generate_augmentation(self):
-        main_aug.main_file()
+    def generate_augmentation(self):  
+        # main_aug.main_file()
+        AugGUI.MainWindow(self.parent.main_window).show()
 
 
     def captured_image_count(self, image_count:int = 0):

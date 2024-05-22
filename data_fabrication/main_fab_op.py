@@ -181,27 +181,56 @@ def create_data(img,x1,x2, y1,y2, imgno,ftype,textcolor,fontname)-> None:
 
     ########=====save image=============#########
         image.save(op_img_name.format(y))
+    
+        try:
        
-    ######## For first Rectangle        
-        width1,height1 = get_text_dimensions(line1,font=font_path)    
-        final_result1=get_rotated_coordinates(xcor1,ycor1,width1,height1,rot_ang,line1)
-     
-    ######## For Second Rectangle
-        width2,height2 = get_text_dimensions(line2,font = font_path)       
-        final_result2=get_rotated_coordinates(xcor2,ycor2,width2,height2,rot_ang,line2)
-     
-    ######## For Third Rectangle
-        width3,height3 = get_text_dimensions(line3,font = font_path)
-        final_result3=get_rotated_coordinates(xcor3,ycor3,width3,height3,rot_ang,line3)
+        ######## For first Rectangle        
+            width1,height1 = get_text_dimensions(line1,font=font_path)    
+            final_result1=get_rotated_coordinates(xcor1,ycor1,width1,height1,rot_ang,line1)
+        
+        ######## For Second Rectangle
+            width2,height2 = get_text_dimensions(line2,font = font_path)       
+            final_result2=get_rotated_coordinates(xcor2,ycor2,width2,height2,rot_ang,line2)
+        
+        ######## For Third Rectangle
+            width3,height3 = get_text_dimensions(line3,font = font_path)
+            final_result3=get_rotated_coordinates(xcor3,ycor3,width3,height3,rot_ang,line3)
+            
+        #######For Fourth Recctangle    
+            width4,height4 = get_text_dimensions(line4,font = font_path)
+            final_result4=get_rotated_coordinates(xcor4,ycor4,width4,height4,rot_ang,line4)
+        except:
+            ######## For first Rectangle        
+            width1,height1 = get_text_dimensions(line1,font=font_path)    
+            final_result1=get_rotated_coordinates(xcor1,ycor1,width1,height1,rot_ang,line1)
+        
+        ######## For Second Rectangle
+            width2,height2 = get_text_dimensions(line2,font = font_path)       
+            final_result2=get_rotated_coordinates(xcor2,ycor2,width2,height2,rot_ang,line2)
+        
+        ######## For Third Rectangle
+            width3,height3 = get_text_dimensions(line3,font = font_path)
+            final_result3=get_rotated_coordinates(xcor3,ycor3,width3,height3,rot_ang,line3)
 
 
         #########
         with open(op_txt_name,'a') as f:
-            f.writelines(final_result1)
-            f.write('\n')
-            f.writelines(final_result2)
-            f.write('\n')
-            f.writelines(final_result3)
+            try:
+                f.writelines(final_result1)
+                f.write('\n')
+                f.writelines(final_result2)
+                f.write('\n')
+                f.writelines(final_result3)
+                f.write('\n')
+                f.writelines(final_result4)
+                print("executed")
+            except:
+                f.writelines(final_result1)
+                f.write('\n')
+                f.writelines(final_result2)
+                f.write('\n')
+                f.writelines(final_result3)
+
         #######
 
         # print("Time Taken: ", time.time()-st)

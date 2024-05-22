@@ -13,7 +13,11 @@ import time
 import Augmentation.label_conveter
 import yaml
 
+count = 0
+aug_num =0
+
 def main_file():
+    global count,aug_num
     ###### Load configuration file #######
     with open("./main_config.yaml", 'r') as f:
         current_brand_config = yaml.safe_load(f)
@@ -40,6 +44,8 @@ def main_file():
     rvalue_list = [-rigid, rigid]
     outdir = current_brand_config['detection_dataset_path'] 
     count=0
+    aug_num=number
+
     print("Augmentation Started")
 
 
@@ -48,7 +54,7 @@ def main_file():
         A function that chooses the augmentation method randomly and return the 
         probability values, image_path, bounding_box_path, augmentation method name
         '''
-        weights = [0.1, 0.3, 0.1,0.2,0.2,0.1,0.1]
+        weights = [0.1, 0.2, 0.1,0.2,0.2,0.1,0.1]
 
         (aug_method, weights_1), = random.choices(list(zip(aug_methods,weights)))
         print("Augmentation",aug_method)
@@ -72,6 +78,10 @@ def main_file():
         - rr (float): Recursion rate indicating the threshold for stopping the recursion.
         '''
         aug_weight = 0
+        global current_file_name
+        current_file_name = ''
+
+
         prob_val, img, bbox, aug_method_name = random_augment()
         aug_weight += prob_val
         if aug_weight >= rr:
@@ -131,8 +141,10 @@ def main_file():
 
             # print('--------------------------------------')
             count += 1
+            
             if count % 100 == 0:
                 print("Number of data created: ", count)
+                
              
 
     #Apply conversion to the format

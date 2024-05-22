@@ -519,6 +519,8 @@ def rigid(dir,value,outdir,n):
         
     # ------------------------ Function to get random coordinates with respect with given shift value -------------
     def RandMove(old_pnt,min_shift,max_shift):
+        min_shift = 2
+        max_shift = 2
         neg = [-1,1]
 
         #get the first point from the geometry object

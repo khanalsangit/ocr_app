@@ -26,7 +26,7 @@ class CircleFrame(QFrame):
             # self.circle.setObjectName(f'circle{i}')
             self.circle.setMaximumHeight(120)
             self.circle.setMaximumWidth(180)
-            self.circle.setStyleSheet("background-color: white;" "color: red;" "border: 1px solid red;" "border-radius:10px;" "height:35px;" "width:35px;")
+            # self.circle.setStyleSheet("background-color: white;" "color: red;" "border: 1px solid red;" "border-radius:10px;" "height:35px;" "width:35px;")
             self.frameLayout.addWidget(self.circle, len(self.frameLayout) // 5, len(self.frameLayout) % 5)
             return self.circle
     
@@ -64,7 +64,7 @@ class PyQTWidgetFunction(Ui_MainWindow):
         self.circle_buttons = []
         for _ in range(10):
             self.circle_name = self.circleWidget.addCircle()
-            self.circle_name.setObjectName(f'{_}')
+            self.circle_name.setObjectName(f'circle{_}')
             self.circle_name.clicked.connect(partial(self.live.display_last_ten, self.circle_name))
             self.circle_buttons.append(self.circle_name)
 
@@ -150,12 +150,7 @@ class PyQTWidgetFunction(Ui_MainWindow):
             image: image received from camera
             rejection: status while rejection
         '''
-        style_green = '''background : green;
-            border : 1px solid green;
-            border-radius:10px;
-            height : 35px;
-            width : 35px;
-        '''
+
         if rejection == True:
             status = 'not_good'
             self.live.live_mode_param['not_good'] += 1
@@ -178,11 +173,20 @@ class PyQTWidgetFunction(Ui_MainWindow):
             self.live.live_mode_param['last_ten_result'].pop(-1)
         
         for idx in range(len(self.live.live_mode_param['last_ten_result'])): ##### Displaying the color of last ten circles green if status is good else red
+            style_green = '''QPushButton#{idx}background : green;
+                border : 1px solid green;
+                border-radius:10px;
+                height : 35px;
+                width : 35px;
+            '''
             if self.live.live_mode_param['last_ten_result'][idx]['status'] == "not_good":
+                # circle'{}'.format(i)
 
                 self.circle_buttons[idx].setStyleSheet(style_green)
-            else:
-                self.circle_buttons[idx].setStyleSheet("background: red;" "border: 1px solid green;" "border-radius:10px;" "height:35px;" "width:35px;")
+                
+            #     self.circle_buttons[idx].setStyleSheet(style_green)
+            # else:
+            #     self.circle_buttons[idx].setStyleSheet("background: red;" "border: 1px solid green;" "border-radius:10px;" "height:35px;" "width:35px;")
 
 
  

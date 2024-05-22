@@ -132,6 +132,8 @@ class CameraOperation:
         self.gain = gain
         self.buf_lock = threading.Lock()  # 取图和存图的buffer锁
 
+        self.current_image = None 
+
     # 打开相机
     def Open_device(self):
         if not self.b_open_device:
@@ -316,7 +318,15 @@ class CameraOperation:
             return MV_OK
 
     def image_captured_callback(self):
+        '''
+        assign method to this directly
+        '''
+    def ui_status_callback(self, image = None, rejection = None):
+        '''
+        assign method to this directly
+        '''
         ... 
+    
 
     # 取图线程函数
     def Work_thread(self, winHandle):
@@ -378,9 +388,11 @@ class CameraOperation:
                 img_buff = (c_ubyte * stConvertParam.nDstLen)()
                 cdll.msvcrt.memcpy(byref(img_buff), stConvertParam.pDstBuffer, stConvertParam.nDstLen)
                 numArray = Color_numpy(img_buff,self.st_frame_info.nWidth,self.st_frame_info.nHeight)
+                self.current_image = numArray.copy()
 
                 try: 
-                    numArray = self.image_captured_callback(numArray)
+                    numArray, rejection = self.image_captured_callback(numArray)
+                    self.ui_status_callback(image = numArray, rejection=rejection)
                 except Exception as e:
                     print('[-] Process Error')
                     print(traceback.format_exc())
@@ -409,15 +421,17 @@ class CameraOperation:
                 break
 
     # 存jpg图像
-    def Save_jpg(self):
-
+    def Save_jpg(self, file_name:str = None):
         if self.buf_save_image is None:
             return
 
         # 获取缓存锁
         self.buf_lock.acquire()
+        
+        print(file_name)
+        file_path_name = file_name if file_name else (str(self.st_frame_info.nFrameNum) + ".jpg" ) 
 
-        file_path = str(self.st_frame_info.nFrameNum) + ".jpg"
+        file_path = file_path_name # str(self.st_frame_info.nFrameNum) + ".jpg"
         c_file_path = file_path.encode('ascii')
         stSaveParam = MV_SAVE_IMAGE_TO_FILE_PARAM_EX()
         stSaveParam.enPixelType = self.st_frame_info.enPixelType  # ch:相机对应的像素格式 | en:Camera pixel type
@@ -430,6 +444,8 @@ class CameraOperation:
         stSaveParam.pcImagePath = ctypes.create_string_buffer(c_file_path)
         stSaveParam.iMethodValue = 2
         ret = self.obj_cam.MV_CC_SaveImageToFileEx(stSaveParam)
+        self.obj_cam.MV_CC_FreeImageBuffer(stSaveParam)
+        self.obj_cam.MV_CC_FreeImageBuffer(self.st_frame_info)
 
         self.buf_lock.release()
         return ret
@@ -459,6 +475,6 @@ class CameraOperation:
         ret = self.obj_cam.MV_CC_SaveImageToFileEx(stSaveParam)
 
         self.buf_lock.release()
-
+        
         return ret
 

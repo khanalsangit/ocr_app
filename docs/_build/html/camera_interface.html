@@ -142,7 +142,7 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="camera_interface.CamOperation_class.CameraOperation.Save_jpg">
-<span class="sig-name descname"><span class="pre">Save_jpg</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#camera_interface.CamOperation_class.CameraOperation.Save_jpg" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">Save_jpg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#camera_interface.CamOperation_class.CameraOperation.Save_jpg" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -258,6 +258,11 @@ notice the trigger set on the camera as it contains: continuous, hardware trigge
 <dd></dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="camera_interface.camera.MachineVisionCamera.set_hardware_trigger_mode">
+<span class="sig-name descname"><span class="pre">set_hardware_trigger_mode</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#camera_interface.camera.MachineVisionCamera.set_hardware_trigger_mode" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="camera_interface.camera.MachineVisionCamera.save_bmp">
 <span class="sig-name descname"><span class="pre">save_bmp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#camera_interface.camera.MachineVisionCamera.save_bmp" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -271,12 +276,20 @@ notice the trigger set on the camera as it contains: continuous, hardware trigge
 <dt class="sig sig-object py" id="camera_interface.camera.MachineVisionCamera.get_param">
 <span class="sig-name descname"><span class="pre">get_param</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#camera_interface.camera.MachineVisionCamera.get_param" title="Link to this definition">¶</a></dt>
 <dd><p>returns the current parameter of the camera
-:rtype [exposure_time, gain, frame_rate]: current set exposure time, gain and frame rate of the camera</p>
+:returns: * <strong>exposure_time</strong> (<em>int | float</em>)</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>gain</strong> (<em>int | float</em>)</p></li>
+<li><p><strong>frame_rate</strong> (<em>int | float</em>)</p></li>
+<li><p><em>——</em></p></li>
+<li><p><em>current exposure time, gain and frame rate of the camera</em></p></li>
+</ul>
+</div></blockquote>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="camera_interface.camera.MachineVisionCamera.set_param">
-<span class="sig-name descname"><span class="pre">set_param</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#camera_interface.camera.MachineVisionCamera.set_param" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">set_param</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">exposure</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gain</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">15</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame_rate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#camera_interface.camera.MachineVisionCamera.set_param" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -298,6 +311,11 @@ def callback(image):</p>
 <div><p>…</p>
 </div></blockquote>
 </dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="camera_interface.camera.MachineVisionCamera.get_current_image">
+<span class="sig-name descname"><span class="pre">get_current_image</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#camera_interface.camera.MachineVisionCamera.get_current_image" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
@@ -377,6 +395,7 @@ def callback(image):</p>
 <li><a class="reference internal" href="#camera_interface.camera.MachineVisionCamera.set_continue_mode"><code class="docutils literal notranslate"><span class="pre">MachineVisionCamera.set_continue_mode()</span></code></a></li>
 <li><a class="reference internal" href="#camera_interface.camera.MachineVisionCamera.set_software_trigger_mode"><code class="docutils literal notranslate"><span class="pre">MachineVisionCamera.set_software_trigger_mode()</span></code></a></li>
 <li><a class="reference internal" href="#camera_interface.camera.MachineVisionCamera.trigger_once"><code class="docutils literal notranslate"><span class="pre">MachineVisionCamera.trigger_once()</span></code></a></li>
+<li><a class="reference internal" href="#camera_interface.camera.MachineVisionCamera.set_hardware_trigger_mode"><code class="docutils literal notranslate"><span class="pre">MachineVisionCamera.set_hardware_trigger_mode()</span></code></a></li>
 <li><a class="reference internal" href="#camera_interface.camera.MachineVisionCamera.save_bmp"><code class="docutils literal notranslate"><span class="pre">MachineVisionCamera.save_bmp()</span></code></a></li>
 <li><a class="reference internal" href="#camera_interface.camera.MachineVisionCamera.is_float"><code class="docutils literal notranslate"><span class="pre">MachineVisionCamera.is_float()</span></code></a></li>
 <li><a class="reference internal" href="#camera_interface.camera.MachineVisionCamera.get_param"><code class="docutils literal notranslate"><span class="pre">MachineVisionCamera.get_param()</span></code></a></li>
@@ -384,6 +403,7 @@ def callback(image):</p>
 <li><a class="reference internal" href="#camera_interface.camera.MachineVisionCamera.enable_controls"><code class="docutils literal notranslate"><span class="pre">MachineVisionCamera.enable_controls()</span></code></a></li>
 <li><a class="reference internal" href="#camera_interface.camera.MachineVisionCamera.message_box"><code class="docutils literal notranslate"><span class="pre">MachineVisionCamera.message_box()</span></code></a></li>
 <li><a class="reference internal" href="#camera_interface.camera.MachineVisionCamera.set_image_callback_on_trigger"><code class="docutils literal notranslate"><span class="pre">MachineVisionCamera.set_image_callback_on_trigger()</span></code></a></li>
+<li><a class="reference internal" href="#camera_interface.camera.MachineVisionCamera.get_current_image"><code class="docutils literal notranslate"><span class="pre">MachineVisionCamera.get_current_image()</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#camera_interface.camera.ErrorMessage"><code class="docutils literal notranslate"><span class="pre">ErrorMessage</span></code></a></li>

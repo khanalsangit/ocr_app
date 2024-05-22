@@ -43,6 +43,81 @@ class Ui_MainWindow(object):
 "#counterFrame{\n"
 "    border:1px solid black;\n"
 "}\n"
+'''QPushButton#systemSetting_update_Button{
+	background-color: #019065;
+	color:white;
+	border:none;
+	border-radius:3px;
+}
+QPushButton:pressed#systemSetting_update_Button{
+	background-color:#019065;
+	border-left:2px solid rgb(100,180,180);
+	border-top:2px solid rgb(100,180,180);
+}
+QPushButton#circle0{
+        background : green;
+            border : 1px solid green;
+            border-radius:10px;
+            height : 35px;
+            width : 35px;
+}
+QPushButton#circle1{
+        background : green;
+            border : 1px solid green;
+            border-radius:10px;
+            height : 35px;
+            width : 35px;
+}QPushButton#circle2{
+        background : green;
+            border : 1px solid green;
+            border-radius:10px;
+            height : 35px;
+            width : 35px;
+}QPushButton#circle3{
+        background : green;
+            border : 1px solid green;
+            border-radius:10px;
+            height : 35px;
+            width : 35px;
+}QPushButton#circle4{
+        background : green;
+            border : 1px solid green;
+            border-radius:10px;
+            height : 35px;
+            width : 35px;
+}QPushButton#circle5{
+        background : green;
+            border : 1px solid green;
+            border-radius:10px;
+            height : 35px;
+            width : 35px;
+}QPushButton#circle6{
+        background : green;
+            border : 1px solid green;
+            border-radius:10px;
+            height : 35px;
+            width : 35px;
+}QPushButton#circle7{
+        background : green;
+            border : 1px solid green;
+            border-radius:10px;
+            height : 35px;
+            width : 35px;
+}QPushButton#circle8{
+        background : green;
+            border : 1px solid green;
+            border-radius:10px;
+            height : 35px;
+            width : 35px;
+}
+QPushButton#circle9{
+        background : green;
+            border : 1px solid green;
+            border-radius:10px;
+            height : 35px;
+            width : 35px;
+}
+    '''
 "\n"
 "")
         self.centralwidget.setObjectName("centralwidget")
@@ -466,17 +541,17 @@ class Ui_MainWindow(object):
         font.setBold(False)
         font.setWeight(50)
         self.systemSetting_update_Button.setFont(font)
-        self.systemSetting_update_Button.setStyleSheet("QPushButton{\n"
-"    background-color: #019065;\n"
-"    color:white;\n"
-"    border:none;\n"
-"    border-radius:3px;\n"
-"}\n"
-"QPushButton:pressed{\n"
-"    background-color:#019065;\n"
-"    border-left:2px solid rgb(100,180,180);\n"
-"    border-top:2px solid rgb(100,180,180);\n"
-"}")
+#         self.systemSetting_update_Button.setStyleSheet("QPushButton{\n"
+# "    background-color: #019065;\n"
+# "    color:white;\n"
+# "    border:none;\n"
+# "    border-radius:3px;\n"
+# "}\n"
+# "QPushButton:pressed{\n"
+# "    background-color:#019065;\n"
+# "    border-left:2px solid rgb(100,180,180);\n"
+# "    border-top:2px solid rgb(100,180,180);\n"
+# "}")
         self.systemSetting_update_Button.setObjectName("systemSetting_update_Button")
         self.verticalLayout_7.addWidget(self.systemSetting_update_Button)
         self.verticalLayout_4.addWidget(self.systemSetting_Frame)

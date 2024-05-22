@@ -30,6 +30,7 @@ class MachineVisionCamera:
 
         self.trigger_mode = None
         self.callback = None 
+        self.ui_update_callback = None
 
     def set_ui(self, ui):
         self.ui = ui 
@@ -180,6 +181,8 @@ class MachineVisionCamera:
         """
 
         self.obj_cam_operation.image_captured_callback = self.callback
+        self.obj_cam_operation.ui_status_callback = self.ui_update_callback
+        # self.set_image_callback_on_trigger(self.callback)
         
         ret = self.obj_cam_operation.Start_grabbing(widgetDisplay.winId())
         if ret != 0:
@@ -285,9 +288,15 @@ class MachineVisionCamera:
     # ch: 获取参数 | en:get param
     def get_param(self) -> list[int, int, int]:
         '''
-        returns the current parameter of the camera 
-        :rtype [exposure_time, gain, frame_rate]: current set exposure time, gain and frame rate of the camera 
+        returns the current parameter of the camera  
+        Returns
+        ----------------------------
+        exposure_time: int | float
+        gain:  int | float 
+        frame_rate: int | float
 
+        ------
+        current exposure time, gain and frame rate of the camera 
         '''
 
         ret = self.obj_cam_operation.Get_parameter()
@@ -298,17 +307,17 @@ class MachineVisionCamera:
             # self.ui.edtExposureTime.setText("{0:.2f}".format(self.obj_cam_operation.exposure_time))
             # self.ui.edtGain.setText("{0:.2f}".format(self.obj_cam_operation.gain))
             # self.ui.edtFrameRate.setText("{0:.2f}".format(self.obj_cam_operation.frame_rate))
-            exposure_time = self.obj_cam_operation.exposure_time
-            gain = self.obj_cam_operation.gain
-            frame_rate = self.obj_cam_operation.frame_rate
+            exposure_time = round(self.obj_cam_operation.exposure_time, 2)
+            gain = round(self.obj_cam_operation.gain, 2)
+            frame_rate = round(self.obj_cam_operation.frame_rate, 2)
             
             return [exposure_time, gain, frame_rate]
 
     # ch: 设置参数 | en:set param
-    def set_param(self):
-        frame_rate = self.ui.edtFrameRate.text()
-        exposure = self.ui.edtExposureTime.text()
-        gain = self.ui.edtGain.text()
+    def set_param(self, exposure = 1000, gain = 15, frame_rate = 10):
+        # frame_rate = self.ui.edtFrameRate.text()
+        # exposure = self.ui.edtExposureTime.text()
+        # gain = self.ui.edtGain.text()
 
         if self.is_float(frame_rate)!=True or self.is_float(exposure)!=True or self.is_float(gain)!=True:
             strError = "Set param failed ret:" + ToHexStr(MV_E_PARAMETER)
@@ -344,11 +353,15 @@ class MachineVisionCamera:
     def set_image_callback_on_trigger(self, callback):
         """
         pass a callback function that has image as an argument in it
-        def callback(image):
-            ...
         """
-        self.obj_cam_operation.image_captured_callback = self.callback
+        self.obj_cam_operation.image_captured_callback = callback
         ...
+    
+    def set_ui_events_callback_on_trigger(self, ui_update_callback):
+        """
+        pass a callback function that has image as an argument in it
+        """
+        self.obj_cam_operation.ui_status_callback = ui_update_callback
     
     def get_current_image(self):
         return self.obj_cam_operation.current_image

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1331</width>
+    <width>1204</width>
     <height>700</height>
    </rect>
   </property>
@@ -47,6 +47,19 @@
 	border:1px solid black;
 }
 
+QPushButton#cameraSetting_update_Button{
+	background-color: #019065;
+	color:white;
+	border:none;
+	border-radius:3px;
+}
+QPushButton:pressed#cameraSetting_update_Button{
+	background-color:#019065;
+	border-left:2px solid rgb(100,180,180);
+	border-top:2px solid rgb(100,180,180);
+}
+
+
 </string>
    </property>
    <layout class="QGridLayout" name="gridLayout_5">
@@ -74,7 +87,7 @@
        </size>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="liveMode_Page">
        <layout class="QGridLayout" name="gridLayout_7">
@@ -239,6 +252,21 @@
               <enum>QFrame::Raised</enum>
              </property>
              <layout class="QVBoxLayout" name="verticalLayout_12">
+              <property name="spacing">
+               <number>4</number>
+              </property>
+              <property name="leftMargin">
+               <number>10</number>
+              </property>
+              <property name="topMargin">
+               <number>10</number>
+              </property>
+              <property name="rightMargin">
+               <number>10</number>
+              </property>
+              <property name="bottomMargin">
+               <number>10</number>
+              </property>
               <item>
                <widget class="QLabel" name="last10Result_Label">
                 <property name="maximumSize">
@@ -258,178 +286,6 @@
                 <property name="text">
                  <string>Last 10 Result</string>
                 </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QFrame" name="last10Result_circleFrame">
-                <property name="styleSheet">
-                 <string notr="true">QLabel{
-	border:1px solid red;
-	border-radius:12px;
-}</string>
-                </property>
-                <property name="frameShape">
-                 <enum>QFrame::StyledPanel</enum>
-                </property>
-                <property name="frameShadow">
-                 <enum>QFrame::Raised</enum>
-                </property>
-                <layout class="QGridLayout" name="gridLayout">
-                 <property name="leftMargin">
-                  <number>0</number>
-                 </property>
-                 <property name="topMargin">
-                  <number>0</number>
-                 </property>
-                 <property name="rightMargin">
-                  <number>0</number>
-                 </property>
-                 <property name="bottomMargin">
-                  <number>0</number>
-                 </property>
-                 <property name="horizontalSpacing">
-                  <number>11</number>
-                 </property>
-                 <property name="verticalSpacing">
-                  <number>10</number>
-                 </property>
-                 <item row="0" column="0">
-                  <widget class="QLabel" name="circle1">
-                   <property name="maximumSize">
-                    <size>
-                     <width>25</width>
-                     <height>25</height>
-                    </size>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="0" column="2">
-                  <widget class="QLabel" name="circle3">
-                   <property name="maximumSize">
-                    <size>
-                     <width>25</width>
-                     <height>25</height>
-                    </size>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="0" column="1">
-                  <widget class="QLabel" name="circle2">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="maximumSize">
-                    <size>
-                     <width>25</width>
-                     <height>25</height>
-                    </size>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="0" column="3">
-                  <widget class="QLabel" name="circle4">
-                   <property name="maximumSize">
-                    <size>
-                     <width>25</width>
-                     <height>25</height>
-                    </size>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="0" column="4">
-                  <widget class="QLabel" name="circle5">
-                   <property name="maximumSize">
-                    <size>
-                     <width>25</width>
-                     <height>25</height>
-                    </size>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="0">
-                  <widget class="QLabel" name="circle6">
-                   <property name="maximumSize">
-                    <size>
-                     <width>25</width>
-                     <height>25</height>
-                    </size>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="1">
-                  <widget class="QLabel" name="circle7">
-                   <property name="maximumSize">
-                    <size>
-                     <width>25</width>
-                     <height>25</height>
-                    </size>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="2">
-                  <widget class="QLabel" name="circle8">
-                   <property name="maximumSize">
-                    <size>
-                     <width>25</width>
-                     <height>25</height>
-                    </size>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="3">
-                  <widget class="QLabel" name="circle9">
-                   <property name="maximumSize">
-                    <size>
-                     <width>25</width>
-                     <height>25</height>
-                    </size>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="4">
-                  <widget class="QLabel" name="circle10">
-                   <property name="maximumSize">
-                    <size>
-                     <width>25</width>
-                     <height>25</height>
-                    </size>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                  </widget>
-                 </item>
-                </layout>
                </widget>
               </item>
              </layout>
@@ -490,32 +346,6 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="3" column="1" alignment="Qt::AlignHCenter">
-                  <widget class="QLabel" name="lastNG_timeCount">
-                   <property name="text">
-                    <string>0</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="0">
-                  <widget class="QLabel" name="notGood_Label">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="maximumSize">
-                    <size>
-                     <width>93</width>
-                     <height>16777215</height>
-                    </size>
-                   </property>
-                   <property name="text">
-                    <string>Not Good          :</string>
-                   </property>
-                  </widget>
-                 </item>
                  <item row="0" column="0">
                   <widget class="QLabel" name="good_Label">
                    <property name="sizePolicy">
@@ -532,6 +362,20 @@
                    </property>
                    <property name="text">
                     <string>Good                 :</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="1" alignment="Qt::AlignHCenter">
+                  <widget class="QLabel" name="lastNG_timeCount">
+                   <property name="text">
+                    <string>0</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="1" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+                  <widget class="QLabel" name="goodCount">
+                   <property name="text">
+                    <string>0</string>
                    </property>
                   </widget>
                  </item>
@@ -561,17 +405,29 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="0" column="1" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
-                  <widget class="QLabel" name="goodCount">
+                 <item row="1" column="1" alignment="Qt::AlignHCenter">
+                  <widget class="QLabel" name="notGoodCount">
                    <property name="text">
                     <string>0</string>
                    </property>
                   </widget>
                  </item>
-                 <item row="1" column="1" alignment="Qt::AlignHCenter">
-                  <widget class="QLabel" name="notGoodCount">
+                 <item row="1" column="0">
+                  <widget class="QLabel" name="notGood_Label">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>93</width>
+                     <height>16777215</height>
+                    </size>
+                   </property>
                    <property name="text">
-                    <string>0</string>
+                    <string>Not Good          :</string>
                    </property>
                   </widget>
                  </item>
@@ -591,6 +447,13 @@
 	color:white;
 	background-color:#D9305C;
 	border-radius:2px;
+}
+QPushButton::pressed{
+	color: white;
+	border-radius:2px;
+	background-color:#D9305C;
+	border-left:2px solid rgb(100,180,180);
+	border-top:2px solid rgb(100,180,180);
 }</string>
                 </property>
                 <property name="text">
@@ -672,7 +535,7 @@
                  <string/>
                 </property>
                 <property name="scaledContents">
-                 <bool>false</bool>
+                 <bool>true</bool>
                 </property>
                </widget>
               </item>
@@ -1153,7 +1016,6 @@ border-radius: 3px;</string>
                       </property>
                       <property name="font">
                        <font>
-                        <pointsize>8</pointsize>
                         <weight>75</weight>
                         <bold>true</bold>
                        </font>
@@ -1787,13 +1649,34 @@ QPushButton:pressed{
                       </widget>
                      </item>
                      <item>
-                      <widget class="QLineEdit" name="roiEntry1"/>
+                      <widget class="QLineEdit" name="roiEntry1">
+                       <property name="font">
+                        <font>
+                         <weight>75</weight>
+                         <bold>true</bold>
+                        </font>
+                       </property>
+                      </widget>
                      </item>
                      <item>
-                      <widget class="QLineEdit" name="roiEntry2"/>
+                      <widget class="QLineEdit" name="roiEntry2">
+                       <property name="font">
+                        <font>
+                         <weight>75</weight>
+                         <bold>true</bold>
+                        </font>
+                       </property>
+                      </widget>
                      </item>
                      <item>
-                      <widget class="QLineEdit" name="roiEntry3"/>
+                      <widget class="QLineEdit" name="roiEntry3">
+                       <property name="font">
+                        <font>
+                         <weight>75</weight>
+                         <bold>true</bold>
+                        </font>
+                       </property>
+                      </widget>
                      </item>
                      <item alignment="Qt::AlignLeft">
                       <widget class="QLineEdit" name="roiEntry4">
@@ -1918,6 +1801,12 @@ QPushButton:pressed{
                      <string notr="true">QPushButton{
 	border-radius:2px;
 	background-color: #E8C6FD;
+}
+
+QPushButton:pressed{
+	background-color:#E8C6FD;
+	border-left:2px solid rgb(100,180,180);
+	border-top:2px solid rgb(100,180,180);
 }</string>
                     </property>
                     <property name="text">
@@ -2060,7 +1949,7 @@ QPushButton:pressed{
                    </widget>
                   </item>
                   <item row="3" column="1" alignment="Qt::AlignRight">
-                   <widget class="QCheckBox" name="ui">
+                   <widget class="QCheckBox" name="saveResult_Checkbox">
                     <property name="sizePolicy">
                      <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
                       <horstretch>0</horstretch>
@@ -5555,6 +5444,9 @@ QPushButton:pressed{
              <property name="text">
               <string>IMAGE</string>
              </property>
+             <property name="scaledContents">
+              <bool>true</bool>
+             </property>
              <property name="alignment">
               <set>Qt::AlignCenter</set>
              </property>
@@ -5770,9 +5662,19 @@ border-radius:4px;
              </size>
             </property>
             <property name="styleSheet">
-             <string notr="true">border:1px solid#125872;
+             <string notr="true">QPushButton{
+border:1px solid#125872;
 border-radius:4px;
-color:#125872;</string>
+color:#125872;
+}
+
+QPushButton:pressed{
+	background-color:white;
+	border-left:2px solid rgb(100,180,180);
+	border-top:2px solid rgb(100,180,180);
+}
+
+</string>
             </property>
             <property name="text">
              <string>Find Camera</string>

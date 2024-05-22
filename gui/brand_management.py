@@ -6,10 +6,14 @@ import os
 from typing import Callable
 import yaml
 import shutil
-
+from Parameter_Value.param_tools import save_parameter
+from Parameter_Value.live_param_value import *
+from Parameter_Value.debug_param_value import *
 import traceback
+from gui.pyUIdesign import Ui_MainWindow
+from typing import TYPE_CHECKING
 
-class BrandFrame(QtWidgets.QFrame):
+class BrandFrame(QtWidgets.QFrame, Ui_MainWindow):
     def __init__(self, parent, brand_title):
         super(BrandFrame, self).__init__(parent)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
@@ -19,6 +23,7 @@ class BrandFrame(QtWidgets.QFrame):
         self.setMinimumSize(QtCore.QSize(0, 150))
         self.horizontalLayout = QtWidgets.QHBoxLayout(self)
         self.brand_title = brand_title
+        self.index = None 
         
     def addBrand(self):
         self.frame1 = QtWidgets.QFrame(self)
@@ -179,13 +184,18 @@ class editBrand(QtWidgets.QMainWindow):
         print(self.brand)
 
 class MainWindow(QtWidgets.QMainWindow):
-    def __init__(self, parent: QtWidgets.QMainWindow = None, brand_dir : Path = None):
+    def __init__(self, main_ui:Ui_MainWindow, parent: QtWidgets.QMainWindow = None, brand_dir : Path = None, on_exit = None ):
         
+        # self.brand_name = main_ui.projectName
+        self.on_exit = None 
         if parent == None:
             super().__init__()
         else: 
             super().__init__(parent)
-
+       
+        self.brands = [] 
+        self.brand_dir =  Path(brand_dir) if(type(brand_dir) !=  type(None)) else None 
+        self.main_ui = main_ui
         self.setWindowTitle("Import Brand")
         self.mainWidget = QtWidgets.QWidget(self)
         self.mainWidget.setStyleSheet("#brand{\n"
@@ -198,8 +208,11 @@ class MainWindow(QtWidgets.QMainWindow):
         self.scrollWidget.setWidget(self.mainWidget)
         self.setCentralWidget(self.scrollWidget)
         self.setGeometry(200,100,900,700)
-        self.brand_dir = brand_dir 
         self.placeBrand()
+        if type(on_exit) != type(None):
+            print('bboy')
+            self.on_exit = on_exit
+
 
     def placeBrand(self):
         # self.gridLayout = self.widget.findChild(QtWidgets.QGridLayout)
@@ -209,28 +222,69 @@ class MainWindow(QtWidgets.QMainWindow):
         for row in range(rows):
             for column in range(3):
                 list_index = row * 3 + column
+                num = 0
                 if list_index < len(dir_list):
                     brand_title = dir_list[list_index]
                     brand = BrandFrame(self.mainWidget, brand_title)
+                    # self.brands.append(BrandFrame(self.mainWidget, brand_title))
                     brand.setMaximumSize(QtCore.QSize(250, 150))
                     brand.setObjectName("brand")
                     brand.addBrand()
-                    self.gridLayout.addWidget(brand, row, column)
-                    
+                    brand.index = list_index
+                    brand.importButton.clicked.connect(self.change_brand(brand.brand_title, dir_list, brand.index))
+                    num += 1
+                    self.brands.append(brand)
+                    self.gridLayout.addWidget(self.brands[-1], row, column)
+
+    def change_brand(self, project_name, dir_list, index):
+        def create_main_config():
+            print(f'importing {project_name} from dir {dir_list[index]}, index {index} ')
+            project_data = None 
+            try:
+                with open(Path(self.brand_dir / project_name / 'config.yaml')) as data_stream:
+                    project_data = yaml.safe_load(data_stream)
+            except Exception as e :
+                print('error ', e )
+                print(traceback.format_exc())
+            try : 
+                with open(Path(self.brand_dir.parent / 'main_config.yaml'), 'w') as yaml_file:
+                    yaml.dump(project_data, yaml_file)
+            except Exception as e :
+                print('error writing to main_config.yaml')
+                print(traceback.format_exc())
+            # self.u.project_datai.setText(project_name)
+            self._on_exit()
+            self.close()
+            
+        return create_main_config
+    
+
     def update_layout(self):
         for i in reversed(range(self.gridLayout.count())):
             widget = self.gridLayout.itemAt(i).widget()
             if widget is not None:
                 widget.deleteLater()
         self.placeBrand()
+    
+    def _on_exit(self):
+        '''
+        Assign a function that will update you gui based on the import logic 
+        '''
+        print('rhomes')
+        self.on_exit()
+
         
 class createWindow(QtWidgets.QMainWindow):
-    brandNameEntered = QtCore.pyqtSignal(str)
-    def __init__(self,parent = None):
-        if parent == None:
+    # brandNameEntered = QtCore.pyqtSignal(str)
+    def __init__(self,parent = None, brand_dir: Path = None):
+        if parent != None:
             super(createWindow, self).__init__(parent)
         else:
             super().__init__()
+        print('typeee', type(brand_dir))
+        self.brand_dir = brand_dir if(type(brand_dir) ==  type(str)) else Path(brand_dir)
+        
+        
         self.widget = QtWidgets.QWidget(self)
         self.setWindowTitle('Create Brand')
         self.setGeometry(200,100,200,150)
@@ -269,23 +323,23 @@ class createWindow(QtWidgets.QMainWindow):
         self.setCentralWidget(self.widget)
         self.lineEdit.returnPressed.connect(self.create_brand)
 
-    # def emit_brand_name(self):
-    #     self.brand_name = self.lineEdit.text()
-    #     self.brandNameEntered.emit(self.brand_name)
-    #     self.close()
-    # def __call__(self):
-    #     value = self.lineEdit.text()
-    #     return value
-    
     def create_brand(self, path_to_brand = None):
         brand_name = self.lineEdit.text()
-        if type(path_to_brand) == type(None):
+        if type(path_to_brand) == type(None) and type(self.brand_dir) == type(None) :
             brand_pwd = Path(BRAND_DIR / brand_name)
-        else: 
+        elif type(path_to_brand) != type(None): 
             if not os.path.exists(path_to_brand):
                 print('error path to brand given: ', path_to_brand)
                 return 
             brand_pwd = Path(path_to_brand / brand_name)
+        elif type(self.brand_dir) != type(None):
+            if not os.path.exists(self.brand_dir):
+                print('error path to brand given: ', path_to_brand)
+                return 
+            brand_pwd = Path(Path(self.brand_dir) / brand_name)
+        else :
+            print('configure path')
+        
         brand_config = Path(brand_pwd / 'config.yaml')
         try:
             brand_pwd.mkdir(parents=True , exist_ok=True)
@@ -320,6 +374,13 @@ class createWindow(QtWidgets.QMainWindow):
                 if '_path' in key:
                     os.makedirs(Path(brand_pwd.parent.parent / value), exist_ok=True)
                 
+            #### Create a Pickle file for brand
+            save_parameter(os.path.join(brand_pwd,'pickle_values'),'system',system_param)
+            save_parameter(os.path.join(brand_pwd,'pickle_values'),'rejection',rejection_params)
+            save_parameter(os.path.join(brand_pwd, 'pickle_values'), 'camera_param',camera_param)
+            save_parameter(os.path.join(brand_pwd,'pickle_values'),'save_data',save_data_param)
+            save_parameter(os.path.join(brand_pwd, 'pickle_values'), 'augment',augmentation_param)
+            save_parameter(os.path.join(brand_pwd, 'pickle_values'),'camera_live',camera_live)
         except FileExistsError:
             print(f"Directory at {brand_pwd} already exists")
             print(traceback.format_exc())
@@ -333,18 +394,7 @@ if __name__ == '__main__':
     BRAND_DIR = Path(FILE / 'Brands')
     app = QtWidgets.QApplication(sys.argv)
     window = MainWindow()
-    # window = createWindow()
-    # window = editBrand()
-
-    # window.gridLayout = QtWidgets.QGridLayout(window.widget)
-
-    # for _ in range(12):
-    #     window.placeBrand()
     
-    # window.brandNameEntered.connect(create_brand)
-    # window.brandNameEntered.connect(edit_brand)
-    # window.lineEdit.returnPressed.connect(lambda: create_brand(window()))
-
     window.show()
     app.exec_()
     sys.exit()

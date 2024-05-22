@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1331, 700)
+        MainWindow.resize(1204, 700)
         MainWindow.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "\n"
 "")
@@ -43,6 +43,81 @@ class Ui_MainWindow(object):
 "#counterFrame{\n"
 "    border:1px solid black;\n"
 "}\n"
+'''QPushButton#systemSetting_update_Button{
+	background-color: #019065;
+	color:white;
+	border:none;
+	border-radius:3px;
+}
+QPushButton:pressed#systemSetting_update_Button{
+	background-color:#019065;
+	border-left:2px solid rgb(100,180,180);
+	border-top:2px solid rgb(100,180,180);
+}
+QPushButton#circle0{
+        background : green;
+            border : 1px solid green;
+            border-radius:10px;
+            height : 35px;
+            width : 35px;
+}
+QPushButton#circle1{
+        background : green;
+            border : 1px solid green;
+            border-radius:10px;
+            height : 35px;
+            width : 35px;
+}QPushButton#circle2{
+        background : green;
+            border : 1px solid green;
+            border-radius:10px;
+            height : 35px;
+            width : 35px;
+}QPushButton#circle3{
+        background : green;
+            border : 1px solid green;
+            border-radius:10px;
+            height : 35px;
+            width : 35px;
+}QPushButton#circle4{
+        background : green;
+            border : 1px solid green;
+            border-radius:10px;
+            height : 35px;
+            width : 35px;
+}QPushButton#circle5{
+        background : green;
+            border : 1px solid green;
+            border-radius:10px;
+            height : 35px;
+            width : 35px;
+}QPushButton#circle6{
+        background : green;
+            border : 1px solid green;
+            border-radius:10px;
+            height : 35px;
+            width : 35px;
+}QPushButton#circle7{
+        background : green;
+            border : 1px solid green;
+            border-radius:10px;
+            height : 35px;
+            width : 35px;
+}QPushButton#circle8{
+        background : green;
+            border : 1px solid green;
+            border-radius:10px;
+            height : 35px;
+            width : 35px;
+}
+QPushButton#circle9{
+        background : green;
+            border : 1px solid green;
+            border-radius:10px;
+            height : 35px;
+            width : 35px;
+}
+    '''
 "\n"
 "")
         self.centralwidget.setObjectName("centralwidget")
@@ -117,6 +192,8 @@ class Ui_MainWindow(object):
         self.lastTenResult_Frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.lastTenResult_Frame.setObjectName("lastTenResult_Frame")
         self.verticalLayout_12 = QtWidgets.QVBoxLayout(self.lastTenResult_Frame)
+        self.verticalLayout_12.setContentsMargins(10, 10, 10, 10)
+        self.verticalLayout_12.setSpacing(4)
         self.verticalLayout_12.setObjectName("verticalLayout_12")
         self.last10Result_Label = QtWidgets.QLabel(self.lastTenResult_Frame)
         self.last10Result_Label.setMaximumSize(QtCore.QSize(16777215, 20))
@@ -128,75 +205,6 @@ class Ui_MainWindow(object):
         self.last10Result_Label.setFont(font)
         self.last10Result_Label.setObjectName("last10Result_Label")
         self.verticalLayout_12.addWidget(self.last10Result_Label)
-        self.last10Result_circleFrame = QtWidgets.QFrame(self.lastTenResult_Frame)
-        self.last10Result_circleFrame.setStyleSheet("QLabel{\n"
-"    border:1px solid red;\n"
-"    border-radius:12px;\n"
-"}")
-        self.last10Result_circleFrame.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.last10Result_circleFrame.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.last10Result_circleFrame.setObjectName("last10Result_circleFrame")
-        self.gridLayout = QtWidgets.QGridLayout(self.last10Result_circleFrame)
-        self.gridLayout.setContentsMargins(0, 0, 0, 0)
-        self.gridLayout.setHorizontalSpacing(11)
-        self.gridLayout.setVerticalSpacing(10)
-        self.gridLayout.setObjectName("gridLayout")
-        self.circle1 = QtWidgets.QLabel(self.last10Result_circleFrame)
-        self.circle1.setMaximumSize(QtCore.QSize(25, 25))
-        self.circle1.setText("")
-        self.circle1.setObjectName("circle1")
-        self.gridLayout.addWidget(self.circle1, 0, 0, 1, 1)
-        self.circle3 = QtWidgets.QLabel(self.last10Result_circleFrame)
-        self.circle3.setMaximumSize(QtCore.QSize(25, 25))
-        self.circle3.setText("")
-        self.circle3.setObjectName("circle3")
-        self.gridLayout.addWidget(self.circle3, 0, 2, 1, 1)
-        self.circle2 = QtWidgets.QLabel(self.last10Result_circleFrame)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.circle2.sizePolicy().hasHeightForWidth())
-        self.circle2.setSizePolicy(sizePolicy)
-        self.circle2.setMaximumSize(QtCore.QSize(25, 25))
-        self.circle2.setText("")
-        self.circle2.setObjectName("circle2")
-        self.gridLayout.addWidget(self.circle2, 0, 1, 1, 1)
-        self.circle4 = QtWidgets.QLabel(self.last10Result_circleFrame)
-        self.circle4.setMaximumSize(QtCore.QSize(25, 25))
-        self.circle4.setText("")
-        self.circle4.setObjectName("circle4")
-        self.gridLayout.addWidget(self.circle4, 0, 3, 1, 1)
-        self.circle5 = QtWidgets.QLabel(self.last10Result_circleFrame)
-        self.circle5.setMaximumSize(QtCore.QSize(25, 25))
-        self.circle5.setText("")
-        self.circle5.setObjectName("circle5")
-        self.gridLayout.addWidget(self.circle5, 0, 4, 1, 1)
-        self.circle6 = QtWidgets.QLabel(self.last10Result_circleFrame)
-        self.circle6.setMaximumSize(QtCore.QSize(25, 25))
-        self.circle6.setText("")
-        self.circle6.setObjectName("circle6")
-        self.gridLayout.addWidget(self.circle6, 1, 0, 1, 1)
-        self.circle7 = QtWidgets.QLabel(self.last10Result_circleFrame)
-        self.circle7.setMaximumSize(QtCore.QSize(25, 25))
-        self.circle7.setText("")
-        self.circle7.setObjectName("circle7")
-        self.gridLayout.addWidget(self.circle7, 1, 1, 1, 1)
-        self.circle8 = QtWidgets.QLabel(self.last10Result_circleFrame)
-        self.circle8.setMaximumSize(QtCore.QSize(25, 25))
-        self.circle8.setText("")
-        self.circle8.setObjectName("circle8")
-        self.gridLayout.addWidget(self.circle8, 1, 2, 1, 1)
-        self.circle9 = QtWidgets.QLabel(self.last10Result_circleFrame)
-        self.circle9.setMaximumSize(QtCore.QSize(25, 25))
-        self.circle9.setText("")
-        self.circle9.setObjectName("circle9")
-        self.gridLayout.addWidget(self.circle9, 1, 3, 1, 1)
-        self.circle10 = QtWidgets.QLabel(self.last10Result_circleFrame)
-        self.circle10.setMaximumSize(QtCore.QSize(25, 25))
-        self.circle10.setText("")
-        self.circle10.setObjectName("circle10")
-        self.gridLayout.addWidget(self.circle10, 1, 4, 1, 1)
-        self.verticalLayout_12.addWidget(self.last10Result_circleFrame)
         self.verticalLayout_10.addWidget(self.lastTenResult_Frame)
         self.counterFrame = QtWidgets.QFrame(self.rightGrid)
         self.counterFrame.setFrameShape(QtWidgets.QFrame.StyledPanel)
@@ -217,18 +225,6 @@ class Ui_MainWindow(object):
         self.lastNG_Count = QtWidgets.QLabel(self.frame_7)
         self.lastNG_Count.setObjectName("lastNG_Count")
         self.gridLayout_9.addWidget(self.lastNG_Count, 2, 1, 1, 1, QtCore.Qt.AlignHCenter)
-        self.lastNG_timeCount = QtWidgets.QLabel(self.frame_7)
-        self.lastNG_timeCount.setObjectName("lastNG_timeCount")
-        self.gridLayout_9.addWidget(self.lastNG_timeCount, 3, 1, 1, 1, QtCore.Qt.AlignHCenter)
-        self.notGood_Label = QtWidgets.QLabel(self.frame_7)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.notGood_Label.sizePolicy().hasHeightForWidth())
-        self.notGood_Label.setSizePolicy(sizePolicy)
-        self.notGood_Label.setMaximumSize(QtCore.QSize(93, 16777215))
-        self.notGood_Label.setObjectName("notGood_Label")
-        self.gridLayout_9.addWidget(self.notGood_Label, 1, 0, 1, 1)
         self.good_Label = QtWidgets.QLabel(self.frame_7)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -238,6 +234,12 @@ class Ui_MainWindow(object):
         self.good_Label.setMaximumSize(QtCore.QSize(95, 16777215))
         self.good_Label.setObjectName("good_Label")
         self.gridLayout_9.addWidget(self.good_Label, 0, 0, 1, 1)
+        self.lastNG_timeCount = QtWidgets.QLabel(self.frame_7)
+        self.lastNG_timeCount.setObjectName("lastNG_timeCount")
+        self.gridLayout_9.addWidget(self.lastNG_timeCount, 3, 1, 1, 1, QtCore.Qt.AlignHCenter)
+        self.goodCount = QtWidgets.QLabel(self.frame_7)
+        self.goodCount.setObjectName("goodCount")
+        self.gridLayout_9.addWidget(self.goodCount, 0, 1, 1, 1, QtCore.Qt.AlignHCenter|QtCore.Qt.AlignVCenter)
         self.lastNG_countLabel = QtWidgets.QLabel(self.frame_7)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -254,12 +256,18 @@ class Ui_MainWindow(object):
         self.lastNG_timeLabel.setSizePolicy(sizePolicy)
         self.lastNG_timeLabel.setObjectName("lastNG_timeLabel")
         self.gridLayout_9.addWidget(self.lastNG_timeLabel, 3, 0, 1, 1, QtCore.Qt.AlignLeft)
-        self.goodCount = QtWidgets.QLabel(self.frame_7)
-        self.goodCount.setObjectName("goodCount")
-        self.gridLayout_9.addWidget(self.goodCount, 0, 1, 1, 1, QtCore.Qt.AlignHCenter|QtCore.Qt.AlignVCenter)
         self.notGoodCount = QtWidgets.QLabel(self.frame_7)
         self.notGoodCount.setObjectName("notGoodCount")
         self.gridLayout_9.addWidget(self.notGoodCount, 1, 1, 1, 1, QtCore.Qt.AlignHCenter)
+        self.notGood_Label = QtWidgets.QLabel(self.frame_7)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.notGood_Label.sizePolicy().hasHeightForWidth())
+        self.notGood_Label.setSizePolicy(sizePolicy)
+        self.notGood_Label.setMaximumSize(QtCore.QSize(93, 16777215))
+        self.notGood_Label.setObjectName("notGood_Label")
+        self.gridLayout_9.addWidget(self.notGood_Label, 1, 0, 1, 1)
         self.verticalLayout_13.addWidget(self.frame_7)
         self.resetCounter_Button = QtWidgets.QPushButton(self.counterFrame)
         self.resetCounter_Button.setMaximumSize(QtCore.QSize(16777215, 27))
@@ -297,7 +305,7 @@ class Ui_MainWindow(object):
         self.lastNG_Image.setFont(font)
         self.lastNG_Image.setStyleSheet("background-color: rgb(0, 0, 0);")
         self.lastNG_Image.setText("")
-        self.lastNG_Image.setScaledContents(False)
+        self.lastNG_Image.setScaledContents(True)
         self.lastNG_Image.setObjectName("lastNG_Image")
         self.verticalLayout_14.addWidget(self.lastNG_Image)
         self.verticalLayout_10.addWidget(self.lastNGImage_Frame)
@@ -516,7 +524,6 @@ class Ui_MainWindow(object):
         self.line4Box = QtWidgets.QLineEdit(self.frame_2)
         self.line4Box.setMaximumSize(QtCore.QSize(16777215, 16))
         font = QtGui.QFont()
-        font.setPointSize(8)
         font.setBold(True)
         font.setWeight(75)
         self.line4Box.setFont(font)
@@ -534,17 +541,17 @@ class Ui_MainWindow(object):
         font.setBold(False)
         font.setWeight(50)
         self.systemSetting_update_Button.setFont(font)
-        self.systemSetting_update_Button.setStyleSheet("QPushButton{\n"
-"    background-color: #019065;\n"
-"    color:white;\n"
-"    border:none;\n"
-"    border-radius:3px;\n"
-"}\n"
-"QPushButton:pressed{\n"
-"    background-color:#019065;\n"
-"    border-left:2px solid rgb(100,180,180);\n"
-"    border-top:2px solid rgb(100,180,180);\n"
-"}")
+#         self.systemSetting_update_Button.setStyleSheet("QPushButton{\n"
+# "    background-color: #019065;\n"
+# "    color:white;\n"
+# "    border:none;\n"
+# "    border-radius:3px;\n"
+# "}\n"
+# "QPushButton:pressed{\n"
+# "    background-color:#019065;\n"
+# "    border-left:2px solid rgb(100,180,180);\n"
+# "    border-top:2px solid rgb(100,180,180);\n"
+# "}")
         self.systemSetting_update_Button.setObjectName("systemSetting_update_Button")
         self.verticalLayout_7.addWidget(self.systemSetting_update_Button)
         self.verticalLayout_4.addWidget(self.systemSetting_Frame)
@@ -803,12 +810,24 @@ class Ui_MainWindow(object):
         self.roiLabel.setObjectName("roiLabel")
         self.horizontalLayout_7.addWidget(self.roiLabel)
         self.roiEntry1 = QtWidgets.QLineEdit(self.roiFrame)
+        font = QtGui.QFont()
+        font.setBold(True)
+        font.setWeight(75)
+        self.roiEntry1.setFont(font)
         self.roiEntry1.setObjectName("roiEntry1")
         self.horizontalLayout_7.addWidget(self.roiEntry1)
         self.roiEntry2 = QtWidgets.QLineEdit(self.roiFrame)
+        font = QtGui.QFont()
+        font.setBold(True)
+        font.setWeight(75)
+        self.roiEntry2.setFont(font)
         self.roiEntry2.setObjectName("roiEntry2")
         self.horizontalLayout_7.addWidget(self.roiEntry2)
         self.roiEntry3 = QtWidgets.QLineEdit(self.roiFrame)
+        font = QtGui.QFont()
+        font.setBold(True)
+        font.setWeight(75)
+        self.roiEntry3.setFont(font)
         self.roiEntry3.setObjectName("roiEntry3")
         self.horizontalLayout_7.addWidget(self.roiEntry3)
         self.roiEntry4 = QtWidgets.QLineEdit(self.roiFrame)
@@ -945,16 +964,16 @@ class Ui_MainWindow(object):
         self.saveImage_Checkbox.setText("")
         self.saveImage_Checkbox.setObjectName("saveImage_Checkbox")
         self.gridLayout_8.addWidget(self.saveImage_Checkbox, 2, 1, 1, 1, QtCore.Qt.AlignRight)
-        self.ui = QtWidgets.QCheckBox(self.saveData_Page)
+        self.saveResult_Checkbox = QtWidgets.QCheckBox(self.saveData_Page)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Maximum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.ui.sizePolicy().hasHeightForWidth())
-        self.ui.setSizePolicy(sizePolicy)
-        self.ui.setMaximumSize(QtCore.QSize(16777215, 22))
-        self.ui.setText("")
-        self.ui.setObjectName("ui")
-        self.gridLayout_8.addWidget(self.ui, 3, 1, 1, 1, QtCore.Qt.AlignRight)
+        sizePolicy.setHeightForWidth(self.saveResult_Checkbox.sizePolicy().hasHeightForWidth())
+        self.saveResult_Checkbox.setSizePolicy(sizePolicy)
+        self.saveResult_Checkbox.setMaximumSize(QtCore.QSize(16777215, 22))
+        self.saveResult_Checkbox.setText("")
+        self.saveResult_Checkbox.setObjectName("saveResult_Checkbox")
+        self.gridLayout_8.addWidget(self.saveResult_Checkbox, 3, 1, 1, 1, QtCore.Qt.AlignRight)
         self.saveNG_Checkbox = QtWidgets.QCheckBox(self.saveData_Page)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Maximum)
         sizePolicy.setHorizontalStretch(0)
@@ -2425,6 +2444,7 @@ class Ui_MainWindow(object):
         self.imageWidget_Debug.setFont(font)
         self.imageWidget_Debug.setStyleSheet("background-color: rgb(170, 85, 255);")
         self.imageWidget_Debug.setLineWidth(1)
+        self.imageWidget_Debug.setScaledContents(True)
         self.imageWidget_Debug.setAlignment(QtCore.Qt.AlignCenter)
         self.imageWidget_Debug.setObjectName("imageWidget_Debug")
         self.verticalLayout_34.addWidget(self.imageWidget_Debug)
@@ -2711,7 +2731,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
-        self.stackWidget.setCurrentIndex(1)
+        self.stackWidget.setCurrentIndex(0)
         self.stackWidget_cameraSetting.setCurrentIndex(0)
         self.editProject.setCurrentIndex(2)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -2724,13 +2744,13 @@ class Ui_MainWindow(object):
         self.detectionTime.setText(_translate("MainWindow", "0 s"))
         self.last10Result_Label.setText(_translate("MainWindow", "Last 10 Result"))
         self.lastNG_Count.setText(_translate("MainWindow", "0"))
-        self.lastNG_timeCount.setText(_translate("MainWindow", "0"))
-        self.notGood_Label.setText(_translate("MainWindow", "Not Good          :"))
         self.good_Label.setText(_translate("MainWindow", "Good                 :"))
+        self.lastNG_timeCount.setText(_translate("MainWindow", "0"))
+        self.goodCount.setText(_translate("MainWindow", "0"))
         self.lastNG_countLabel.setText(_translate("MainWindow", "Last NG Count  :"))
         self.lastNG_timeLabel.setText(_translate("MainWindow", "Last NG Time    :"))
-        self.goodCount.setText(_translate("MainWindow", "0"))
         self.notGoodCount.setText(_translate("MainWindow", "0"))
+        self.notGood_Label.setText(_translate("MainWindow", "Not Good          :"))
         self.resetCounter_Button.setText(_translate("MainWindow", "Reset Counter"))
         self.lastNG_imageLabel.setText(_translate("MainWindow", "Last NG Image"))
         self.systemSetting_Label.setText(_translate("MainWindow", "System Setting"))

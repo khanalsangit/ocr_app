@@ -23,10 +23,170 @@
     <bool>false</bool>
    </property>
    <property name="styleSheet">
-    <string notr="true">#on_offFrame{
+    <string notr="true">#crimsonLogo{
+	image: url(:/LOGO/LOGO/crimson_logo.png)
+}
+QPushButton{
+	border-radius:4px;
+}
+QPushButton:pressed{
+	border-left:2px solid black;
+	border-top:2px solid black;
+}
+#imageWidget_Live, #imageWidget_Debug{
+	background-color: rgb(170, 85, 255);
+}
+#comboBox{
+	border:1px solid black;
+	border-radius:4px;
+}
+#findCamera_Button{
+	border:1px solid#125872;
+	border-radius:4px;
+	color:#125872;
+}
+#findCamera_Button:pressed{
+	background-color:white;
+	border-left:2px solid rgb(100,180,180);
+	border-top:2px solid rgb(100,180,180);
+}
+#on_offFrame{
+	border-radius:5px;
 	border:2px solid #EF1B79;
 }
+#offButton{
+	background: #EF1B79;
+	color:white;
+	border:none;
+}
+#offButton:pressed{
+	border-left:2px solid black;
+	border-top:2px solid black;
+}
+#onButton{
+	background-color: white;
+	border:none;
+}
+#onButton:pressed{
+	border-top:2px solid black;
+	border-left: 2px solid black;
+}
+#switchButton{
+	background-color: rgb(238, 237, 237);
+	border:none;
+}
+#switchButton:pressed{
+	background-color: rgb(238, 237, 237);
+	border-left:2px solid rgb(100,180,180);
+	border-top:2px solid rgb(100,180,180);
+}
+QFrame#frame_12 QPushButton{
+	border-radius:4px;
+	background-color:#F2F1F1;
+}
+#cameraSettings_Frame,
+#augmentationSettings_Frame,
+#fabricationFrame,
+#trainingParameters_Frame,
+#testingParameters_Frame,
+#analysisSystem_Frame,
+#recognitionTraining_Frame,
+#recognitionTesting_Frame,
+#triggerSettings_Frame
+{
+	border:1px solid black;
+}
+#augmentationSettings_Frame QPushButton, #fabricationFrame QPushButton, #trainingParameters_Frame QPushButton, #recognitionTraining_Frame QPushButton{
+	color:white;
+	background-color:#263B90;
+	border-radius:4px;
+}
+#editProject *{
+	background-color:#f2f2f2;
+}
+#step1_Label, #step2_Label, #step3_Label, #step4_Label, #step5_Label, #step6_Label{
+	color:#125872;
+}
+#augmenationSettings_Label, #cameraSettings_Label, #triggerSettings_Label, #fabricationParameterLabel, #recognitionTrainingParameter_Label, #trainingParameter_Label, #systemSettings_Label_debug, #recognitionTestingParameter_Label, #testingParameterLabel{
+	color:#263B90;
+}
+#frame_13 QPushButton{
+	border:1px solid;
+}
+#createButton{
+	background-color:#263B90;
+	color:white;
+}
+#createButton:pressed, #importButton:pressed{
+	border-left:2px solid black;
+	border-top:2px solid black;
+}
+#triggerSettings_Frame QRadioButton::indicator {
+    width:                  10px;
+    height:                 10px;
+    border-radius:          7px;
+}
 
+#triggerSettings_Frame QRadioButton::indicator:checked {
+    background-color:       red;
+    border:                 2px solid black;
+}
+
+#triggerSettings_Frame QRadioButton::indicator:unchecked {
+    background-color:       white;
+    border:                 2px solid black;
+
+}
+#triggerSettings_Frame QRadioButton:checked {
+		color: #D9305C;
+}
+#triggerSettings_Frame QRadioButton:unchecked {
+		color: solid black;
+}
+#cameraSettings_Frame QPushButton{
+	color:white;
+	background-color:#263B90;
+	font-family: Arial;
+	font-size:10pt;
+}
+#deleteImage_Button{
+	color:white;
+	background-color:#EF1B79;
+	border-radius:4px;
+	qproperty-icon: url(:/LOGO/LOGO/bin.png)
+}
+#captureButton{
+ 	qproperty-icon:url(:/LOGO/LOGO/capture.png)
+}
+#detection_labelingButton{
+	qproperty-icon:url(:/LOGO/LOGO/labeling.png)
+}
+#recognitionLabeling_Button{
+	qproperty-icon:url(:/LOGO/LOGO/labeling.png)
+}
+#groupBox::title{
+	color:red;
+}
+#detection_testButton, #recognitionTesting_Button, #analysisTest_Button{
+	color:white;
+	background-color:#BA77FC;
+	border-radius:4px;
+}
+#no_ofLine_comboBox_debug{
+	border:1px solid black;
+	border-radius: 3px;
+}
+#systemSetting_update_Button_debug{
+	background-color: #019065;
+	color:white;
+	border:none;
+	border-radius:3px;
+}
+#systemSetting_update_Button_debug:pressed{
+	background-color:#019065;
+	border-left:2px solid rgb(100,180,180);
+	border-top:2px solid rgb(100,180,180);
+}
 #systemSetting_Frame{
 	border: 1px solid black;
 }
@@ -40,25 +200,112 @@
 #detectionResult_Frame{
 	border:1px solid black;
 }
+QPushButton#cameraSetting_Button{
+	color:#D9305C;
+	border-top:1px solid#D9305C;
+	border-right:1px solid#D9305C;
+	border-top-left-radius:4px;
+	border-top-right-radius:4px;
+}
+QPushButton#saveData_Button{
+	background-color: #eaeaea;
+	border:none;
+	border-top-left-radius:4px;
+	border-top-right-radius:4px;
+	border-bottom-right-radius:4px;
+}
+QPushButton#cameraSetting_update_Button, 
+QPushButton#rejectSetting_updateButton, 
+QPushButton#systemSetting_update_Button{
+	background-color: #019065;
+	color:white;
+	border:none;
+	border-radius:3px;
+}
+QPushButton:pressed#cameraSetting_update_Button, QPushButton:pressed#rejectSetting_updateButton, 
+QPushButton:pressed#systemSetting_update_Button{
+	background-color:#019065;
+	border-left:2px solid rgb(100,180,180);
+	border-top:2px solid rgb(100,180,180);
+}
+QPushButton#chooseDirectory_Button{
+	color: white;
+	background-color:#263B90;
+	border-radius:2px;
+}
+QRadioButton::indicator#detectionOnly,
+QRadioButton::indicator#detection_recognition{
+    width:                  10px;
+    height:                 10px;
+    border-radius:          7px;
+}
+
+QRadioButton::indicator:checked#detectionOnly,
+QRadioButton::indicator:checked#detection_recognition{
+    background-color:       red;
+    border:                 2px solid black;
+}
+
+QRadioButton::indicator:unchecked#detectionOnly,
+QRadioButton::indicator:unchecked#detection_recognition{
+    background-color:       white;
+    border:                 2px solid black;
+
+}
+QRadioButton:checked#detectionOnly,
+QRadioButton:checked#detection_recognition{
+		color: #D9305C;
+}
+QRadioButton:unchecked#detectionOnly,
+QRadioButton:unchecked#detection_recognition{
+		color: solid black;
+}
+
+QPushButton#resetCounter_Button{
+	color:white;
+	background-color:#D9305C;
+	border-radius:2px;
+}
+QPushButton::pressed#resetCounter_Button{
+	color: white;
+	border-radius:2px;
+	background-color:#D9305C;
+	border-left:2px solid rgb(100,180,180);
+	border-top:2px solid rgb(100,180,180);
+}
+QLabel#detectionResult{
+	background-color: rgb(13, 193, 119);
+}
+QLabel#detectionTime{
+	background-color:#D2A4FF;
+}
+QLabel#lastNG_Image{
+	background-color: rgb(0, 0, 0);
+}
 #lastTenResult_Frame{
 	border:1px solid black;
 }
 #counterFrame{
 	border:1px solid black;
 }
-
-QPushButton#cameraSetting_update_Button{
-	background-color: #019065;
+#detectionTime_debugLabel, #recognitionTime_debugLabel, #totalTime_debugLabel{
+	background-color:black;
 	color:white;
-	border:none;
-	border-radius:3px;
 }
-QPushButton:pressed#cameraSetting_update_Button{
-	background-color:#019065;
-	border-left:2px solid rgb(100,180,180);
-	border-top:2px solid rgb(100,180,180);
+#circleWidget QPushButton{
+	background-color: white;
+	border: 1px solid red;	
+	border-radius:10px;
+	height:35px;	
+	width:35px;
 }
-
+#circleWidget QPushButton:pressed{
+	background-color: white;
+	border: 1px solid black;	
+	border-radius:10px;
+	height:35px;	
+	width:35px;
+}
 
 </string>
    </property>
@@ -187,7 +434,7 @@ QPushButton:pressed#cameraSetting_update_Button{
               <item>
                <widget class="QLabel" name="detectionResult">
                 <property name="styleSheet">
-                 <string notr="true">background-color: rgb(13, 193, 119);</string>
+                 <string notr="true"/>
                 </property>
                 <property name="text">
                  <string/>
@@ -230,7 +477,7 @@ QPushButton:pressed#cameraSetting_update_Button{
                  </font>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true">background-color:#D2A4FF;</string>
+                 <string notr="true"/>
                 </property>
                 <property name="text">
                  <string>0 s</string>
@@ -443,18 +690,7 @@ QPushButton:pressed#cameraSetting_update_Button{
                  </size>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true">QPushButton{
-	color:white;
-	background-color:#D9305C;
-	border-radius:2px;
-}
-QPushButton::pressed{
-	color: white;
-	border-radius:2px;
-	background-color:#D9305C;
-	border-left:2px solid rgb(100,180,180);
-	border-top:2px solid rgb(100,180,180);
-}</string>
+                 <string notr="true"/>
                 </property>
                 <property name="text">
                  <string>Reset Counter</string>
@@ -529,7 +765,7 @@ QPushButton::pressed{
                  </font>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true">background-color: rgb(0, 0, 0);</string>
+                 <string notr="true"/>
                 </property>
                 <property name="text">
                  <string/>
@@ -654,28 +890,7 @@ QPushButton::pressed{
                  <bool>false</bool>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true">QRadioButton::indicator {
-    width:                  10px;
-    height:                 10px;
-    border-radius:          7px;
-}
-
-QRadioButton::indicator:checked {
-    background-color:       red;
-    border:                 2px solid black;
-}
-
-QRadioButton::indicator:unchecked {
-    background-color:       white;
-    border:                 2px solid black;
-
-}
-QRadioButton:checked {
-		color: #D9305C;
-}
-QRadioButton:unchecked {
-		color: solid black;
-}</string>
+                 <string notr="true"/>
                 </property>
                 <property name="text">
                  <string>Detection Only </string>
@@ -697,28 +912,7 @@ QRadioButton:unchecked {
                  </font>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true">QRadioButton::indicator {
-    width:                  10px;
-    height:                 10px;
-    border-radius:          7px;
-}
-
-QRadioButton::indicator:checked {
-    background-color:       red;
-    border:                 2px solid black;
-}
-
-QRadioButton::indicator:unchecked {
-    background-color:       white;
-    border:                 2px solid black;
-
-}
-QRadioButton:checked {
-		color: #D9305C;
-}
-QRadioButton:unchecked {
-		color: solid black;
-}</string>
+                 <string notr="true"/>
                 </property>
                 <property name="text">
                  <string>Detection &amp; Recognition</string>
@@ -1054,17 +1248,7 @@ border-radius: 3px;</string>
                  </font>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true">QPushButton{
-	background-color: #019065;
-	color:white;
-	border:none;
-	border-radius:3px;
-}
-QPushButton:pressed{
-	background-color:#019065;
-	border-left:2px solid rgb(100,180,180);
-	border-top:2px solid rgb(100,180,180);
-}</string>
+                 <string notr="true"/>
                 </property>
                 <property name="text">
                  <string>Update</string>
@@ -1369,17 +1553,7 @@ QPushButton:pressed{
                  </font>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true">QPushButton{
-	background-color: #019065;
-	color:white;
-	border:none;
-	border-radius:3px;
-}
-QPushButton:pressed{
-	background-color:#019065;
-	border-left:2px solid rgb(100,180,180);
-	border-top:2px solid rgb(100,180,180);
-}</string>
+                 <string notr="true"/>
                 </property>
                 <property name="text">
                  <string>Update</string>
@@ -1479,17 +1653,7 @@ QPushButton:pressed{
                     </font>
                    </property>
                    <property name="styleSheet">
-                    <string notr="true">QPushButton{
-	color:#D9305C;
-	border-top:1px solid#D9305C;
-	border-right:1px solid#D9305C;
-	border-top-left-radius:4px;
-	border-top-right-radius:4px;
-}
-
-
-
-</string>
+                    <string notr="true"/>
                    </property>
                    <property name="text">
                     <string>Camera Setting</string>
@@ -1523,13 +1687,7 @@ QPushButton:pressed{
                     </font>
                    </property>
                    <property name="styleSheet">
-                    <string notr="true">QPushButton{
-	background-color: #eaeaea;
-	border:none;
-	border-top-left-radius:4px;
-	border-top-right-radius:4px;
-	border-bottom-right-radius:4px;
-}</string>
+                    <string notr="true"/>
                    </property>
                    <property name="text">
                     <string>Save Data</string>
@@ -1560,7 +1718,7 @@ QPushButton:pressed{
                  <number>0</number>
                 </property>
                 <property name="currentIndex">
-                 <number>0</number>
+                 <number>1</number>
                 </property>
                 <widget class="QWidget" name="cameraSetting_Page">
                  <property name="sizePolicy">
@@ -2007,11 +2165,7 @@ QPushButton:pressed{
                      </font>
                     </property>
                     <property name="styleSheet">
-                     <string notr="true">QPushButton{
-	color: white;
-	background-color:#263B90;
-	border-radius:2px;
-}</string>
+                     <string notr="true"/>
                     </property>
                     <property name="text">
                      <string>Choose Directory</string>
@@ -2064,17 +2218,7 @@ QPushButton:pressed{
                  </font>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true">QPushButton{
-	background-color: #019065;
-	color:white;
-	border:none;
-	border-radius:3px;
-}
-QPushButton:pressed{
-	background-color:#019065;
-	border-left:2px solid rgb(100,180,180);
-	border-top:2px solid rgb(100,180,180);
-}</string>
+                 <string notr="true"/>
                 </property>
                 <property name="text">
                  <string>Update</string>
@@ -2108,7 +2252,7 @@ QPushButton:pressed{
            </font>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: rgb(170, 85, 255);</string>
+           <string notr="true"/>
           </property>
           <property name="text">
            <string>IMAGE</string>
@@ -2198,10 +2342,7 @@ QPushButton:pressed{
               </size>
              </property>
              <property name="styleSheet">
-              <string notr="true">QPushButton{
-	border-radius:4px;
-	background-color:#F2F1F1;
-}</string>
+              <string notr="true"/>
              </property>
              <property name="frameShape">
               <enum>QFrame::StyledPanel</enum>
@@ -2414,6 +2555,12 @@ QPushButton:pressed{
         </item>
         <item>
          <widget class="QStackedWidget" name="editProject">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="minimumSize">
            <size>
             <width>300</width>
@@ -2427,36 +2574,7 @@ QPushButton:pressed{
            </size>
           </property>
           <property name="styleSheet">
-           <string notr="true">QPushButton{
-	border-radius:4px;
-}
-#cameraSettings_Frame{
-	border:1px solid black;
-}
-#augmentationSettings_Frame{
-	border:1px solid black;
-}
-#fabricationFrame{
-	border:1px solid black;
-}
-#trainingParameters_Frame{
-	border:1px solid black;
-}
-#testingParameters_Frame{
-	border:1px solid black;
-}
-#analysisSystem_Frame{
-	border:1px solid black;
-}
-#recognitionTraining_Frame{
-	border:1px solid black;
-}
-#recognitionTesting_Frame{
-	border:1px solid black;
-}
-#triggerSettings_Frame{
-	border:1px solid black;
-}</string>
+           <string notr="true"/>
           </property>
           <property name="currentIndex">
            <number>0</number>
@@ -2469,7 +2587,7 @@ QPushButton:pressed{
             </size>
            </property>
            <property name="styleSheet">
-            <string notr="true">background-color:#f2f2f2;</string>
+            <string notr="true"/>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_17">
             <property name="spacing">
@@ -2498,7 +2616,7 @@ QPushButton:pressed{
                </font>
               </property>
               <property name="styleSheet">
-               <string notr="true">color:#125872;</string>
+               <string notr="true"/>
               </property>
               <property name="text">
                <string>Step 1: Create Project for branding</string>
@@ -2560,8 +2678,7 @@ QPushButton:pressed{
                   </size>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">background-color:#263B90;
-color:white;</string>
+                  <string notr="true"/>
                  </property>
                  <property name="text">
                   <string>Create</string>
@@ -2577,8 +2694,7 @@ color:white;</string>
                   </size>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">background-color:#f2f2f2;
-border:1px solid;</string>
+                  <string notr="true"/>
                  </property>
                  <property name="text">
                   <string>Import</string>
@@ -2608,9 +2724,7 @@ border:1px solid;</string>
           </widget>
           <widget class="QWidget" name="camera_Page">
            <property name="styleSheet">
-            <string notr="true">background-color:#f2f2f2;
-
-</string>
+            <string notr="true"/>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_18">
             <property name="spacing">
@@ -2636,7 +2750,7 @@ border:1px solid;</string>
                </font>
               </property>
               <property name="styleSheet">
-               <string notr="true">color:#125872;</string>
+               <string notr="true"/>
               </property>
               <property name="text">
                <string>Step 2: Camera Operations</string>
@@ -2689,28 +2803,7 @@ border:1px solid;</string>
                   </size>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">QRadioButton::indicator {
-    width:                  10px;
-    height:                 10px;
-    border-radius:          7px;
-}
-
-QRadioButton::indicator:checked {
-    background-color:       red;
-    border:                 2px solid black;
-}
-
-QRadioButton::indicator:unchecked {
-    background-color:       white;
-    border:                 2px solid black;
-
-}
-QRadioButton:checked {
-		color: #D9305C;
-}
-QRadioButton:unchecked {
-		color: solid black;
-}</string>
+                  <string notr="true"/>
                  </property>
                  <property name="frameShape">
                   <enum>QFrame::StyledPanel</enum>
@@ -2738,7 +2831,7 @@ QRadioButton:unchecked {
                    <number>3</number>
                   </property>
                   <item row="0" column="0">
-                   <widget class="QLabel" name="cameraSettings_Label_2">
+                   <widget class="QLabel" name="triggerSettings_Label">
                     <property name="maximumSize">
                      <size>
                       <width>16777215</width>
@@ -2755,7 +2848,7 @@ QRadioButton:unchecked {
                      </font>
                     </property>
                     <property name="styleSheet">
-                     <string notr="true">color:#263B90;</string>
+                     <string notr="true"/>
                     </property>
                     <property name="text">
                      <string>Trigger Settings</string>
@@ -2818,6 +2911,12 @@ QRadioButton:unchecked {
                </item>
                <item>
                 <widget class="QFrame" name="cameraSettings_Frame">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
                  <property name="maximumSize">
                   <size>
                    <width>16777215</width>
@@ -2825,12 +2924,7 @@ QRadioButton:unchecked {
                   </size>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">QPushButton{
-	color:white;
-	background-color:#263B90;
-	font-family: Arial;
-	font-size:10pt;
-}</string>
+                  <string notr="true"/>
                  </property>
                  <property name="frameShape">
                   <enum>QFrame::StyledPanel</enum>
@@ -3016,7 +3110,7 @@ QRadioButton:unchecked {
                      </font>
                     </property>
                     <property name="styleSheet">
-                     <string notr="true">color:#263B90;</string>
+                     <string notr="true"/>
                     </property>
                     <property name="text">
                      <string>Camera Settings</string>
@@ -3145,18 +3239,10 @@ QRadioButton:unchecked {
                      </size>
                     </property>
                     <property name="styleSheet">
-                     <string notr="true">QPushButton{
-	color:white;
-	background-color:#EF1B79;
-	border-radius:4px;
-}</string>
+                     <string notr="true"/>
                     </property>
                     <property name="text">
                      <string>Delete Image</string>
-                    </property>
-                    <property name="icon">
-                     <iconset>
-                      <normaloff>../../LOGO/bin.png</normaloff>../../LOGO/bin.png</iconset>
                     </property>
                     <property name="iconSize">
                      <size>
@@ -3169,14 +3255,25 @@ QRadioButton:unchecked {
                  </layout>
                 </widget>
                </item>
-               <item>
+               <item alignment="Qt::AlignHCenter">
                 <widget class="QPushButton" name="captureButton">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>100</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="layoutDirection">
+                  <enum>Qt::LeftToRight</enum>
+                 </property>
                  <property name="text">
                   <string/>
-                 </property>
-                 <property name="icon">
-                  <iconset>
-                   <normaloff>../../LOGO/capture.png</normaloff>../../LOGO/capture.png</iconset>
                  </property>
                  <property name="iconSize">
                   <size>
@@ -3209,7 +3306,7 @@ QRadioButton:unchecked {
           </widget>
           <widget class="QWidget" name="dataProcessing_Page">
            <property name="styleSheet">
-            <string notr="true">background-color:#f2f2f2;</string>
+            <string notr="true"/>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_20">
             <property name="spacing">
@@ -3238,7 +3335,7 @@ QRadioButton:unchecked {
                </font>
               </property>
               <property name="styleSheet">
-               <string notr="true">color:#125872;</string>
+               <string notr="true"/>
               </property>
               <property name="text">
                <string>Step 3: Data PreProcessing Operations</string>
@@ -3309,15 +3406,20 @@ QRadioButton:unchecked {
                  <property name="text">
                   <string/>
                  </property>
-                 <property name="icon">
-                  <iconset>
-                   <normaloff>../../LOGO/labeling.png</normaloff>../../LOGO/labeling.png</iconset>
-                 </property>
                  <property name="iconSize">
                   <size>
                    <width>50</width>
                    <height>50</height>
                   </size>
+                 </property>
+                 <property name="autoDefault">
+                  <bool>false</bool>
+                 </property>
+                 <property name="default">
+                  <bool>false</bool>
+                 </property>
+                 <property name="flat">
+                  <bool>false</bool>
                  </property>
                 </widget>
                </item>
@@ -3378,7 +3480,7 @@ QRadioButton:unchecked {
                   </font>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">color:#263B90;</string>
+                  <string notr="true"/>
                  </property>
                  <property name="text">
                   <string>Fabrication Parameter</string>
@@ -3505,11 +3607,7 @@ QRadioButton:unchecked {
                      </font>
                     </property>
                     <property name="styleSheet">
-                     <string notr="true">QPushButton{
-	color:white;
-	background-color:#263B90;
-	border-radius:4px;
-}</string>
+                     <string notr="true"/>
                     </property>
                     <property name="text">
                      <string>Generate</string>
@@ -3586,7 +3684,7 @@ QRadioButton:unchecked {
                   </font>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">color:#263B90;</string>
+                  <string notr="true"/>
                  </property>
                  <property name="text">
                   <string>Augmentation Settings</string>
@@ -3935,6 +4033,12 @@ QRadioButton:unchecked {
                </item>
                <item>
                 <widget class="QFrame" name="frame_19">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
                  <property name="maximumSize">
                   <size>
                    <width>16777215</width>
@@ -4000,11 +4104,7 @@ QRadioButton:unchecked {
                      </font>
                     </property>
                     <property name="styleSheet">
-                     <string notr="true">QPushButton{
-	color:white;
-	background-color:#263B90;
-	border-radius:4px;
-}</string>
+                     <string notr="true"/>
                     </property>
                     <property name="text">
                      <string>Done</string>
@@ -4032,10 +4132,7 @@ QRadioButton:unchecked {
                </font>
               </property>
               <property name="styleSheet">
-               <string notr="true">QGroupBox::title{
-	color:red
-;
-}</string>
+               <string notr="true"/>
               </property>
               <property name="title">
                <string>Note</string>
@@ -4097,7 +4194,7 @@ Contrast should be multile of 10.</string>
           </widget>
           <widget class="QWidget" name="detection_Page">
            <property name="styleSheet">
-            <string notr="true">background-color:#f2f2f2;</string>
+            <string notr="true"/>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_23">
             <property name="spacing">
@@ -4126,7 +4223,7 @@ Contrast should be multile of 10.</string>
                </font>
               </property>
               <property name="styleSheet">
-               <string notr="true">color:#125872;</string>
+               <string notr="true"/>
               </property>
               <property name="text">
                <string>Step 4: Detection</string>
@@ -4191,7 +4288,7 @@ Contrast should be multile of 10.</string>
                   </font>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">color:#263B90;</string>
+                  <string notr="true"/>
                  </property>
                  <property name="text">
                   <string>Training Parameter</string>
@@ -4328,11 +4425,7 @@ Contrast should be multile of 10.</string>
                      </size>
                     </property>
                     <property name="styleSheet">
-                     <string notr="true">QPushButton{
-	color:white;
-	background-color:#263B90;
-	border-radius:4px;
-}</string>
+                     <string notr="true"/>
                     </property>
                     <property name="text">
                      <string>Train</string>
@@ -4409,7 +4502,7 @@ Contrast should be multile of 10.</string>
                   </font>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">color:#263B90;</string>
+                  <string notr="true"/>
                  </property>
                  <property name="text">
                   <string>Testing Parameter</string>
@@ -4439,11 +4532,7 @@ Contrast should be multile of 10.</string>
                   </size>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">QPushButton{
-	color:white;
-	background-color:#BA77FC;
-	border-radius:4px;
-}</string>
+                  <string notr="true"/>
                  </property>
                  <property name="text">
                   <string>Test</string>
@@ -4473,7 +4562,7 @@ Contrast should be multile of 10.</string>
           </widget>
           <widget class="QWidget" name="recognition_Page">
            <property name="styleSheet">
-            <string notr="true">background-color:#f2f2f2;</string>
+            <string notr="true"/>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_27">
             <property name="spacing">
@@ -4499,7 +4588,7 @@ Contrast should be multile of 10.</string>
                </font>
               </property>
               <property name="styleSheet">
-               <string notr="true">color:#125872;</string>
+               <string notr="true"/>
               </property>
               <property name="text">
                <string>Step 5: Recognition</string>
@@ -4627,7 +4716,7 @@ Contrast should be multile of 10.</string>
                   </font>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">color:#263B90;</string>
+                  <string notr="true"/>
                  </property>
                  <property name="text">
                   <string>Training Parameter</string>
@@ -4758,11 +4847,7 @@ Contrast should be multile of 10.</string>
                      </size>
                     </property>
                     <property name="styleSheet">
-                     <string notr="true">QPushButton{
-	color:white;
-	background-color:#263B90;
-	border-radius:4px;
-}</string>
+                     <string notr="true"/>
                     </property>
                     <property name="text">
                      <string>Train</string>
@@ -4833,7 +4918,7 @@ Contrast should be multile of 10.</string>
                   </font>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">color:#263B90;</string>
+                  <string notr="true"/>
                  </property>
                  <property name="text">
                   <string>Testing Parameter</string>
@@ -4863,11 +4948,7 @@ Contrast should be multile of 10.</string>
                   </size>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">QPushButton{
-	color:white;
-	background-color:#BA77FC;
-	border-radius:4px;
-}</string>
+                  <string notr="true"/>
                  </property>
                  <property name="text">
                   <string>Test</string>
@@ -4897,8 +4978,7 @@ Contrast should be multile of 10.</string>
           </widget>
           <widget class="QWidget" name="analysis_Page">
            <property name="styleSheet">
-            <string notr="true">background-color:#f2f2f2;
-</string>
+            <string notr="true"/>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_33">
             <property name="spacing">
@@ -4927,7 +5007,7 @@ Contrast should be multile of 10.</string>
                </font>
               </property>
               <property name="styleSheet">
-               <string notr="true">color:#125872;</string>
+               <string notr="true"/>
               </property>
               <property name="text">
                <string>Step 6: Analyzing System</string>
@@ -4998,7 +5078,7 @@ Contrast should be multile of 10.</string>
                   </font>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">color:#263B90;</string>
+                  <string notr="true"/>
                  </property>
                  <property name="text">
                   <string>System Settings</string>
@@ -5189,8 +5269,7 @@ Contrast should be multile of 10.</string>
                         </font>
                        </property>
                        <property name="styleSheet">
-                        <string notr="true">border:1px solid black;
-border-radius: 3px;</string>
+                        <string notr="true"/>
                        </property>
                        <property name="frame">
                         <bool>true</bool>
@@ -5315,17 +5394,7 @@ border-radius: 3px;</string>
                   </font>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">QPushButton{
-	background-color: #019065;
-	color:white;
-	border:none;
-	border-radius:3px;
-}
-QPushButton:pressed{
-	background-color:#019065;
-	border-left:2px solid rgb(100,180,180);
-	border-top:2px solid rgb(100,180,180);
-}</string>
+                  <string notr="true"/>
                  </property>
                  <property name="text">
                   <string>Update</string>
@@ -5360,11 +5429,7 @@ QPushButton:pressed{
                </size>
               </property>
               <property name="styleSheet">
-               <string notr="true">QPushButton{
-	color:white;
-	background-color:#BA77FC;
-	border-radius:4px;
-}</string>
+               <string notr="true"/>
               </property>
               <property name="text">
                <string>Test</string>
@@ -5436,7 +5501,7 @@ QPushButton:pressed{
               </font>
              </property>
              <property name="styleSheet">
-              <string notr="true">background-color: rgb(170, 85, 255);</string>
+              <string notr="true"/>
              </property>
              <property name="lineWidth">
               <number>1</number>
@@ -5461,18 +5526,7 @@ QPushButton:pressed{
               </size>
              </property>
              <property name="styleSheet">
-              <string notr="true">#detectionTime_debugLabel{
-	background-color:black;
-	color:white;
-}
-#recognitionTime_debugLabel{
-	background-color:black;
-	color:white;
-}
-#totalTime_debugLabel{
-	background-color:black;
-	color:white;
-}</string>
+              <string notr="true"/>
              </property>
              <property name="frameShape">
               <enum>QFrame::NoFrame</enum>
@@ -5556,6 +5610,12 @@ QPushButton:pressed{
     </item>
     <item row="0" column="0">
      <widget class="QWidget" name="topGrid" native="true">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
       <property name="minimumSize">
        <size>
         <width>0</width>
@@ -5565,7 +5625,7 @@ QPushButton:pressed{
       <property name="maximumSize">
        <size>
         <width>16777215</width>
-        <height>90</height>
+        <height>78</height>
        </size>
       </property>
       <property name="mouseTracking">
@@ -5641,9 +5701,7 @@ QPushButton:pressed{
              </size>
             </property>
             <property name="styleSheet">
-             <string notr="true">border:1px solid black;
-border-radius:4px;
-</string>
+             <string notr="true"/>
             </property>
            </widget>
           </item>
@@ -5662,19 +5720,7 @@ border-radius:4px;
              </size>
             </property>
             <property name="styleSheet">
-             <string notr="true">QPushButton{
-border:1px solid#125872;
-border-radius:4px;
-color:#125872;
-}
-
-QPushButton:pressed{
-	background-color:white;
-	border-left:2px solid rgb(100,180,180);
-	border-top:2px solid rgb(100,180,180);
-}
-
-</string>
+             <string notr="true"/>
             </property>
             <property name="text">
              <string>Find Camera</string>
@@ -5785,7 +5831,7 @@ QPushButton:pressed{
              </size>
             </property>
             <property name="styleSheet">
-             <string notr="true">border-color:#EF1B79;</string>
+             <string notr="true"/>
             </property>
             <property name="frameShape">
              <enum>QFrame::Panel</enum>
@@ -5835,15 +5881,7 @@ QPushButton:pressed{
                 </font>
                </property>
                <property name="styleSheet">
-                <string notr="true">QPushButton{
-	background-color: white;
-	border:none;
-}
-QPushButton:pressed{
-	border-top:2px solid black;
-	border-left: 2px solid black;
-}
-</string>
+                <string notr="true"/>
                </property>
                <property name="text">
                 <string>ON</string>
@@ -5873,17 +5911,7 @@ QPushButton:pressed{
                 </font>
                </property>
                <property name="styleSheet">
-                <string notr="true">QPushButton{
-	background: #EF1B79;
-	color:white;
-	border:none;
-}
-QPushButton:pressed{
-	border-left:2px solid black;
-	border-top:2px solid black;
-}
-	
-</string>
+                <string notr="true"/>
                </property>
                <property name="text">
                 <string>OFF</string>
@@ -5990,15 +6018,7 @@ QPushButton:pressed{
              </font>
             </property>
             <property name="styleSheet">
-             <string notr="true">QPushButton{
-	background-color: rgb(238, 237, 237);
-	border:none;
-}
-QPushButton:pressed{
-	background-color: rgb(238, 237, 237);
-	border-left:2px solid rgb(100,180,180);
-	border-top:2px solid rgb(100,180,180);
-}</string>
+             <string notr="true"/>
             </property>
             <property name="text">
              <string>Live</string>
@@ -6124,20 +6144,23 @@ QPushButton:pressed{
        </item>
        <item>
         <widget class="QLabel" name="crimsonLogo">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="MinimumExpanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="maximumSize">
           <size>
-           <width>176</width>
-           <height>59</height>
+           <width>123</width>
+           <height>51</height>
           </size>
          </property>
          <property name="text">
           <string/>
          </property>
-         <property name="pixmap">
-          <pixmap>../../LOGO/crimson_logo.png</pixmap>
-         </property>
          <property name="scaledContents">
-          <bool>true</bool>
+          <bool>false</bool>
          </property>
         </widget>
        </item>
@@ -6147,6 +6170,8 @@ QPushButton:pressed{
    </layout>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

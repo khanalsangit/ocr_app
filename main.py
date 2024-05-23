@@ -48,7 +48,7 @@ def test_callback(numArray):
   
     if system_values['ocr_method'] == False:
         ###### Load a model ####### 
-        model = YOLO("best.pt")
+        model = YOLO("C:/Users/User/Desktop/PyQT5/Batch_Code_Inspection_System/Main/runs/obb/train/weights/best.pt")
         start_time = time.time()
         results = model.predict(numArray,device = 0) ##### predict on the image
         detection_time = time.time() - start_time

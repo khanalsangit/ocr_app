@@ -26,7 +26,7 @@ class CircleFrame(QFrame):
             # self.circle.setObjectName(f'circle{i}')
             self.circle.setMaximumHeight(120)
             self.circle.setMaximumWidth(180)
-            self.circle.setStyleSheet("background-color: white;" "color: red;" "border: 1px solid red;" "border-radius:10px;" "height:35px;" "width:35px;")
+            # self.circle.setStyleSheet("background-color: white;" "color: red;" "border: 1px solid red;" "border-radius:10px;" "height:35px;" "width:35px;")
             self.frameLayout.addWidget(self.circle, len(self.frameLayout) // 5, len(self.frameLayout) % 5)
             return self.circle
     
@@ -94,7 +94,7 @@ class PyQTWidgetFunction(Ui_MainWindow):
 
     def camera_on_status(self):
 
-        self.onButton.setStyleSheet("QPushButton{\n"
+        self.onButton.setStyleSheet("#onButton{\n"
             "    background-color: #EF1B79;\n"
             "    color:white;\n"
             "    border:none;\n"
@@ -105,7 +105,7 @@ class PyQTWidgetFunction(Ui_MainWindow):
             "}\n"
             ""
         )     
-        self.offButton.setStyleSheet("QPushButton{\n"
+        self.offButton.setStyleSheet("#offButton{\n"
             "    background: white;\n"
             "    color:black;\n"
             "    border:none;\n"
@@ -119,29 +119,8 @@ class PyQTWidgetFunction(Ui_MainWindow):
         )
 
     def camera_off_status(self):
-        self.onButton.setStyleSheet("QPushButton{\n"
-            "    background-color: white;\n"
-            "    color:black;\n"
-            "    border:none;\n"
-            "}\n"
-            "QPushButton:pressed{\n"
-            "    border-top:2px solid black;\n"
-            "    border-left: 2px solid black;\n"
-            "}\n"
-            ""
-        )     
-        self.offButton.setStyleSheet("QPushButton{\n"
-            "    background: #EF1B79;\n"
-            "    color:white;\n"
-            "    border:none;\n"
-            "}\n"
-            "QPushButton:pressed{\n"
-            "    border-left:2px solid black;\n"
-            "    border-top:2px solid black;\n"
-            "}\n"
-            "    \n"
-            ""
-        )
+        self.onButton.setStyleSheet(" ")     
+        self.offButton.setStyleSheet(" ")
 
     def update_live_gui_with_based_on_result(self, image: cv2 = None, rejection=None):
         '''

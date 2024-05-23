@@ -20,6 +20,6 @@ python main.py --dir=C:/Users/User/Desktop/Augmentation_Software/YOLOv8_obb_augm
 For Object Detection or YOLO
 In YOLO to generate more variety on data, Image crop method is also applied randomly such that it preserves the data inside the bounding box.
 
-python main.py --dir='path of a data' --n=4x --rotate=-10to10 --blur=2to10 --contrast=-15to15 --elastic=300to400 --rigid=15to35 --recursion_rate=0.4 --crop_no=3to5 --percent=70
+python main.py --dir=C:/Users/User/Desktop/YOLOV8/tablet/train/ --n=5x --rotate=-10to10 --blur=2to10 --contrast=-15to15 --elastic=300to400 --rigid=15to35 --recursion_rate=0.4 --crop_no=3to5 --percent=70
 
 <img alt = 'coding' width = "1000" height = "500" src = "https://github.com/lalchhabi/Data_Augmentation/blob/master/augmentation_process.jpg">

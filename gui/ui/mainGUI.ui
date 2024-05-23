@@ -87,7 +87,7 @@ QPushButton:pressed#cameraSetting_update_Button{
        </size>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="liveMode_Page">
        <layout class="QGridLayout" name="gridLayout_7">
@@ -2459,7 +2459,7 @@ QPushButton:pressed{
 }</string>
           </property>
           <property name="currentIndex">
-           <number>2</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="createProject_Page">
            <property name="minimumSize">

@@ -20,6 +20,12 @@ class MainWin(QMainWindow):
     def __init__(self):
         super().__init__()
         self.ui = PyQTWidgetFunction(self)
+        # self.live = LiveOperationFunction(self)
+
+import yaml
+from ultralytics import YOLO
+import time
+import torch
 
 def test_callback(numArray):
     """_summary_
@@ -30,31 +36,51 @@ def test_callback(numArray):
     Returns:
         _type_: _description_
     """
-    from ultralytics import YOLO
-    # from ultralytics.yolo.engine.results import Results
-    # from ultralytics.yolo.utils.plotting import Annotator, colors
+    ####### if there is only detection #########
 
-        ###### Load a model 
-    model = YOLO("C:/Users/User/Desktop/PyQT5/Batch_Code_Inspection_System/Main/best.pt")
-    ##### Predict with the model
-    results = model(numArray) ##### predict on the image
-    for result in results:
-        names = result.names
-        annotated_img = result.plot()  ##### Images with bounding box
-        boxes = result.obb.xyxyxyxy.cpu().numpy()
-        classes = result.names
-        # Ensure that the image is in BGR format for OpenCV
-        if annotated_img.shape[2] == 3:  # if the image has 3 channels
-            numArray = annotated_img
-        #     cv2.imshow("Image", annotated_img)
+    # live = LiveOperationFunction()
+
+    with open("./main_config.yaml", 'r') as f: ##### Load configuration file #######
+        current_brand_config = yaml.safe_load(f)
+    pickle_path = os.path.join(current_brand_config['pickle_path'],'system.pkl')
+    with open(pickle_path,'rb') as f:
+        system_values = pickle.load(f)
+  
+    if system_values['ocr_method'] == False:
+        ###### Load a model ####### 
+        model = YOLO("best.pt")
+        start_time = time.time()
+        results = model.predict(numArray,device = 0) ##### predict on the image
+        detection_time = time.time() - start_time
+        print("Detection time",detection_time)
+        # live.detectionTime.setText(detection_time)   ###### Add the detection time in GUI
+        for result in results:
+            all_info = result.obb
+            No_of_box = len(all_info.xyxyxyxy)
+            annotated_img = result.plot()  ##### Images with bounding box
+            # Ensure that the image is in BGR format for OpenCV
+            if annotated_img.shape[2] == 3:  # if the image has 3 channels
+                numArray = annotated_img
+            else:
+                raise ValueError("Unexpected number of channels in annotated image.")
+
+        if system_values['nooflines'] == str(No_of_box):  ##### Check if the no of lines matched with number of object
+            rejected = False
+            return numArray,rejected
         else:
-            raise ValueError("Unexpected number of channels in annotated image.")
-        # cv2.waitKey(0)
-        # cv2.destroyAllWindows()
-    rejected = True
-    return numArray, rejected
-         
-    
+            rejected = True
+            return numArray,rejected
+    # from ultralytics.utils import ASSETS
+    # from ultralytics.models.yolo.obb import OBBPredictor
+
+    # args = dict(model='best.pt', source=numArray)
+    # predictor = OBBPredictor(overrides=args)
+    # result = predictor.predict_cli()
+    # print("Predictor",predictor)
+    # rejected = True
+    # return numArray, rejected
+        
+        
 
 if __name__=="__main__":
     if hasattr(QtCore.Qt, 'AA_EnableHighDpiScaling'):

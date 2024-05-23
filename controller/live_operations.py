@@ -31,7 +31,7 @@ class LiveOperationFunction(Ui_MainWindow):
         parent: PyQTWidgetFunction
             pass the object `PyQTWidgetFunction` that inherits the class `Ui_MainWindow` generated from `ui`
         '''    
-    
+        
     
         ########### system parameters variables
         self.detection_recognition = parent.detection_recognition
@@ -213,6 +213,7 @@ class LiveOperationFunction(Ui_MainWindow):
             self.saveNG_Checkbox.setChecked(False)
 
         self.directoryName_Entry.setText(img_dir)
+    
         
     ########### Getting system parameters and save it
     def update_system_param(self,file_path)->None:

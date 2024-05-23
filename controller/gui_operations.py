@@ -26,7 +26,7 @@ class CircleFrame(QFrame):
             # self.circle.setObjectName(f'circle{i}')
             self.circle.setMaximumHeight(120)
             self.circle.setMaximumWidth(180)
-            # self.circle.setStyleSheet("background-color: white;" "color: red;" "border: 1px solid red;" "border-radius:10px;" "height:35px;" "width:35px;")
+            self.circle.setStyleSheet("background-color: white;" "color: red;" "border: 1px solid red;" "border-radius:10px;" "height:35px;" "width:35px;")
             self.frameLayout.addWidget(self.circle, len(self.frameLayout) // 5, len(self.frameLayout) % 5)
             return self.circle
     

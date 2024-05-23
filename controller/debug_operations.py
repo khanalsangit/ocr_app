@@ -78,7 +78,7 @@ class DebugOperationFunction(Ui_MainWindow):
         Opens the create project section
         '''
         self.editProject.setCurrentWidget(self.createProject_Page)
-        self.createProjectButton.setStyleSheet("QPushButton{\n"
+        self.createProjectButton.setStyleSheet("#createProjectButton{\n"
         "    background-color:#0DC177;\n"
         "    border-radius:4px;\n"
         "}")
@@ -95,7 +95,7 @@ class DebugOperationFunction(Ui_MainWindow):
         Opens the camera section for debug mode
         '''
         self.editProject.setCurrentWidget(self.camera_Page)
-        self.cameraButton.setStyleSheet("QPushButton{\n"
+        self.cameraButton.setStyleSheet("#cameraButton{\n"
         "    background-color:#0DC177;\n"
         "    border-radius:4px;\n"
         "}")
@@ -114,7 +114,7 @@ class DebugOperationFunction(Ui_MainWindow):
         Opens the preprocessing section
         '''
         self.editProject.setCurrentWidget(self.dataProcessing_Page)
-        self.preprocessingButton.setStyleSheet("QPushButton{\n"
+        self.preprocessingButton.setStyleSheet("#preprocessingButton{\n"
         "    background-color:#0DC177;\n"
         "    border-radius:4px;\n"
         "}")
@@ -147,7 +147,7 @@ class DebugOperationFunction(Ui_MainWindow):
         Opens the detection section
         '''
         self.editProject.setCurrentWidget(self.detection_Page)
-        self.detectionButton.setStyleSheet("QPushButton{\n"
+        self.detectionButton.setStyleSheet("#detectionButton{\n"
         "    background-color:#0DC177;\n"
         "    border-radius:4px;\n"
         "}")
@@ -162,7 +162,7 @@ class DebugOperationFunction(Ui_MainWindow):
         Opens the recognition section
         '''
         self.editProject.setCurrentWidget(self.recognition_Page)
-        self.recognitionButton.setStyleSheet("QPushButton{\n"
+        self.recognitionButton.setStyleSheet("#recognitionButton{\n"
         "    background-color:#0DC177;\n"
         "    border-radius:4px;\n"
         "}")
@@ -177,7 +177,7 @@ class DebugOperationFunction(Ui_MainWindow):
         Opens the analysis section
         '''
         self.editProject.setCurrentWidget(self.analysis_Page)
-        self.analysisButton.setStyleSheet("QPushButton{\n"
+        self.analysisButton.setStyleSheet("#analysisButton{\n"
         "    background-color:#0DC177;\n"
         "    border-radius:4px;\n"
         "}")

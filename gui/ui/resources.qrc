@@ -1,0 +1,8 @@
+<RCC>
+  <qresource prefix="LOGO">
+    <file>../../LOGO/bin.png</file>
+    <file>../../LOGO/crimson_logo.png</file>
+    <file>../../LOGO/capture.png</file>
+    <file>../../LOGO/labeling.png</file>
+  </qresource>
+</RCC>

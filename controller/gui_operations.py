@@ -152,16 +152,29 @@ class PyQTWidgetFunction(Ui_MainWindow):
             self.live.live_mode_param['last_ten_result'].pop(-1)
         
         for idx in range(len(self.live.live_mode_param['last_ten_result'])): ##### Displaying the color of last ten circles green if status is good else red
-            style_green = '''QPushButton#{idx}background : green;
+            style_green = '''#circleWidget QPushButton{
+                background : green;
                 border : 1px solid green;
                 border-radius:10px;
                 height : 35px;
                 width : 35px;
+                }
             '''
-            if self.live.live_mode_param['last_ten_result'][idx]['status'] == "not_good":
+            style_red = '''#circleWidget QPushButton{
+                background : red;
+                border : 1px solid green;
+                border-radius:10px;
+                height : 35px;
+                width : 35px;
+                }
+            '''
+            if self.live.live_mode_param['last_ten_result'][idx]['status'] == "good":
                 # circle'{}'.format(i)
-
+                print("green")
                 self.circle_buttons[idx].setStyleSheet(style_green)
+            else:
+                print("red")
+                self.circle_buttons[idx].setStyleSheet(style_red)
                 
             #     self.circle_buttons[idx].setStyleSheet(style_green)
             # else:

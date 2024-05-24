@@ -16,10 +16,10 @@ class FabricationApp(tk.Toplevel):
 
         ####+========= Load images ========###########
         original_images = [
-            Image.open(r"C:\Users\shres\OneDrive\Desktop\Office\batch_code_inspection\PyQT5-Batch-Code-Inspection-System\data_fabrication\fabrication_type_1.png"),
-            Image.open(r"C:\Users\shres\OneDrive\Desktop\Office\batch_code_inspection\PyQT5-Batch-Code-Inspection-System\data_fabrication\fabrication_type_2.png"),
-            Image.open(r"C:\Users\shres\OneDrive\Desktop\Office\batch_code_inspection\PyQT5-Batch-Code-Inspection-System\data_fabrication\fabrication_type_3.png"),
-            Image.open(r"C:\Users\shres\OneDrive\Desktop\Office\batch_code_inspection\PyQT5-Batch-Code-Inspection-System\data_fabrication\fabrication_type_4.png")
+            Image.open(r"D:\CrimsonTech2024\PyQT5-Batch-Code-Inspection-System\data_fabrication\fabrication_type_1.png"),
+            Image.open(r"D:\CrimsonTech2024\PyQT5-Batch-Code-Inspection-System\data_fabrication\fabrication_type_2.png"),
+            Image.open(r"D:\CrimsonTech2024\PyQT5-Batch-Code-Inspection-System\data_fabrication\fabrication_type_3.png"),
+            Image.open(r"D:\CrimsonTech2024\PyQT5-Batch-Code-Inspection-System\data_fabrication\fabrication_type_4.png")
         ]
 
         ####==== Resize images to 400x400 ===========########

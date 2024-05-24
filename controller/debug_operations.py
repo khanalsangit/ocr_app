@@ -300,8 +300,8 @@ class DebugOperationFunction(Ui_MainWindow):
             print(traceback.format_exc())
 
     def generate_augmentation(self):  
-        # main_aug.main_file()
-        AugGUI.MainWindow(self.parent.main_window).show()
+        main_aug.main_file()
+        # AugGUI.MainWindow(self.parent.main_window).show()
 
 
     def captured_image_count(self, image_count:int = 0):

@@ -283,6 +283,8 @@ def elastic_transform(dir, value,outdir,n):
 
 
 def rigid(dir,value,outdir,n):
+    value = 15
+    
     st = time.time()
     '''
     A function that generates augmented images by applying rigid transformation to the images with random values.
@@ -519,8 +521,8 @@ def rigid(dir,value,outdir,n):
         
     # ------------------------ Function to get random coordinates with respect with given shift value -------------
     def RandMove(old_pnt,min_shift,max_shift):
-        min_shift = 2
-        max_shift = 2
+        min_shift = 1
+        max_shift = 1
         neg = [-1,1]
 
         #get the first point from the geometry object

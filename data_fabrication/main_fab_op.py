@@ -173,7 +173,7 @@ def create_data(img,x1,x2, y1,y2, imgno,ftype,textcolor,fontname)-> None:
        
         name_image_text = str(time.time())
         try:
-            my_variable = read_yaml(r'C:\Users\shres\OneDrive\Desktop\Office\batch_code_inspection\PyQT5-Batch-Code-Inspection-System\main_config.yaml')
+            my_variable = read_yaml(r'D:\CrimsonTech2024\PyQT5-Batch-Code-Inspection-System\main_config.yaml')
             op_img_name = os.path.join(my_variable,str(name_image_text) + '.jpg')
             op_txt_name = os.path.join(my_variable,str(name_image_text) + '.txt')
         except Exception as e:

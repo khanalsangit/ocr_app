@@ -15,9 +15,10 @@ import yaml
 
 count = 0
 aug_num =0
+aug_weight=0
 
 def main_file():
-    global count,aug_num
+    global count,aug_num,aug_weight
     ###### Load configuration file #######
     with open("./main_config.yaml", 'r') as f:
         current_brand_config = yaml.safe_load(f)
@@ -45,6 +46,7 @@ def main_file():
     outdir = current_brand_config['detection_dataset_path'] 
     count=0
     aug_num=number
+    aug_weight=0
 
     print("Augmentation Started")
 
@@ -57,7 +59,7 @@ def main_file():
         weights = [0.1, 0.2, 0.1,0.2,0.2,0.1,0.1]
 
         (aug_method, weights_1), = random.choices(list(zip(aug_methods,weights)))
-        print("Augmentation",aug_method)
+        # print("Augmentation",aug_method)
         aug_methods.pop(aug_methods.index(aug_method))
         aug_method_name, func, args = aug_method
         new_file = os.path.join(outdir,args[0])
@@ -68,7 +70,7 @@ def main_file():
         image, bounding_box = func(*args)
         return weights_1, image, bounding_box, aug_method_name
 
-    def recursive_augment(img, bounding_box, outdir, rr):
+    def recursive_augment(img, bounding_box, outdir, rr,aug_weight):
         '''
         Implement an augmentation method recursively by adding its associated probability until the sum of probabilities is greater than the recursion rate.
 
@@ -77,7 +79,6 @@ def main_file():
         - bounding_box (str): Path of the bounding box returned by the augmentation method.
         - rr (float): Recursion rate indicating the threshold for stopping the recursion.
         '''
-        aug_weight = 0
         global current_file_name
         current_file_name = ''
 
@@ -99,7 +100,7 @@ def main_file():
         else:
             # print("[*] added weight value",aug_weight)
             current_file_name = current_file_name + '_' + aug_method_name  #### For file name
-            recursive_augment(img, bbox, outdir, rr)
+            recursive_augment(img, bbox, outdir, rr,aug_weight)
         
     # Copy all the files in the output directory
     for filename in os.listdir(dir):
@@ -132,7 +133,7 @@ def main_file():
             ]
             flip_method = ('fl', Augmentation.augmentation.img_flip, (filename,outdir,i))
             current_file_name = filename.replace('.jpg', '')
-            recursive_augment(filename, bounding_box, outdir, rr)  ###### calling recursive function
+            recursive_augment(filename, bounding_box, outdir, rr,aug_weight)  ###### calling recursive function
 
             # unaugmented image remove
             os.remove(os.path.join(outdir, filename)) ##### remove existing image
@@ -160,3 +161,6 @@ def main_file():
 
     print("Augmentation Completed")
 
+
+if __name__ == '__main__':
+    main_file()

@@ -237,6 +237,16 @@ QPushButton#chooseDirectory_Button{
 	background-color:#263B90;
 	border-radius:2px;
 }
+#openImage_Button{
+	border-radius:2px;
+	background-color: #E8C6FD;
+}
+
+#openImage_Button:pressed{
+	background-color:#E8C6FD;
+	border-left:2px solid rgb(100,180,180);
+	border-top:2px solid rgb(100,180,180);
+}
 QRadioButton::indicator#detectionOnly,
 QRadioButton::indicator#detection_recognition{
     width:                  10px;
@@ -1960,16 +1970,7 @@ border-radius: 3px;</string>
                      </size>
                     </property>
                     <property name="styleSheet">
-                     <string notr="true">QPushButton{
-	border-radius:2px;
-	background-color: #E8C6FD;
-}
-
-QPushButton:pressed{
-	background-color:#E8C6FD;
-	border-left:2px solid rgb(100,180,180);
-	border-top:2px solid rgb(100,180,180);
-}</string>
+                     <string notr="true"/>
                     </property>
                     <property name="text">
                      <string>Open Image</string>

@@ -17,7 +17,7 @@ count = 0
 aug_weight=0
 
 def main_file():
-    global count,aug_num,aug_weight
+    global count,aug_weight
     ###### Load configuration file #######
     with open("./main_config.yaml", 'r') as f:
         current_brand_config = yaml.safe_load(f)

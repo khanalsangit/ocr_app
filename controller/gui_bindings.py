@@ -108,7 +108,7 @@ class Controller():
         
  
         
-        # self.live.cameraSetting_update_Button.pressed.connect(self.set_camera_live_parameter)
+
   
         ####################### Debug Mode function called ######################
 
@@ -135,7 +135,7 @@ class Controller():
         self.debug.deleteImage_Button.clicked.connect(self.delete_captured_image)
         self.debug.captureButton.clicked.connect(self.capture_image)
         # augmentation panel buttons creation
-        # self.gui.augmentationButton.clicked.connect(self.set_augment_parameter)
+        self.gui.augmentationButton.clicked.connect(self.set_augment_parameter)
         # self.gui.augmentationButton.clicked.connect(self.set_augment_parameter)
 
 

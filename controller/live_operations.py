@@ -453,7 +453,9 @@ class LiveOperationFunction(Ui_MainWindow):
         "}")
         self.detectionResult.setAlignment(QtCore.Qt.AlignCenter)
 
-    
+    # def detection_time(self,time) ->None:
+    #     self.
+
 
 
         

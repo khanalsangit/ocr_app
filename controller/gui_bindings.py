@@ -161,7 +161,7 @@ class Controller():
         self.live.stackWidget_cameraSetting.setCurrentWidget(self.live.saveData_Page)
 
 
-        self.live.saveData_Button.setStyleSheet('''#saveData_Button{
+        self.live.saveData_Button.setStyleSheet('''#saveData_Button QPush{
         `                                                   color:#D9305C;
                                                             background-color: white;
                                                             border-top:1px solid#D9305C;

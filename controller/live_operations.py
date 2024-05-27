@@ -396,6 +396,7 @@ class LiveOperationFunction(Ui_MainWindow):
         """ 
         try:
             index_num = (str(circle_name.objectName()))
+            print("Index number",index_num)
         except Exception as e:
             index_num = 0
         circle_image = self.live_mode_param['last_ten_result'][int(index_num)]['image']
@@ -453,8 +454,8 @@ class LiveOperationFunction(Ui_MainWindow):
         "}")
         self.detectionResult.setAlignment(QtCore.Qt.AlignCenter)
 
-    # def detection_time(self,time) ->None:
-    #     self.
+    def detection_time(self,time) ->None:
+        self.detectionTime.setText(time)
 
 
 

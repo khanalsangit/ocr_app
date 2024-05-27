@@ -13,7 +13,7 @@ from .debug_operations import DebugOperationFunction
 
 from PyQt5.QtCore import QObject, QEvent, QCoreApplication, QTimer, pyqtSignal, pyqtSlot
 from PyQt5.QtWidgets import QFrame
-
+from algorithm.yolo import object_detection_yolo
 class CircleFrame(QFrame):
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -64,7 +64,7 @@ class PyQTWidgetFunction(Ui_MainWindow):
         self.circle_buttons = []
         for _ in range(10):
             self.circle_name = self.circleWidget.addCircle()
-            self.circle_name.setObjectName(f'circle{_}')
+            self.circle_name.setObjectName(f'{_}')
             self.circle_name.clicked.connect(partial(self.live.display_last_ten, self.circle_name))
             self.circle_buttons.append(self.circle_name)
 
@@ -122,15 +122,20 @@ class PyQTWidgetFunction(Ui_MainWindow):
         self.onButton.setStyleSheet(" ")     
         self.offButton.setStyleSheet(" ")
 
-    def update_live_gui_with_based_on_result(self, image: cv2 = None, rejection=None):
+    def update_live_gui_with_based_on_result(self, image: cv2 = None, rejection : dict = None):
         '''
             Update live gui after trigger or image is received
         Args:
             image: image received from camera
             rejection: status while rejection
         '''
-
-        if rejection == True:
+        detect_info = rejection
+        reject_status = detect_info['reject_status']
+        
+        ###### Display detection time #######
+        self.detectionTime.setText(str(round((detect_info['detect_time']),2)))
+        
+        if reject_status == True:
             status = 'not_good'
             self.live.live_mode_param['not_good'] += 1
             self.live.live_mode_param['last_not_good_count'] = 0
@@ -169,18 +174,11 @@ class PyQTWidgetFunction(Ui_MainWindow):
                 }
             '''
             if self.live.live_mode_param['last_ten_result'][idx]['status'] == "good":
-                # circle'{}'.format(i)
-                print("green")
                 self.circle_buttons[idx].setStyleSheet(style_green)
             else:
-                print("red")
                 self.circle_buttons[idx].setStyleSheet(style_red)
                 
-            #     self.circle_buttons[idx].setStyleSheet(style_green)
-            # else:
-            #     self.circle_buttons[idx].setStyleSheet("background: red;" "border: 1px solid green;" "border-radius:10px;" "height:35px;" "width:35px;")
-
-
+          
  
         
 

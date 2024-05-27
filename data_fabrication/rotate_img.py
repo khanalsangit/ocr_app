@@ -26,7 +26,7 @@ def draw_rotated_text(image, angle, xy, text, fill, font):
 
     # add text to mask
     draw = ImageDraw.Draw(mask)
-    draw.text((max_dim, max_dim), text, 255, font)
+    draw.text((max_dim, max_dim), text, 255, font,stroke_width=0,stroke_fill=None,spacing=16)
 
     if angle % 90 == 0:
         # rotate by multiple of 90 deg is easier

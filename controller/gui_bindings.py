@@ -137,8 +137,8 @@ class Controller():
         self.debug.deleteImage_Button.clicked.connect(self.delete_captured_image)
         self.debug.captureButton.clicked.connect(self.capture_image)
         # augmentation panel buttons creation
+        self.gui.augmentationButton.clicked.connect(self.set_augment_parameter)
         self.debug.augmentationButton.clicked.connect(self.debug.generate_augmentation)
-        # self.gui.augmentationButton.clicked.connect(self.set_augment_parameter)
 
 
     

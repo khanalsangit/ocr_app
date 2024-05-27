@@ -84,7 +84,7 @@ def create_data(img,x1,x2, y1,y2, imgno,ftype,textcolor,fontname)-> None:
         image= Image.open(img) 
         # ImageFont.ImageFont.getlength()
         font_path = random.choice([
-                                   ImageFont.truetype(fontname,random.randint(50,52))
+                                   ImageFont.truetype(fontname,random.randint(60,62))
                                   ])  #### to choose a font randomly
         
         # ImageFont.truetype('fonts/inkjet/MerchantCopy-GOXq.ttf',random.randint(55,60)),
@@ -158,22 +158,15 @@ def create_data(img,x1,x2, y1,y2, imgno,ftype,textcolor,fontname)-> None:
             ycor1=random.randint(int(y1),int(y2))
             xcor2 = xcor1
             ycor2 = ycor1 + random.randint(35,45)
-            # xcor3 = xcor1 
-            # ycor3 = ycor2 + random.randint(35,45)
             rot_ang = random.randint(-2,2)
 
             image = draw_rotated_text(image,rot_ang,(xcor1,ycor1),line1,textcolor,font = font_path)
             image = draw_rotated_text(image,rot_ang,(xcor2,ycor2),line2,textcolor,font = font_path)
         
             
-        # rot_ang = random.randint(-1,1)
-        # image = draw_rotated_text(image,rot_ang,(xcor1,ycor1),line1,textcolor,font = font_path)
-        # image = draw_rotated_text(image,rot_ang,(xcor2,ycor2),line2,textcolor,font = font_path)
-        # image = draw_rotated_text(image,rot_ang,(xcor3,ycor3),line3,textcolor,font = font_path)
-       
         name_image_text = str(time.time())
         try:
-            my_variable = read_yaml(r'D:\CrimsonTech2024\PyQT5-Batch-Code-Inspection-System\main_config.yaml')
+            my_variable = read_yaml('./main_config.yaml')
             op_img_name = os.path.join(my_variable,str(name_image_text) + '.jpg')
             op_txt_name = os.path.join(my_variable,str(name_image_text) + '.txt')
         except Exception as e:
@@ -192,11 +185,11 @@ def create_data(img,x1,x2, y1,y2, imgno,ftype,textcolor,fontname)-> None:
             width2,height2 = get_text_dimensions(line2,font = font_path)       
             final_result2=get_rotated_coordinates(xcor2,ycor2,width2,height2,rot_ang,line2)
         
-        ######## For Third Rectangle
+        # ######## For Third Rectangle
             width3,height3 = get_text_dimensions(line3,font = font_path)
             final_result3=get_rotated_coordinates(xcor3,ycor3,width3,height3,rot_ang,line3)
             
-        #######For Fourth Recctangle    
+        # #######For Fourth Recctangle    
             width4,height4 = get_text_dimensions(line4,font = font_path)
             final_result4=get_rotated_coordinates(xcor4,ycor4,width4,height4,rot_ang,line4)
         except:

@@ -14,7 +14,6 @@ import Augmentation.label_conveter
 import yaml
 
 count = 0
-aug_num =0
 aug_weight=0
 
 def main_file():
@@ -45,7 +44,6 @@ def main_file():
     rvalue_list = [-rigid, rigid]
     outdir = current_brand_config['detection_dataset_path'] 
     count=0
-    aug_num=number
     aug_weight=0
 
     print("Augmentation Started")
@@ -142,9 +140,13 @@ def main_file():
 
             # print('--------------------------------------')
             count += 1
+            yield count
+
             
             if count % 100 == 0:
                 print("Number of data created: ", count)
+
+    
                 
              
 

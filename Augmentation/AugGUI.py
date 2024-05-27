@@ -1,4 +1,5 @@
 import os
+import pickle
 import sys
 from PyQt5.QtWidgets import (
     QApplication, QMainWindow, QPushButton, QVBoxLayout, QWidget,
@@ -6,9 +7,17 @@ from PyQt5.QtWidgets import (
 )
 from PyQt5.QtCore import Qt, QTimer
 import yaml
-from Augmentation.main_aug import main_file, count,aug_num  # Import count from main_aug
+from Augmentation.main_aug import main_file # Import count from main_aug
 
+import glob
 
+with open("./main_config.yaml", 'r') as f:
+    current_brand_config = yaml.safe_load(f)
+pickle_path = os.path.join(current_brand_config['pickle_path'],'augment.pkl')
+with open(pickle_path,'rb') as f:
+    augment_values = pickle.load(f)
+
+number = int(augment_values['ntimes'])
 
 class MainWindow(QMainWindow):
     def __init__(self,parent):
@@ -37,7 +46,7 @@ class MainWindow(QMainWindow):
         dir = current_brand_config['images_path']
         self.file_count = sum(len(files) for _, _, files in os.walk(dir))
 
-        self.progress_dialog = QProgressDialog("Augmenting image...", "Cancel", 0, 200, self)
+        self.progress_dialog = QProgressDialog("Augmenting image...", "Cancel", 0, 400, self)
         self.progress_dialog.setWindowModality(Qt.WindowModal)
         self.progress_dialog.setAutoClose(False)
         self.progress_dialog.setAutoReset(False)
@@ -56,13 +65,23 @@ class MainWindow(QMainWindow):
         self.progress_dialog.close()
 
     def update_progress(self):
-        global count  # Ensure we are accessing the global count variable
-        x=count
-        progress_value = (x/((self.file_count/2)*aug_num))*100 
-        self.progress_dialog.setValue(progress_value)
-        if  progress_value== 100:  # Assuming the process completes when count reaches 6
-            self.progress_dialog.close()
-            self.show_completion_message()
+        
+        number = int(augment_values['ntimes'])
+        print("============",number)
+        file = glob.glob(
+            "./Brands/roshan/images/*.jpg")
+
+        x=main_file()
+        a=len(file)
+        print(a)
+        progress_value=0
+        for i in x:
+            print(i)
+            progress_value = int((i/(number*a))*100)  
+            self.progress_dialog.setValue(progress_value)
+            if  progress_value== number*a:  # Assuming the process completes when count reaches 6
+                self.progress_dialog.close()
+                self.show_completion_message()
 
     def show_completion_message(self):
         msg_box = QMessageBox()

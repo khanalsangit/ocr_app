@@ -136,7 +136,7 @@ class ColorApp(ctk.CTkToplevel):
 
 
 if __name__ == "__main__":
-    image_path = "C:/Users/shres/OneDrive/Desktop/Office/det/OCR_training/bounding box software/IMG1.bmp"
+    image_path = "data_fabrication/blank_image.png"
     app = ColorApp(image_path)
     app.mainloop()
 

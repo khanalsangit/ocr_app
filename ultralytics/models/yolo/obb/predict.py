@@ -60,41 +60,41 @@ class OBBPredictor(DetectionPredictor):
             obb = torch.cat([rboxes, pred[:, 4:6]], dim=-1)
             results.append(Results(orig_img, path=img_path, names=self.model.names, obb=obb))
         
-        for result in results:
-            import cv2
-            all_info = result.obb
-            No_of_box = len(all_info)
-            annotated_img = result.orig_img.copy()
+        # for result in results:
+        #     import cv2
+        #     all_info = result.obb
+        #     No_of_box = len(all_info)
+        #     annotated_img = result.orig_img.copy()
 
-            for box in all_info:
-                # Extract the bounding box coordinates and convert them to integers
-                x1, y1, x2, y2, x3, y3, x4, y4 = [int(coord) for coord in box.xyxyxyxy.flatten()]
+        #     for box in all_info:
+        #         # Extract the bounding box coordinates and convert them to integers
+        #         x1, y1, x2, y2, x3, y3, x4, y4 = [int(coord) for coord in box.xyxyxyxy.flatten()]
 
-                # Extract the class id
-                class_id = int(box.cls)
+        #         # Extract the class id
+        #         class_id = int(box.cls)
                 
-                # Extract the default label and map it to the custom label
-                default_label = result.names[class_id]
-                custom_label = custom_labels.get(class_id, default_label)  
+        #         # Extract the default label and map it to the custom label
+        #         default_label = result.names[class_id]
+        #         custom_label = custom_labels.get(class_id, default_label)  
 
-                # Draw the bounding box
-                points = [(x1, y1), (x2, y2), (x3, y3), (x4, y4)]
-                for j in range(4):
-                    cv2.line(annotated_img, points[j], points[(j + 1) % 4], (0, 255, 0), 2)
+        #         # Draw the bounding box
+        #         points = [(x1, y1), (x2, y2), (x3, y3), (x4, y4)]
+        #         for j in range(4):
+        #             cv2.line(annotated_img, points[j], points[(j + 1) % 4], (0, 255, 0), 2)
 
-                # Put the custom label text near the bounding box
-                cv2.putText(annotated_img, custom_label, (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 255, 0), 2)
+        #         # Put the custom label text near the bounding box
+        #         cv2.putText(annotated_img, custom_label, (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 255, 0), 2)
         
            
-            if annotated_img.shape[2] == 3:  # if the image has 3 channels
-                numArray = annotated_img
-            else:
-                raise ValueError("Unexpected number of channels in annotated image.")
+            # if annotated_img.shape[2] == 3:  # if the image has 3 channels
+            #     numArray = annotated_img
+            # else:
+            #     raise ValueError("Unexpected number of channels in annotated image.")
 
             # cv2.imshow("Image",annotated_img)
             # cv2.waitKey(0)
             # cv2.destroyAllWindows()
-        print("Total time",time.time() - start_time)
+        # print("Total time",time.time() - start_time)
         
         return results
         

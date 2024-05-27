@@ -1,0 +1,362 @@
+2024-05-21 14:32:55,378 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 14:32:55,378 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 14:34:36,753 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 14:34:36,753 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 14:37:26,216 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 14:37:26,216 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 14:37:27,723 - DEBUG - Starting new HTTPS connection (1): api.github.com:443
+2024-05-21 14:37:28,363 - DEBUG - https://api.github.com:443 "GET /repos/ultralytics/assets/releases/tags/v0.0.0 HTTP/1.1" 200 None
+2024-05-21 14:37:28,363 - DEBUG - Starting new HTTPS connection (1): github.com:443
+2024-05-21 14:37:28,974 - DEBUG - https://github.com:443 "HEAD /ultralytics/assets/releases/download/v0.0.0/yolov8s.pt HTTP/1.1" 302 0
+2024-05-21 14:37:34,390 - DEBUG - Starting new HTTPS connection (1): www.google-analytics.com:443
+2024-05-21 14:37:34,613 - DEBUG - https://www.google-analytics.com:443 "POST /mp/collect?measurement_id=G-X8NCJYTQXM&api_secret=QLQrATrNSwGRFRLE-cbHJw HTTP/1.1" 204 0
+2024-05-21 14:38:09,963 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 14:38:09,969 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 14:49:28,789 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 14:49:28,789 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 14:59:03,893 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 14:59:03,893 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 15:01:54,335 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 15:01:54,337 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 15:02:59,332 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 15:02:59,332 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 15:03:53,623 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 15:03:53,623 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 15:04:29,085 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 15:04:29,085 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 15:05:32,212 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 15:05:32,213 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 15:06:01,523 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 15:06:01,523 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 15:06:33,812 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 15:06:33,812 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 15:06:59,675 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 15:06:59,675 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 15:08:01,504 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 15:08:01,504 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 15:08:27,110 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 15:08:27,111 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 15:08:51,587 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 15:08:51,590 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 15:09:19,798 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 15:09:19,800 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 15:09:57,768 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 15:09:57,768 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 15:10:29,653 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 15:10:29,653 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 15:10:56,783 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 15:10:56,798 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 15:11:22,396 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 15:11:22,396 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 15:12:00,178 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 15:12:00,178 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 15:12:31,348 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 15:12:31,348 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 15:13:05,668 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 15:13:05,668 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 15:13:37,445 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 15:13:37,445 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 15:14:12,101 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 15:14:12,101 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 15:14:50,446 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 15:14:50,446 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 15:16:10,259 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 15:16:10,259 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 15:16:35,246 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 15:16:35,246 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 15:17:48,701 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 15:17:48,701 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 15:18:53,720 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 15:18:53,720 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 15:19:46,069 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 15:19:46,069 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 15:20:40,692 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 15:20:40,692 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 15:21:05,954 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 15:21:05,954 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 15:22:15,656 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 15:22:15,656 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 15:24:20,791 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 15:24:20,797 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 15:24:44,009 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 15:24:44,009 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 16:46:07,537 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 16:46:07,553 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 16:47:25,048 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 16:47:25,048 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 16:49:35,866 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 16:49:35,866 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 16:50:11,059 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 16:50:11,075 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 16:52:15,076 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 16:52:15,085 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 16:58:01,316 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 16:58:01,316 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 16:58:44,026 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 16:58:44,026 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 16:59:01,737 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 16:59:01,738 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 16:59:19,315 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 16:59:19,315 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 17:01:25,776 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 17:01:25,776 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 17:01:56,198 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 17:01:56,199 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 17:02:16,765 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 17:02:16,765 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 17:04:00,558 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 17:04:00,559 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 17:06:47,681 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 17:06:47,682 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 17:07:08,535 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 17:07:08,535 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 17:11:53,515 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 17:11:53,515 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 17:12:40,519 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 17:12:40,525 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 17:13:20,345 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 17:13:20,347 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 17:13:38,243 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 17:13:38,245 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 17:14:15,155 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 17:14:15,157 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 17:14:53,865 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 17:14:53,866 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 17:15:34,578 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 17:15:34,578 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 17:16:52,200 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 17:16:52,202 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 17:17:04,634 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 17:17:04,634 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 17:17:59,086 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 17:17:59,086 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 17:18:31,431 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 17:18:31,431 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 17:18:40,274 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 17:18:40,278 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 17:19:06,314 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 17:19:06,317 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 17:19:39,031 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 17:19:39,031 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 17:20:02,206 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 17:20:02,211 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 17:20:39,597 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 17:20:39,597 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 17:21:05,923 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 17:21:05,923 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 17:21:30,001 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 17:21:30,001 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 17:21:55,251 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 17:21:55,251 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 17:23:13,791 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 17:23:13,791 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 17:23:39,551 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 17:23:39,551 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 17:24:00,981 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 17:24:00,981 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 17:24:18,988 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 17:24:18,988 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 17:24:44,159 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 17:24:44,161 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 17:25:18,174 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 17:25:18,174 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 17:25:46,111 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 17:25:46,111 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 17:28:40,441 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 17:28:40,441 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 17:29:19,301 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 17:29:19,301 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 17:30:34,143 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 17:30:34,144 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-21 17:31:14,576 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-21 17:31:14,581 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-22 11:33:58,173 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-22 11:33:58,173 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-22 11:52:24,794 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-22 11:52:24,794 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-22 11:57:46,474 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-22 11:57:46,484 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-22 11:58:37,624 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-22 11:58:37,626 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-22 12:00:11,323 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-22 12:00:11,323 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-22 12:01:34,533 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-22 12:01:34,533 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-22 12:02:41,674 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-22 12:02:41,674 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-22 12:10:28,658 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-22 12:10:28,658 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-22 12:11:37,792 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-22 12:11:37,794 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-22 12:15:18,557 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-22 12:15:18,557 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-22 12:16:37,774 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-22 12:16:37,774 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-22 12:24:13,740 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-22 12:24:13,740 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-22 13:42:56,398 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-22 13:42:56,398 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-22 13:45:04,619 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-22 13:45:04,619 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-22 13:49:00,116 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-22 13:49:00,116 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-22 13:50:27,011 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-22 13:50:27,012 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-22 13:52:56,616 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-22 13:52:56,616 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-22 13:53:51,872 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-22 13:53:51,882 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-22 13:55:12,917 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-22 13:55:12,927 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-22 13:55:38,204 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-22 13:55:38,204 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-22 13:56:07,384 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-22 13:56:07,384 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-22 14:03:16,185 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-22 14:03:16,187 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-22 14:05:51,108 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-22 14:05:51,109 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-22 14:25:22,777 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-22 14:25:22,787 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-22 14:31:04,323 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-22 14:31:04,323 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-22 14:33:19,172 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-22 14:33:19,172 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-22 14:49:35,794 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-22 14:49:35,804 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-22 14:51:01,760 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-22 14:51:01,760 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-22 14:56:49,490 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-22 14:56:49,490 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-22 15:40:45,774 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-22 15:40:45,775 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-22 15:42:04,232 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-22 15:42:04,232 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-22 15:43:29,346 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-22 15:43:29,356 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-22 15:45:00,470 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-22 15:45:00,470 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-22 15:50:02,195 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-22 15:50:02,195 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-22 15:52:30,567 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-22 15:52:30,577 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-22 15:59:13,827 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-22 15:59:13,827 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-22 16:01:44,952 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-22 16:01:44,953 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-22 16:02:12,316 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-22 16:02:12,316 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-22 16:03:09,344 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-22 16:03:09,344 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-22 16:04:26,983 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-22 16:04:26,985 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-22 16:06:42,582 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-22 16:06:42,582 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-22 16:09:05,792 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-22 16:09:05,792 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-22 16:12:59,352 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-22 16:12:59,352 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-22 16:15:09,749 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-22 16:15:09,749 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-22 16:16:51,557 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-22 16:16:51,557 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-23 11:27:16,651 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-23 11:27:16,667 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-23 11:29:21,256 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-23 11:29:21,256 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-23 11:37:24,693 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-23 11:37:24,705 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-23 11:38:51,722 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-23 11:38:51,725 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-23 11:50:30,571 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-23 11:50:30,583 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-23 11:51:15,084 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-23 11:51:15,099 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-23 11:52:59,535 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-23 11:52:59,535 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-23 11:59:48,681 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-23 11:59:48,681 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-23 12:01:25,277 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-23 12:01:25,292 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-23 12:02:09,815 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-23 12:02:09,815 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-23 12:09:18,045 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-23 12:09:18,045 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-23 12:10:49,638 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-23 12:10:49,638 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-23 12:14:40,971 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-23 12:14:40,971 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-23 12:17:11,538 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-23 12:17:11,538 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-23 14:39:34,946 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-23 14:39:34,946 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-23 14:41:19,281 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-23 14:41:19,281 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-23 14:41:51,051 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-23 14:41:51,051 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-23 14:49:26,630 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-23 14:49:26,630 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-23 14:51:29,876 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-23 14:51:29,876 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-23 15:03:43,797 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-23 15:03:43,806 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-23 15:12:23,301 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-23 15:12:23,301 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-23 15:14:02,558 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-23 15:14:02,566 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-23 15:15:04,000 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-23 15:15:04,000 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-23 15:16:58,198 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-23 15:16:58,206 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-23 15:18:01,466 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-23 15:18:01,466 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-23 15:20:39,116 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-23 15:20:39,116 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-23 15:21:57,141 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-23 15:21:57,157 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-23 15:25:20,314 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-23 15:25:20,314 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-23 15:29:04,309 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-23 15:29:04,310 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-23 15:37:30,143 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-23 15:37:30,143 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-23 15:39:50,255 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-23 15:39:50,255 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-23 15:43:41,371 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-23 15:43:41,371 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-23 15:45:11,651 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-23 15:45:11,658 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-23 15:54:09,087 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-23 15:54:09,087 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-23 16:00:27,558 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-23 16:00:27,561 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-23 16:01:27,055 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-23 16:01:27,055 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-23 16:02:19,013 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-23 16:02:19,013 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-23 16:03:11,521 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-23 16:03:11,521 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-23 16:48:50,287 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-23 16:48:50,289 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-23 16:49:28,275 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-23 16:49:28,275 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-23 16:55:31,522 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-23 16:55:31,536 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-23 16:56:10,810 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-23 16:56:10,810 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-23 16:57:18,034 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-23 16:57:18,035 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-23 16:58:21,895 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-23 16:58:21,901 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-23 16:58:54,373 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-23 16:58:54,379 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-23 16:59:40,887 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-23 16:59:40,893 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-23 17:01:31,695 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-23 17:01:31,695 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-23 17:09:56,463 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-23 17:09:56,464 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-23 17:15:02,509 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-23 17:15:02,510 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json
+2024-05-23 17:16:19,709 - DEBUG - CACHEDIR=C:\Users\User\.matplotlib
+2024-05-23 17:16:19,709 - DEBUG - Using fontManager instance from C:\Users\User\.matplotlib\fontlist-v330.json

@@ -26,7 +26,7 @@ class CircleFrame(QFrame):
             # self.circle.setObjectName(f'circle{i}')
             self.circle.setMaximumHeight(120)
             self.circle.setMaximumWidth(180)
-            self.circle.setStyleSheet("background-color: white;" "color: red;" "border: 1px solid red;" "border-radius:10px;" "height:35px;" "width:35px;")
+            # self.circle.setStyleSheet("background-color: white;" "color: red;" "border: 1px solid red;" "border-radius:10px;" "height:35px;" "width:35px;")
             self.frameLayout.addWidget(self.circle, len(self.frameLayout) // 5, len(self.frameLayout) % 5)
             return self.circle
     
@@ -64,7 +64,7 @@ class PyQTWidgetFunction(Ui_MainWindow):
         self.circle_buttons = []
         for _ in range(10):
             self.circle_name = self.circleWidget.addCircle()
-            self.circle_name.setObjectName(f'{_}')
+            self.circle_name.setObjectName(f'circle{_}')
             self.circle_name.clicked.connect(partial(self.live.display_last_ten, self.circle_name))
             self.circle_buttons.append(self.circle_name)
 
@@ -94,7 +94,7 @@ class PyQTWidgetFunction(Ui_MainWindow):
 
     def camera_on_status(self):
 
-        self.onButton.setStyleSheet("QPushButton{\n"
+        self.onButton.setStyleSheet("#onButton{\n"
             "    background-color: #EF1B79;\n"
             "    color:white;\n"
             "    border:none;\n"
@@ -105,7 +105,7 @@ class PyQTWidgetFunction(Ui_MainWindow):
             "}\n"
             ""
         )     
-        self.offButton.setStyleSheet("QPushButton{\n"
+        self.offButton.setStyleSheet("#offButton{\n"
             "    background: white;\n"
             "    color:black;\n"
             "    border:none;\n"
@@ -119,29 +119,8 @@ class PyQTWidgetFunction(Ui_MainWindow):
         )
 
     def camera_off_status(self):
-        self.onButton.setStyleSheet("QPushButton{\n"
-            "    background-color: white;\n"
-            "    color:black;\n"
-            "    border:none;\n"
-            "}\n"
-            "QPushButton:pressed{\n"
-            "    border-top:2px solid black;\n"
-            "    border-left: 2px solid black;\n"
-            "}\n"
-            ""
-        )     
-        self.offButton.setStyleSheet("QPushButton{\n"
-            "    background: #EF1B79;\n"
-            "    color:white;\n"
-            "    border:none;\n"
-            "}\n"
-            "QPushButton:pressed{\n"
-            "    border-left:2px solid black;\n"
-            "    border-top:2px solid black;\n"
-            "}\n"
-            "    \n"
-            ""
-        )
+        self.onButton.setStyleSheet(" ")     
+        self.offButton.setStyleSheet(" ")
 
     def update_live_gui_with_based_on_result(self, image: cv2 = None, rejection=None):
         '''
@@ -150,12 +129,7 @@ class PyQTWidgetFunction(Ui_MainWindow):
             image: image received from camera
             rejection: status while rejection
         '''
-        style_green = '''background : green;
-            border : 1px solid green;
-            border-radius:10px;
-            height : 35px;
-            width : 35px;
-        '''
+
         if rejection == True:
             status = 'not_good'
             self.live.live_mode_param['not_good'] += 1
@@ -178,11 +152,33 @@ class PyQTWidgetFunction(Ui_MainWindow):
             self.live.live_mode_param['last_ten_result'].pop(-1)
         
         for idx in range(len(self.live.live_mode_param['last_ten_result'])): ##### Displaying the color of last ten circles green if status is good else red
-            if self.live.live_mode_param['last_ten_result'][idx]['status'] == "not_good":
-
+            style_green = '''#circleWidget QPushButton{
+                background : green;
+                border : 1px solid green;
+                border-radius:10px;
+                height : 35px;
+                width : 35px;
+                }
+            '''
+            style_red = '''#circleWidget QPushButton{
+                background : red;
+                border : 1px solid green;
+                border-radius:10px;
+                height : 35px;
+                width : 35px;
+                }
+            '''
+            if self.live.live_mode_param['last_ten_result'][idx]['status'] == "good":
+                # circle'{}'.format(i)
+                print("green")
                 self.circle_buttons[idx].setStyleSheet(style_green)
             else:
-                self.circle_buttons[idx].setStyleSheet("background: red;" "border: 1px solid green;" "border-radius:10px;" "height:35px;" "width:35px;")
+                print("red")
+                self.circle_buttons[idx].setStyleSheet(style_red)
+                
+            #     self.circle_buttons[idx].setStyleSheet(style_green)
+            # else:
+            #     self.circle_buttons[idx].setStyleSheet("background: red;" "border: 1px solid green;" "border-radius:10px;" "height:35px;" "width:35px;")
 
 
  

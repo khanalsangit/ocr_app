@@ -20,10 +20,170 @@ class Ui_MainWindow(object):
 "")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setAcceptDrops(False)
-        self.centralwidget.setStyleSheet("#on_offFrame{\n"
+        self.centralwidget.setStyleSheet("#crimsonLogo{\n"
+"    image: url(:/LOGO/LOGO/crimson_logo.png)\n"
+"}\n"
+"QPushButton{\n"
+"    border-radius:4px;\n"
+"}\n"
+"QPushButton:pressed{\n"
+"    border-left:2px solid black;\n"
+"    border-top:2px solid black;\n"
+"}\n"
+"#imageWidget_Live, #imageWidget_Debug{\n"
+"    background-color: rgb(170, 85, 255);\n"
+"}\n"
+"#comboBox{\n"
+"    border:1px solid black;\n"
+"    border-radius:4px;\n"
+"}\n"
+"#findCamera_Button{\n"
+"    border:1px solid#125872;\n"
+"    border-radius:4px;\n"
+"    color:#125872;\n"
+"}\n"
+"#findCamera_Button:pressed{\n"
+"    background-color:white;\n"
+"    border-left:2px solid rgb(100,180,180);\n"
+"    border-top:2px solid rgb(100,180,180);\n"
+"}\n"
+"#on_offFrame{\n"
+"    border-radius:5px;\n"
 "    border:2px solid #EF1B79;\n"
 "}\n"
+"#offButton{\n"
+"    background: #EF1B79;\n"
+"    color:white;\n"
+"    border:none;\n"
+"}\n"
+"#offButton:pressed{\n"
+"    border-left:2px solid black;\n"
+"    border-top:2px solid black;\n"
+"}\n"
+"#onButton{\n"
+"    background-color: white;\n"
+"    border:none;\n"
+"}\n"
+"#onButton:pressed{\n"
+"    border-top:2px solid black;\n"
+"    border-left: 2px solid black;\n"
+"}\n"
+"#switchButton{\n"
+"    background-color: rgb(238, 237, 237);\n"
+"    border:none;\n"
+"}\n"
+"#switchButton:pressed{\n"
+"    background-color: rgb(238, 237, 237);\n"
+"    border-left:2px solid rgb(100,180,180);\n"
+"    border-top:2px solid rgb(100,180,180);\n"
+"}\n"
+"QFrame#frame_12 QPushButton{\n"
+"    border-radius:4px;\n"
+"    background-color:#F2F1F1;\n"
+"}\n"
+"#cameraSettings_Frame,\n"
+"#augmentationSettings_Frame,\n"
+"#fabricationFrame,\n"
+"#trainingParameters_Frame,\n"
+"#testingParameters_Frame,\n"
+"#analysisSystem_Frame,\n"
+"#recognitionTraining_Frame,\n"
+"#recognitionTesting_Frame,\n"
+"#triggerSettings_Frame\n"
+"{\n"
+"    border:1px solid black;\n"
+"}\n"
+"#augmentationSettings_Frame QPushButton, #fabricationFrame QPushButton, #trainingParameters_Frame QPushButton, #recognitionTraining_Frame QPushButton{\n"
+"    color:white;\n"
+"    background-color:#263B90;\n"
+"    border-radius:4px;\n"
+"}\n"
+"#editProject *{\n"
+"    background-color:#f2f2f2;\n"
+"}\n"
+"#step1_Label, #step2_Label, #step3_Label, #step4_Label, #step5_Label, #step6_Label{\n"
+"    color:#125872;\n"
+"}\n"
+"#augmenationSettings_Label, #cameraSettings_Label, #triggerSettings_Label, #fabricationParameterLabel, #recognitionTrainingParameter_Label, #trainingParameter_Label, #systemSettings_Label_debug, #recognitionTestingParameter_Label, #testingParameterLabel{\n"
+"    color:#263B90;\n"
+"}\n"
+"#frame_13 QPushButton{\n"
+"    border:1px solid;\n"
+"}\n"
+"#createButton{\n"
+"    background-color:#263B90;\n"
+"    color:white;\n"
+"}\n"
+"#createButton:pressed, #importButton:pressed{\n"
+"    border-left:2px solid black;\n"
+"    border-top:2px solid black;\n"
+"}\n"
+"#triggerSettings_Frame QRadioButton::indicator {\n"
+"    width:                  10px;\n"
+"    height:                 10px;\n"
+"    border-radius:          7px;\n"
+"}\n"
 "\n"
+"#triggerSettings_Frame QRadioButton::indicator:checked {\n"
+"    background-color:       red;\n"
+"    border:                 2px solid black;\n"
+"}\n"
+"\n"
+"#triggerSettings_Frame QRadioButton::indicator:unchecked {\n"
+"    background-color:       white;\n"
+"    border:                 2px solid black;\n"
+"\n"
+"}\n"
+"#triggerSettings_Frame QRadioButton:checked {\n"
+"        color: #D9305C;\n"
+"}\n"
+"#triggerSettings_Frame QRadioButton:unchecked {\n"
+"        color: solid black;\n"
+"}\n"
+"#cameraSettings_Frame QPushButton{\n"
+"    color:white;\n"
+"    background-color:#263B90;\n"
+"    font-family: Arial;\n"
+"    font-size:10pt;\n"
+"}\n"
+"#deleteImage_Button{\n"
+"    color:white;\n"
+"    background-color:#EF1B79;\n"
+"    border-radius:4px;\n"
+"    qproperty-icon: url(:/LOGO/LOGO/bin.png)\n"
+"}\n"
+"#captureButton{\n"
+"     qproperty-icon:url(:/LOGO/LOGO/capture.png)\n"
+"}\n"
+"#detection_labelingButton{\n"
+"    qproperty-icon:url(:/LOGO/LOGO/labeling.png)\n"
+"}\n"
+"#recognitionLabeling_Button{\n"
+"    qproperty-icon:url(:/LOGO/LOGO/labeling.png)\n"
+"}\n"
+"#groupBox::title{\n"
+"    color:red;\n"
+"}\n"
+"#detection_testButton, #recognitionTesting_Button, #analysisTest_Button{\n"
+"    color:white;\n"
+"    background-color:#BA77FC;\n"
+"    border-radius:4px;\n"
+"}\n"
+"#no_ofLine_comboBox_debug{\n"
+"    border:1px solid black;\n"
+"    border-radius: 3px;\n"
+"}\n"
+"#systemSetting_update_Button_debug{\n"
+"    background-color: #019065;\n"
+"    color:white;\n"
+"    border:none;\n"
+"    border-radius:3px;\n"
+"}\n"
+"#systemSetting_update_Button_debug:pressed{\n"
+"    background-color:#019065;\n"
+"    border-left:2px solid rgb(100,180,180);\n"
+"    border-top:2px solid rgb(100,180,180);\n"
+"}\n"
 "#systemSetting_Frame{\n"
 "    border: 1px solid black;\n"
 "}\n"
@@ -37,11 +197,111 @@ class Ui_MainWindow(object):
 "#detectionResult_Frame{\n"
 "    border:1px solid black;\n"
 "}\n"
+"QPushButton#cameraSetting_Button{\n"
+"    color:#D9305C;\n"
+"    border-top:1px solid#D9305C;\n"
+"    border-right:1px solid#D9305C;\n"
+"    border-top-left-radius:4px;\n"
+"    border-top-right-radius:4px;\n"
+"}\n"
+"QPushButton#saveData_Button{\n"
+"    background-color: #eaeaea;\n"
+"    border:none;\n"
+"    border-top-left-radius:4px;\n"
+"    border-top-right-radius:4px;\n"
+"    border-bottom-right-radius:4px;\n"
+"}\n"
+"QPushButton#cameraSetting_update_Button, \n"
+"QPushButton#rejectSetting_updateButton, \n"
+"QPushButton#systemSetting_update_Button{\n"
+"    background-color: #019065;\n"
+"    color:white;\n"
+"    border:none;\n"
+"    border-radius:3px;\n"
+"}\n"
+"QPushButton:pressed#cameraSetting_update_Button, QPushButton:pressed#rejectSetting_updateButton, \n"
+"QPushButton:pressed#systemSetting_update_Button{\n"
+"    background-color:#019065;\n"
+"    border-left:2px solid rgb(100,180,180);\n"
+"    border-top:2px solid rgb(100,180,180);\n"
+"}\n"
+"QPushButton#chooseDirectory_Button{\n"
+"    color: white;\n"
+"    background-color:#263B90;\n"
+"    border-radius:2px;\n"
+"}\n"
+"QRadioButton::indicator#detectionOnly,\n"
+"QRadioButton::indicator#detection_recognition{\n"
+"    width:                  10px;\n"
+"    height:                 10px;\n"
+"    border-radius:          7px;\n"
+"}\n"
+"\n"
+"QRadioButton::indicator:checked#detectionOnly,\n"
+"QRadioButton::indicator:checked#detection_recognition{\n"
+"    background-color:       red;\n"
+"    border:                 2px solid black;\n"
+"}\n"
+"\n"
+"QRadioButton::indicator:unchecked#detectionOnly,\n"
+"QRadioButton::indicator:unchecked#detection_recognition{\n"
+"    background-color:       white;\n"
+"    border:                 2px solid black;\n"
+"\n"
+"}\n"
+"QRadioButton:checked#detectionOnly,\n"
+"QRadioButton:checked#detection_recognition{\n"
+"        color: #D9305C;\n"
+"}\n"
+"QRadioButton:unchecked#detectionOnly,\n"
+"QRadioButton:unchecked#detection_recognition{\n"
+"        color: solid black;\n"
+"}\n"
+"\n"
+"QPushButton#resetCounter_Button{\n"
+"    color:white;\n"
+"    background-color:#D9305C;\n"
+"    border-radius:2px;\n"
+"}\n"
+"QPushButton::pressed#resetCounter_Button{\n"
+"    color: white;\n"
+"    border-radius:2px;\n"
+"    background-color:#D9305C;\n"
+"    border-left:2px solid rgb(100,180,180);\n"
+"    border-top:2px solid rgb(100,180,180);\n"
+"}\n"
+"QLabel#detectionResult{\n"
+"    background-color: rgb(13, 193, 119);\n"
+"}\n"
+"QLabel#detectionTime{\n"
+"    background-color:#D2A4FF;\n"
+"}\n"
+"QLabel#lastNG_Image{\n"
+"    background-color: rgb(0, 0, 0);\n"
+"}\n"
 "#lastTenResult_Frame{\n"
 "    border:1px solid black;\n"
 "}\n"
 "#counterFrame{\n"
 "    border:1px solid black;\n"
+"}\n"
+"#detectionTime_debugLabel, #recognitionTime_debugLabel, #totalTime_debugLabel{\n"
+"    background-color:black;\n"
+"    color:white;\n"
+"}\n"
+"#circleWidget QPushButton{\n"
+"    background-color: white;\n"
+"    border: 1px solid red;    \n"
+"    border-radius:10px;\n"
+"    height:35px;    \n"
+"    width:35px;\n"
+"}\n"
+"#circleWidget QPushButton:pressed{\n"
+"    background-color: white;\n"
+"    border: 1px solid black;    \n"
+"    border-radius:10px;\n"
+"    height:35px;    \n"
+"    width:35px;\n"
 "}\n"
 "\n"
 "")
@@ -87,7 +347,7 @@ class Ui_MainWindow(object):
         self.detectionResult_Label.setObjectName("detectionResult_Label")
         self.verticalLayout_11.addWidget(self.detectionResult_Label)
         self.detectionResult = QtWidgets.QLabel(self.detectionResult_Frame)
-        self.detectionResult.setStyleSheet("background-color: rgb(13, 193, 119);")
+        self.detectionResult.setStyleSheet("")
         self.detectionResult.setText("")
         self.detectionResult.setObjectName("detectionResult")
         self.verticalLayout_11.addWidget(self.detectionResult)
@@ -107,7 +367,7 @@ class Ui_MainWindow(object):
         font.setBold(True)
         font.setWeight(75)
         self.detectionTime.setFont(font)
-        self.detectionTime.setStyleSheet("background-color:#D2A4FF;")
+        self.detectionTime.setStyleSheet("")
         self.detectionTime.setAlignment(QtCore.Qt.AlignCenter)
         self.detectionTime.setObjectName("detectionTime")
         self.verticalLayout_11.addWidget(self.detectionTime)
@@ -235,7 +495,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(4)
         self.lastNG_Image.setFont(font)
-        self.lastNG_Image.setStyleSheet("background-color: rgb(0, 0, 0);")
+        self.lastNG_Image.setStyleSheet("")
         self.lastNG_Image.setText("")
         self.lastNG_Image.setScaledContents(True)
         self.lastNG_Image.setObjectName("lastNG_Image")
@@ -286,28 +546,7 @@ class Ui_MainWindow(object):
         self.detectionOnly.setTabletTracking(False)
         self.detectionOnly.setAcceptDrops(False)
         self.detectionOnly.setAutoFillBackground(False)
-        self.detectionOnly.setStyleSheet("QRadioButton::indicator {\n"
-"    width:                  10px;\n"
-"    height:                 10px;\n"
-"    border-radius:          7px;\n"
-"}\n"
-"\n"
-"QRadioButton::indicator:checked {\n"
-"    background-color:       red;\n"
-"    border:                 2px solid black;\n"
-"}\n"
-"\n"
-"QRadioButton::indicator:unchecked {\n"
-"    background-color:       white;\n"
-"    border:                 2px solid black;\n"
-"\n"
-"}\n"
-"QRadioButton:checked {\n"
-"        color: #D9305C;\n"
-"}\n"
-"QRadioButton:unchecked {\n"
-"        color: solid black;\n"
-"}")
+        self.detectionOnly.setStyleSheet("")
         self.detectionOnly.setCheckable(True)
         self.detectionOnly.setChecked(False)
         self.detectionOnly.setObjectName("detectionOnly")
@@ -317,28 +556,7 @@ class Ui_MainWindow(object):
         font.setFamily("Arial")
         font.setPointSize(10)
         self.detection_recognition.setFont(font)
-        self.detection_recognition.setStyleSheet("QRadioButton::indicator {\n"
-"    width:                  10px;\n"
-"    height:                 10px;\n"
-"    border-radius:          7px;\n"
-"}\n"
-"\n"
-"QRadioButton::indicator:checked {\n"
-"    background-color:       red;\n"
-"    border:                 2px solid black;\n"
-"}\n"
-"\n"
-"QRadioButton::indicator:unchecked {\n"
-"    background-color:       white;\n"
-"    border:                 2px solid black;\n"
-"\n"
-"}\n"
-"QRadioButton:checked {\n"
-"        color: #D9305C;\n"
-"}\n"
-"QRadioButton:unchecked {\n"
-"        color: solid black;\n"
-"}")
+        self.detection_recognition.setStyleSheet("")
         self.detection_recognition.setObjectName("detection_recognition")
         self.verticalLayout_7.addWidget(self.detection_recognition)
         self.straightLine2 = QtWidgets.QFrame(self.systemSetting_Frame)
@@ -473,17 +691,7 @@ class Ui_MainWindow(object):
         font.setBold(False)
         font.setWeight(50)
         self.systemSetting_update_Button.setFont(font)
-        self.systemSetting_update_Button.setStyleSheet("QPushButton{\n"
-"    background-color: #019065;\n"
-"    color:white;\n"
-"    border:none;\n"
-"    border-radius:3px;\n"
-"}\n"
-"QPushButton:pressed{\n"
-"    background-color:#019065;\n"
-"    border-left:2px solid rgb(100,180,180);\n"
-"    border-top:2px solid rgb(100,180,180);\n"
-"}")
+        self.systemSetting_update_Button.setStyleSheet("")
         self.systemSetting_update_Button.setObjectName("systemSetting_update_Button")
         self.verticalLayout_7.addWidget(self.systemSetting_update_Button)
         self.verticalLayout_4.addWidget(self.systemSetting_Frame)
@@ -620,17 +828,7 @@ class Ui_MainWindow(object):
         font.setBold(False)
         font.setWeight(50)
         self.rejectSetting_updateButton.setFont(font)
-        self.rejectSetting_updateButton.setStyleSheet("QPushButton{\n"
-"    background-color: #019065;\n"
-"    color:white;\n"
-"    border:none;\n"
-"    border-radius:3px;\n"
-"}\n"
-"QPushButton:pressed{\n"
-"    background-color:#019065;\n"
-"    border-left:2px solid rgb(100,180,180);\n"
-"    border-top:2px solid rgb(100,180,180);\n"
-"}")
+        self.rejectSetting_updateButton.setStyleSheet("")
         self.rejectSetting_updateButton.setObjectName("rejectSetting_updateButton")
         self.verticalLayout_8.addWidget(self.rejectSetting_updateButton)
         self.verticalLayout_4.addWidget(self.rejectionSetting_Frame)
@@ -665,17 +863,7 @@ class Ui_MainWindow(object):
         font.setFamily("Arial")
         font.setPointSize(12)
         self.cameraSetting_Button.setFont(font)
-        self.cameraSetting_Button.setStyleSheet("QPushButton{\n"
-"    color:#D9305C;\n"
-"    border-top:1px solid#D9305C;\n"
-"    border-right:1px solid#D9305C;\n"
-"    border-top-left-radius:4px;\n"
-"    border-top-right-radius:4px;\n"
-"}\n"
-"\n"
-"\n"
-"\n"
-"")
+        self.cameraSetting_Button.setStyleSheet("")
         self.cameraSetting_Button.setCheckable(False)
         self.cameraSetting_Button.setChecked(False)
         self.cameraSetting_Button.setAutoDefault(False)
@@ -688,13 +876,7 @@ class Ui_MainWindow(object):
         font.setFamily("Arial")
         font.setPointSize(12)
         self.saveData_Button.setFont(font)
-        self.saveData_Button.setStyleSheet("QPushButton{\n"
-"    background-color: #eaeaea;\n"
-"    border:none;\n"
-"    border-top-left-radius:4px;\n"
-"    border-top-right-radius:4px;\n"
-"    border-bottom-right-radius:4px;\n"
-"}")
+        self.saveData_Button.setStyleSheet("")
         self.saveData_Button.setObjectName("saveData_Button")
         self.gridLayout_4.addWidget(self.saveData_Button, 0, 1, 1, 1)
         self.verticalLayout_9.addWidget(self.cameraSettingToogle_Frame)
@@ -829,6 +1011,12 @@ class Ui_MainWindow(object):
 "    background-color:#E8C6FD;\n"
 "    border-left:2px solid rgb(100,180,180);\n"
 "    border-top:2px solid rgb(100,180,180);\n"
+"}\n"
+"\n"
+"QPushButton:pressed{\n"
+"    background-color:#E8C6FD;\n"
+"    border-left:2px solid rgb(100,180,180);\n"
+"    border-top:2px solid rgb(100,180,180);\n"
 "}")
         self.openImage_Button.setObjectName("openImage_Button")
         self.gridLayout_6.addWidget(self.openImage_Button, 3, 1, 1, 1)
@@ -933,11 +1121,7 @@ class Ui_MainWindow(object):
         font.setFamily("Arial")
         font.setPointSize(11)
         self.chooseDirectory_Button.setFont(font)
-        self.chooseDirectory_Button.setStyleSheet("QPushButton{\n"
-"    color: white;\n"
-"    background-color:#263B90;\n"
-"    border-radius:2px;\n"
-"}")
+        self.chooseDirectory_Button.setStyleSheet("")
         self.chooseDirectory_Button.setObjectName("chooseDirectory_Button")
         self.gridLayout_8.addWidget(self.chooseDirectory_Button, 0, 1, 1, 1)
         self.directoryName_Entry = QtWidgets.QLineEdit(self.saveData_Page)
@@ -960,17 +1144,7 @@ class Ui_MainWindow(object):
         font.setBold(False)
         font.setWeight(50)
         self.cameraSetting_update_Button.setFont(font)
-        self.cameraSetting_update_Button.setStyleSheet("QPushButton{\n"
-"    background-color: #019065;\n"
-"    color:white;\n"
-"    border:none;\n"
-"    border-radius:3px;\n"
-"}\n"
-"QPushButton:pressed{\n"
-"    background-color:#019065;\n"
-"    border-left:2px solid rgb(100,180,180);\n"
-"    border-top:2px solid rgb(100,180,180);\n"
-"}")
+        self.cameraSetting_update_Button.setStyleSheet("")
         self.cameraSetting_update_Button.setObjectName("cameraSetting_update_Button")
         self.verticalLayout_9.addWidget(self.cameraSetting_update_Button)
         self.verticalLayout_4.addWidget(self.cameraSetting_Frame)
@@ -982,7 +1156,7 @@ class Ui_MainWindow(object):
         font.setFamily("Arial")
         font.setPointSize(54)
         self.imageWidget_Live.setFont(font)
-        self.imageWidget_Live.setStyleSheet("background-color: rgb(170, 85, 255);")
+        self.imageWidget_Live.setStyleSheet("")
         self.imageWidget_Live.setAlignment(QtCore.Qt.AlignCenter)
         self.imageWidget_Live.setObjectName("imageWidget_Live")
         self.gridLayout_7.addWidget(self.imageWidget_Live, 0, 1, 1, 1)
@@ -1011,10 +1185,7 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.frame_12.sizePolicy().hasHeightForWidth())
         self.frame_12.setSizePolicy(sizePolicy)
         self.frame_12.setMaximumSize(QtCore.QSize(181, 598))
-        self.frame_12.setStyleSheet("QPushButton{\n"
-"    border-radius:4px;\n"
-"    background-color:#F2F1F1;\n"
-"}")
+        self.frame_12.setStyleSheet("")
         self.frame_12.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_12.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_12.setObjectName("frame_12")
@@ -1112,42 +1283,18 @@ class Ui_MainWindow(object):
         self.verticalLayout_16.addWidget(self.frame_12)
         self.horizontalLayout_6.addWidget(self.createProject_Grid)
         self.editProject = QtWidgets.QStackedWidget(self.debugMode_Page)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.editProject.sizePolicy().hasHeightForWidth())
+        self.editProject.setSizePolicy(sizePolicy)
         self.editProject.setMinimumSize(QtCore.QSize(300, 0))
         self.editProject.setMaximumSize(QtCore.QSize(354, 16777215))
-        self.editProject.setStyleSheet("QPushButton{\n"
-"    border-radius:4px;\n"
-"}\n"
-"#cameraSettings_Frame{\n"
-"    border:1px solid black;\n"
-"}\n"
-"#augmentationSettings_Frame{\n"
-"    border:1px solid black;\n"
-"}\n"
-"#fabricationFrame{\n"
-"    border:1px solid black;\n"
-"}\n"
-"#trainingParameters_Frame{\n"
-"    border:1px solid black;\n"
-"}\n"
-"#testingParameters_Frame{\n"
-"    border:1px solid black;\n"
-"}\n"
-"#analysisSystem_Frame{\n"
-"    border:1px solid black;\n"
-"}\n"
-"#recognitionTraining_Frame{\n"
-"    border:1px solid black;\n"
-"}\n"
-"#recognitionTesting_Frame{\n"
-"    border:1px solid black;\n"
-"}\n"
-"#triggerSettings_Frame{\n"
-"    border:1px solid black;\n"
-"}")
+        self.editProject.setStyleSheet("")
         self.editProject.setObjectName("editProject")
         self.createProject_Page = QtWidgets.QWidget()
         self.createProject_Page.setMinimumSize(QtCore.QSize(0, 0))
-        self.createProject_Page.setStyleSheet("background-color:#f2f2f2;")
+        self.createProject_Page.setStyleSheet("")
         self.createProject_Page.setObjectName("createProject_Page")
         self.verticalLayout_17 = QtWidgets.QVBoxLayout(self.createProject_Page)
         self.verticalLayout_17.setContentsMargins(-1, 25, -1, 0)
@@ -1161,7 +1308,7 @@ class Ui_MainWindow(object):
         font.setBold(True)
         font.setWeight(75)
         self.step1_Label.setFont(font)
-        self.step1_Label.setStyleSheet("color:#125872;")
+        self.step1_Label.setStyleSheet("")
         self.step1_Label.setObjectName("step1_Label")
         self.verticalLayout_17.addWidget(self.step1_Label, 0, QtCore.Qt.AlignHCenter)
         self.line = QtWidgets.QFrame(self.createProject_Page)
@@ -1187,14 +1334,12 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.createButton.sizePolicy().hasHeightForWidth())
         self.createButton.setSizePolicy(sizePolicy)
         self.createButton.setMaximumSize(QtCore.QSize(136, 35))
-        self.createButton.setStyleSheet("background-color:#263B90;\n"
-"color:white;")
+        self.createButton.setStyleSheet("")
         self.createButton.setObjectName("createButton")
         self.horizontalLayout_8.addWidget(self.createButton)
         self.importButton = QtWidgets.QPushButton(self.frame_13)
         self.importButton.setMaximumSize(QtCore.QSize(119, 35))
-        self.importButton.setStyleSheet("background-color:#f2f2f2;\n"
-"border:1px solid;")
+        self.importButton.setStyleSheet("")
         self.importButton.setObjectName("importButton")
         self.horizontalLayout_8.addWidget(self.importButton)
         self.verticalLayout_17.addWidget(self.frame_13)
@@ -1202,9 +1347,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_17.addItem(spacerItem2)
         self.editProject.addWidget(self.createProject_Page)
         self.camera_Page = QtWidgets.QWidget()
-        self.camera_Page.setStyleSheet("background-color:#f2f2f2;\n"
-"\n"
-"")
+        self.camera_Page.setStyleSheet("")
         self.camera_Page.setObjectName("camera_Page")
         self.verticalLayout_18 = QtWidgets.QVBoxLayout(self.camera_Page)
         self.verticalLayout_18.setContentsMargins(-1, 25, -1, -1)
@@ -1218,7 +1361,7 @@ class Ui_MainWindow(object):
         font.setBold(True)
         font.setWeight(75)
         self.step2_Label.setFont(font)
-        self.step2_Label.setStyleSheet("color:#125872;")
+        self.step2_Label.setStyleSheet("")
         self.step2_Label.setObjectName("step2_Label")
         self.verticalLayout_18.addWidget(self.step2_Label, 0, QtCore.Qt.AlignHCenter)
         self.step2_line = QtWidgets.QFrame(self.camera_Page)
@@ -1237,28 +1380,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_19.setObjectName("verticalLayout_19")
         self.triggerSettings_Frame = QtWidgets.QFrame(self.frame_5)
         self.triggerSettings_Frame.setMaximumSize(QtCore.QSize(16777215, 54))
-        self.triggerSettings_Frame.setStyleSheet("QRadioButton::indicator {\n"
-"    width:                  10px;\n"
-"    height:                 10px;\n"
-"    border-radius:          7px;\n"
-"}\n"
-"\n"
-"QRadioButton::indicator:checked {\n"
-"    background-color:       red;\n"
-"    border:                 2px solid black;\n"
-"}\n"
-"\n"
-"QRadioButton::indicator:unchecked {\n"
-"    background-color:       white;\n"
-"    border:                 2px solid black;\n"
-"\n"
-"}\n"
-"QRadioButton:checked {\n"
-"        color: #D9305C;\n"
-"}\n"
-"QRadioButton:unchecked {\n"
-"        color: solid black;\n"
-"}")
+        self.triggerSettings_Frame.setStyleSheet("")
         self.triggerSettings_Frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.triggerSettings_Frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.triggerSettings_Frame.setObjectName("triggerSettings_Frame")
@@ -1267,18 +1389,18 @@ class Ui_MainWindow(object):
         self.gridLayout_2.setHorizontalSpacing(4)
         self.gridLayout_2.setVerticalSpacing(3)
         self.gridLayout_2.setObjectName("gridLayout_2")
-        self.cameraSettings_Label_2 = QtWidgets.QLabel(self.triggerSettings_Frame)
-        self.cameraSettings_Label_2.setMaximumSize(QtCore.QSize(16777215, 20))
+        self.triggerSettings_Label = QtWidgets.QLabel(self.triggerSettings_Frame)
+        self.triggerSettings_Label.setMaximumSize(QtCore.QSize(16777215, 20))
         font = QtGui.QFont()
         font.setFamily("Arial")
         font.setPointSize(10)
         font.setBold(False)
         font.setUnderline(True)
         font.setWeight(50)
-        self.cameraSettings_Label_2.setFont(font)
-        self.cameraSettings_Label_2.setStyleSheet("color:#263B90;")
-        self.cameraSettings_Label_2.setObjectName("cameraSettings_Label_2")
-        self.gridLayout_2.addWidget(self.cameraSettings_Label_2, 0, 0, 1, 1)
+        self.triggerSettings_Label.setFont(font)
+        self.triggerSettings_Label.setStyleSheet("")
+        self.triggerSettings_Label.setObjectName("triggerSettings_Label")
+        self.gridLayout_2.addWidget(self.triggerSettings_Label, 0, 0, 1, 1)
         self.software_radioButton = QtWidgets.QRadioButton(self.triggerSettings_Frame)
         font = QtGui.QFont()
         font.setFamily("Arial")
@@ -1306,13 +1428,13 @@ class Ui_MainWindow(object):
         self.gridLayout_2.addWidget(self.hardware_radioButton, 1, 2, 1, 1)
         self.verticalLayout_19.addWidget(self.triggerSettings_Frame)
         self.cameraSettings_Frame = QtWidgets.QFrame(self.frame_5)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.cameraSettings_Frame.sizePolicy().hasHeightForWidth())
+        self.cameraSettings_Frame.setSizePolicy(sizePolicy)
         self.cameraSettings_Frame.setMaximumSize(QtCore.QSize(16777215, 151))
-        self.cameraSettings_Frame.setStyleSheet("QPushButton{\n"
-"    color:white;\n"
-"    background-color:#263B90;\n"
-"    font-family: Arial;\n"
-"    font-size:10pt;\n"
-"}")
+        self.cameraSettings_Frame.setStyleSheet("")
         self.cameraSettings_Frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.cameraSettings_Frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.cameraSettings_Frame.setObjectName("cameraSettings_Frame")
@@ -1398,7 +1520,7 @@ class Ui_MainWindow(object):
         font.setUnderline(True)
         font.setWeight(50)
         self.cameraSettings_Label.setFont(font)
-        self.cameraSettings_Label.setStyleSheet("color:#263B90;")
+        self.cameraSettings_Label.setStyleSheet("")
         self.cameraSettings_Label.setObjectName("cameraSettings_Label")
         self.gridLayout_10.addWidget(self.cameraSettings_Label, 0, 0, 1, 1)
         self.setParameter_Button = QtWidgets.QPushButton(self.cameraSettings_Frame)
@@ -1452,32 +1574,29 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.deleteImage_Button.sizePolicy().hasHeightForWidth())
         self.deleteImage_Button.setSizePolicy(sizePolicy)
         self.deleteImage_Button.setMaximumSize(QtCore.QSize(112, 30))
-        self.deleteImage_Button.setStyleSheet("QPushButton{\n"
-"    color:white;\n"
-"    background-color:#EF1B79;\n"
-"    border-radius:4px;\n"
-"}")
-        icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("./gui/ui\\../../LOGO/bin.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.deleteImage_Button.setIcon(icon)
+        self.deleteImage_Button.setStyleSheet("")
         self.deleteImage_Button.setIconSize(QtCore.QSize(20, 20))
         self.deleteImage_Button.setObjectName("deleteImage_Button")
         self.horizontalLayout_10.addWidget(self.deleteImage_Button)
         self.verticalLayout_19.addWidget(self.frame_11)
         self.captureButton = QtWidgets.QPushButton(self.frame_5)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.captureButton.sizePolicy().hasHeightForWidth())
+        self.captureButton.setSizePolicy(sizePolicy)
+        self.captureButton.setMaximumSize(QtCore.QSize(100, 16777215))
+        self.captureButton.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.captureButton.setText("")
-        icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("./gui/ui\\../../LOGO/capture.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.captureButton.setIcon(icon1)
         self.captureButton.setIconSize(QtCore.QSize(80, 80))
         self.captureButton.setObjectName("captureButton")
-        self.verticalLayout_19.addWidget(self.captureButton)
+        self.verticalLayout_19.addWidget(self.captureButton, 0, QtCore.Qt.AlignHCenter)
         self.verticalLayout_18.addWidget(self.frame_5)
         spacerItem3 = QtWidgets.QSpacerItem(20, 185, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Preferred)
         self.verticalLayout_18.addItem(spacerItem3)
         self.editProject.addWidget(self.camera_Page)
         self.dataProcessing_Page = QtWidgets.QWidget()
-        self.dataProcessing_Page.setStyleSheet("background-color:#f2f2f2;")
+        self.dataProcessing_Page.setStyleSheet("")
         self.dataProcessing_Page.setObjectName("dataProcessing_Page")
         self.verticalLayout_20 = QtWidgets.QVBoxLayout(self.dataProcessing_Page)
         self.verticalLayout_20.setContentsMargins(-1, 25, -1, 0)
@@ -1491,7 +1610,7 @@ class Ui_MainWindow(object):
         font.setBold(True)
         font.setWeight(75)
         self.step3_Label.setFont(font)
-        self.step3_Label.setStyleSheet("color:#125872;")
+        self.step3_Label.setStyleSheet("")
         self.step3_Label.setAlignment(QtCore.Qt.AlignCenter)
         self.step3_Label.setObjectName("step3_Label")
         self.verticalLayout_20.addWidget(self.step3_Label)
@@ -1519,10 +1638,10 @@ class Ui_MainWindow(object):
         self.horizontalLayout_11.addWidget(self.dataLabelingLabel)
         self.detection_labelingButton = QtWidgets.QPushButton(self.frame_6)
         self.detection_labelingButton.setText("")
-        icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap("./gui/ui\\../../LOGO/labeling.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.detection_labelingButton.setIcon(icon2)
         self.detection_labelingButton.setIconSize(QtCore.QSize(50, 50))
+        self.detection_labelingButton.setAutoDefault(False)
+        self.detection_labelingButton.setDefault(False)
+        self.detection_labelingButton.setFlat(False)
         self.detection_labelingButton.setObjectName("detection_labelingButton")
         self.horizontalLayout_11.addWidget(self.detection_labelingButton, 0, QtCore.Qt.AlignRight)
         self.verticalLayout_20.addWidget(self.frame_6)
@@ -1545,7 +1664,7 @@ class Ui_MainWindow(object):
         font.setUnderline(True)
         font.setWeight(50)
         self.fabricationParameterLabel.setFont(font)
-        self.fabricationParameterLabel.setStyleSheet("color:#263B90;")
+        self.fabricationParameterLabel.setStyleSheet("")
         self.fabricationParameterLabel.setObjectName("fabricationParameterLabel")
         self.verticalLayout_22.addWidget(self.fabricationParameterLabel)
         self.frame_21 = QtWidgets.QFrame(self.fabricationFrame)
@@ -1568,11 +1687,7 @@ class Ui_MainWindow(object):
         font.setFamily("Arial")
         font.setPointSize(10)
         self.fabricationButton.setFont(font)
-        self.fabricationButton.setStyleSheet("QPushButton{\n"
-"    color:white;\n"
-"    background-color:#263B90;\n"
-"    border-radius:4px;\n"
-"}")
+        self.fabricationButton.setStyleSheet("")
         self.fabricationButton.setObjectName("fabricationButton")
         self.horizontalLayout_15.addWidget(self.fabricationButton)
         self.verticalLayout_22.addWidget(self.frame_21)
@@ -1597,7 +1712,7 @@ class Ui_MainWindow(object):
         font.setUnderline(True)
         font.setWeight(50)
         self.augmenationSettings_Label.setFont(font)
-        self.augmenationSettings_Label.setStyleSheet("color:#263B90;")
+        self.augmenationSettings_Label.setStyleSheet("")
         self.augmenationSettings_Label.setObjectName("augmenationSettings_Label")
         self.verticalLayout_21.addWidget(self.augmenationSettings_Label)
         self.frame_18 = QtWidgets.QFrame(self.augmentationSettings_Frame)
@@ -1760,6 +1875,11 @@ class Ui_MainWindow(object):
         self.horizontalLayout_12.addWidget(self.frame_17)
         self.verticalLayout_21.addWidget(self.frame_18)
         self.frame_19 = QtWidgets.QFrame(self.augmentationSettings_Frame)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.frame_19.sizePolicy().hasHeightForWidth())
+        self.frame_19.setSizePolicy(sizePolicy)
         self.frame_19.setMaximumSize(QtCore.QSize(16777215, 32))
         self.frame_19.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_19.setFrameShadow(QtWidgets.QFrame.Raised)
@@ -1781,11 +1901,7 @@ class Ui_MainWindow(object):
         font.setFamily("Arial")
         font.setPointSize(10)
         self.augmentationButton.setFont(font)
-        self.augmentationButton.setStyleSheet("QPushButton{\n"
-"    color:white;\n"
-"    background-color:#263B90;\n"
-"    border-radius:4px;\n"
-"}")
+        self.augmentationButton.setStyleSheet("")
         self.augmentationButton.setObjectName("augmentationButton")
         self.horizontalLayout_13.addWidget(self.augmentationButton)
         self.verticalLayout_21.addWidget(self.frame_19)
@@ -1796,10 +1912,7 @@ class Ui_MainWindow(object):
         font.setFamily("Arial")
         font.setPointSize(10)
         self.groupBox.setFont(font)
-        self.groupBox.setStyleSheet("QGroupBox::title{\n"
-"    color:red\n"
-";\n"
-"}")
+        self.groupBox.setStyleSheet("")
         self.groupBox.setObjectName("groupBox")
         self.verticalLayout_26 = QtWidgets.QVBoxLayout(self.groupBox)
         self.verticalLayout_26.setContentsMargins(0, 0, 0, 1)
@@ -1818,7 +1931,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_20.addItem(spacerItem6)
         self.editProject.addWidget(self.dataProcessing_Page)
         self.detection_Page = QtWidgets.QWidget()
-        self.detection_Page.setStyleSheet("background-color:#f2f2f2;")
+        self.detection_Page.setStyleSheet("")
         self.detection_Page.setObjectName("detection_Page")
         self.verticalLayout_23 = QtWidgets.QVBoxLayout(self.detection_Page)
         self.verticalLayout_23.setContentsMargins(-1, 25, -1, 0)
@@ -1832,7 +1945,7 @@ class Ui_MainWindow(object):
         font.setBold(True)
         font.setWeight(75)
         self.step4_Label.setFont(font)
-        self.step4_Label.setStyleSheet("color:#125872;")
+        self.step4_Label.setStyleSheet("")
         self.step4_Label.setAlignment(QtCore.Qt.AlignCenter)
         self.step4_Label.setObjectName("step4_Label")
         self.verticalLayout_23.addWidget(self.step4_Label)
@@ -1859,7 +1972,7 @@ class Ui_MainWindow(object):
         font.setUnderline(True)
         font.setWeight(50)
         self.trainingParameter_Label.setFont(font)
-        self.trainingParameter_Label.setStyleSheet("color:#263B90;")
+        self.trainingParameter_Label.setStyleSheet("")
         self.trainingParameter_Label.setObjectName("trainingParameter_Label")
         self.verticalLayout_24.addWidget(self.trainingParameter_Label)
         self.pretrainedWeight_Checkbutton = QtWidgets.QCheckBox(self.trainingParameters_Frame)
@@ -1910,11 +2023,7 @@ class Ui_MainWindow(object):
         self.detectionTrainButton = QtWidgets.QPushButton(self.frame_22)
         self.detectionTrainButton.setMinimumSize(QtCore.QSize(0, 0))
         self.detectionTrainButton.setMaximumSize(QtCore.QSize(16777215, 30))
-        self.detectionTrainButton.setStyleSheet("QPushButton{\n"
-"    color:white;\n"
-"    background-color:#263B90;\n"
-"    border-radius:4px;\n"
-"}")
+        self.detectionTrainButton.setStyleSheet("")
         self.detectionTrainButton.setObjectName("detectionTrainButton")
         self.horizontalLayout_18.addWidget(self.detectionTrainButton)
         self.verticalLayout_24.addWidget(self.frame_22)
@@ -1939,7 +2048,7 @@ class Ui_MainWindow(object):
         font.setUnderline(True)
         font.setWeight(50)
         self.testingParameterLabel.setFont(font)
-        self.testingParameterLabel.setStyleSheet("color:#263B90;")
+        self.testingParameterLabel.setStyleSheet("")
         self.testingParameterLabel.setObjectName("testingParameterLabel")
         self.verticalLayout_25.addWidget(self.testingParameterLabel)
         self.saveDetectionCheckbutton_debug = QtWidgets.QCheckBox(self.testingParameters_Frame)
@@ -1952,11 +2061,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_25.addWidget(self.saveDetectionCheckbutton_debug)
         self.detection_testButton = QtWidgets.QPushButton(self.testingParameters_Frame)
         self.detection_testButton.setMaximumSize(QtCore.QSize(16777215, 30))
-        self.detection_testButton.setStyleSheet("QPushButton{\n"
-"    color:white;\n"
-"    background-color:#BA77FC;\n"
-"    border-radius:4px;\n"
-"}")
+        self.detection_testButton.setStyleSheet("")
         self.detection_testButton.setObjectName("detection_testButton")
         self.verticalLayout_25.addWidget(self.detection_testButton)
         self.verticalLayout_23.addWidget(self.testingParameters_Frame)
@@ -1964,7 +2069,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_23.addItem(spacerItem9)
         self.editProject.addWidget(self.detection_Page)
         self.recognition_Page = QtWidgets.QWidget()
-        self.recognition_Page.setStyleSheet("background-color:#f2f2f2;")
+        self.recognition_Page.setStyleSheet("")
         self.recognition_Page.setObjectName("recognition_Page")
         self.verticalLayout_27 = QtWidgets.QVBoxLayout(self.recognition_Page)
         self.verticalLayout_27.setContentsMargins(-1, 25, -1, -1)
@@ -1978,7 +2083,7 @@ class Ui_MainWindow(object):
         font.setBold(True)
         font.setWeight(75)
         self.step5_Label.setFont(font)
-        self.step5_Label.setStyleSheet("color:#125872;")
+        self.step5_Label.setStyleSheet("")
         self.step5_Label.setAlignment(QtCore.Qt.AlignCenter)
         self.step5_Label.setObjectName("step5_Label")
         self.verticalLayout_27.addWidget(self.step5_Label)
@@ -2006,7 +2111,9 @@ class Ui_MainWindow(object):
         self.recognitionLabeling_Button = QtWidgets.QPushButton(self.frame_23)
         self.recognitionLabeling_Button.setMaximumSize(QtCore.QSize(31, 16777215))
         self.recognitionLabeling_Button.setText("")
-        self.recognitionLabeling_Button.setIcon(icon2)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("./gui/ui\\../../LOGO/labeling.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.recognitionLabeling_Button.setIcon(icon)
         self.recognitionLabeling_Button.setIconSize(QtCore.QSize(50, 50))
         self.recognitionLabeling_Button.setObjectName("recognitionLabeling_Button")
         self.horizontalLayout_16.addWidget(self.recognitionLabeling_Button, 0, QtCore.Qt.AlignRight)
@@ -2028,7 +2135,7 @@ class Ui_MainWindow(object):
         font.setUnderline(True)
         font.setWeight(50)
         self.recognitionTrainingParameter_Label.setFont(font)
-        self.recognitionTrainingParameter_Label.setStyleSheet("color:#263B90;")
+        self.recognitionTrainingParameter_Label.setStyleSheet("")
         self.recognitionTrainingParameter_Label.setObjectName("recognitionTrainingParameter_Label")
         self.verticalLayout_28.addWidget(self.recognitionTrainingParameter_Label)
         self.recognitionPretrainedWeight_Checkbox = QtWidgets.QCheckBox(self.recognitionTraining_Frame)
@@ -2078,11 +2185,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_21.addItem(spacerItem10)
         self.recognitionTraining_Button = QtWidgets.QPushButton(self.frame_27)
         self.recognitionTraining_Button.setMaximumSize(QtCore.QSize(16777215, 30))
-        self.recognitionTraining_Button.setStyleSheet("QPushButton{\n"
-"    color:white;\n"
-"    background-color:#263B90;\n"
-"    border-radius:4px;\n"
-"}")
+        self.recognitionTraining_Button.setStyleSheet("")
         self.recognitionTraining_Button.setObjectName("recognitionTraining_Button")
         self.horizontalLayout_21.addWidget(self.recognitionTraining_Button)
         self.verticalLayout_28.addWidget(self.frame_27)
@@ -2106,7 +2209,7 @@ class Ui_MainWindow(object):
         font.setUnderline(True)
         font.setWeight(50)
         self.recognitionTestingParameter_Label.setFont(font)
-        self.recognitionTestingParameter_Label.setStyleSheet("color:#263B90;")
+        self.recognitionTestingParameter_Label.setStyleSheet("")
         self.recognitionTestingParameter_Label.setObjectName("recognitionTestingParameter_Label")
         self.verticalLayout_29.addWidget(self.recognitionTestingParameter_Label)
         self.saveRecognitionResults_Checkbox = QtWidgets.QCheckBox(self.recognitionTesting_Frame)
@@ -2119,11 +2222,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_29.addWidget(self.saveRecognitionResults_Checkbox)
         self.recognitionTesting_Button = QtWidgets.QPushButton(self.recognitionTesting_Frame)
         self.recognitionTesting_Button.setMaximumSize(QtCore.QSize(16777215, 30))
-        self.recognitionTesting_Button.setStyleSheet("QPushButton{\n"
-"    color:white;\n"
-"    background-color:#BA77FC;\n"
-"    border-radius:4px;\n"
-"}")
+        self.recognitionTesting_Button.setStyleSheet("")
         self.recognitionTesting_Button.setObjectName("recognitionTesting_Button")
         self.verticalLayout_29.addWidget(self.recognitionTesting_Button)
         self.verticalLayout_27.addWidget(self.recognitionTesting_Frame)
@@ -2131,8 +2230,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_27.addItem(spacerItem12)
         self.editProject.addWidget(self.recognition_Page)
         self.analysis_Page = QtWidgets.QWidget()
-        self.analysis_Page.setStyleSheet("background-color:#f2f2f2;\n"
-"")
+        self.analysis_Page.setStyleSheet("")
         self.analysis_Page.setObjectName("analysis_Page")
         self.verticalLayout_33 = QtWidgets.QVBoxLayout(self.analysis_Page)
         self.verticalLayout_33.setContentsMargins(-1, 25, -1, 0)
@@ -2146,7 +2244,7 @@ class Ui_MainWindow(object):
         font.setBold(True)
         font.setWeight(75)
         self.step6_Label.setFont(font)
-        self.step6_Label.setStyleSheet("color:#125872;")
+        self.step6_Label.setStyleSheet("")
         self.step6_Label.setAlignment(QtCore.Qt.AlignCenter)
         self.step6_Label.setObjectName("step6_Label")
         self.verticalLayout_33.addWidget(self.step6_Label)
@@ -2178,7 +2276,7 @@ class Ui_MainWindow(object):
         font.setUnderline(True)
         font.setWeight(50)
         self.systemSettings_Label_debug.setFont(font)
-        self.systemSettings_Label_debug.setStyleSheet("color:#263B90;")
+        self.systemSettings_Label_debug.setStyleSheet("")
         self.systemSettings_Label_debug.setObjectName("systemSettings_Label_debug")
         self.verticalLayout_32.addWidget(self.systemSettings_Label_debug)
         self.frame_29 = QtWidgets.QFrame(self.analysisSystem_Frame)
@@ -2251,8 +2349,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Arial")
         self.no_ofLine_comboBox_debug.setFont(font)
-        self.no_ofLine_comboBox_debug.setStyleSheet("border:1px solid black;\n"
-"border-radius: 3px;")
+        self.no_ofLine_comboBox_debug.setStyleSheet("")
         self.no_ofLine_comboBox_debug.setFrame(True)
         self.no_ofLine_comboBox_debug.setObjectName("no_ofLine_comboBox_debug")
         self.no_ofLine_comboBox_debug.addItem("")
@@ -2310,17 +2407,7 @@ class Ui_MainWindow(object):
         font.setBold(False)
         font.setWeight(50)
         self.systemSetting_update_Button_debug.setFont(font)
-        self.systemSetting_update_Button_debug.setStyleSheet("QPushButton{\n"
-"    background-color: #019065;\n"
-"    color:white;\n"
-"    border:none;\n"
-"    border-radius:3px;\n"
-"}\n"
-"QPushButton:pressed{\n"
-"    background-color:#019065;\n"
-"    border-left:2px solid rgb(100,180,180);\n"
-"    border-top:2px solid rgb(100,180,180);\n"
-"}")
+        self.systemSetting_update_Button_debug.setStyleSheet("")
         self.systemSetting_update_Button_debug.setObjectName("systemSetting_update_Button_debug")
         self.verticalLayout_32.addWidget(self.systemSetting_update_Button_debug)
         self.verticalLayout_33.addWidget(self.analysisSystem_Frame)
@@ -2328,11 +2415,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_33.addItem(spacerItem13)
         self.analysisTest_Button = QtWidgets.QPushButton(self.analysis_Page)
         self.analysisTest_Button.setMaximumSize(QtCore.QSize(16777215, 30))
-        self.analysisTest_Button.setStyleSheet("QPushButton{\n"
-"    color:white;\n"
-"    background-color:#BA77FC;\n"
-"    border-radius:4px;\n"
-"}")
+        self.analysisTest_Button.setStyleSheet("")
         self.analysisTest_Button.setObjectName("analysisTest_Button")
         self.verticalLayout_33.addWidget(self.analysisTest_Button)
         spacerItem14 = QtWidgets.QSpacerItem(20, 321, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
@@ -2354,7 +2437,7 @@ class Ui_MainWindow(object):
         font.setFamily("Arial")
         font.setPointSize(48)
         self.imageWidget_Debug.setFont(font)
-        self.imageWidget_Debug.setStyleSheet("background-color: rgb(170, 85, 255);")
+        self.imageWidget_Debug.setStyleSheet("")
         self.imageWidget_Debug.setLineWidth(1)
         self.imageWidget_Debug.setScaledContents(True)
         self.imageWidget_Debug.setAlignment(QtCore.Qt.AlignCenter)
@@ -2362,18 +2445,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_34.addWidget(self.imageWidget_Debug)
         self.timeFrame = QtWidgets.QFrame(self.frame_28)
         self.timeFrame.setMaximumSize(QtCore.QSize(16777215, 20))
-        self.timeFrame.setStyleSheet("#detectionTime_debugLabel{\n"
-"    background-color:black;\n"
-"    color:white;\n"
-"}\n"
-"#recognitionTime_debugLabel{\n"
-"    background-color:black;\n"
-"    color:white;\n"
-"}\n"
-"#totalTime_debugLabel{\n"
-"    background-color:black;\n"
-"    color:white;\n"
-"}")
+        self.timeFrame.setStyleSheet("")
         self.timeFrame.setFrameShape(QtWidgets.QFrame.NoFrame)
         self.timeFrame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.timeFrame.setObjectName("timeFrame")
@@ -2410,8 +2482,13 @@ class Ui_MainWindow(object):
         self.stackWidget.addWidget(self.debugMode_Page)
         self.gridLayout_5.addWidget(self.stackWidget, 1, 0, 1, 1)
         self.topGrid = QtWidgets.QWidget(self.centralwidget)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.topGrid.sizePolicy().hasHeightForWidth())
+        self.topGrid.setSizePolicy(sizePolicy)
         self.topGrid.setMinimumSize(QtCore.QSize(0, 0))
-        self.topGrid.setMaximumSize(QtCore.QSize(16777215, 90))
+        self.topGrid.setMaximumSize(QtCore.QSize(16777215, 78))
         self.topGrid.setMouseTracking(True)
         self.topGrid.setStyleSheet("")
         self.topGrid.setObjectName("topGrid")
@@ -2441,9 +2518,7 @@ class Ui_MainWindow(object):
         self.comboBox.setSizePolicy(sizePolicy)
         self.comboBox.setMinimumSize(QtCore.QSize(100, 0))
         self.comboBox.setMaximumSize(QtCore.QSize(164, 27))
-        self.comboBox.setStyleSheet("border:1px solid black;\n"
-"border-radius:4px;\n"
-"")
+        self.comboBox.setStyleSheet("")
         self.comboBox.setObjectName("comboBox")
         self.verticalLayout_2.addWidget(self.comboBox)
         self.findCamera_Button = QtWidgets.QPushButton(self.frame_33)
@@ -2509,7 +2584,7 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.on_offFrame.sizePolicy().hasHeightForWidth())
         self.on_offFrame.setSizePolicy(sizePolicy)
         self.on_offFrame.setMaximumSize(QtCore.QSize(195, 40))
-        self.on_offFrame.setStyleSheet("border-color:#EF1B79;")
+        self.on_offFrame.setStyleSheet("")
         self.on_offFrame.setFrameShape(QtWidgets.QFrame.Panel)
         self.on_offFrame.setFrameShadow(QtWidgets.QFrame.Plain)
         self.on_offFrame.setLineWidth(2)
@@ -2527,15 +2602,7 @@ class Ui_MainWindow(object):
         font.setBold(True)
         font.setWeight(75)
         self.onButton.setFont(font)
-        self.onButton.setStyleSheet("QPushButton{\n"
-"    background-color: white;\n"
-"    border:none;\n"
-"}\n"
-"QPushButton:pressed{\n"
-"    border-top:2px solid black;\n"
-"    border-left: 2px solid black;\n"
-"}\n"
-"")
+        self.onButton.setStyleSheet("")
         self.onButton.setAutoDefault(False)
         self.onButton.setFlat(False)
         self.onButton.setObjectName("onButton")
@@ -2548,17 +2615,7 @@ class Ui_MainWindow(object):
         font.setBold(True)
         font.setWeight(75)
         self.offButton.setFont(font)
-        self.offButton.setStyleSheet("QPushButton{\n"
-"    background: #EF1B79;\n"
-"    color:white;\n"
-"    border:none;\n"
-"}\n"
-"QPushButton:pressed{\n"
-"    border-left:2px solid black;\n"
-"    border-top:2px solid black;\n"
-"}\n"
-"    \n"
-"")
+        self.offButton.setStyleSheet("")
         self.offButton.setAutoDefault(False)
         self.offButton.setDefault(False)
         self.offButton.setFlat(False)
@@ -2594,15 +2651,7 @@ class Ui_MainWindow(object):
         font.setBold(False)
         font.setWeight(50)
         self.switchButton.setFont(font)
-        self.switchButton.setStyleSheet("QPushButton{\n"
-"    background-color: rgb(238, 237, 237);\n"
-"    border:none;\n"
-"}\n"
-"QPushButton:pressed{\n"
-"    background-color: rgb(238, 237, 237);\n"
-"    border-left:2px solid rgb(100,180,180);\n"
-"    border-top:2px solid rgb(100,180,180);\n"
-"}")
+        self.switchButton.setStyleSheet("")
         self.switchButton.setCheckable(True)
         self.switchButton.setAutoDefault(True)
         self.switchButton.setFlat(False)
@@ -2643,10 +2692,14 @@ class Ui_MainWindow(object):
         spacerItem18 = QtWidgets.QSpacerItem(398, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_20.addItem(spacerItem18)
         self.crimsonLogo = QtWidgets.QLabel(self.topGrid)
-        self.crimsonLogo.setMaximumSize(QtCore.QSize(176, 59))
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.MinimumExpanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.crimsonLogo.sizePolicy().hasHeightForWidth())
+        self.crimsonLogo.setSizePolicy(sizePolicy)
+        self.crimsonLogo.setMaximumSize(QtCore.QSize(123, 51))
         self.crimsonLogo.setText("")
-        self.crimsonLogo.setPixmap(QtGui.QPixmap("./gui/ui\\../../LOGO/crimson_logo.png"))
-        self.crimsonLogo.setScaledContents(True)
+        self.crimsonLogo.setScaledContents(False)
         self.crimsonLogo.setObjectName("crimsonLogo")
         self.horizontalLayout_20.addWidget(self.crimsonLogo)
         self.gridLayout_5.addWidget(self.topGrid, 0, 0, 1, 1)
@@ -2722,7 +2775,7 @@ class Ui_MainWindow(object):
         self.createButton.setText(_translate("MainWindow", "Create"))
         self.importButton.setText(_translate("MainWindow", "Import"))
         self.step2_Label.setText(_translate("MainWindow", "Step 2: Camera Operations"))
-        self.cameraSettings_Label_2.setText(_translate("MainWindow", "Trigger Settings"))
+        self.triggerSettings_Label.setText(_translate("MainWindow", "Trigger Settings"))
         self.software_radioButton.setText(_translate("MainWindow", "Software "))
         self.continuous_radioButton.setText(_translate("MainWindow", "Continuous "))
         self.hardware_radioButton.setText(_translate("MainWindow", "Hardware "))
@@ -2797,6 +2850,7 @@ class Ui_MainWindow(object):
         self.switchButton.setText(_translate("MainWindow", "Live"))
         self.activeProject.setText(_translate("MainWindow", "Active Project"))
         self.projectName.setText(_translate("MainWindow", "EXAMPLE"))
+from gui import resources_rc
 
 
 if __name__ == "__main__":

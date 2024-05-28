@@ -47,7 +47,7 @@ def object_detection_yolo(model,numArray):
                     cv2.line(annotated_img, points[j], points[(j + 1) % 4], (0, 255, 0), 2)
 
                 # Put the custom label text near the bounding box
-                cv2.putText(annotated_img, custom_label, (x1-50, y1 - 90), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 255, 0), 2)
+                cv2.putText(annotated_img, custom_label, (x1-100, y1 - 200), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 255, 0), 2)
 
             # Ensure that the image is in BGR format for OpenCV
             if annotated_img.shape[2] == 3:  # if the image has 3 channels

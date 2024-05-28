@@ -1,7 +1,7 @@
 import sys
-from PyQt5.QtWidgets import QMainWindow
+from PyQt5.QtWidgets import QMainWindow, QApplication
 from Custom_Widgets import *
-from PyQt5 import QtCore, QtGui, QtWidgets 
+from PyQt5 import QtCore, QtGui, QtWidgets
 from camera_interface.camera import MachineVisionCamera
 from controller.gui_operations import PyQTWidgetFunction
 from controller.live_operations import LiveOperationFunction
@@ -52,8 +52,9 @@ if __name__=="__main__":
     camera.ui_update_callback =  gui_operations.update_live_gui_with_based_on_result
     loadJsonStyle(ui, gui_operations)
     ui.closeEvent = camera.close_device
+    ui.update()
+    QApplication.processEvents()
     ui.show()
-
     sys.exit(app.exec_())
 
     

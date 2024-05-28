@@ -142,7 +142,9 @@ class PyQTWidgetFunction(Ui_MainWindow):
             self.live.display_last_NG(image)
             self.notGoodCount.setText(str(self.live.live_mode_param['not_good']))
             self.live.last_ng_time(0,'0')
-            self.live.red_blinking()  
+            self.live.red_blinking()
+            # self.update()
+            # self.main_window.update()  
         else:
             status = 'good'
             self.live.live_mode_param['good'] += 1
@@ -150,7 +152,8 @@ class PyQTWidgetFunction(Ui_MainWindow):
             self.goodCount.setText(str(self.live.live_mode_param['good']))
             self.lastNG_Count.setText(str(self.live.live_mode_param['last_not_good_count']))
             self.live.blue_blinking()
-        
+            # self.update()
+            # QApplication.processEvents()
         current_image_info = {'image': deepcopy(image), 'status': status}
         self.live.live_mode_param['last_ten_result'] = [current_image_info] +  self.live.live_mode_param['last_ten_result']
         if len(self.live.live_mode_param['last_ten_result']) > 10: # removing the previous results if there are more than ten circles

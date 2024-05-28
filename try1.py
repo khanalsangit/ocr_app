@@ -8,7 +8,7 @@ import time
 
 from PyQt5.QtWidgets import QMainWindow
 from PyQt5 import QtWidgets, QtCore, QtGui
-import ultralytics.yolo
+# import ultralytics.yolo
 from gui.pyUIdesign import Ui_MainWindow
 from Custom_Widgets import *
 from Custom_Widgets import *
@@ -37,35 +37,37 @@ def test_callback(numArray):
     # numArray = cv2.putText(numArray, 'OpenCV', (50, 50), fontFace=cv2.FONT_HERSHEY_SIMPLEX ,  
     #                 fontScale=1, color = (255, 0, 0) , thickness = 2, lineType=cv2.LINE_AA) 
     
-    from ultralytics.yolo.engine.results import Results
-    from ultralytics.yolo.utils.plotting import Annotator, colors
+    # from ultralytics.yolo.engine.results import Results
+    # from ultralytics.yolo.utils.plotting import Annotator, colors
     from ultralytics import YOLO
     import numpy as np 
     
-    annotator = Annotator(
-        numArray,
-        line_width=None,
-        font_size=None,
-        font="Arial.ttf",
-        pil=False
-    )
+    # annotator = Annotator(
+    #     numArray,
+    #     line_width=None,
+    #     font_size=None,
+    #     font="Arial.ttf",
+    # #     pil=False
+    # )
     model = YOLO('yolov8s.pt')
-    results:Results = model.predict(numArray)
+    results = model.predict(numArray)
+    # print("Results",results)
     # numArray = results.unsqueeze(0).permute(1, 2, 0)
     for result in results:
+        print("Result",result)
         names = result.names
-        for boxes in result.boxes: # .xyxy.cpu().detach():
-            for box in boxes.xyxy.cpu():
-                print(boxes.cls.cpu())
-                print(boxes.xyxy.cpu())
-                c_idx = boxes.cls.cpu().numpy().astype(np.uint8)[0]
-                x1, y1, x2, y2 = box.numpy()
+    #     for boxes in result.boxes: # .xyxy.cpu().detach():
+    #         for box in boxes.xyxy.cpu():
+    #             print(boxes.cls.cpu())
+    #             print(boxes.xyxy.cpu())
+    #             c_idx = boxes.cls.cpu().numpy().astype(np.uint8)[0]
+    #             x1, y1, x2, y2 = box.numpy()
 
-                print(x1, y1, x2, y2)
-                # numArray = cv2.rectangle(numArray, (x1, y1), (x2, y2), color=(255, 0, 0), thickness=1)
-                annotator.box_label([x1, y1, x2, y2], f"id: {c_idx} name: {names[c_idx]}", color=colors(c_idx, bgr=False) )
-                numArray = annotator.result()
-    # numArray = cv2.resize(numArray, (3000, 3000))
+    #             print(x1, y1, x2, y2)
+    #             # numArray = cv2.rectangle(numArray, (x1, y1), (x2, y2), color=(255, 0, 0), thickness=1)
+    #             annotator.box_label([x1, y1, x2, y2], f"id: {c_idx} name: {names[c_idx]}", color=colors(c_idx, bgr=False) )
+    #             numArray = annotator.result()
+    # # numArray = cv2.resize(numArray, (3000, 3000))
     rejected = True
     # time.sleep(1)
     return numArray, rejected 

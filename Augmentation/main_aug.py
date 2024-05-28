@@ -1,4 +1,4 @@
-import augmentation
+import Augmentation.augmentation as aug
 import os
 import argparse
 import random
@@ -10,10 +10,14 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 import time
-import label_conveter
+import Augmentation.label_conveter
 import yaml
 
+count = 0
+aug_weight=0
+
 def main_file():
+    global count,aug_weight
     ###### Load configuration file #######
     with open("./main_config.yaml", 'r') as f:
         current_brand_config = yaml.safe_load(f)
@@ -40,6 +44,8 @@ def main_file():
     rvalue_list = [-rigid, rigid]
     outdir = current_brand_config['detection_dataset_path'] 
     count=0
+    aug_weight=0
+
     print("Augmentation Started")
 
 
@@ -48,10 +54,10 @@ def main_file():
         A function that chooses the augmentation method randomly and return the 
         probability values, image_path, bounding_box_path, augmentation method name
         '''
-        weights = [0.1, 0.3, 0.1,0.2,0.2,0.1,0.1]
+        weights = [0.1, 0.2, 0.1,0.2,0.2,0.1,0.1]
 
         (aug_method, weights_1), = random.choices(list(zip(aug_methods,weights)))
-        print("Augmentation",aug_method)
+        # print("Augmentation",aug_method)
         aug_methods.pop(aug_methods.index(aug_method))
         aug_method_name, func, args = aug_method
         new_file = os.path.join(outdir,args[0])
@@ -62,7 +68,7 @@ def main_file():
         image, bounding_box = func(*args)
         return weights_1, image, bounding_box, aug_method_name
 
-    def recursive_augment(img, bounding_box, outdir, rr):
+    def recursive_augment(img, bounding_box, outdir, rr,aug_weight):
         '''
         Implement an augmentation method recursively by adding its associated probability until the sum of probabilities is greater than the recursion rate.
 
@@ -71,7 +77,10 @@ def main_file():
         - bounding_box (str): Path of the bounding box returned by the augmentation method.
         - rr (float): Recursion rate indicating the threshold for stopping the recursion.
         '''
-        aug_weight = 0
+        global current_file_name
+        current_file_name = ''
+
+
         prob_val, img, bbox, aug_method_name = random_augment()
         aug_weight += prob_val
         if aug_weight >= rr:
@@ -89,7 +98,7 @@ def main_file():
         else:
             # print("[*] added weight value",aug_weight)
             current_file_name = current_file_name + '_' + aug_method_name  #### For file name
-            recursive_augment(img, bbox, outdir, rr)
+            recursive_augment(img, bbox, outdir, rr,aug_weight)
         
     # Copy all the files in the output directory
     for filename in os.listdir(dir):
@@ -113,16 +122,16 @@ def main_file():
             elastic = int(random.randrange(float(evalue_list[0]), float(evalue_list[1])))
             rigid = int(random.randrange(float(rvalue_list[0]), float(rvalue_list[1])))
             aug_methods = [                                               ###### Augmentation methods
-                ('ori', augmentation.original, (filename,outdir,i)),
-                ('ro', augmentation.rotate, (filename,angle,outdir,i)),
-                ('bl', augmentation.blur, (filename,blur,outdir,i)),
-                ('co', augmentation.contrast, (filename,contrast,outdir,i)),
-                ('el', augmentation.elastic_transform, (filename,elastic,outdir,i)),
-                ('ri', augmentation.rigid, (filename,rigid,outdir,i))
+                ('ori', Augmentation.augmentation.original, (filename,outdir,i)),
+                ('ro', Augmentation.augmentation.rotate, (filename,angle,outdir,i)),
+                ('bl', Augmentation.augmentation.blur, (filename,blur,outdir,i)),
+                ('co', Augmentation.augmentation.contrast, (filename,contrast,outdir,i)),
+                ('el', Augmentation.augmentation.elastic_transform, (filename,elastic,outdir,i)),
+                ('ri', Augmentation.augmentation.rigid, (filename,rigid,outdir,i))
             ]
-            flip_method = ('fl', augmentation.img_flip, (filename,outdir,i))
+            flip_method = ('fl', Augmentation.augmentation.img_flip, (filename,outdir,i))
             current_file_name = filename.replace('.jpg', '')
-            recursive_augment(filename, bounding_box, outdir, rr)  ###### calling recursive function
+            recursive_augment(filename, bounding_box, outdir, rr,aug_weight)  ###### calling recursive function
 
             # unaugmented image remove
             os.remove(os.path.join(outdir, filename)) ##### remove existing image
@@ -131,8 +140,14 @@ def main_file():
 
             # print('--------------------------------------')
             count += 1
+            yield count
+
+            
             if count % 100 == 0:
                 print("Number of data created: ", count)
+
+    
+                
              
 
     #Apply conversion to the format
@@ -140,7 +155,7 @@ def main_file():
         list_of_files = os.listdir(outdir)
         for filename in list_of_files:
             if filename.endswith('.txt'):
-                label_conveter.label_converter_main(os.path.join(outdir, filename), labelvalue)
+                Augmentation.label_conveter.label_converter_main(os.path.join(outdir, filename), labelvalue)
         print(f"Conversion to {labelvalue} format complete. Original text file replaced.")
 
 
@@ -148,4 +163,6 @@ def main_file():
 
     print("Augmentation Completed")
 
-main_file()
+
+if __name__ == '__main__':
+    main_file()

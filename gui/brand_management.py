@@ -380,6 +380,7 @@ class createWindow(QtWidgets.QMainWindow):
             save_parameter(os.path.join(brand_pwd, 'pickle_values'), 'camera_param',camera_param)
             save_parameter(os.path.join(brand_pwd,'pickle_values'),'save_data',save_data_param)
             save_parameter(os.path.join(brand_pwd, 'pickle_values'), 'augment',augmentation_param)
+            save_parameter(os.path.join(brand_pwd, 'pickle_values'), 'detection',detection_param)
             save_parameter(os.path.join(brand_pwd, 'pickle_values'),'camera_live',camera_live)
         except FileExistsError:
             print(f"Directory at {brand_pwd} already exists")

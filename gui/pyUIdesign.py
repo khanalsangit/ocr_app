@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1204, 700)
+        MainWindow.resize(1237, 700)
         MainWindow.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "\n"
 "")
@@ -470,7 +470,18 @@ class Ui_MainWindow(object):
         self.verticalLayout_13.addWidget(self.frame_7)
         self.resetCounter_Button = QtWidgets.QPushButton(self.counterFrame)
         self.resetCounter_Button.setMaximumSize(QtCore.QSize(16777215, 27))
-        self.resetCounter_Button.setStyleSheet("")
+        self.resetCounter_Button.setStyleSheet("QPushButton{\n"
+"    color:white;\n"
+"    background-color:#D9305C;\n"
+"    border-radius:2px;\n"
+"}\n"
+"QPushButton::pressed{\n"
+"    color: white;\n"
+"    border-radius:2px;\n"
+"    background-color:#D9305C;\n"
+"    border-left:2px solid rgb(100,180,180);\n"
+"    border-top:2px solid rgb(100,180,180);\n"
+"}")
         self.resetCounter_Button.setObjectName("resetCounter_Button")
         self.verticalLayout_13.addWidget(self.resetCounter_Button)
         self.verticalLayout_10.addWidget(self.counterFrame)
@@ -1005,7 +1016,22 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.openImage_Button.sizePolicy().hasHeightForWidth())
         self.openImage_Button.setSizePolicy(sizePolicy)
         self.openImage_Button.setMaximumSize(QtCore.QSize(107, 25))
-        self.openImage_Button.setStyleSheet("")
+        self.openImage_Button.setStyleSheet("QPushButton{\n"
+"    border-radius:2px;\n"
+"    background-color: #E8C6FD;\n"
+"}\n"
+"\n"
+"QPushButton:pressed{\n"
+"    background-color:#E8C6FD;\n"
+"    border-left:2px solid rgb(100,180,180);\n"
+"    border-top:2px solid rgb(100,180,180);\n"
+"}\n"
+"\n"
+"QPushButton:pressed{\n"
+"    background-color:#E8C6FD;\n"
+"    border-left:2px solid rgb(100,180,180);\n"
+"    border-top:2px solid rgb(100,180,180);\n"
+"}")
         self.openImage_Button.setObjectName("openImage_Button")
         self.gridLayout_6.addWidget(self.openImage_Button, 3, 1, 1, 1)
         self.cameraGain_Label = QtWidgets.QLabel(self.cameraSetting_Page)
@@ -1652,31 +1678,6 @@ class Ui_MainWindow(object):
         self.fabricationParameterLabel.setStyleSheet("")
         self.fabricationParameterLabel.setObjectName("fabricationParameterLabel")
         self.verticalLayout_22.addWidget(self.fabricationParameterLabel)
-        self.frame_20 = QtWidgets.QFrame(self.fabricationFrame)
-        self.frame_20.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frame_20.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frame_20.setObjectName("frame_20")
-        self.horizontalLayout_14 = QtWidgets.QHBoxLayout(self.frame_20)
-        self.horizontalLayout_14.setContentsMargins(0, 0, 0, 0)
-        self.horizontalLayout_14.setSpacing(0)
-        self.horizontalLayout_14.setObjectName("horizontalLayout_14")
-        self.fabrication_no_ofImageLabel = QtWidgets.QLabel(self.frame_20)
-        font = QtGui.QFont()
-        font.setFamily("Arial")
-        font.setPointSize(10)
-        self.fabrication_no_ofImageLabel.setFont(font)
-        self.fabrication_no_ofImageLabel.setObjectName("fabrication_no_ofImageLabel")
-        self.horizontalLayout_14.addWidget(self.fabrication_no_ofImageLabel)
-        self.fabricationEntry = QtWidgets.QLineEdit(self.frame_20)
-        self.fabricationEntry.setMaximumSize(QtCore.QSize(40, 16777215))
-        font = QtGui.QFont()
-        font.setBold(True)
-        font.setWeight(75)
-        self.fabricationEntry.setFont(font)
-        self.fabricationEntry.setAlignment(QtCore.Qt.AlignCenter)
-        self.fabricationEntry.setObjectName("fabricationEntry")
-        self.horizontalLayout_14.addWidget(self.fabricationEntry)
-        self.verticalLayout_22.addWidget(self.frame_20)
         self.frame_21 = QtWidgets.QFrame(self.fabricationFrame)
         self.frame_21.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_21.setFrameShadow(QtWidgets.QFrame.Raised)
@@ -1685,15 +1686,14 @@ class Ui_MainWindow(object):
         self.horizontalLayout_15.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_15.setSpacing(0)
         self.horizontalLayout_15.setObjectName("horizontalLayout_15")
-        spacerItem4 = QtWidgets.QSpacerItem(236, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_15.addItem(spacerItem4)
         self.fabricationButton = QtWidgets.QPushButton(self.frame_21)
+        self.fabricationButton.setEnabled(True)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.fabricationButton.sizePolicy().hasHeightForWidth())
         self.fabricationButton.setSizePolicy(sizePolicy)
-        self.fabricationButton.setMaximumSize(QtCore.QSize(88, 30))
+        self.fabricationButton.setMaximumSize(QtCore.QSize(200, 30))
         font = QtGui.QFont()
         font.setFamily("Arial")
         font.setPointSize(10)
@@ -1703,8 +1703,8 @@ class Ui_MainWindow(object):
         self.horizontalLayout_15.addWidget(self.fabricationButton)
         self.verticalLayout_22.addWidget(self.frame_21)
         self.verticalLayout_20.addWidget(self.fabricationFrame)
-        spacerItem5 = QtWidgets.QSpacerItem(20, 18, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
-        self.verticalLayout_20.addItem(spacerItem5)
+        spacerItem4 = QtWidgets.QSpacerItem(20, 18, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        self.verticalLayout_20.addItem(spacerItem4)
         self.augmentationSettings_Frame = QtWidgets.QFrame(self.dataProcessing_Page)
         self.augmentationSettings_Frame.setMaximumSize(QtCore.QSize(16777215, 156))
         self.augmentationSettings_Frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
@@ -1899,8 +1899,8 @@ class Ui_MainWindow(object):
         self.horizontalLayout_13.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_13.setSpacing(0)
         self.horizontalLayout_13.setObjectName("horizontalLayout_13")
-        spacerItem6 = QtWidgets.QSpacerItem(236, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_13.addItem(spacerItem6)
+        spacerItem5 = QtWidgets.QSpacerItem(236, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_13.addItem(spacerItem5)
         self.augmentationButton = QtWidgets.QPushButton(self.frame_19)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -1938,8 +1938,8 @@ class Ui_MainWindow(object):
         self.note.setObjectName("note")
         self.verticalLayout_26.addWidget(self.note)
         self.verticalLayout_20.addWidget(self.groupBox)
-        spacerItem7 = QtWidgets.QSpacerItem(20, 161, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
-        self.verticalLayout_20.addItem(spacerItem7)
+        spacerItem6 = QtWidgets.QSpacerItem(20, 161, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        self.verticalLayout_20.addItem(spacerItem6)
         self.editProject.addWidget(self.dataProcessing_Page)
         self.detection_Page = QtWidgets.QWidget()
         self.detection_Page.setStyleSheet("")
@@ -2029,8 +2029,8 @@ class Ui_MainWindow(object):
         self.horizontalLayout_18.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_18.setSpacing(0)
         self.horizontalLayout_18.setObjectName("horizontalLayout_18")
-        spacerItem8 = QtWidgets.QSpacerItem(218, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_18.addItem(spacerItem8)
+        spacerItem7 = QtWidgets.QSpacerItem(218, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_18.addItem(spacerItem7)
         self.detectionTrainButton = QtWidgets.QPushButton(self.frame_22)
         self.detectionTrainButton.setMinimumSize(QtCore.QSize(0, 0))
         self.detectionTrainButton.setMaximumSize(QtCore.QSize(16777215, 30))
@@ -2039,8 +2039,8 @@ class Ui_MainWindow(object):
         self.horizontalLayout_18.addWidget(self.detectionTrainButton)
         self.verticalLayout_24.addWidget(self.frame_22)
         self.verticalLayout_23.addWidget(self.trainingParameters_Frame)
-        spacerItem9 = QtWidgets.QSpacerItem(20, 18, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
-        self.verticalLayout_23.addItem(spacerItem9)
+        spacerItem8 = QtWidgets.QSpacerItem(20, 18, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        self.verticalLayout_23.addItem(spacerItem8)
         self.testingParameters_Frame = QtWidgets.QFrame(self.detection_Page)
         self.testingParameters_Frame.setMaximumSize(QtCore.QSize(16777215, 100))
         self.testingParameters_Frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
@@ -2076,8 +2076,8 @@ class Ui_MainWindow(object):
         self.detection_testButton.setObjectName("detection_testButton")
         self.verticalLayout_25.addWidget(self.detection_testButton)
         self.verticalLayout_23.addWidget(self.testingParameters_Frame)
-        spacerItem10 = QtWidgets.QSpacerItem(20, 315, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
-        self.verticalLayout_23.addItem(spacerItem10)
+        spacerItem9 = QtWidgets.QSpacerItem(20, 315, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        self.verticalLayout_23.addItem(spacerItem9)
         self.editProject.addWidget(self.detection_Page)
         self.recognition_Page = QtWidgets.QWidget()
         self.recognition_Page.setStyleSheet("")
@@ -2192,8 +2192,8 @@ class Ui_MainWindow(object):
         self.horizontalLayout_21.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_21.setSpacing(0)
         self.horizontalLayout_21.setObjectName("horizontalLayout_21")
-        spacerItem11 = QtWidgets.QSpacerItem(218, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_21.addItem(spacerItem11)
+        spacerItem10 = QtWidgets.QSpacerItem(218, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_21.addItem(spacerItem10)
         self.recognitionTraining_Button = QtWidgets.QPushButton(self.frame_27)
         self.recognitionTraining_Button.setMaximumSize(QtCore.QSize(16777215, 30))
         self.recognitionTraining_Button.setStyleSheet("")
@@ -2201,8 +2201,8 @@ class Ui_MainWindow(object):
         self.horizontalLayout_21.addWidget(self.recognitionTraining_Button)
         self.verticalLayout_28.addWidget(self.frame_27)
         self.verticalLayout_27.addWidget(self.recognitionTraining_Frame)
-        spacerItem12 = QtWidgets.QSpacerItem(20, 18, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
-        self.verticalLayout_27.addItem(spacerItem12)
+        spacerItem11 = QtWidgets.QSpacerItem(20, 18, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        self.verticalLayout_27.addItem(spacerItem11)
         self.recognitionTesting_Frame = QtWidgets.QFrame(self.recognition_Page)
         self.recognitionTesting_Frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.recognitionTesting_Frame.setFrameShadow(QtWidgets.QFrame.Raised)
@@ -2237,8 +2237,8 @@ class Ui_MainWindow(object):
         self.recognitionTesting_Button.setObjectName("recognitionTesting_Button")
         self.verticalLayout_29.addWidget(self.recognitionTesting_Button)
         self.verticalLayout_27.addWidget(self.recognitionTesting_Frame)
-        spacerItem13 = QtWidgets.QSpacerItem(20, 243, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
-        self.verticalLayout_27.addItem(spacerItem13)
+        spacerItem12 = QtWidgets.QSpacerItem(20, 243, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        self.verticalLayout_27.addItem(spacerItem12)
         self.editProject.addWidget(self.recognition_Page)
         self.analysis_Page = QtWidgets.QWidget()
         self.analysis_Page.setStyleSheet("")
@@ -2422,15 +2422,15 @@ class Ui_MainWindow(object):
         self.systemSetting_update_Button_debug.setObjectName("systemSetting_update_Button_debug")
         self.verticalLayout_32.addWidget(self.systemSetting_update_Button_debug)
         self.verticalLayout_33.addWidget(self.analysisSystem_Frame)
-        spacerItem14 = QtWidgets.QSpacerItem(20, 10, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
-        self.verticalLayout_33.addItem(spacerItem14)
+        spacerItem13 = QtWidgets.QSpacerItem(20, 10, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        self.verticalLayout_33.addItem(spacerItem13)
         self.analysisTest_Button = QtWidgets.QPushButton(self.analysis_Page)
         self.analysisTest_Button.setMaximumSize(QtCore.QSize(16777215, 30))
         self.analysisTest_Button.setStyleSheet("")
         self.analysisTest_Button.setObjectName("analysisTest_Button")
         self.verticalLayout_33.addWidget(self.analysisTest_Button)
-        spacerItem15 = QtWidgets.QSpacerItem(20, 321, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
-        self.verticalLayout_33.addItem(spacerItem15)
+        spacerItem14 = QtWidgets.QSpacerItem(20, 321, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        self.verticalLayout_33.addItem(spacerItem14)
         self.editProject.addWidget(self.analysis_Page)
         self.horizontalLayout_6.addWidget(self.editProject)
         self.frame_28 = QtWidgets.QFrame(self.debugMode_Page)
@@ -2539,12 +2539,24 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.findCamera_Button.sizePolicy().hasHeightForWidth())
         self.findCamera_Button.setSizePolicy(sizePolicy)
         self.findCamera_Button.setMaximumSize(QtCore.QSize(164, 28))
-        self.findCamera_Button.setStyleSheet("")
+        self.findCamera_Button.setStyleSheet("QPushButton{\n"
+"border:1px solid#125872;\n"
+"border-radius:4px;\n"
+"color:#125872;\n"
+"}\n"
+"\n"
+"QPushButton:pressed{\n"
+"    background-color:white;\n"
+"    border-left:2px solid rgb(100,180,180);\n"
+"    border-top:2px solid rgb(100,180,180);\n"
+"}\n"
+"\n"
+"")
         self.findCamera_Button.setObjectName("findCamera_Button")
         self.verticalLayout_2.addWidget(self.findCamera_Button)
         self.horizontalLayout_20.addWidget(self.frame_33)
-        spacerItem16 = QtWidgets.QSpacerItem(35, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_20.addItem(spacerItem16)
+        spacerItem15 = QtWidgets.QSpacerItem(35, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_20.addItem(spacerItem15)
         self.frame_30 = QtWidgets.QFrame(self.topGrid)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -2622,8 +2634,8 @@ class Ui_MainWindow(object):
         self.horizontalLayout.addWidget(self.offButton)
         self.verticalLayout.addWidget(self.on_offFrame)
         self.horizontalLayout_20.addWidget(self.frame_30)
-        spacerItem17 = QtWidgets.QSpacerItem(35, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_20.addItem(spacerItem17)
+        spacerItem16 = QtWidgets.QSpacerItem(35, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_20.addItem(spacerItem16)
         self.frame_31 = QtWidgets.QFrame(self.topGrid)
         self.frame_31.setMaximumSize(QtCore.QSize(115, 60))
         self.frame_31.setFrameShape(QtWidgets.QFrame.StyledPanel)
@@ -2657,8 +2669,8 @@ class Ui_MainWindow(object):
         self.switchButton.setObjectName("switchButton")
         self.verticalLayout_35.addWidget(self.switchButton)
         self.horizontalLayout_20.addWidget(self.frame_31)
-        spacerItem18 = QtWidgets.QSpacerItem(35, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_20.addItem(spacerItem18)
+        spacerItem17 = QtWidgets.QSpacerItem(35, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_20.addItem(spacerItem17)
         self.frame_32 = QtWidgets.QFrame(self.topGrid)
         self.frame_32.setMaximumSize(QtCore.QSize(115, 60))
         self.frame_32.setFrameShape(QtWidgets.QFrame.StyledPanel)
@@ -2688,8 +2700,8 @@ class Ui_MainWindow(object):
         self.projectName.setObjectName("projectName")
         self.verticalLayout_3.addWidget(self.projectName)
         self.horizontalLayout_20.addWidget(self.frame_32)
-        spacerItem19 = QtWidgets.QSpacerItem(398, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_20.addItem(spacerItem19)
+        spacerItem18 = QtWidgets.QSpacerItem(398, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_20.addItem(spacerItem18)
         self.crimsonLogo = QtWidgets.QLabel(self.topGrid)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.MinimumExpanding)
         sizePolicy.setHorizontalStretch(0)
@@ -2705,9 +2717,9 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
-        self.stackWidget.setCurrentIndex(0)
-        self.stackWidget_cameraSetting.setCurrentIndex(0)
-        self.editProject.setCurrentIndex(1)
+        self.stackWidget.setCurrentIndex(1)
+        self.stackWidget_cameraSetting.setCurrentIndex(1)
+        self.editProject.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -2790,9 +2802,8 @@ class Ui_MainWindow(object):
         self.deleteImage_Button.setText(_translate("MainWindow", "Delete Image"))
         self.step3_Label.setText(_translate("MainWindow", "Step 3: Data PreProcessing Operations"))
         self.dataLabelingLabel.setText(_translate("MainWindow", "Data Labeling"))
-        self.fabricationParameterLabel.setText(_translate("MainWindow", "Fabrication Parameter"))
-        self.fabrication_no_ofImageLabel.setText(_translate("MainWindow", "No. of Image"))
-        self.fabricationButton.setText(_translate("MainWindow", "Generate"))
+        self.fabricationParameterLabel.setText(_translate("MainWindow", "Data Fabrication"))
+        self.fabricationButton.setText(_translate("MainWindow", "Create Fabricated Data"))
         self.augmenationSettings_Label.setText(_translate("MainWindow", "Augmentation Settings"))
         self.nTimes_Label.setText(_translate("MainWindow", "N Times"))
         self.rotateLabel.setText(_translate("MainWindow", "Rotate"))

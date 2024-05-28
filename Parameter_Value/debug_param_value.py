@@ -16,3 +16,7 @@ augmentation_param = {
     'rigid':10,
     'recursion_rate':0.4
 }
+
+detection_param={
+    'epoch_num':10
+}

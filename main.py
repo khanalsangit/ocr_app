@@ -1,4 +1,8 @@
 import sys
+
+from PyQt5.QtWidgets import QMainWindow
+# from Custom_Widgets import *
+from PyQt5 import QtCore, QtGui, QtWidgets 
 from PyQt5.QtWidgets import QMainWindow, QApplication
 from Custom_Widgets import *
 from PyQt5 import QtCore, QtGui, QtWidgets
@@ -12,7 +16,7 @@ from ultralytics import YOLO
 from algorithm.yolo import object_detection_yolo
 
 ###### Load YOLOV8model ####### 
-model = YOLO("C:/Users/User/Desktop/PyQT5/Batch_Code_Inspection_System/Main/runs/obb/train/weights/best.pt")
+model = YOLO("./best.pt")
     
 class MainWin(QMainWindow):
     def __init__(self):
@@ -50,7 +54,7 @@ if __name__=="__main__":
     camera.callback = lambda x: object_detection_yolo(model, x) # test_callback
     
     camera.ui_update_callback =  gui_operations.update_live_gui_with_based_on_result
-    loadJsonStyle(ui, gui_operations)
+    # loadJsonStyle(ui, gui_operations)
     ui.closeEvent = camera.close_device
     ui.update()
     QApplication.processEvents()

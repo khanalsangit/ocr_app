@@ -1,6 +1,7 @@
 from __future__ import annotations
 import pickle
 import glob
+import sys
 import cv2
 import os
 import shutil
@@ -10,6 +11,8 @@ import traceback
 from gui.pyUIdesign import Ui_MainWindow
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtWidgets import *
+from PyQt5.QtCore import Qt, QTimer
+
 from Parameter_Value.param_tools import save_parameter, get_parameter
 
 from typing import TYPE_CHECKING
@@ -17,6 +20,9 @@ if TYPE_CHECKING:
     from .gui_operations import PyQTWidgetFunction
 
 from gui import brand_management as bm 
+from data_fabrication import mainGUI_v1
+from Augmentation import main_aug,AugGUI
+
  
 class DebugOperationFunction(Ui_MainWindow):
     def __init__(self, parent: PyQTWidgetFunction):
@@ -71,6 +77,17 @@ class DebugOperationFunction(Ui_MainWindow):
         self.flip_checkBox = parent.flip_checkBox
         self.rigidEntry = parent.rigidEntry
         self.elasticEntry = parent.elasticEntry
+        self.augmentationButton=parent.augmentationButton
+        self.detectionTrainButton = parent.detectionTrainButton
+
+        ###Fabrication button
+        self.fabricationButton = parent.fabricationButton
+
+        ###Detection Button
+        self.detectionEpoch_Entry = parent.detectionEpoch_Entry
+
+    
+    
 
          
     def create_project(self)->None:
@@ -123,6 +140,10 @@ class DebugOperationFunction(Ui_MainWindow):
         self.detectionButton.setStyleSheet("")
         self.recognitionButton.setStyleSheet("")
         self.analysisButton.setStyleSheet("")
+
+    def create_fabrication(self):
+        app=mainGUI_v1.App()
+        app.mainloop()
     
     def load_augment_param(self,ntimes:int, rotate:int, flip:int, blur:int, contrast:int, elastic:int, rigid:int, recursion_rate:float)-> None:
         '''
@@ -141,6 +162,10 @@ class DebugOperationFunction(Ui_MainWindow):
         
         self.rigidEntry.setText(str(rigid))
         self.elasticEntry.setText(str(recursion_rate))
+
+    def load_detection_param(self,epoch_num:int):
+        self.detectionEpoch_Entry.setText(str(epoch_num))
+        
 
     def detection(self)->None:
         '''
@@ -195,6 +220,10 @@ class DebugOperationFunction(Ui_MainWindow):
         # self.createButton.setEnabled(not enabled)
         # if enabled:
         bm.createWindow(self.parent.main_window, brand_dir = './Brands/').show()
+
+    
+        
+    
     
     def brand_exit_call_back_method(self):
         '''
@@ -277,5 +306,29 @@ class DebugOperationFunction(Ui_MainWindow):
         except Exception as e:
             print("Failed to get the system parameter")
             print(traceback.format_exc())
+    
+    def update_detection_param(self,file_path):
+        try:
+            det_param  = {
+                'epoch_num':self.detectionEpoch_Entry.text()
+            }
+            save_parameter(file_path,'detection',det_param)
+            msgBox = QMessageBox()
+            msgBox.setText("Epoch Number Updated Successfully")
+            msgBox.setWindowTitle("Information")
+            msgBox.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
+            msgBox.exec()
+        except Exception as e:
+            print("Failed to get the system parameter")
+            print(traceback.format_exc())
+
+
+    def generate_augmentation(self):  
+        AugGUI.MainWindow(self.parent.main_window).show()
+    
+    def train_model(self):
+        print("model trainning started")
+
+
     def captured_image_count(self, image_count:int = 0):
         self.totalImage_Count.setText(str(image_count))

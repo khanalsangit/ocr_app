@@ -18,7 +18,7 @@ from ultralytics import YOLO
 import time
 
 ###### Load YOLOV8model ####### 
-model = YOLO("C:/Users/User/Desktop/PyQT5/Batch_Code_Inspection_System/Main/runs/obb/train/weights/best.pt")
+model = YOLO("./best.pt")
     
 class MainWin(QMainWindow):
     def __init__(self):

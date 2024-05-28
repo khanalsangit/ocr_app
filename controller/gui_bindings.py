@@ -10,7 +10,7 @@ from camera_interface.camera import MachineVisionCamera
 from .gui_operations import PyQTWidgetFunction
 from .live_operations import LiveOperationFunction
 from .debug_operations import DebugOperationFunction
-from Parameter_Value.debug_param_value import  camera_param, augmentation_param
+from Parameter_Value.debug_param_value import  camera_param, augmentation_param,detection_param
 from Parameter_Value.live_param_value import system_param, rejection_params, save_data_param
 from Parameter_Value.param_tools import save_parameter, get_parameter
 from PyQt5 import QtWidgets
@@ -45,6 +45,7 @@ class Controller():
         # debug parameter
         self.load_saved_camera_parameter()
         self.load_current_augmentation_param()
+        self.load_current_detection_param()
         self.update_current_project()
         self.debug.brand_exit_call_back_method = lambda : [self.load_main_configs(), self.update_current_project()]
 
@@ -138,11 +139,9 @@ class Controller():
         self.debug.captureButton.clicked.connect(self.capture_image)
         # augmentation panel buttons creation
         self.gui.augmentationButton.clicked.connect(self.set_augment_parameter)
-<<<<<<< HEAD
         self.debug.augmentationButton.clicked.connect(self.debug.generate_augmentation)
-=======
-        # self.gui.augmentationButton.clicked.connect(self.set_augment_parameter)
->>>>>>> ae67f0e8ee5e72cb314e00d014564cfb5304609e
+        
+        self.debug.detectionTrainButton.clicked.connect(self.debug.train_model)
 
 
     
@@ -230,6 +229,17 @@ class Controller():
         except Exception as e:
             print('[-] Failed loading saved parameter ', e)
             print(traceback.format_exc())
+
+    def load_current_detection_param(self):
+        try:
+            temp_epoch_data_param = get_parameter(self.current_brand_config['pickle_path'], 'detection', detection_param)
+            epoch_num = temp_epoch_data_param['epoch_num']
+            print(epoch_num)
+            self.debug.load_detection_param(epoch_num)
+        except Exception as e:
+            print("[+] Detection Parameter load failed", e)
+            print(traceback.format_exc())
+
 
     def load_current_augmentation_param(self):
         '''

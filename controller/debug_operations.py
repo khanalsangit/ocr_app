@@ -77,12 +77,14 @@ class DebugOperationFunction(Ui_MainWindow):
         self.flip_checkBox = parent.flip_checkBox
         self.rigidEntry = parent.rigidEntry
         self.elasticEntry = parent.elasticEntry
-
         self.augmentationButton=parent.augmentationButton
+        self.detectionTrainButton = parent.detectionTrainButton
 
         ###Fabrication button
-
         self.fabricationButton = parent.fabricationButton
+
+        ###Detection Button
+        self.detectionEpoch_Entry = parent.detectionEpoch_Entry
 
     
     
@@ -160,6 +162,10 @@ class DebugOperationFunction(Ui_MainWindow):
         
         self.rigidEntry.setText(str(rigid))
         self.elasticEntry.setText(str(recursion_rate))
+
+    def load_detection_param(self,epoch_num:int):
+        self.detectionEpoch_Entry.setText(str(epoch_num))
+        
 
     def detection(self)->None:
         '''
@@ -300,10 +306,28 @@ class DebugOperationFunction(Ui_MainWindow):
         except Exception as e:
             print("Failed to get the system parameter")
             print(traceback.format_exc())
+    
+    def update_detection_param(self,file_path):
+        try:
+            det_param  = {
+                'epoch_num':self.detectionEpoch_Entry.text()
+            }
+            save_parameter(file_path,'detection',det_param)
+            msgBox = QMessageBox()
+            msgBox.setText("Epoch Number Updated Successfully")
+            msgBox.setWindowTitle("Information")
+            msgBox.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
+            msgBox.exec()
+        except Exception as e:
+            print("Failed to get the system parameter")
+            print(traceback.format_exc())
+
 
     def generate_augmentation(self):  
-        # main_aug.main_file()
         AugGUI.MainWindow(self.parent.main_window).show()
+    
+    def train_model(self):
+        print("model trainning started")
 
 
     def captured_image_count(self, image_count:int = 0):

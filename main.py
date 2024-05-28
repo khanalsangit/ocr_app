@@ -54,7 +54,7 @@ if __name__=="__main__":
     camera.callback = lambda x: object_detection_yolo(model, x) # test_callback
     
     camera.ui_update_callback =  gui_operations.update_live_gui_with_based_on_result
-    # loadJsonStyle(ui, gui_operations)
+    loadJsonStyle(ui, gui_operations)
     ui.closeEvent = camera.close_device
     ui.update()
     QApplication.processEvents()

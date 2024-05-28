@@ -470,18 +470,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_13.addWidget(self.frame_7)
         self.resetCounter_Button = QtWidgets.QPushButton(self.counterFrame)
         self.resetCounter_Button.setMaximumSize(QtCore.QSize(16777215, 27))
-        self.resetCounter_Button.setStyleSheet("QPushButton{\n"
-"    color:white;\n"
-"    background-color:#D9305C;\n"
-"    border-radius:2px;\n"
-"}\n"
-"QPushButton::pressed{\n"
-"    color: white;\n"
-"    border-radius:2px;\n"
-"    background-color:#D9305C;\n"
-"    border-left:2px solid rgb(100,180,180);\n"
-"    border-top:2px solid rgb(100,180,180);\n"
-"}")
+        self.resetCounter_Button.setStyleSheet("")
         self.resetCounter_Button.setObjectName("resetCounter_Button")
         self.verticalLayout_13.addWidget(self.resetCounter_Button)
         self.verticalLayout_10.addWidget(self.counterFrame)
@@ -1016,22 +1005,7 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.openImage_Button.sizePolicy().hasHeightForWidth())
         self.openImage_Button.setSizePolicy(sizePolicy)
         self.openImage_Button.setMaximumSize(QtCore.QSize(107, 25))
-        self.openImage_Button.setStyleSheet("QPushButton{\n"
-"    border-radius:2px;\n"
-"    background-color: #E8C6FD;\n"
-"}\n"
-"\n"
-"QPushButton:pressed{\n"
-"    background-color:#E8C6FD;\n"
-"    border-left:2px solid rgb(100,180,180);\n"
-"    border-top:2px solid rgb(100,180,180);\n"
-"}\n"
-"\n"
-"QPushButton:pressed{\n"
-"    background-color:#E8C6FD;\n"
-"    border-left:2px solid rgb(100,180,180);\n"
-"    border-top:2px solid rgb(100,180,180);\n"
-"}")
+        self.openImage_Button.setStyleSheet("")
         self.openImage_Button.setObjectName("openImage_Button")
         self.gridLayout_6.addWidget(self.openImage_Button, 3, 1, 1, 1)
         self.cameraGain_Label = QtWidgets.QLabel(self.cameraSetting_Page)
@@ -2539,19 +2513,7 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.findCamera_Button.sizePolicy().hasHeightForWidth())
         self.findCamera_Button.setSizePolicy(sizePolicy)
         self.findCamera_Button.setMaximumSize(QtCore.QSize(164, 28))
-        self.findCamera_Button.setStyleSheet("QPushButton{\n"
-"border:1px solid#125872;\n"
-"border-radius:4px;\n"
-"color:#125872;\n"
-"}\n"
-"\n"
-"QPushButton:pressed{\n"
-"    background-color:white;\n"
-"    border-left:2px solid rgb(100,180,180);\n"
-"    border-top:2px solid rgb(100,180,180);\n"
-"}\n"
-"\n"
-"")
+        self.findCamera_Button.setStyleSheet("")
         self.findCamera_Button.setObjectName("findCamera_Button")
         self.verticalLayout_2.addWidget(self.findCamera_Button)
         self.horizontalLayout_20.addWidget(self.frame_33)
@@ -2718,8 +2680,8 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
         self.stackWidget.setCurrentIndex(1)
-        self.stackWidget_cameraSetting.setCurrentIndex(1)
-        self.editProject.setCurrentIndex(0)
+        self.stackWidget_cameraSetting.setCurrentIndex(0)
+        self.editProject.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):

@@ -116,7 +116,10 @@ class DebugOperationFunction(Ui_MainWindow):
         "    background-color:#0DC177;\n"
         "    border-radius:4px;\n"
         "}")
-        self.createProjectButton.setStyleSheet("")
+        self.createProjectButton.setStyleSheet("#createProjectButton{\n"
+        "    background-color:#F2F1F1;\n"
+        "    border-radius:4px;\n"
+        "}")
         self.preprocessingButton.setStyleSheet("")
         self.detectionButton.setStyleSheet("")
         self.recognitionButton.setStyleSheet("")
@@ -136,7 +139,10 @@ class DebugOperationFunction(Ui_MainWindow):
         "    border-radius:4px;\n"
         "}")
         self.cameraButton.setStyleSheet("")
-        self.createProjectButton.setStyleSheet("")
+        self.createProjectButton.setStyleSheet("#createProjectButton{\n"
+        "    background-color:#F2F1F1;\n"
+        "    border-radius:4px;\n"
+        "}")
         self.detectionButton.setStyleSheet("")
         self.recognitionButton.setStyleSheet("")
         self.analysisButton.setStyleSheet("")
@@ -176,7 +182,10 @@ class DebugOperationFunction(Ui_MainWindow):
         "    background-color:#0DC177;\n"
         "    border-radius:4px;\n"
         "}")
-        self.createProjectButton.setStyleSheet("")
+        self.createProjectButton.setStyleSheet("#createProjectButton{\n"
+        "    background-color:#F2F1F1;\n"
+        "    border-radius:4px;\n"
+        "}")
         self.cameraButton.setStyleSheet("")
         self.preprocessingButton.setStyleSheet("")
         self.recognitionButton.setStyleSheet("")
@@ -192,7 +201,10 @@ class DebugOperationFunction(Ui_MainWindow):
         "    border-radius:4px;\n"
         "}")
         self.detectionButton.setStyleSheet("")
-        self.createProjectButton.setStyleSheet("")
+        self.createProjectButton.setStyleSheet("#createProjectButton{\n"
+        "    background-color:#F2F1F1;\n"
+        "    border-radius:4px;\n"
+        "}")
         self.cameraButton.setStyleSheet("")
         self.preprocessingButton.setStyleSheet("")
         self.analysisButton.setStyleSheet("")
@@ -208,7 +220,10 @@ class DebugOperationFunction(Ui_MainWindow):
         "}")
         self.detectionButton.setStyleSheet("")
         self.recognitionButton.setStyleSheet("")
-        self.createProjectButton.setStyleSheet("")
+        self.createProjectButton.setStyleSheet("#createProjectButton{\n"
+        "    background-color:#F2F1F1;\n"
+        "    border-radius:4px;\n"
+        "}")
         self.cameraButton.setStyleSheet("")
         self.preprocessingButton.setStyleSheet("")
 

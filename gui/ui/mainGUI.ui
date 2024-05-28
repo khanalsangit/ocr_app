@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Batch Code Inspection System</string>
   </property>
   <property name="styleSheet">
    <string notr="true">background-color: rgb(255, 255, 255);
@@ -80,7 +80,11 @@ QPushButton:pressed{
 	border-left:2px solid rgb(100,180,180);
 	border-top:2px solid rgb(100,180,180);
 }
-QFrame#frame_12 QPushButton{
+#frame_12 #createProjectButton{
+	background-color:#0DC177;
+	border-radius:4px;
+}
+#frame_12 QPushButton{
 	border-radius:4px;
 	background-color:#F2F1F1;
 }
@@ -200,14 +204,14 @@ QFrame#frame_12 QPushButton{
 #detectionResult_Frame{
 	border:1px solid black;
 }
-QPushButton#cameraSetting_Button{
+#cameraSetting_Button{
 	color:#D9305C;
 	border-top:1px solid#D9305C;
 	border-right:1px solid#D9305C;
 	border-top-left-radius:4px;
 	border-top-right-radius:4px;
 }
-QPushButton#saveData_Button{
+#saveData_Button{
 	background-color: #eaeaea;
 	border:none;
 	border-top-left-radius:4px;
@@ -232,6 +236,16 @@ QPushButton#chooseDirectory_Button{
 	color: white;
 	background-color:#263B90;
 	border-radius:2px;
+}
+#openImage_Button{
+	border-radius:2px;
+	background-color: #E8C6FD;
+}
+
+#openImage_Button:pressed{
+	background-color:#E8C6FD;
+	border-left:2px solid rgb(100,180,180);
+	border-top:2px solid rgb(100,180,180);
 }
 QRadioButton::indicator#detectionOnly,
 QRadioButton::indicator#detection_recognition{
@@ -1718,7 +1732,7 @@ border-radius: 3px;</string>
                  <number>0</number>
                 </property>
                 <property name="currentIndex">
-                 <number>1</number>
+                 <number>0</number>
                 </property>
                 <widget class="QWidget" name="cameraSetting_Page">
                  <property name="sizePolicy">
@@ -1956,16 +1970,7 @@ border-radius: 3px;</string>
                      </size>
                     </property>
                     <property name="styleSheet">
-                     <string notr="true">QPushButton{
-	border-radius:2px;
-	background-color: #E8C6FD;
-}
-
-QPushButton:pressed{
-	background-color:#E8C6FD;
-	border-left:2px solid rgb(100,180,180);
-	border-top:2px solid rgb(100,180,180);
-}</string>
+                     <string notr="true"/>
                     </property>
                     <property name="text">
                      <string>Open Image</string>
@@ -2387,10 +2392,7 @@ QPushButton:pressed{
                  </font>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true">QPushButton{
-	background-color:#0DC177;
-	border-radius:4px;
-}</string>
+                 <string notr="true"/>
                 </property>
                 <property name="text">
                  <string>Create Project</string>
@@ -2577,7 +2579,7 @@ QPushButton:pressed{
            <string notr="true"/>
           </property>
           <property name="currentIndex">
-           <number>0</number>
+           <number>1</number>
           </property>
           <widget class="QWidget" name="createProject_Page">
            <property name="minimumSize">

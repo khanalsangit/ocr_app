@@ -77,7 +77,11 @@ class Ui_MainWindow(object):
 "    border-left:2px solid rgb(100,180,180);\n"
 "    border-top:2px solid rgb(100,180,180);\n"
 "}\n"
-"QFrame#frame_12 QPushButton{\n"
+"#frame_12 #createProjectButton{\n"
+"    background-color:#0DC177;\n"
+"    border-radius:4px;\n"
+"}\n"
+"#frame_12 QPushButton{\n"
 "    border-radius:4px;\n"
 "    background-color:#F2F1F1;\n"
 "}\n"
@@ -197,14 +201,14 @@ class Ui_MainWindow(object):
 "#detectionResult_Frame{\n"
 "    border:1px solid black;\n"
 "}\n"
-"QPushButton#cameraSetting_Button{\n"
+"#cameraSetting_Button{\n"
 "    color:#D9305C;\n"
 "    border-top:1px solid#D9305C;\n"
 "    border-right:1px solid#D9305C;\n"
 "    border-top-left-radius:4px;\n"
 "    border-top-right-radius:4px;\n"
 "}\n"
-"QPushButton#saveData_Button{\n"
+"#saveData_Button{\n"
 "    background-color: #eaeaea;\n"
 "    border:none;\n"
 "    border-top-left-radius:4px;\n"
@@ -229,6 +233,16 @@ class Ui_MainWindow(object):
 "    color: white;\n"
 "    background-color:#263B90;\n"
 "    border-radius:2px;\n"
+"}\n"
+"#openImage_Button{\n"
+"    border-radius:2px;\n"
+"    background-color: #E8C6FD;\n"
+"}\n"
+"\n"
+"#openImage_Button:pressed{\n"
+"    background-color:#E8C6FD;\n"
+"    border-left:2px solid rgb(100,180,180);\n"
+"    border-top:2px solid rgb(100,180,180);\n"
 "}\n"
 "QRadioButton::indicator#detectionOnly,\n"
 "QRadioButton::indicator#detection_recognition{\n"
@@ -991,16 +1005,7 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.openImage_Button.sizePolicy().hasHeightForWidth())
         self.openImage_Button.setSizePolicy(sizePolicy)
         self.openImage_Button.setMaximumSize(QtCore.QSize(107, 25))
-        self.openImage_Button.setStyleSheet("QPushButton{\n"
-"    border-radius:2px;\n"
-"    background-color: #E8C6FD;\n"
-"}\n"
-"\n"
-"QPushButton:pressed{\n"
-"    background-color:#E8C6FD;\n"
-"    border-left:2px solid rgb(100,180,180);\n"
-"    border-top:2px solid rgb(100,180,180);\n"
-"}")
+        self.openImage_Button.setStyleSheet("")
         self.openImage_Button.setObjectName("openImage_Button")
         self.gridLayout_6.addWidget(self.openImage_Button, 3, 1, 1, 1)
         self.cameraGain_Label = QtWidgets.QLabel(self.cameraSetting_Page)
@@ -1187,10 +1192,7 @@ class Ui_MainWindow(object):
         font.setFamily("Arial")
         font.setPointSize(10)
         self.createProjectButton.setFont(font)
-        self.createProjectButton.setStyleSheet("QPushButton{\n"
-"    background-color:#0DC177;\n"
-"    border-radius:4px;\n"
-"}")
+        self.createProjectButton.setStyleSheet("")
         self.createProjectButton.setObjectName("createProjectButton")
         self.verticalLayout_15.addWidget(self.createProjectButton)
         self.cameraButton = QtWidgets.QPushButton(self.frame_12)
@@ -2703,14 +2705,14 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
-        self.stackWidget.setCurrentIndex(1)
-        self.stackWidget_cameraSetting.setCurrentIndex(1)
-        self.editProject.setCurrentIndex(0)
+        self.stackWidget.setCurrentIndex(0)
+        self.stackWidget_cameraSetting.setCurrentIndex(0)
+        self.editProject.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Batch Code Inspection System"))
         self.detectionResult_Label.setText(_translate("MainWindow", "Detection Result"))
         self.detectionTime_Label.setText(_translate("MainWindow", "Detection Time"))
         self.detectionTime.setText(_translate("MainWindow", "0 s"))

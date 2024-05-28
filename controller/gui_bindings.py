@@ -161,22 +161,22 @@ class Controller():
         self.live.stackWidget_cameraSetting.setCurrentWidget(self.live.saveData_Page)
 
 
-        self.live.saveData_Button.setStyleSheet('''#saveData_Button QPush{
-        `                                                   color:#D9305C;
-                                                            background-color: white;
-                                                            border-top:1px solid#D9305C;
-                                                            border-right:1px solid#D9305C;
-                                                            border-top-left-radius:4px;
-                                                            border-top-right-radius:4px;
-                                                            }''')
-        self.live.cameraSetting_Button.setStyleSheet('''#cameraSetting_Button{
-                                                            background-color: #eaeaea;                                                              
-                                                            color:black;                                                                
-                                                            border:none;                                                                
-                                                            border-top-left-radius:4px;                                                             
-                                                            border-top-right-radius:4px;                                                                
-                                                            border-bottom-right-radius:4px;                                                             
-                                                            }''')
+        self.live.saveData_Button.setStyleSheet("#saveData_Button{\n"
+                                                           "color:#D9305C;\n"
+                                                            "background-color: white;\n"
+                                                            "border-top:1px solid#D9305C;\n"
+                                                            "border-right:1px solid#D9305C;\n"
+                                                            "border-top-left-radius:4px;\n"
+                                                            "border-top-right-radius:4px;\n"
+                                                            "}")
+        self.live.cameraSetting_Button.setStyleSheet("#cameraSetting_Button{\n"
+                                                            "background-color: #eaeaea;\n"                                                              
+                                                            "color:black;\n"                                                                
+                                                            "border:none;\n"                                                                
+                                                            "border-top-left-radius:4px;\n"                                                             
+                                                            "border-top-right-radius:4px;\n"                                                                
+                                                            "border-bottom-right-radius:4px;\n"                                                             
+                                                            "}")
 
 
     def load_main_configs(self)->None:

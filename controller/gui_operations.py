@@ -13,6 +13,8 @@ from .debug_operations import DebugOperationFunction
 
 from PyQt5.QtCore import QObject, QEvent, QCoreApplication, QTimer, pyqtSignal, pyqtSlot
 from PyQt5.QtWidgets import QFrame
+from Parameter_Value.debug_param_value import  camera_param
+from Parameter_Value.param_tools import save_parameter, get_parameter
 from algorithm.yolo import object_detection_yolo
 class CircleFrame(QFrame):
     def __init__(self, parent=None):
@@ -33,6 +35,10 @@ class CircleFrame(QFrame):
 class PyQTWidgetFunction(Ui_MainWindow):
     def __init__(self, main_window) -> None:
         super().__init__()
+        self.detectionTime = None
+        self.goodCount = None
+        self.notGoodCount = None
+        self.lastNG_Count = None
         self.last_ten_circle = CircleFrame()
         self.main_window = main_window
         self.setupUi(main_window)
@@ -121,6 +127,7 @@ class PyQTWidgetFunction(Ui_MainWindow):
     def camera_off_status(self):
         self.onButton.setStyleSheet(" ")     
         self.offButton.setStyleSheet(" ")
+    
 
     def update_live_gui_with_based_on_result(self, image: cv2 = None, rejection : dict = None):
         '''
@@ -129,12 +136,13 @@ class PyQTWidgetFunction(Ui_MainWindow):
             image: image received from camera
             rejection: status while rejection
         '''
+
         detect_info = rejection
         reject_status = detect_info['reject_status']
         
         ###### Display detection time #######
         self.detectionTime.setText(str(round((detect_info['detect_time']),2)))
-        
+ 
         if reject_status == True:
             status = 'not_good'
             self.live.live_mode_param['not_good'] += 1
@@ -143,8 +151,8 @@ class PyQTWidgetFunction(Ui_MainWindow):
             self.notGoodCount.setText(str(self.live.live_mode_param['not_good']))
             self.live.last_ng_time(0,'0')
             self.live.red_blinking()
-            # self.update()
-            # self.main_window.update()  
+            self.notGoodCount.update()
+
         else:
             status = 'good'
             self.live.live_mode_param['good'] += 1
@@ -152,8 +160,9 @@ class PyQTWidgetFunction(Ui_MainWindow):
             self.goodCount.setText(str(self.live.live_mode_param['good']))
             self.lastNG_Count.setText(str(self.live.live_mode_param['last_not_good_count']))
             self.live.blue_blinking()
-            # self.update()
-            # QApplication.processEvents()
+            self.goodCount.update()
+            self.lastNG_Count.update()
+
         current_image_info = {'image': deepcopy(image), 'status': status}
         self.live.live_mode_param['last_ten_result'] = [current_image_info] +  self.live.live_mode_param['last_ten_result']
         if len(self.live.live_mode_param['last_ten_result']) > 10: # removing the previous results if there are more than ten circles
@@ -177,11 +186,15 @@ class PyQTWidgetFunction(Ui_MainWindow):
                 }
             '''
             if self.live.live_mode_param['last_ten_result'][idx]['status'] == "good":
+                pass
                 self.circle_buttons[idx].setStyleSheet(style_green)
             else:
                 self.circle_buttons[idx].setStyleSheet(style_red)
-                
+
+
           
  
         
+
+
 

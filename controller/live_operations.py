@@ -17,7 +17,7 @@ from PIL import Image, ImageTk
 if TYPE_CHECKING:
     from .gui_operations import PyQTWidgetFunction
 
-
+from camera_interface.camera import MachineVisionCamera
 
 
 class LiveOperationFunction(Ui_MainWindow):
@@ -293,71 +293,67 @@ class LiveOperationFunction(Ui_MainWindow):
             print(traceback.format_exc())
      
 
-    def open_image(self, image = None)-> None:
+    def open_image(self,image)-> None:
         '''
         Method that opens the image to select the ROI to be used and display in the GUI
-        '''   
-        file_path="current_img/1.jpg"
-        started = 0
-        if file_path:
-            if type(image) == type(None):
-                image = cv2.imread(file_path)
-            r_image=cv2.resize(image,(int(0.75*image.shape[1]),int(0.75*image.shape[0])))
-            ###### mouse click event########
-            drawing = True
-            ix,iy = -1,-1
-            endy , endy = 0 ,0 
-            def draw_rectangle(event, x, y, flags, param):
-                try:
-                    global ix,iy,drawing,roi, started, r_image,drawing
-                    if event == cv2.EVENT_LBUTTONDOWN:
-                        drawing = True
-                        ix = x
-                        iy = y
-                        endx = x
-                        endy = y
-                    elif event == cv2.EVENT_MOUSEMOVE and drawing  == True:
-                        endx = x
-                        endy = y
-                        r_image=cv2.resize(image,(int(0.75*image.shape[1]),int(0.75*image.shape[0])))
-                        cv2.rectangle(r_image, (ix, iy),(endx, endy),(0, 255, 255),3)
-                        cv2.imshow("ROI Selection", r_image)
-                    elif event == cv2.EVENT_LBUTTONUP:
-                        drawing = False
-                        x1 = int(ix * image.shape[1] / r_image.shape[1])
-                        y1 = int(iy * image.shape[0] / r_image.shape[0])
-                        x2 = int((x) * image.shape[1] / r_image.shape[1])
-                        y2 = int((y) * image.shape[0] / r_image.shape[0])
-                        cv2.rectangle(r_image, (ix, iy),(x, y),(0, 255, 255),3)
-                        cv2.imshow("ROI Selection", r_image)
-                        cv2.waitKey(1500)
-                        roi=str(int(y1))+':'+str(int(y2))+','+str(int(x1))+':'+str(int(x2))
-                
-                        cv2.destroyAllWindows()
-                        started = 0
-                except NameError as ne:
-                    pass
-            cv2.namedWindow("ROI Selection",cv2.WINDOW_AUTOSIZE)
-            cv2.setMouseCallback("ROI Selection", draw_rectangle)
-                # display the window
-            while True:
-                cv2.imshow("ROI Selection", r_image)
-                cv2.waitKey(0) == ord('q')
-                break
-            cv2.destroyAllWindows()
-            self.roiEntry1.clear()  # clear any existing text in the entry box
-            self.roiEntry2.clear()
-            self.roiEntry3.clear()
-            self.roiEntry4.clear()
-            first_point,second_point = roi.split(',')
-            first,second = first_point.split(':')
-            third,forth = second_point.split(':')
-            self.roiEntry1.insert(first)
-            self.roiEntry2.insert(second)
-            self.roiEntry3.insert(third)
-            self.roiEntry4.insert(forth)
-            cv2.destroyAllWindows()
+        '''
+        image= cv2.imread("current_img/1.jpg")
+        r_image=cv2.resize(image,(int(0.25*image.shape[1]),int(0.25*image.shape[0])))
+        ###### mouse click event########
+        drawing = True
+        ix,iy = -1,-1
+        endy , endy = 0 ,0 
+        def draw_rectangle(event, x, y, flags, param):
+            try:
+                global ix,iy,drawing,roi, started, r_image,drawing
+                if event == cv2.EVENT_LBUTTONDOWN:
+                    drawing = True
+                    ix = x
+                    iy = y
+                    endx = x
+                    endy = y
+                elif event == cv2.EVENT_MOUSEMOVE and drawing  == True:
+                    endx = x
+                    endy = y
+                    r_image=cv2.resize(image,(int(0.25*image.shape[1]),int(0.25*image.shape[0])))
+                    cv2.rectangle(r_image, (ix, iy),(endx, endy),(0, 255, 255),3)
+                    cv2.imshow("ROI Selection", r_image)
+                elif event == cv2.EVENT_LBUTTONUP:
+                    drawing = False
+                    x1 = int(ix * image.shape[1] / r_image.shape[1])
+                    y1 = int(iy * image.shape[0] / r_image.shape[0])
+                    x2 = int((x) * image.shape[1] / r_image.shape[1])
+                    y2 = int((y) * image.shape[0] / r_image.shape[0])
+                    cv2.rectangle(r_image, (ix, iy),(x, y),(0, 255, 255),3)
+                    cv2.imshow("ROI Selection", r_image)
+                    cv2.waitKey(1500)
+                    roi=str(int(y1))+':'+str(int(y2))+','+str(int(x1))+':'+str(int(x2))
             
+                    cv2.destroyAllWindows()
+                    started = 0
+            except NameError as ne:
+                pass
+        cv2.namedWindow("ROI Selection",cv2.WINDOW_AUTOSIZE)
+        cv2.setMouseCallback("ROI Selection", draw_rectangle)
+            # display the window
+        while True:
+            cv2.imshow("ROI Selection", r_image)
+            cv2.waitKey(0) == ord('q')
+            break
+        cv2.destroyAllWindows()
+        self.roiEntry1.clear()  # clear any existing text in the entry box
+        self.roiEntry2.clear()
+        self.roiEntry3.clear()
+        self.roiEntry4.clear()
+        first_point,second_point = roi.split(',')
+        first,second = first_point.split(':')
+        third,forth = second_point.split(':')
+        self.roiEntry1.insert(first)
+        self.roiEntry2.insert(second)
+        self.roiEntry3.insert(third)
+        self.roiEntry4.insert(forth)
+        cv2.destroyAllWindows()
+    
 
     def choose_directory_path(self):
         '''
@@ -380,6 +376,9 @@ class LiveOperationFunction(Ui_MainWindow):
     
 
     def reset_counter_values(self):
+        self.live_mode_param['good'] = 0
+        self.live_mode_param['not_good'] = 0
+        self.live_mode_param['la']
         self.goodCount.setText(str(0))
         self.notGoodCount.setText(str(0))
         self.lastNG_Count.setText(str(0))
@@ -433,7 +432,7 @@ class LiveOperationFunction(Ui_MainWindow):
         Display or Blink the red color rectangle when the detection result if Not Good.
         '''
         self.detectionResult.setText("Not Good")
-        self.detectionResult.setStyleSheet("QLabel{\n"
+        self.detectionResult.setStyleSheet("#detectionResult{\n"
         "    color:white;\n"
         "    background-color:#D9305C;\n"
         "    border-radius:2px;\n"
@@ -446,7 +445,7 @@ class LiveOperationFunction(Ui_MainWindow):
         Display or Blink the blue color rectangle when the detection result is Good.
         '''
         self.detectionResult.setText("Good")
-        self.detectionResult.setStyleSheet("QLabel{\n"
+        self.detectionResult.setStyleSheet("#detectionResult{\n"
         "    color:white;\n"
         "    background-color:#349beb;\n"
         "    border-radius:2px;\n"

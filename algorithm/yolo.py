@@ -5,11 +5,34 @@ import pickle
 import time
 
 def object_detection_yolo(model,numArray):
+    '''
+    Detects the object in the image captured from camera using YOLO V8
+    Args:
+        model(.pt)-> Trained model for object detection
+        numArray(image(.jpg))-> Image captured from capture
+    Returns:
+        numArray(image(.jpg))-> Detected image from trained model
+        detect_info(dictionary)-> Detection information
+    '''
     with open("./main_config.yaml", 'r') as f: ##### Load configuration file #######
         current_brand_config = yaml.safe_load(f)
-    pickle_path = os.path.join(current_brand_config['pickle_path'],'system.pkl')
+    #### load system settings pickle file
+    pickle_path = os.path.join(current_brand_config['pickle_path'],'system.pkl') 
     with open(pickle_path,'rb') as f:
         system_values = pickle.load(f)
+    #### load live camera settings pickle file
+    pickle_path = os.path.join(current_brand_config['pickle_path'],'camera_live.pkl') 
+    with open(pickle_path,'rb') as f:
+        camera_param = pickle.load(f)
+
+    ### Save current image captured by camera
+    filename = 'current_img/1.jpg'
+    cv2.imwrite(filename,numArray)    
+    roi = camera_param['ROI']
+    first_point,second_point = roi.split(',')
+    first,second = first_point.split(':')
+    third,forth = second_point.split(':')
+    numArray = numArray[int(first):int(second), int(third):int(forth)]
 
 ####### if there is only detection #########
     if system_values['ocr_method'] == False:
@@ -50,7 +73,7 @@ def object_detection_yolo(model,numArray):
                 cv2.putText(annotated_img, custom_label, (x1-100, y1 - 200), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 255, 0), 2)
 
             # Ensure that the image is in BGR format for OpenCV
-            if annotated_img.shape[2] == 3:  # if the image has 3 channels
+            if annotated_img.shape[2] == 3:  
                 numArray = annotated_img
             else:
                 raise ValueError("Unexpected number of channels in annotated image.")

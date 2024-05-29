@@ -378,11 +378,12 @@ class LiveOperationFunction(Ui_MainWindow):
     def reset_counter_values(self):
         self.live_mode_param['good'] = 0
         self.live_mode_param['not_good'] = 0
-        self.live_mode_param['la']
-        self.goodCount.setText(str(0))
-        self.notGoodCount.setText(str(0))
-        self.lastNG_Count.setText(str(0))
-        self.lastNG_timeCount.setText(str(0))
+        self.live_mode_param['last_not_good_count'] = 0
+        self.live_mode_param['last_not_good_time'] = 0
+        self.goodCount.setText(str(self.live_mode_param['good']))
+        self.notGoodCount.setText(str(self.live_mode_param['not_good']))
+        self.lastNG_Count.setText(str(self.live_mode_param['last_not_good_count']))
+        self.lastNG_timeCount.setText(str(self.live_mode_param['last_not_good_time']))
     
     def update_camera_parameter(self, value):
         self.exposureTime_Entry.setText(str(value))

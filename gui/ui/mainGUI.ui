@@ -348,7 +348,7 @@ QLabel#lastNG_Image{
        </size>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="liveMode_Page">
        <layout class="QGridLayout" name="gridLayout_7">
@@ -626,20 +626,6 @@ QLabel#lastNG_Image{
                    </property>
                   </widget>
                  </item>
-                 <item row="3" column="1" alignment="Qt::AlignHCenter">
-                  <widget class="QLabel" name="lastNG_timeCount">
-                   <property name="text">
-                    <string>0</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="0" column="1" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
-                  <widget class="QLabel" name="goodCount">
-                   <property name="text">
-                    <string>0</string>
-                   </property>
-                  </widget>
-                 </item>
                  <item row="2" column="0" alignment="Qt::AlignLeft">
                   <widget class="QLabel" name="lastNG_countLabel">
                    <property name="sizePolicy">
@@ -653,21 +639,8 @@ QLabel#lastNG_Image{
                    </property>
                   </widget>
                  </item>
-                 <item row="3" column="0" alignment="Qt::AlignLeft">
-                  <widget class="QLabel" name="lastNG_timeLabel">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="text">
-                    <string>Last NG Time    :</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="1" alignment="Qt::AlignHCenter">
-                  <widget class="QLabel" name="notGoodCount">
+                 <item row="0" column="1" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+                  <widget class="QLabel" name="goodCount">
                    <property name="text">
                     <string>0</string>
                    </property>
@@ -689,6 +662,13 @@ QLabel#lastNG_Image{
                    </property>
                    <property name="text">
                     <string>Not Good          :</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="1" alignment="Qt::AlignHCenter">
+                  <widget class="QLabel" name="notGoodCount">
+                   <property name="text">
+                    <string>0</string>
                    </property>
                   </widget>
                  </item>
@@ -1732,7 +1712,7 @@ border-radius: 3px;</string>
                  <number>0</number>
                 </property>
                 <property name="currentIndex">
-                 <number>0</number>
+                 <number>1</number>
                 </property>
                 <widget class="QWidget" name="cameraSetting_Page">
                  <property name="sizePolicy">
@@ -2018,13 +1998,7 @@ border-radius: 3px;</string>
                    <number>4</number>
                   </property>
                   <item row="0" column="0">
-                   <widget class="QLabel" name="chooseDirectory_Label">
-                    <property name="sizePolicy">
-                     <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-                      <horstretch>0</horstretch>
-                      <verstretch>0</verstretch>
-                     </sizepolicy>
-                    </property>
+                   <widget class="QLabel" name="saveImage_Label">
                     <property name="font">
                      <font>
                       <family>Arial</family>
@@ -2032,11 +2006,11 @@ border-radius: 3px;</string>
                      </font>
                     </property>
                     <property name="text">
-                     <string>Choose Directory</string>
+                     <string>Save Image</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="4" column="0">
+                  <item row="2" column="0">
                    <widget class="QLabel" name="saveNG_Image_Label">
                     <property name="font">
                      <font>
@@ -2050,36 +2024,6 @@ border-radius: 3px;</string>
                    </widget>
                   </item>
                   <item row="1" column="0">
-                   <widget class="QLabel" name="directoryName_Label">
-                    <property name="font">
-                     <font>
-                      <family>Arial</family>
-                      <pointsize>10</pointsize>
-                     </font>
-                    </property>
-                    <property name="styleSheet">
-                     <string notr="true">	color:#D9305C;
-</string>
-                    </property>
-                    <property name="text">
-                     <string>Directory Name</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="2" column="0">
-                   <widget class="QLabel" name="saveImage_Label">
-                    <property name="font">
-                     <font>
-                      <family>Arial</family>
-                      <pointsize>10</pointsize>
-                     </font>
-                    </property>
-                    <property name="text">
-                     <string>Save Image</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="3" column="0">
                    <widget class="QLabel" name="saveResult_Label">
                     <property name="font">
                      <font>
@@ -2093,44 +2037,6 @@ border-radius: 3px;</string>
                    </widget>
                   </item>
                   <item row="2" column="1" alignment="Qt::AlignRight">
-                   <widget class="QCheckBox" name="saveImage_Checkbox">
-                    <property name="sizePolicy">
-                     <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
-                      <horstretch>0</horstretch>
-                      <verstretch>0</verstretch>
-                     </sizepolicy>
-                    </property>
-                    <property name="maximumSize">
-                     <size>
-                      <width>16777215</width>
-                      <height>22</height>
-                     </size>
-                    </property>
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="3" column="1" alignment="Qt::AlignRight">
-                   <widget class="QCheckBox" name="saveResult_Checkbox">
-                    <property name="sizePolicy">
-                     <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
-                      <horstretch>0</horstretch>
-                      <verstretch>0</verstretch>
-                     </sizepolicy>
-                    </property>
-                    <property name="maximumSize">
-                     <size>
-                      <width>16777215</width>
-                      <height>22</height>
-                     </size>
-                    </property>
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="4" column="1" alignment="Qt::AlignRight">
                    <widget class="QCheckBox" name="saveNG_Checkbox">
                     <property name="sizePolicy">
                      <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
@@ -2149,50 +2055,41 @@ border-radius: 3px;</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="0" column="1">
-                   <widget class="QPushButton" name="chooseDirectory_Button">
+                  <item row="1" column="1" alignment="Qt::AlignRight">
+                   <widget class="QCheckBox" name="saveResult_Checkbox">
                     <property name="sizePolicy">
-                     <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                     <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
                       <horstretch>0</horstretch>
                       <verstretch>0</verstretch>
                      </sizepolicy>
                     </property>
                     <property name="maximumSize">
                      <size>
-                      <width>122</width>
-                      <height>24</height>
+                      <width>16777215</width>
+                      <height>22</height>
                      </size>
                     </property>
-                    <property name="font">
-                     <font>
-                      <family>Arial</family>
-                      <pointsize>11</pointsize>
-                     </font>
-                    </property>
-                    <property name="styleSheet">
-                     <string notr="true"/>
-                    </property>
                     <property name="text">
-                     <string>Choose Directory</string>
+                     <string/>
                     </property>
                    </widget>
                   </item>
-                  <item row="1" column="1">
-                   <widget class="QLineEdit" name="directoryName_Entry">
+                  <item row="0" column="1" alignment="Qt::AlignRight">
+                   <widget class="QCheckBox" name="saveImage_Checkbox">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
                     <property name="maximumSize">
                      <size>
-                      <width>122</width>
-                      <height>20</height>
+                      <width>16777215</width>
+                      <height>22</height>
                      </size>
                     </property>
-                    <property name="font">
-                     <font>
-                      <weight>75</weight>
-                      <bold>true</bold>
-                     </font>
-                    </property>
-                    <property name="alignment">
-                     <set>Qt::AlignCenter</set>
+                    <property name="text">
+                     <string/>
                     </property>
                    </widget>
                   </item>
@@ -2579,7 +2476,7 @@ border-radius: 3px;</string>
            <string notr="true"/>
           </property>
           <property name="currentIndex">
-           <number>1</number>
+           <number>2</number>
           </property>
           <widget class="QWidget" name="createProject_Page">
            <property name="minimumSize">
@@ -3835,21 +3732,8 @@ border-radius: 3px;</string>
                      <property name="verticalSpacing">
                       <number>4</number>
                      </property>
-                     <item row="0" column="0">
-                      <widget class="QLabel" name="recursionRateLabel">
-                       <property name="font">
-                        <font>
-                         <family>Arial</family>
-                         <pointsize>10</pointsize>
-                        </font>
-                       </property>
-                       <property name="text">
-                        <string>Recursion Rate</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="2" column="1" alignment="Qt::AlignRight">
-                      <widget class="QLineEdit" name="elasticEntry">
+                     <item row="1" column="1" alignment="Qt::AlignRight">
+                      <widget class="QLineEdit" name="rigidEntry">
                        <property name="maximumSize">
                         <size>
                          <width>40</width>
@@ -3864,19 +3748,6 @@ border-radius: 3px;</string>
                        </property>
                        <property name="alignment">
                         <set>Qt::AlignCenter</set>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="2" column="0">
-                      <widget class="QLabel" name="elasticLabel">
-                       <property name="font">
-                        <font>
-                         <family>Arial</family>
-                         <pointsize>10</pointsize>
-                        </font>
-                       </property>
-                       <property name="text">
-                        <string>Elastic</string>
                        </property>
                       </widget>
                      </item>
@@ -3899,8 +3770,34 @@ border-radius: 3px;</string>
                        </property>
                       </widget>
                      </item>
-                     <item row="1" column="1" alignment="Qt::AlignRight">
-                      <widget class="QLineEdit" name="rigidEntry">
+                     <item row="0" column="0">
+                      <widget class="QLabel" name="recursionRateLabel">
+                       <property name="font">
+                        <font>
+                         <family>Arial</family>
+                         <pointsize>10</pointsize>
+                        </font>
+                       </property>
+                       <property name="text">
+                        <string>Recursion Rate</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="2" column="0">
+                      <widget class="QLabel" name="elasticLabel">
+                       <property name="font">
+                        <font>
+                         <family>Arial</family>
+                         <pointsize>10</pointsize>
+                        </font>
+                       </property>
+                       <property name="text">
+                        <string>Elastic</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="2" column="1" alignment="Qt::AlignRight">
+                      <widget class="QLineEdit" name="elasticEntry">
                        <property name="maximumSize">
                         <size>
                          <width>40</width>
@@ -3928,30 +3825,6 @@ border-radius: 3px;</string>
                        </property>
                        <property name="text">
                         <string>Rigid</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="3" column="0">
-                      <widget class="QCheckBox" name="flip_checkBox">
-                       <property name="sizePolicy">
-                        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                         <horstretch>0</horstretch>
-                         <verstretch>0</verstretch>
-                        </sizepolicy>
-                       </property>
-                       <property name="font">
-                        <font>
-                         <family>Arial</family>
-                         <pointsize>10</pointsize>
-                         <weight>50</weight>
-                         <bold>false</bold>
-                        </font>
-                       </property>
-                       <property name="layoutDirection">
-                        <enum>Qt::LeftToRight</enum>
-                       </property>
-                       <property name="text">
-                        <string>Flip</string>
                        </property>
                       </widget>
                      </item>

@@ -9,7 +9,6 @@ camera_param = {
 augmentation_param = {
     'ntimes':5,
     'rotate':10,
-    'flip':True,
     'blur':5,
     'contrast':10,
     'elastic':10,

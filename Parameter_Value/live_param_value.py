@@ -14,13 +14,10 @@ rejection_params = {
     'reject_enable':True
 }
 
-
-
 save_data_param = {
     'save_img':'False',
     'save_ng':'False',
-    'save_result':'False',
-    'img_dir':'None'
+    'save_result':'False'
 }
 
 camera_live = {

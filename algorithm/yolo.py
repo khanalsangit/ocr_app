@@ -3,7 +3,7 @@ import cv2
 import os
 import pickle
 import time
-
+from copy import deepcopy 
 def object_detection_yolo(model,numArray):
     '''
     Detects the object in the image captured from camera using YOLO V8
@@ -16,6 +16,7 @@ def object_detection_yolo(model,numArray):
     '''
     with open("./main_config.yaml", 'r') as f: ##### Load configuration file #######
         current_brand_config = yaml.safe_load(f)
+    
     #### load system settings pickle file
     pickle_path = os.path.join(current_brand_config['pickle_path'],'system.pkl') 
     with open(pickle_path,'rb') as f:
@@ -34,6 +35,7 @@ def object_detection_yolo(model,numArray):
     third,forth = second_point.split(':')
     numArray = numArray[int(first):int(second), int(third):int(forth)]
 
+    orig_img = deepcopy(numArray)
 ####### if there is only detection #########
     if system_values['ocr_method'] == False:
         custom_labels = {
@@ -82,5 +84,5 @@ def object_detection_yolo(model,numArray):
         rejected = True
         if system_values['nooflines'] == str(No_of_box):  ##### Check if the no of lines matched with number of object
             rejected = False
-        detect_info = {'detect_time':detection_time, 'reject_status':rejected}
+        detect_info = {'orig_img':orig_img,'detect_time':detection_time, 'reject_status':rejected}
         return numArray,detect_info

@@ -98,7 +98,6 @@ class Controller():
 
         self.live.cameraSetting_Button.pressed.connect(self.camera_setting)
         self.live.saveData_Button.pressed.connect(self.save_data)
-        self.live.chooseDirectory_Button.pressed.connect(self.live.choose_directory_path)
         self.live.systemSetting_update_Button.pressed.connect(self.set_system_parameter)
         self.live.rejectSetting_updateButton.pressed.connect(self.set_reject_parameter)
         self.live.resetCounter_Button.pressed.connect(self.live.reset_counter_values)

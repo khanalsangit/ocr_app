@@ -14,6 +14,7 @@ from typing import TYPE_CHECKING
 import time
 from copy import deepcopy
 from PIL import Image, ImageTk
+import yaml
 if TYPE_CHECKING:
     from .gui_operations import PyQTWidgetFunction
 
@@ -69,11 +70,8 @@ class LiveOperationFunction(Ui_MainWindow):
         self.saveImage_Checkbox = parent.saveImage_Checkbox
         self.saveResult_Checkbox = parent.saveResult_Checkbox
         self.saveNG_Checkbox = parent.saveNG_Checkbox
-        self.directoryName_Entry = parent.directoryName_Entry
         self.saveData_Page = parent.saveData_Page
         self.saveData_Button = parent.saveData_Button
-        self.directoryName_Entry = parent.directoryName_Entry
-        self.chooseDirectory_Button = parent.chooseDirectory_Button
        
         ############ last ng image 
         self.lastNG_Image = parent.lastNG_Image 
@@ -85,7 +83,6 @@ class LiveOperationFunction(Ui_MainWindow):
         self.goodCount = parent.goodCount
         self.notGoodCount = parent.notGoodCount
         self.lastNG_Count = parent.lastNG_Count 
-        self.lastNG_timeCount = parent.lastNG_timeCount 
         self.resetCounter_Button = parent.resetCounter_Button
 
     ########## Live Mode Result Parameter ########
@@ -144,7 +141,11 @@ class LiveOperationFunction(Ui_MainWindow):
         msgBox.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
         msgBox.exec()
         
-
+    def load_main_config(self):
+        ######## Load main configuration file
+        with open("./main_config.yaml", 'r') as f: ##### Load configuration file #######
+            current_brand_config = yaml.safe_load(f)
+        return current_brand_config
     def system_param_load(self, ocr_method:str, no_of_line:int, line1box:str, line2box:str, line3box:str, line4box:str)->None :
         '''
         Set the current system parameter values into gui widgets.
@@ -211,10 +212,7 @@ class LiveOperationFunction(Ui_MainWindow):
             self.saveNG_Checkbox.setChecked(True)
         else:
             self.saveNG_Checkbox.setChecked(False)
-
-        self.directoryName_Entry.setText(img_dir)
     
-        
     ########### Getting system parameters and save it
     def update_system_param(self,file_path)->None:
         '''
@@ -284,8 +282,8 @@ class LiveOperationFunction(Ui_MainWindow):
             'save_img':True if self.saveImage_Checkbox.isChecked() else False
             ,'save_ng':True if self.saveNG_Checkbox.isChecked() else False
             ,'save_result':True if self.saveResult_Checkbox.isChecked() else False
-            ,'img_dir':self.directoryName_Entry.text()
             }
+            print("Save Data Info",save_data)
             save_parameter(file_path,'save_data',save_data)
             self.msgbox_display("Save Data Update Successfully","Information")
         except Exception as e:
@@ -415,19 +413,6 @@ class LiveOperationFunction(Ui_MainWindow):
             image = QImage(image.data, new_w, new_h, QImage.Format.Format_BGR888)
             self.lastNG_Image.setPixmap(QtGui.QPixmap.fromImage(image))
 
-    def last_ng_time(self,start_time,last_time)->None:
-        '''
-            Display Last Not Good time
-        Args:
-
-        '''
-        start_time = time.time()
-        if last_time==0:
-            current_time = 0
-        else:
-            current_time = int(time.time() - start_time) 
-        self.lastNG_timeCount.setText(str(current_time) + ' sec')
-
     def red_blinking(self) -> None:
         '''
         Display or Blink the red color rectangle when the detection result if Not Good.
@@ -457,9 +442,20 @@ class LiveOperationFunction(Ui_MainWindow):
     def detection_time(self,time) ->None:
         self.detectionTime.setText(time)
 
-
+    def save_ng_image(self,image):
+        
+        config_file = self.load_main_config()
+        img_dir = config_file['not_good_image_path']
+        filename = os.path.join(img_dir,str(time.time())+'_NG.jpg')
+        cv2.imwrite(filename,image)
 
         
+    def save_image(self,image):
+        config_file = self.load_main_config()
+        img_dir = config_file['images_path']
+        filename = os.path.join(img_dir,str(time.time())+'.jpg')
+        cv2.imwrite(filename,image)
+
 
 
             

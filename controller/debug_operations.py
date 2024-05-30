@@ -74,7 +74,6 @@ class DebugOperationFunction(Ui_MainWindow):
         self.blurEntry = parent.blurEntry
         self.contrastEntry = parent.contrastEntry
         self.recursionRateEntry = parent.recursionRateEntry
-        self.flip_checkBox = parent.flip_checkBox
         self.rigidEntry = parent.rigidEntry
         self.elasticEntry = parent.elasticEntry
         self.augmentationButton=parent.augmentationButton
@@ -160,12 +159,6 @@ class DebugOperationFunction(Ui_MainWindow):
         self.blurEntry.setText(str(blur))
         self.contrastEntry.setText(str(contrast))
         self.recursionRateEntry.setText(str(elastic))
-            ################ For Save Image ##################
-        if flip == True:
-            self.flip_checkBox.setChecked(True)
-        else:
-            self.flip_checkBox.setChecked(False)
-        
         self.rigidEntry.setText(str(rigid))
         self.elasticEntry.setText(str(recursion_rate))
 
@@ -305,7 +298,6 @@ class DebugOperationFunction(Ui_MainWindow):
             augment_param  = {
                 'ntimes':self.nTimesEntry.text()
                 ,'rotate':self.rotateEntry.text()
-                ,'flip':True if self.flip_checkBox.isChecked() else False
                 ,'blur':self.blurEntry.text()
                 ,'contrast':self.contrastEntry.text()
                 ,'elastic':self.elasticEntry.text()

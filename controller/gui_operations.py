@@ -136,9 +136,11 @@ class PyQTWidgetFunction(Ui_MainWindow):
             image: image received from camera
             rejection: status while rejection
         '''
-
+        ng_image_checkbox = True if self.saveNG_Checkbox.isChecked() else False
+        img_checkbox = True if self.saveImage_Checkbox.isChecked() else False
         detect_info = rejection
         reject_status = detect_info['reject_status']
+        orig_img = detect_info['orig_img']
         
         ###### Display detection time #######
         self.detectionTime.setText(str(round((detect_info['detect_time']),2)))
@@ -149,10 +151,10 @@ class PyQTWidgetFunction(Ui_MainWindow):
             self.live.live_mode_param['last_not_good_count'] = 0
             self.live.display_last_NG(image)
             self.notGoodCount.setText(str(self.live.live_mode_param['not_good']))
-            self.live.last_ng_time(0,'0')
             self.live.red_blinking()
-            self.notGoodCount.update()
-
+            if ng_image_checkbox == True:  ##### save not good image
+                self.live.save_ng_image(orig_img)
+            
         else:
             status = 'good'
             self.live.live_mode_param['good'] += 1
@@ -160,8 +162,8 @@ class PyQTWidgetFunction(Ui_MainWindow):
             self.goodCount.setText(str(self.live.live_mode_param['good']))
             self.lastNG_Count.setText(str(self.live.live_mode_param['last_not_good_count']))
             self.live.blue_blinking()
-            self.goodCount.update()
-            self.lastNG_Count.update()
+            if img_checkbox == True: #### save image
+                self.live.save_image(orig_img)
 
         current_image_info = {'image': deepcopy(image), 'status': status}
         self.live.live_mode_param['last_ten_result'] = [current_image_info] +  self.live.live_mode_param['last_ten_result']

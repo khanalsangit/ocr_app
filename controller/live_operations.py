@@ -1,17 +1,25 @@
+
 from __future__ import annotations
 import pickle
 import glob
 import cv2
 import os
-import shutil
-
+import traceback
 from gui.pyUIdesign import Ui_MainWindow
-from PyQt5 import QtWidgets, QtCore
+from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtGui import QImage
 from PyQt5.QtWidgets import *
-from Parameter_Value.param_tools import save_parameter
+from Parameter_Value.param_tools import save_parameter, get_parameter
 from typing import TYPE_CHECKING
+import time
+from copy import deepcopy
+from PIL import Image, ImageTk
+import yaml
 if TYPE_CHECKING:
     from .gui_operations import PyQTWidgetFunction
+
+from camera_interface.camera import MachineVisionCamera
+
 
 class LiveOperationFunction(Ui_MainWindow):
 
@@ -23,7 +31,9 @@ class LiveOperationFunction(Ui_MainWindow):
         -----------------------
         parent: PyQTWidgetFunction
             pass the object `PyQTWidgetFunction` that inherits the class `Ui_MainWindow` generated from `ui`
-        '''
+        '''    
+        
+    
         ########### system parameters variables
         self.detection_recognition = parent.detection_recognition
         self.detectionOnly = parent.detectionOnly
@@ -34,6 +44,7 @@ class LiveOperationFunction(Ui_MainWindow):
         self.line4Box = parent.line4Box
         self.systemSetting_update_Button = parent.systemSetting_update_Button
 
+    
         ########### rejection parameters variables
         self.minPercent_Entry = parent.minPercent_Entry
         self.lineThresh_Entry = parent.linearThresh_Entry
@@ -56,20 +67,14 @@ class LiveOperationFunction(Ui_MainWindow):
         self.roiEntry4 = parent.roiEntry4
 
          ########### save data parameters variables
-        self.openImage_Button = parent.openImage_Button 
         self.saveImage_Checkbox = parent.saveImage_Checkbox
         self.saveResult_Checkbox = parent.saveResult_Checkbox
         self.saveNG_Checkbox = parent.saveNG_Checkbox
-        self.directoryName_Entry = parent.directoryName_Entry
         self.saveData_Page = parent.saveData_Page
         self.saveData_Button = parent.saveData_Button
-        self.directoryName_Entry = parent.directoryName_Entry
-        self.chooseDirectory_Button = parent.chooseDirectory_Button
-
-
+       
         ############ last ng image 
         self.lastNG_Image = parent.lastNG_Image 
-
         ##### detection result 
         self.detectionResult = parent.detectionResult 
         self.detectionTime = parent.detectionTime 
@@ -78,281 +83,275 @@ class LiveOperationFunction(Ui_MainWindow):
         self.goodCount = parent.goodCount
         self.notGoodCount = parent.notGoodCount
         self.lastNG_Count = parent.lastNG_Count 
-        self.lastNG_timeCount = parent.lastNG_timeCount 
         self.resetCounter_Button = parent.resetCounter_Button
 
-    def system_param_load(self)->None :
+    ########## Live Mode Result Parameter ########
+    live_mode_param = {
+        'detection_time':0,
+        'last_ten_result':[],
+        'good':0,
+        'not_good':0,
+        'last_not_good_count':0,
+        'last_not_good_time':0
+    }
+        
+    def silence_line(self)->None:
         '''
-        Load the system parameter values from pickle
+        Silence the lines based on the number of line
         '''
-        with open(os.path.join(os.getcwd(),'Parameter_Value/system.pkl'),'rb') as f:
-            system_param = pickle.load(f)   
-            print(system_param)
-        if system_param['ocr_method'] == True:  ######## Set the ocr method radiobutton 
+        combo_box = int(self.no_ofLine_comboBox.currentText())
+
+        if combo_box == 0:
+            self.line1Box.setDisabled(True)
+            self.line2Box.setDisabled(True)
+            self.line3Box.setDisabled(True)
+            self.line4Box.setDisabled(True)
+        elif combo_box == 1:
+            self.line1Box.setDisabled(False)
+            self.line2Box.setDisabled(True)
+            self.line3Box.setDisabled(True)
+            self.line4Box.setDisabled(True)
+        elif combo_box == 2:
+            self.line1Box.setDisabled(False)
+            self.line2Box.setDisabled(False)
+            self.line3Box.setDisabled(True)
+            self.line4Box.setDisabled(True)
+        
+        elif combo_box == 3:
+            self.line1Box.setDisabled(False)
+            self.line2Box.setDisabled(False)
+            self.line3Box.setDisabled(False)
+            self.line4Box.setDisabled(True)
+        elif combo_box == 4:
+            self.line1Box.setDisabled(False)
+            self.line2Box.setDisabled(False)
+            self.line3Box.setDisabled(False)
+            self.line4Box.setDisabled(False)
+
+    def msgbox_display(self,msg,type)-> None:
+        '''
+        Displays the messagebox 
+        Parameters:
+        msg: Message to be display
+        type: Type of Message like Information and warning
+        '''
+        msgBox = QMessageBox()
+        msgBox.setText("{}".format(msg))
+        msgBox.setWindowTitle("{}".format(type))
+        msgBox.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
+        msgBox.exec()
+        
+    def load_main_config(self):
+        ######## Load main configuration file
+        with open("./main_config.yaml", 'r') as f: ##### Load configuration file #######
+            current_brand_config = yaml.safe_load(f)
+        return current_brand_config
+    def system_param_load(self, ocr_method:str, no_of_line:int, line1box:str, line2box:str, line3box:str, line4box:str)->None :
+        '''
+        Set the current system parameter values into gui widgets.
+        '''
+        if ocr_method == True:  ######## Set the ocr method radiobutton 
             self.detection_recognition.setChecked(True)
         else:
             self.detectionOnly.setChecked(True)
         
-        self.no_ofLine_comboBox.setCurrentText(str(system_param['no_of_lines']))
-        self.line1Box.setText(system_param['line1'])
-        self.line2Box.setText(system_param['line2'])
-        self.line3Box.setText(system_param['line3'])
-        self.line4Box.setText(system_param['line4'])
+        self.no_ofLine_comboBox.setCurrentText(str(no_of_line))
+        self.line1Box.setText(line1box) # system_param['line1'])
+        self.line2Box.setText(line2box)
+        self.line3Box.setText(line3box)
+        self.line4Box.setText(line4box)
 
     ########## Loading rejection widgets parameters
-    def reject_param_load(self)->None:
+    def reject_param_load(self,min_per_thresh:str,line_per_thresh:str, reject_count:str, reject_enable:bool)->None:
         '''
-        Load the rejection parameter values from pickle
+        Set the current rejection parameter values into gui widgets
         '''
-        with open(os.path.join(os.getcwd(),'Parameter_Value/rejection.pkl'),'rb') as f:
-            reject_param = pickle.load(f)
-        self.minPercent_Entry.setText(str(reject_param['min_per_thresh']))
-        self.lineThresh_Entry.setText(str(reject_param['line_per_thresh']))
-        self.rejectCount_Entry.setText(str(reject_param['reject_count']))
-        if reject_param['reject_enable'] == True:
+        self.minPercent_Entry.setText(str(min_per_thresh))
+        self.lineThresh_Entry.setText(str(line_per_thresh))
+        self.rejectCount_Entry.setText(str(reject_count))
+        if reject_enable == True:
             self.rejectEnable_Yes.setChecked(True)
         else:
             self.rejectEnable_No.setChecked(True)
 
     ###### Loading camera widgets parameters
-    def camera_param_load(self)->None:
+    def camera_param_load(self,exposure_time, cam_gain:str, trigger_delay:int, roi:str)->None:
         '''
-        Load the camera parameter value from pickle
+        Set the current live camera parameter values into gui widgets
         '''
-        with open(os.path.join(os.getcwd(),'Parameter_Value/camera.pkl'),'rb') as f:
-            camera_param = pickle.load(f)
-            first_point,second_point = camera_param['ROI'].split(',')
-            first,second = first_point.split(':')
-            third,forth = second_point.split(':')
-            self.cameraGain_Entry.setText(str(camera_param['camera_gain']))
-            self.exposureTime_Entry.setText(str(camera_param['exposure_time']))
-            self.triggerDelay_Entry.setText(str(camera_param['trigger_delay']))
-            self.roiEntry1.setText(str(first))
-            self.roiEntry2.setText(str(second))
-            self.roiEntry3.setText(str(third))
-            self.roiEntry4.setText(str(forth))
+        first_point,second_point = roi.split(',')
+        first,second = first_point.split(':')
+        third,forth = second_point.split(':')
+        self.cameraGain_Entry.setText(str(cam_gain))
+        self.exposureTime_Entry.setText(str(exposure_time))
+        self.triggerDelay_Entry.setText(str(trigger_delay))
+        self.roiEntry1.setText(str(first))
+        self.roiEntry2.setText(str(second))
+        self.roiEntry3.setText(str(third))
+        self.roiEntry4.setText(str(forth))
 
-    ###### Loading save param widgets parameter
-    def save_param_load(self)->None:
+    ###### Loading save data param widgets parameter
+    def save_data_param_load(self,save_img:bool, save_result:bool, save_ng:bool, img_dir: os.path)->None:
         '''
-        Load the save data parameter value from pickle
+        Set the current save data parameter in gui widgets
         '''
-        with open(os.path.join(os.getcwd(),'Parameter_Value/save_data.pkl'),'rb') as f:
-            save_data_param = pickle.load(f)
-           
         ################ For Save Image ##################
-        if save_data_param['save_img'] == True:
+        if save_img == True:
             self.saveImage_Checkbox.setChecked(True)
         else:
             self.saveImage_Checkbox.setChecked(False)
 
         ################ For Save Result #################
-        if save_data_param['save_result'] == True:
+        if save_result == True:
             self.saveResult_Checkbox.setChecked(True)
         else:
             self.saveResult_Checkbox.setChecked(False)
         
         ################# For Save NG Image #############
-        if save_data_param['save_ng'] == True:
+        if save_ng == True:
             self.saveNG_Checkbox.setChecked(True)
         else:
             self.saveNG_Checkbox.setChecked(False)
-
-        self.directoryName_Entry.setText(save_data_param['img_dir'])
-        
+    
     ########### Getting system parameters and save it
-    def update_system_param(self)->None:
+    def update_system_param(self,file_path)->None:
         '''
         Saves the updated system parameter
         '''
-        system  = {
-            'ocr_method':True if self.detection_recognition.isChecked() else False
-            ,'no_of_lines':self.no_ofLine_comboBox.currentText()
-            ,'line1':self.line1Box.text()
-            ,'line2':self.line2Box.text()
-            ,'line3':self.line3Box.text()
-            ,'line4':self.line4Box.text()
-        }
-        save_parameter(system,'system')
-        msgBox = QMessageBox()
-        msgBox.setIcon(QMessageBox.Information)
-        msgBox.setText("System Parameter Save Successfully")
-        msgBox.setWindowTitle("Parameter")
-        msgBox.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
-        msgBox.exec()
-
-    def update_reject_param(self)->None:
+        try:
+            system  = {
+                'ocr_method':True if self.detection_recognition.isChecked() else False
+                ,'nooflines':self.no_ofLine_comboBox.currentText()
+                ,'line1':self.line1Box.text()
+                ,'line2':self.line2Box.text()
+                ,'line3':self.line3Box.text()
+                ,'line4':self.line4Box.text()
+            }
+            save_parameter(file_path,'system',system)
+            self.silence_line()
+            self.msgbox_display("System Parameter Save Successfully",'Success')
+        except Exception as e:
+            print("Failed to get the system parameter")
+            print(traceback.format_exc())
+        
+    def update_reject_param(self,file_path)->None:
         '''
         Saves the updated rejection parameter
         '''
-        reject = {
-             'min_per_thresh':self.minPercent_Entry.text()
-            ,'line_per_thresh':self.lineThresh_Entry.text()
-            ,'reject_count':self.rejectCount_Entry.text()
-            ,'reject_enable':True if self.rejectEnable_Yes.isChecked() else False 
-        }
-        save_parameter(reject,'reject')
-        msgBox = QMessageBox()
-        msgBox.setIcon(QMessageBox.Information)
-        msgBox.setText("Reject Parameter Save Successfully")
-        msgBox.setWindowTitle("Parameter")
-        msgBox.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
-        msgBox.exec()
+        try:
+            reject = {
+                'min_per_thresh':self.minPercent_Entry.text()
+                ,'line_per_thresh':self.lineThresh_Entry.text()
+                ,'reject_count':self.rejectCount_Entry.text()
+                ,'reject_enable':True if self.rejectEnable_Yes.isChecked() else False 
+            }
+            save_parameter(file_path,'rejection',reject)
+            self.msgbox_display("Rejection Parameter Save Successfully","Success")
+        except Exception as e:
+            print("Failed to get the rejection parameter",e)
+            print(traceback.format_exc())
 
-    def update_camera_param(self)->None:
+    def update_camera_param(self,file_path)->None:
         '''
         Saves the updated camera parameter
         '''
-        camera = {
-        'exposure_time':self.exposureTime_Entry.text()
-        ,'trigger_delay':self.triggerDelay_Entry.text()
-        ,'camera_gain':self.cameraGain_Entry.text()
-        ,'roi':'{}:{},{}:{}'.format(self.roiEntry1.text()).format(self.roiEntry2.text()).format(self.roiEntry3.text()).format(self.roiEntry4.text())
-        }
-        save_parameter(camera,'camera')
-        msgBox = QMessageBox()
-        msgBox.setIcon(QMessageBox.Information)
-        msgBox.setText("Camera Parameter Save Successfully")
-        msgBox.setWindowTitle("Parameter")
-        msgBox.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
-        msgBox.exec()
+        try:
+            roi1 = self.roiEntry1.text()
+            roi2 = self.roiEntry2.text()
+            roi3 = self.roiEntry3.text()
+            roi4 = self.roiEntry4.text()
+            camera = {
+            'exposure_time':self.exposureTime_Entry.text()
+            ,'trigger_delay':self.triggerDelay_Entry.text()
+            ,'camera_gain':self.cameraGain_Entry.text()
+            ,'ROI':'{}:{},{}:{}'.format(roi1,roi2,roi3,roi4)
+            }
+           
+            save_parameter(file_path,'camera_live', camera)
+            self.msgbox_display("Camera Parameter Update Successfully","Information")
+        except Exception as e:
+            print("Failed to get the camera parameter",e)
+            print(traceback.format_exc())
 
-    def update_save_data_param(self)->None:
+    def update_save_data_param(self,file_path)->None:
         '''
         Saves the save data parameter
         '''
-        save_data = {
-        'save_img':True if self.saveImage_Checkbox.isChecked() else False
-        ,'save_ng':True if self.saveNG_Checkbox.isChecked() else False
-        ,'save_result':True if self.saveResult_Checkbox.isChecked() else False
-        ,'img_dir':self.directoryName_Entry.text()
-        }
-        save_parameter(save_data,'save_data')
-        msgBox = QMessageBox()
-        msgBox.setIcon(QMessageBox.Information)
-        msgBox.setText("Camera Parameter Save Successfully")
-        msgBox.setWindowTitle("Parameter")
-        msgBox.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
-        msgBox.exec()
+        try:
+            save_data = {
+            'save_img':True if self.saveImage_Checkbox.isChecked() else False
+            ,'save_ng':True if self.saveNG_Checkbox.isChecked() else False
+            ,'save_result':True if self.saveResult_Checkbox.isChecked() else False
+            }
+            print("Save Data Info",save_data)
+            save_parameter(file_path,'save_data',save_data)
+            self.msgbox_display("Save Data Update Successfully","Information")
+        except Exception as e:
+            print("Failed to get the save data parameter")
+            print(traceback.format_exc())
+     
 
-    def camera_setting(self)->None:
-        '''
-        Method that change the camera setting page in StackedWidget
-        '''
-        self.stackWidget_cameraSetting.setCurrentWidget(self.cameraSetting_Page)
-        self.saveData_Button.setStyleSheet("QPushButton{\n"
-        "    background-color: #eaeaea;\n"
-        "    border:none;\n"
-        "    border-top-left-radius:4px;\n"
-        "    border-top-right-radius:4px;\n"
-        "    border-bottom-right-radius:4px;\n"
-        "\n"
-        "\n"
-        "}")
-        self.cameraSetting_Button.setStyleSheet("QPushButton{\n"
-        "    color:#D9305C;\n"
-        "    border-top:1px solid#D9305C;\n"
-        "    border-right:1px solid#D9305C;\n"
-        "    border-top-left-radius:4px;\n"
-        "    border-top-right-radius:4px;\n"
-        "\n"
-        "}\n"
-        "\n"
-        "\n"
-        "\n"
-        "")
-
-    def save_data(self)->None:
-        '''
-        Method that change into save data page.
-        '''
-        self.stackWidget_cameraSetting.setCurrentWidget(self.saveData_Page)
-
-        self.saveData_Button.setStyleSheet("QPushButton{\n"
-        "    color:#D9305C;\n"
-        "    border-top:1px solid#D9305C;\n"
-        "    border-right:1px solid#D9305C;\n"
-        "    border-top-left-radius:4px;\n"
-        "    border-top-right-radius:4px;\n"
-        "\n"
-        "}\n"
-        "\n"
-        "\n"
-        "\n"
-        "")
-        self.cameraSetting_Button.setStyleSheet(
-            "QPushButton{\n"
-        "    background-color: #eaeaea;\n"
-        "    border:none;\n"
-        "    border-top-left-radius:4px;\n"
-        "    border-top-right-radius:4px;\n"
-        "    border-bottom-right-radius:4px;\n"
-        "\n"
-        "\n"
-        "}")
-
-    def open_image(self, image = None)-> None:
+    def open_image(self,image)-> None:
         '''
         Method that opens the image to select the ROI to be used and display in the GUI
-        '''   
-        file_path="current_img/1.jpg"
-        started = 0
-        if file_path:
-            if type(image) == type(None):
-                image = cv2.imread(file_path)
-            r_image=cv2.resize(image,(int(0.75*image.shape[1]),int(0.75*image.shape[0])))
-            ###### mouse click event########
-            drawing = True
-            ix,iy = -1,-1
-            endy , endy = 0 ,0 
-            def draw_rectangle(event, x, y, flags, param):
-                try:
-                    global ix,iy,drawing,roi, started, r_image,drawing
-                    if event == cv2.EVENT_LBUTTONDOWN:
-                        drawing = True
-                        ix = x
-                        iy = y
-                        endx = x
-                        endy = y
-                    elif event == cv2.EVENT_MOUSEMOVE and drawing  == True:
-                        endx = x
-                        endy = y
-                        r_image=cv2.resize(image,(int(0.75*image.shape[1]),int(0.75*image.shape[0])))
-                        cv2.rectangle(r_image, (ix, iy),(endx, endy),(0, 255, 255),3)
-                        cv2.imshow("ROI Selection", r_image)
-                    elif event == cv2.EVENT_LBUTTONUP:
-                        drawing = False
-                        x1 = int(ix * image.shape[1] / r_image.shape[1])
-                        y1 = int(iy * image.shape[0] / r_image.shape[0])
-                        x2 = int((x) * image.shape[1] / r_image.shape[1])
-                        y2 = int((y) * image.shape[0] / r_image.shape[0])
-                        cv2.rectangle(r_image, (ix, iy),(x, y),(0, 255, 255),3)
-                        cv2.imshow("ROI Selection", r_image)
-                        cv2.waitKey(1500)
-                        roi=str(int(y1))+':'+str(int(y2))+','+str(int(x1))+':'+str(int(x2))
-                
-                        cv2.destroyAllWindows()
-                        started = 0
-                except NameError as ne:
-                    pass
-            cv2.namedWindow("ROI Selection",cv2.WINDOW_AUTOSIZE)
-            cv2.setMouseCallback("ROI Selection", draw_rectangle)
-                # display the window
-            while True:
-                cv2.imshow("ROI Selection", r_image)
-                cv2.waitKey(0) == ord('q')
-                break
-            cv2.destroyAllWindows()
-            self.roiEntry1.clear()  # clear any existing text in the entry box
-            self.roiEntry2.clear()
-            self.roiEntry3.clear()
-            self.roiEntry4.clear()
-            self.roiEntry1.insert(roi)
-            self.roiEntry2.insert(roi)
-            self.roiEntry3.insert(roi)
-            self.roiEntry4.insert(roi)
-            cv2.destroyAllWindows()
+        '''
+        image= cv2.imread("current_img/1.jpg")
+        r_image=cv2.resize(image,(int(0.25*image.shape[1]),int(0.25*image.shape[0])))
+        ###### mouse click event########
+        drawing = True
+        ix,iy = -1,-1
+        endy , endy = 0 ,0 
+        def draw_rectangle(event, x, y, flags, param):
+            try:
+                global ix,iy,drawing,roi, started, r_image,drawing
+                if event == cv2.EVENT_LBUTTONDOWN:
+                    drawing = True
+                    ix = x
+                    iy = y
+                    endx = x
+                    endy = y
+                elif event == cv2.EVENT_MOUSEMOVE and drawing  == True:
+                    endx = x
+                    endy = y
+                    r_image=cv2.resize(image,(int(0.25*image.shape[1]),int(0.25*image.shape[0])))
+                    cv2.rectangle(r_image, (ix, iy),(endx, endy),(0, 255, 255),3)
+                    cv2.imshow("ROI Selection", r_image)
+                elif event == cv2.EVENT_LBUTTONUP:
+                    drawing = False
+                    x1 = int(ix * image.shape[1] / r_image.shape[1])
+                    y1 = int(iy * image.shape[0] / r_image.shape[0])
+                    x2 = int((x) * image.shape[1] / r_image.shape[1])
+                    y2 = int((y) * image.shape[0] / r_image.shape[0])
+                    cv2.rectangle(r_image, (ix, iy),(x, y),(0, 255, 255),3)
+                    cv2.imshow("ROI Selection", r_image)
+                    cv2.waitKey(1500)
+                    roi=str(int(y1))+':'+str(int(y2))+','+str(int(x1))+':'+str(int(x2))
             
+                    cv2.destroyAllWindows()
+                    started = 0
+            except NameError as ne:
+                pass
+        cv2.namedWindow("ROI Selection",cv2.WINDOW_AUTOSIZE)
+        cv2.setMouseCallback("ROI Selection", draw_rectangle)
+            # display the window
+        while True:
+            cv2.imshow("ROI Selection", r_image)
+            cv2.waitKey(0) == ord('q')
+            break
+        cv2.destroyAllWindows()
+        self.roiEntry1.clear()  # clear any existing text in the entry box
+        self.roiEntry2.clear()
+        self.roiEntry3.clear()
+        self.roiEntry4.clear()
+        first_point,second_point = roi.split(',')
+        first,second = first_point.split(':')
+        third,forth = second_point.split(':')
+        self.roiEntry1.insert(first)
+        self.roiEntry2.insert(second)
+        self.roiEntry3.insert(third)
+        self.roiEntry4.insert(forth)
+        cv2.destroyAllWindows()
+    
 
     def choose_directory_path(self):
         '''
@@ -375,10 +374,89 @@ class LiveOperationFunction(Ui_MainWindow):
     
 
     def reset_counter_values(self):
-        if int(self.goodCount.text()) == 0: 
-            self.goodCount.setText('100')
-        else:
-            self.goodCount.setText('0')
+        self.live_mode_param['good'] = 0
+        self.live_mode_param['not_good'] = 0
+        self.live_mode_param['last_not_good_count'] = 0
+        self.live_mode_param['last_not_good_time'] = 0
+        self.goodCount.setText(str(self.live_mode_param['good']))
+        self.notGoodCount.setText(str(self.live_mode_param['not_good']))
+        self.lastNG_Count.setText(str(self.live_mode_param['last_not_good_count']))
+        self.lastNG_timeCount.setText(str(self.live_mode_param['last_not_good_time']))
     
     def update_camera_parameter(self, value):
         self.exposureTime_Entry.setText(str(value))
+
+    def display_last_ten(self, circle_name)->None:
+        """ Display last ten images
+        Args:
+            image : input image from camera
+            event (event): display image event
+        """ 
+        try:
+            index_num = (str(circle_name.objectName()))
+            print("Index number",index_num)
+        except Exception as e:
+            index_num = 0
+        circle_image = self.live_mode_param['last_ten_result'][int(index_num)]['image']
+        cv2.imshow("Last Ten Image",cv2.resize(circle_image,(500,500)))
+        cv2.waitKey(0)
+        cv2.destroyAllWindows()
+
+    def display_last_NG(self,image)->None:
+        '''
+        Display last Not Good Image
+        '''
+        if not (image is  None):
+            new_h = self.lastNG_Image.height() 
+            new_w = self.lastNG_Image.width()
+            image = cv2.resize(image, (new_w, new_h))
+            image = QImage(image.data, new_w, new_h, QImage.Format.Format_BGR888)
+            self.lastNG_Image.setPixmap(QtGui.QPixmap.fromImage(image))
+
+    def red_blinking(self) -> None:
+        '''
+        Display or Blink the red color rectangle when the detection result if Not Good.
+        '''
+        self.detectionResult.setText("Not Good")
+        self.detectionResult.setStyleSheet("#detectionResult{\n"
+        "    color:white;\n"
+        "    background-color:#D9305C;\n"
+        "    border-radius:2px;\n"
+        "    font: 16pt Arial;"
+        "}")
+        self.detectionResult.setAlignment(QtCore.Qt.AlignCenter)
+    
+    def blue_blinking(self) -> None:
+        '''
+        Display or Blink the blue color rectangle when the detection result is Good.
+        '''
+        self.detectionResult.setText("Good")
+        self.detectionResult.setStyleSheet("#detectionResult{\n"
+        "    color:white;\n"
+        "    background-color:#349beb;\n"
+        "    border-radius:2px;\n"
+        "    font: 16pt Arial;"
+        "}")
+        self.detectionResult.setAlignment(QtCore.Qt.AlignCenter)
+
+    def detection_time(self,time) ->None:
+        self.detectionTime.setText(time)
+
+    def save_ng_image(self,image):
+        
+        config_file = self.load_main_config()
+        img_dir = config_file['not_good_image_path']
+        filename = os.path.join(img_dir,str(time.time())+'_NG.jpg')
+        cv2.imwrite(filename,image)
+
+        
+    def save_image(self,image):
+        config_file = self.load_main_config()
+        img_dir = config_file['images_path']
+        filename = os.path.join(img_dir,str(time.time())+'.jpg')
+        cv2.imwrite(filename,image)
+
+
+
+            
+       

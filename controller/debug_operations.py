@@ -1,24 +1,29 @@
 from __future__ import annotations
 import pickle
 import glob
+import sys
 import cv2
 import os
 import shutil
+import yaml
 import traceback
 
 from gui.pyUIdesign import Ui_MainWindow
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtWidgets import *
-from Parameter_Value import *
-from PyQt5.QtCore import pyqtSlot
+from PyQt5.QtCore import Qt, QTimer
 
+from Parameter_Value.param_tools import save_parameter, get_parameter
 
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from .gui_operations import PyQTWidgetFunction
 
 from gui import brand_management as bm 
+from data_fabrication import mainGUI_v1
+from Augmentation import main_aug,AugGUI
 
+ 
 class DebugOperationFunction(Ui_MainWindow):
     def __init__(self, parent: PyQTWidgetFunction):
         '''
@@ -29,7 +34,6 @@ class DebugOperationFunction(Ui_MainWindow):
         parent: PyQTWidgetFunction
         pass the object `PyQTWidgetFunction` that inherits the class `Ui_MainWindow` generated from `ui`
         '''
-
         ###### debug buttons variables ######
         self.parent = parent
         self.editProject = parent.editProject
@@ -70,33 +74,27 @@ class DebugOperationFunction(Ui_MainWindow):
         self.blurEntry = parent.blurEntry
         self.contrastEntry = parent.contrastEntry
         self.recursionRateEntry = parent.recursionRateEntry
-        self.flip_checkBox = parent.flip_checkBox
         self.rigidEntry = parent.rigidEntry
         self.elasticEntry = parent.elasticEntry
+        self.augmentationButton=parent.augmentationButton
+        self.detectionTrainButton = parent.detectionTrainButton
 
-    def load_augment_param(self)-> None:
-        '''
-        Load the augmentation parameters from pickle values
-        '''
-        with open(os.path.join(os.getcwd(),'Parameter_Value/augment.pkl'),'rb') as f:
-            augmentation = pickle.load(f)
-        self.nTimesEntry.setText(str(augmentation['ntimes']))
-        self.rotateEntry.setText(str(augmentation['rotate']))
-        self.blurEntry.setText(str(augmentation['blur']))
-        self.contrastEntry.setText(str(augmentation['contrast']))
-        self.recursionRateEntry.setText(str(augmentation['recursion_rate']))
-        # self.flip_checkBox.setText(str(augmentation['flip']))
-        self.flip_checkBox.setChecked(augmentation['flip'])
-        self.rigidEntry.setText(str(augmentation['rigid']))
-        self.elasticEntry.setText(str(augmentation['elastic']))
+        ###Fabrication button
+        self.fabricationButton = parent.fabricationButton
+
+        ###Detection Button
+        self.detectionEpoch_Entry = parent.detectionEpoch_Entry
+
     
+    
+
          
     def create_project(self)->None:
         '''
         Opens the create project section
         '''
         self.editProject.setCurrentWidget(self.createProject_Page)
-        self.createProjectButton.setStyleSheet("QPushButton{\n"
+        self.createProjectButton.setStyleSheet("#createProjectButton{\n"
         "    background-color:#0DC177;\n"
         "    border-radius:4px;\n"
         "}")
@@ -105,17 +103,22 @@ class DebugOperationFunction(Ui_MainWindow):
         self.detectionButton.setStyleSheet("")
         self.recognitionButton.setStyleSheet("")
         self.analysisButton.setStyleSheet("")
+    
+    
 
     def camera_debug(self)->None:
         '''
         Opens the camera section for debug mode
         '''
         self.editProject.setCurrentWidget(self.camera_Page)
-        self.cameraButton.setStyleSheet("QPushButton{\n"
+        self.cameraButton.setStyleSheet("#cameraButton{\n"
         "    background-color:#0DC177;\n"
         "    border-radius:4px;\n"
         "}")
-        self.createProjectButton.setStyleSheet("")
+        self.createProjectButton.setStyleSheet("#createProjectButton{\n"
+        "    background-color:#F2F1F1;\n"
+        "    border-radius:4px;\n"
+        "}")
         self.preprocessingButton.setStyleSheet("")
         self.detectionButton.setStyleSheet("")
         self.recognitionButton.setStyleSheet("")
@@ -130,26 +133,52 @@ class DebugOperationFunction(Ui_MainWindow):
         Opens the preprocessing section
         '''
         self.editProject.setCurrentWidget(self.dataProcessing_Page)
-        self.preprocessingButton.setStyleSheet("QPushButton{\n"
+        self.preprocessingButton.setStyleSheet("#preprocessingButton{\n"
         "    background-color:#0DC177;\n"
         "    border-radius:4px;\n"
         "}")
         self.cameraButton.setStyleSheet("")
-        self.createProjectButton.setStyleSheet("")
+        self.createProjectButton.setStyleSheet("#createProjectButton{\n"
+        "    background-color:#F2F1F1;\n"
+        "    border-radius:4px;\n"
+        "}")
         self.detectionButton.setStyleSheet("")
         self.recognitionButton.setStyleSheet("")
         self.analysisButton.setStyleSheet("")
+
+    def create_fabrication(self):
+        app=mainGUI_v1.App()
+        app.mainloop()
     
+    def load_augment_param(self,ntimes:int, rotate:int, flip:int, blur:int, contrast:int, elastic:int, rigid:int, recursion_rate:float)-> None:
+        '''
+        Load the current augmentation parameters to the gui widgets
+        '''
+        self.nTimesEntry.setText(str(ntimes))
+        self.rotateEntry.setText(str(rotate))
+        self.blurEntry.setText(str(blur))
+        self.contrastEntry.setText(str(contrast))
+        self.recursionRateEntry.setText(str(elastic))
+        self.rigidEntry.setText(str(rigid))
+        self.elasticEntry.setText(str(recursion_rate))
+
+    def load_detection_param(self,epoch_num:int):
+        self.detectionEpoch_Entry.setText(str(epoch_num))
+        
+
     def detection(self)->None:
         '''
         Opens the detection section
         '''
         self.editProject.setCurrentWidget(self.detection_Page)
-        self.detectionButton.setStyleSheet("QPushButton{\n"
+        self.detectionButton.setStyleSheet("#detectionButton{\n"
         "    background-color:#0DC177;\n"
         "    border-radius:4px;\n"
         "}")
-        self.createProjectButton.setStyleSheet("")
+        self.createProjectButton.setStyleSheet("#createProjectButton{\n"
+        "    background-color:#F2F1F1;\n"
+        "    border-radius:4px;\n"
+        "}")
         self.cameraButton.setStyleSheet("")
         self.preprocessingButton.setStyleSheet("")
         self.recognitionButton.setStyleSheet("")
@@ -160,12 +189,15 @@ class DebugOperationFunction(Ui_MainWindow):
         Opens the recognition section
         '''
         self.editProject.setCurrentWidget(self.recognition_Page)
-        self.recognitionButton.setStyleSheet("QPushButton{\n"
+        self.recognitionButton.setStyleSheet("#recognitionButton{\n"
         "    background-color:#0DC177;\n"
         "    border-radius:4px;\n"
         "}")
         self.detectionButton.setStyleSheet("")
-        self.createProjectButton.setStyleSheet("")
+        self.createProjectButton.setStyleSheet("#createProjectButton{\n"
+        "    background-color:#F2F1F1;\n"
+        "    border-radius:4px;\n"
+        "}")
         self.cameraButton.setStyleSheet("")
         self.preprocessingButton.setStyleSheet("")
         self.analysisButton.setStyleSheet("")
@@ -175,13 +207,16 @@ class DebugOperationFunction(Ui_MainWindow):
         Opens the analysis section
         '''
         self.editProject.setCurrentWidget(self.analysis_Page)
-        self.analysisButton.setStyleSheet("QPushButton{\n"
+        self.analysisButton.setStyleSheet("#analysisButton{\n"
         "    background-color:#0DC177;\n"
         "    border-radius:4px;\n"
         "}")
         self.detectionButton.setStyleSheet("")
         self.recognitionButton.setStyleSheet("")
-        self.createProjectButton.setStyleSheet("")
+        self.createProjectButton.setStyleSheet("#createProjectButton{\n"
+        "    background-color:#F2F1F1;\n"
+        "    border-radius:4px;\n"
+        "}")
         self.cameraButton.setStyleSheet("")
         self.preprocessingButton.setStyleSheet("")
 
@@ -193,18 +228,11 @@ class DebugOperationFunction(Ui_MainWindow):
         # self.createButton.setEnabled(not enabled)
         # if enabled:
         bm.createWindow(self.parent.main_window, brand_dir = './Brands/').show()
-    
-    def import_brand(self):
-        """
-        Method to open brand import windows
-        """
-        # enabled = self.importButton.isEnabled()
-        # self.importButton.setEnabled(not enabled)
-        # if enabled:
-        import_window = bm.MainWindow(self.parent.main_window, brand_dir = './Brands/')
-        import_window.on_exit = self.brand_exit_call_back_method
-        import_window.show()
 
+    
+        
+    
+    
     def brand_exit_call_back_method(self):
         '''
         This method is triggered when there needs to be update in gui because of change in main_config.yaml file
@@ -217,9 +245,18 @@ class DebugOperationFunction(Ui_MainWindow):
         brand_exit_call_back_method = your_methods
         
         '''
-        # TODO: load new main_config.yaml 
-        print('logic to update the project in the gui')
-        ...
+    
+    def import_brand(self):
+        """
+        Method to open brand import windows
+        """
+        # enabled = self.importButton.isEnabled()
+        # self.importButton.setEnabled(not enabled)
+        # if enabled:
+        import_window = bm.MainWindow(self.parent.main_window, brand_dir = './Brands/' ,  on_exit = self.brand_exit_call_back_method)
+        # import_window.on_exit = self.brand_exit_call_back_method
+        import_window.show()
+        # import_window.closed 
 
     def set_camera_values_to_entry(self, exposure: float | int, gain : float | int, frame_rate: float | int, delay: float | int ):
         self.exposureEntry_Debug.setText(str(exposure)) 
@@ -252,5 +289,53 @@ class DebugOperationFunction(Ui_MainWindow):
             print('[-] failed to get camera parameter, ', e)
             print(traceback.format_exc()) 
     
+    ########### Getting system parameters and save it
+    def update_augment_param(self,file_path)->None:
+        '''
+        Saves the updated system parameter
+        '''
+        try:
+            augment_param  = {
+                'ntimes':self.nTimesEntry.text()
+                ,'rotate':self.rotateEntry.text()
+                ,'blur':self.blurEntry.text()
+                ,'contrast':self.contrastEntry.text()
+                ,'elastic':self.elasticEntry.text()
+                ,'rigid':self.rigidEntry.text()
+                ,'recursion_rate':self.recursionRateEntry.text()
+            }
+            save_parameter(file_path,'augment',augment_param)
+            msgBox = QMessageBox()
+            msgBox.setText("Augmentation Parameter Update Successfully")
+            msgBox.setWindowTitle("Information")
+            msgBox.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
+            msgBox.exec()
+        except Exception as e:
+            print("Failed to get the system parameter")
+            print(traceback.format_exc())
+    
+    def update_detection_param(self,file_path):
+        try:
+            det_param  = {
+                'epoch_num':self.detectionEpoch_Entry.text()
+            }
+            save_parameter(file_path,'detection',det_param)
+            msgBox = QMessageBox()
+            msgBox.setText("Epoch Number Updated Successfully")
+            msgBox.setWindowTitle("Information")
+            msgBox.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
+            msgBox.exec()
+        except Exception as e:
+            print("Failed to get the system parameter")
+            print(traceback.format_exc())
+
+
+    def generate_augmentation(self):  
+        AugGUI.MainWindow(self.parent.main_window).show()
+    
+    def train_model(self):
+        print("model trainning started")
+
+
     def captured_image_count(self, image_count:int = 0):
         self.totalImage_Count.setText(str(image_count))

@@ -14,23 +14,15 @@ rejection_params = {
     'reject_enable':True
 }
 
-camera_param = {
-    'exposure':300,
-    'gain':21.0,
-    'frame_rate':10,
-    'trigger_delay':0,
-    'ROI':'736:956,1332:1904'
-}
-
 save_data_param = {
     'save_img':'False',
     'save_ng':'False',
-    'save_result':'False',
-    'img_dir':'None'
+    'save_result':'False'
 }
-if __name__ == '__main__':
-    from param_tools import save_parameter, get_parameter
-    save_parameter('./','system', system_param)
-    # save_parameter(rejection_params,'rejection')
-    # save_parameter(camera_param,'camera')
-    # save_parameter(save_data_param,'save_data')
+
+camera_live = {
+    'exposure_time':300,
+    'camera_gain':21.0,
+    'trigger_delay':0,
+    'ROI':'736:956,1332:1904'
+}

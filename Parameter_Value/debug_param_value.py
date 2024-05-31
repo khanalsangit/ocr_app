@@ -9,7 +9,6 @@ camera_param = {
 augmentation_param = {
     'ntimes':5,
     'rotate':10,
-    'flip':True,
     'blur':5,
     'contrast':10,
     'elastic':10,
@@ -17,5 +16,6 @@ augmentation_param = {
     'recursion_rate':0.4
 }
 
-# from param_tools import save_parameter, get_parameter
-# save_parameter(augmentation_param,'augment')
+detection_param={
+    'epoch_num':10
+}
